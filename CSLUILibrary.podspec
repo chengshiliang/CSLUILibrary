@@ -12,16 +12,4 @@ Pod::Spec.new do |s|
   s.frameworks   = 'Foundation', 'UIKit'
   s.dependency 'CSLCommonLibrary'
   s.dependency 'Masonry'
-  s.subspec 'Config' do |s1|
-    s1.source_files = 'CSLUILibrary/Config/*.{h,m}'
-    end
-  s.subspec 'Const' do |s2|
-    s2.source_files = 'CSLUILibrary/Const/*.{h,m}'
-    end
-  s.subspec 'Utils' do |s3|
-    s3.source_files = 'CSLUILibrary/Utils/*.{h,m}'
-    end
-  s.subspec 'SLLabel' do |s4|
-    s4.source_files = 'CSLUILibrary/SLLabel/*.{h,m}'
-    end
 end
