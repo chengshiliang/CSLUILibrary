@@ -64,4 +64,33 @@
     }
     return SLNormalLabelColor;
 }
+
++ (NSString *)fiterName:(FilterType)type {
+    switch (type) {
+        case OriginImage:
+            return @"OriginImage";
+        case CIPhotoEffectMono:
+            return @"CIPhotoEffectMono";
+        case CIPhotoEffectChrome:
+            return @"CIPhotoEffectChrome";
+        case CIPhotoEffectFade:
+            return @"CIPhotoEffectFade";
+        case CIPhotoEffectInstant:
+            return @"CIPhotoEffectInstant";
+        case CIPhotoEffectNoir:
+            return @"CIPhotoEffectNoir";
+        case CIPhotoEffectProcess:
+            return @"CIPhotoEffectProcess";
+        case CIPhotoEffectTonal:
+            return @"CIPhotoEffectTonal";
+        case CIPhotoEffectTransfer:
+            return @"CIPhotoEffectTransfer";
+        case CISRGBToneCurveToLinear:
+            return @"CISRGBToneCurveToLinear";
+        case CIVignetteEffect:
+            return @"CIVignetteEffect";
+        default:
+            break;
+    }
+}
 @end

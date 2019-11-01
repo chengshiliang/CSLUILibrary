@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <CSLUILibrary/SLUILibrary.h>
 
 @interface AppDelegate ()
 

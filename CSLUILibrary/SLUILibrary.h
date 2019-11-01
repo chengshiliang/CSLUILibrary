@@ -10,5 +10,6 @@
 
 #import <CSLUILibrary/SLUIConfig.h>
 #import <CSLUILibrary/SLLabel.h>
+#import <CSLUILibrary/SLImageView.h>
 
 #endif /* Header_h */
