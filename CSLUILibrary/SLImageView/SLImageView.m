@@ -40,7 +40,6 @@
 - (void)sl_setAlphaForImage:(UIImage *)image alpha:(CGFloat)alpha {
     if (!image) return;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"begin");
         UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);
@@ -51,7 +50,6 @@
         CGContextDrawImage(ctx, area, image.CGImage);
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        NSLog(@"end");
         [self sl_setImage:newImage];
     });
 }

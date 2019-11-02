@@ -197,7 +197,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4j-Pp-ffj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="925"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原始图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h46-Uu-DnM" customClass="SLLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
@@ -263,7 +263,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="8qq-9y-cu4" firstAttribute="top" secondItem="h46-Uu-DnM" secondAttribute="bottom" id="29E-tu-etH"/>
-                                            <constraint firstAttribute="height" constant="1000" id="3p8-0o-fFj"/>
                                             <constraint firstItem="5bf-wM-9Pt" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="7hl-Kt-rlb"/>
                                             <constraint firstAttribute="trailing" secondItem="8qq-9y-cu4" secondAttribute="trailing" id="9D7-yR-Xb0"/>
                                             <constraint firstItem="8qq-9y-cu4" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="CX4-7U-5Ro"/>
@@ -275,6 +274,7 @@
                                             <constraint firstItem="ZHb-ZC-piq" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="NJc-Cc-EEP"/>
                                             <constraint firstItem="l5a-5Y-Zd7" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="Qeo-Uw-kYN"/>
                                             <constraint firstItem="Tm2-NS-3fu" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="TOZ-li-xV0"/>
+                                            <constraint firstAttribute="height" constant="925" id="Tfj-XU-Z8x"/>
                                             <constraint firstAttribute="trailing" secondItem="tHx-eS-IGn" secondAttribute="trailing" id="Y4Z-0k-Rbj"/>
                                             <constraint firstItem="R9M-8b-NQb" firstAttribute="top" secondItem="Tm2-NS-3fu" secondAttribute="bottom" id="Y9X-Gy-rjQ"/>
                                             <constraint firstItem="jqv-na-c9N" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="cWl-yq-tF5"/>
@@ -306,7 +306,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q4j-Pp-ffj" firstAttribute="width" secondItem="dhF-M8-InT" secondAttribute="width" id="MGo-Q8-eh8"/>
+                            <constraint firstItem="q4j-Pp-ffj" firstAttribute="centerX" secondItem="dhF-M8-InT" secondAttribute="centerX" id="Cti-dx-ni2"/>
                             <constraint firstAttribute="trailing" secondItem="Vrr-tt-Vhj" secondAttribute="trailing" id="NiX-hc-XT7"/>
                             <constraint firstItem="i6v-Pn-uYv" firstAttribute="top" secondItem="Vrr-tt-Vhj" secondAttribute="bottom" id="Y65-bP-Fw8"/>
                             <constraint firstItem="Vrr-tt-Vhj" firstAttribute="leading" secondItem="dhF-M8-InT" secondAttribute="leading" id="erj-5Q-xJT"/>
@@ -319,6 +319,7 @@
                         <outlet property="imageView3" destination="ZHb-ZC-piq" id="lhA-j8-gH8"/>
                         <outlet property="imageView4" destination="l5a-5Y-Zd7" id="p4R-GW-UDY"/>
                         <outlet property="imageView5" destination="tHx-eS-IGn" id="p8A-Fh-Nl7"/>
+                        <outlet property="scrollView" destination="Vrr-tt-Vhj" id="alt-mH-0Wx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIL-HX-SSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
