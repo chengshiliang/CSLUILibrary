@@ -1,6 +1,6 @@
 PODS:
   - CSLCommonLibrary (0.2.0)
-  - CSLUILibrary (0.0.2):
+  - CSLUILibrary (0.0.3):
     - CSLCommonLibrary
     - Masonry
   - Masonry (1.1.0)
@@ -10,7 +10,7 @@ DEPENDENCIES:
   - CSLUILibrary (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/Cocoapods/Specs.git:
     - CSLCommonLibrary
     - Masonry
 
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: bb1bf92d43ff1c0152d04c75696997dea5e76af6
-  CSLUILibrary: 84331cd9373dbb92f1c7583afd3edd6b94c54938
+  CSLUILibrary: 0dc5eeaee46c7de7bedfd4fe8903b7d969e246f6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: 8945ce87fda2ddcce8cd950e4ee99cfab6a7c5ae
