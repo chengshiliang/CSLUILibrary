@@ -75,8 +75,8 @@
         CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
         CFDataRef dataRef = CGDataProviderCopyData(dataProviderRef);
         long dataLength = CFDataGetLength(dataRef);
-        UInt8 *pixBuf = CFDataGetMutableBytePtr(dataRef);
-        for (int offset; offset<dataLength; offset+=4) {
+        UInt8 *pixBuf = CFDataGetMutableBytePtr((CFMutableDataRef)dataRef);
+        for (int offset = 0; offset<dataLength; offset+=4) {
             int red = pixBuf[offset] * redWeight;
             int green = pixBuf[offset + 1] * greenWeight;
             int blue = pixBuf[offset + 2] * blueWeight;
@@ -99,7 +99,7 @@
 
 - (void)sl_filterImage:(UIImage *)image filterName:(NSString *)filterName {
     if ([filterName isEqualToString:@"OriginImage"]) {
-        self.image = image;
+        [self sl_setImage:image];
     }else{
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             CIImage *ciImage = [[CIImage alloc] initWithImage:image];
@@ -150,9 +150,7 @@
         NSData* imageData =  UIImagePNGRepresentation(image);
         NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         filePath = [filePath stringByAppendingPathComponent:fileName];
-        if ([imageData writeToFile:filePath atomically:YES]) {
-            NSLog(@"图片保存成功");
-        }
+        if ([imageData writeToFile:filePath atomically:YES]) {}
    });
 }
 

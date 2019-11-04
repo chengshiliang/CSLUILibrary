@@ -8,6 +8,18 @@
 #ifndef SLUIConsts_h
 #define SLUIConsts_h
 
+#define Iphone13  [UIDevice currentDevice].systemVersion.doubleValue >= 13.0
+#define Iphone12  [UIDevice currentDevice].systemVersion.doubleValue >= 12.0
+#define Iphone11  [UIDevice currentDevice].systemVersion.doubleValue >= 11.0
+#define Iphone10  [UIDevice currentDevice].systemVersion.doubleValue >= 10.0
+#define Iphone9  [UIDevice currentDevice].systemVersion.doubleValue >= 9.0
+
+#define WeakSelf __weak typeof (self) weakSelf = self
+#define StrongSelf __strong typeof (weakSelf) strongSelf = weakSelf
+
+#define WeakObj(obj) __weak typeof (obj) weakObj = obj
+#define StrongObj(obj) __strong typeof (weakObj) strongObj = weakObj
+
 #define SLUIColor(r, g, b) SLUIColorWithAlpha(r, g, b, 1)
 #define SLUIColorWithAlpha(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:a]
 

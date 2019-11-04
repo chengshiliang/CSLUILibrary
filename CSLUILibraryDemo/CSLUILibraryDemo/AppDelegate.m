@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SLUIConfig share] configLabel:LabelH1 font:[UIFont boldSystemFontOfSize:36.0] color:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    ViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
+    
+    SLTabBarController *tabBarVC = [[SLTabBarController alloc] init];
+    [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"3.jpg"]] selectImages:@[[UIImage imageNamed:@"3.jpg"]] layoutTabbar:^(SLTabbarButton * _Nonnull tabbarBt) {
+        [tabbarBt setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+        tabbarBt.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [tabbarBt.titleLabel setFrame:CGRectMake(0, 0, tabbarBt.bounds.size.width, tabbarBt.bounds.size.height-30)];
+        [tabbarBt.imageView setFrame:CGRectMake((tabbarBt.bounds.size.width-30)/2, tabbarBt.bounds.size.height-30, 30, 30)];
+    }];
+    self.window.rootViewController = tabBarVC;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

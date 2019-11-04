@@ -1,0 +1,117 @@
+//
+//  SLTabBarController.m
+//  CSLUILibrary
+//
+//  Created by SZDT00135 on 2019/11/4.
+//
+
+#import "SLTabBarController.h"
+#import <CSLUILibrary/SLNavigationController.h>
+#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLTabbarButton.h>
+#import "UIControl+Events.h"
+
+@interface SLTabBarController ()
+@property(nonatomic, strong) SLTabbarButton *selectBarButton;
+@property(nonatomic, assign) NSInteger currentSelectIndex;
+@property(nonatomic, strong) UIView *mTabBar;
+@property(nonatomic, copy) NSArray *titleArray;
+@property(nonatomic, copy) NSArray *normalImageArray;
+@property(nonatomic, copy) NSArray *selectImageArray;
+@end
+
+@implementation SLTabBarController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
+}
+
+- (instancetype)init {
+    if (self == [super init]) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize {
+    self.currentSelectIndex = 0;
+}
+
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages layoutTabbar:(void(^)(SLTabbarButton *tabbar))layoutTabbarBlock{
+    NSAssert(viewControllers.count == titles.count, @"vc length is not equals to title length");
+    NSAssert(viewControllers.count == normalImages.count, @"vc length is not equals to normalImage length");
+    NSAssert(viewControllers.count == selectImages.count, @"vc length is not equals to selectImage length");
+    NSMutableArray *viewControllerArrayM = [NSMutableArray arrayWithCapacity:viewControllers.count];
+    for (UIViewController *vc in viewControllers) {
+        [viewControllerArrayM addObject:[[SLNavigationController alloc]initWithRootViewController:vc]];
+    }
+    self.viewControllers = viewControllerArrayM.copy;
+    self.titleArray = titles.copy;
+    self.normalImageArray = normalImages.copy;
+    self.selectImageArray = selectImages.copy;
+    [self createTabBar:layoutTabbarBlock];
+}
+
+- (void)createTabBar:(void(^)(SLTabbarButton *tabbar))layoutTabbarBlock{
+    float tabbarWidth  = self.tabBar.frame.size.width;
+    float tabbarHeight = self.tabBar.frame.size.height;
+    UIView *tabbarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tabbarWidth, tabbarHeight)];
+    tabbarView.backgroundColor = SLUIHexColor(0xe0e0e0);
+    if (self.titleArray.count > 0) {
+        float tabbarItemWidth = tabbarWidth/self.titleArray.count;
+        for (int i = 0; i < self.titleArray.count; i++){
+            SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+            [tabbarBt setFrame:CGRectMake(i*tabbarItemWidth, 0, tabbarItemWidth, tabbarHeight)];
+            WeakSelf;
+            [tabbarBt onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl *control) {
+                StrongSelf;
+                if ([control isKindOfClass:[SLTabbarButton class]]) {
+                    SLTabbarButton *currentBt = (SLTabbarButton *)control;
+                    if (strongSelf.selectBarButton == currentBt) {
+                        return;
+                    }
+                    strongSelf.currentSelectIndex = currentBt.tag;
+                    strongSelf.selectBarButton.selected = NO;
+                    strongSelf.selectBarButton = currentBt;
+                    strongSelf.selectBarButton.selected = YES;
+                }
+            }];
+            tabbarBt.tag = 100+i;
+            [tabbarBt setTitle:self.titleArray[i] forState:UIControlStateNormal];
+            UIImage *normalImage = self.normalImageArray[i];
+            [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+            [tabbarBt setImage:self.selectImageArray[i] forState:UIControlStateSelected];
+            if (layoutTabbarBlock) {
+                layoutTabbarBlock(tabbarBt);
+            } else {
+                float imageWidth  = normalImage.size.width;
+                float imageheight = normalImage.size.height;
+                [tabbarBt.titleLabel setFrame:CGRectMake(0, 0, tabbarItemWidth, tabbarHeight-imageheight)];
+                [tabbarBt.imageView setFrame:CGRectMake((tabbarItemWidth-imageWidth)/2, tabbarHeight-imageheight, imageWidth, imageheight)];
+            }
+            [tabbarView addSubview:tabbarBt];
+            if (tabbarBt.tag == self.currentSelectIndex) {
+                self.selectBarButton = tabbarBt;
+                self.selectBarButton.selected = YES;
+            }
+            
+        }
+    }
+    [self.tabBar.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.tabBar insertSubview:tabbarView atIndex:0];
+    self.mTabBar = tabbarView;
+}
+
+- (void)sl_setTbbarBackgroundColor:(UIColor *)color {
+    self.mTabBar.backgroundColor = color;
+}
+
+@end

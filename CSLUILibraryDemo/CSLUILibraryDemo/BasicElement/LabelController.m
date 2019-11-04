@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.h1.labelType = LabelH1;
     
     self.h2.labelType = LabelH2;
