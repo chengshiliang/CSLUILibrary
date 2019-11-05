@@ -19,24 +19,21 @@
     scollView1.indicatorColor = [UIColor whiteColor];
     scollView1.currentIndicatorColor = [UIColor redColor];
     scollView1.autoTime = 3.0f;
-    scollView1.imageDatas=@[@"cir0EFJOIWFU319FJQWEOIFJEFJEOJF01I3JF032JF03FJ0JF031JF013FJ0",@"cir1",@"cir2",@"cir3"];
-    scollView1.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    scollView1.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    scollView1.titleDatas=@[@"cir0FWEFQWJFIOQWEJFIOQWEJFOIWQEJFIOEQJFIOJFEIOEWJFIOEJFIO",@"cir1",@"cir2",@"cir3"];
     scollView1.showTitle = YES;
     scollView1.layer.masksToBounds=YES;
-    scollView1.layer.borderColor=[[UIColor redColor]CGColor];
-    scollView1.layer.borderWidth=2;
+    scollView1.titleSpace = 15.0f;
     [self.view addSubview:scollView1];
     [scollView1 startLoading];
-    
+
     SLRecycleView* scollView2=[[SLRecycleView alloc]initWithFrame:CGRectMake(180,80, 160,320)];
     scollView2.indicatorColor = [UIColor whiteColor];
     scollView2.currentIndicatorColor = [UIColor redColor];
     scollView2.layer.masksToBounds=YES;
-    scollView2.layer.borderColor=[[UIColor redColor]CGColor];
-    scollView2.layer.borderWidth=2;
     scollView2.autoTime = 3.0f;
     scollView2.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    scollView1.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    scollView2.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
     scollView2.verticalScroll=YES;
     [scollView2 startLoading];
     [self.view addSubview:scollView2];

@@ -38,7 +38,8 @@
     self.autoScroll = YES;
     self.manualScroll = YES;
     self.autoTime = 3.0f;
-    self.titleBottomSpace = 30.0f;
+    self.bottomSpace = 15.0f;
+    self.titleSpace = 10.0f;
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     self.scrollView.bounces = YES;
@@ -76,8 +77,16 @@
     label.textColor = self.titleColor ?: SLUIHexColor(0x333333);
     label.font = self.titleFont ?: SLUINormalFont(17.0);
     label.textAlignment = NSTextAlignmentCenter;
-    CGFloat height = [title heightWithFont:label.font width:scrollWidth];
-    label.frame = CGRectMake(0, scrollHeight-height-self.titleBottomSpace, kScreenWidth, height);
+    label.lineBreakMode = self.breakMode;
+    CGFloat height = 0;
+    if (self.breakMode <= 1 ) {
+        label.numberOfLines = 0;
+        height = [title heightWithFont:label.font width:scrollWidth];
+    } else {
+        label.numberOfLines = 1;
+        height = 20;
+    }
+    label.frame = CGRectMake(0, scrollHeight-height-self.bottomSpace-self.titleSpace, scrollWidth, height);
     return label;
 }
 
@@ -95,7 +104,7 @@
     if (self.imageDatas.count == 1) {
         SLView *view = [[SLView alloc]initWithFrame:CGRectMake(0, 0, scrollWidth, scrollHeight)];
         [view addSubview:[self imageView:self.imageDatas[0]]];
-        [view addSubview:[self label:self.imageDatas[0]]];
+        [view addSubview:[self label:self.titleDatas[0]]];
         [self.viewArr addObject:view];
         [self.scrollView addSubview:view];
         [self.scrollView setContentSize:CGSizeMake(scrollWidth , scrollHeight)];
@@ -111,21 +120,21 @@
         startY = self.verticalScroll ? scrollHeight * (i +1) : 0;
         SLView *view=[[SLView alloc]initWithFrame:CGRectMake( startX, startY, scrollWidth, scrollHeight)];
         [view addSubview:[self imageView:self.imageDatas[i]]];
-        [view addSubview:[self label:self.imageDatas[i]]];
+        [view addSubview:[self label:self.titleDatas[i]]];
         [self.viewArr addObject:view];
         [self.scrollView addSubview:view];
     }
     
     SLView *firstView = [[SLView alloc]initWithFrame:CGRectMake(0 , 0, scrollWidth, scrollHeight)];
     [firstView addSubview:[self imageView:self.imageDatas[self.imageDatas.count - 1]]];
-    [firstView addSubview:[self label:self.imageDatas[self.imageDatas.count - 1]]];
+    [firstView addSubview:[self label:self.titleDatas[self.titleDatas.count - 1]]];
     [self.viewArr addObject:firstView];
     [self.scrollView addSubview:firstView];
     startX = self.verticalScroll ? 0 : (self.imageDatas.count + 1)*scrollWidth;
     startY = self.verticalScroll ? scrollHeight * (self.imageDatas.count +1) : 0;
     SLView *endView = [[SLView alloc]initWithFrame:CGRectMake(startX , startY, scrollWidth, scrollHeight)];
     [endView addSubview:[self imageView:self.imageDatas[0]]];
-    [endView addSubview:[self label:self.imageDatas[0]]];
+    [endView addSubview:[self label:self.titleDatas[0]]];
     [self.viewArr addObject:endView];
     [self.scrollView addSubview:endView];
     CGSize contentSize = CGSizeMake(scrollWidth * (self.imageDatas.count + 2), scrollHeight);
@@ -139,7 +148,7 @@
     
     if (self.hidePageControl || self.imageDatas.count < 2) return;
     
-    self.pageControl = [[SLPageControl alloc] initWithFrame:CGRectMake((scrollWidth-100)/2,scrollHeight-18 , 100, 15)];
+    self.pageControl = [[SLPageControl alloc] initWithFrame:CGRectMake((scrollWidth-100)/2,scrollHeight-15-self.bottomSpace , 100, 15)];
     if(!self.manualScroll){
         for(UIGestureRecognizer *g in self.scrollView.gestureRecognizers){
             [self.scrollView removeGestureRecognizer:g];
@@ -158,7 +167,7 @@
     }
     
     if(self.pageSize.width!=0&&self.pageSize.height!=0){
-        self.pageControl.frame=CGRectMake((scrollWidth-self.pageSize.width)/2,scrollHeight-18 , self.pageSize.width, 15);
+        self.pageControl.frame=CGRectMake((scrollWidth-self.pageSize.width)/2,scrollHeight-self.bottomSpace , self.pageSize.width, 15);
     }
     self.pageControl.numberOfPages = self.imageDatas.count;
     self.pageControl.currentPage = 0;

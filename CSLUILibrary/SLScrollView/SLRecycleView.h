@@ -26,9 +26,11 @@ typedef void (^RecycelViewScrollBlock)(NSInteger);
 @property (nonatomic, strong) UIImage *indicatorImage;
 @property (nonatomic, strong) UIColor *currentIndicatorColor;
 @property (nonatomic, strong) UIColor *indicatorColor;
-@property (nonatomic, assign) CGFloat titleBottomSpace;// 文字距离底部距离，默认30.0
-@property (nonatomic, strong) UIImage *placeHolderImage;
-@property(assign,nonatomic)CGSize pageSize;
+@property (nonatomic, assign) CGFloat bottomSpace;// 文字距离底部距离，默认15.0
+@property (nonatomic, assign) CGFloat titleSpace;// 文字距离底部距离，默认10.0
+@property (nonatomic, strong) UIImage *placeHolderImage; // 网络请求时的占位图片
+@property (nonatomic, assign) NSLineBreakMode breakMode; // 文字换行样式
+@property (assign, nonatomic) CGSize pageSize; // pagecontrol大小
 - (void)startLoading;
 - (void)startLoadingByIndex:(NSInteger)index;
 @end
