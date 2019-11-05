@@ -86,26 +86,21 @@
             }];
             tabbarBt.tag = 100+i;
             [tabbarBt setTitle:self.titleArray[i] forState:UIControlStateNormal];
+            [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+            [tabbarBt setTitleColor:SLUIHexColor(0x0000ff) forState:UIControlStateSelected];
             UIImage *normalImage = self.normalImageArray[i];
             [tabbarBt setImage:normalImage forState:UIControlStateNormal];
             [tabbarBt setImage:self.selectImageArray[i] forState:UIControlStateSelected];
             if (layoutTabbarBlock) {
                 layoutTabbarBlock(tabbarBt);
-            } else {
-                float imageWidth  = normalImage.size.width;
-                float imageheight = normalImage.size.height;
-                [tabbarBt.titleLabel setFrame:CGRectMake(0, 0, tabbarItemWidth, tabbarHeight-imageheight)];
-                [tabbarBt.imageView setFrame:CGRectMake((tabbarItemWidth-imageWidth)/2, tabbarHeight-imageheight, imageWidth, imageheight)];
             }
             [tabbarView addSubview:tabbarBt];
             if (tabbarBt.tag == self.currentSelectIndex) {
                 self.selectBarButton = tabbarBt;
                 self.selectBarButton.selected = YES;
             }
-            
         }
     }
-    [self.tabBar.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.tabBar insertSubview:tabbarView atIndex:0];
     self.mTabBar = tabbarView;
 }

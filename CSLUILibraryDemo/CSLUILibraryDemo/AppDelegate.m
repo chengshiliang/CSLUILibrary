@@ -23,13 +23,11 @@
     ViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
     
     SLTabBarController *tabBarVC = [[SLTabBarController alloc] init];
-    [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"3.jpg"]] selectImages:@[[UIImage imageNamed:@"3.jpg"]] layoutTabbar:^(SLTabbarButton * _Nonnull tabbarBt) {
-        [tabbarBt setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [tabbarBt setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-        tabbarBt.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [tabbarBt.titleLabel setFrame:CGRectMake(0, 0, tabbarBt.bounds.size.width, tabbarBt.bounds.size.height-30)];
-        [tabbarBt.imageView setFrame:CGRectMake((tabbarBt.bounds.size.width-30)/2, tabbarBt.bounds.size.height-30, 30, 30)];
+    [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"tabBar_home_normal"]] selectImages:@[[UIImage imageNamed:@"tabBar_home_press"]] layoutTabbar:^(SLTabbarButton * _Nonnull tabbar) {
+        // 自定义选中文字颜色和未选中文字颜色,自定义SLTabbarButton 类的属性
+        tabbar.showTitle = NO;
     }];
+    [tabBarVC sl_setTbbarBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabBar_bg"]]];
     self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
     return YES;

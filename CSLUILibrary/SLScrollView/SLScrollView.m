@@ -24,7 +24,7 @@
 
 - (void)initial {
     if (@available(macOS 11, iOS 11, *)) {
-        self.contentInsetAdjustmentBehavior = NO;
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
 }
 
