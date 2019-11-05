@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.frameworks   = 'Foundation', 'UIKit'
   s.dependency 'CSLCommonLibrary'
   s.dependency 'Masonry'
+  s.dependency 'SDWebImage'
 end

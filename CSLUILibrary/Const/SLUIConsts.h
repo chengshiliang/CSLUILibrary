@@ -20,6 +20,9 @@
 #define WeakObj(obj) __weak typeof (obj) weakObj = obj
 #define StrongObj(obj) __strong typeof (weakObj) strongObj = weakObj
 
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
 #define SLUIColor(r, g, b) SLUIColorWithAlpha(r, g, b, 1)
 #define SLUIColorWithAlpha(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:a]
 

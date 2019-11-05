@@ -1,18 +1,25 @@
 PODS:
   - CSLCommonLibrary (0.2.3)
-  - CSLUILibrary (0.0.3):
+  - CSLUILibrary (0.0.4):
     - CSLCommonLibrary
     - Masonry
+    - SDWebImage
   - Masonry (1.1.0)
+  - SDWebImage (5.2.5):
+    - SDWebImage/Core (= 5.2.5)
+  - SDWebImage/Core (5.2.5)
 
 DEPENDENCIES:
   - CSLCommonLibrary (= 0.2.3)
   - CSLUILibrary (from `../`)
+  - Masonry
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CSLCommonLibrary
     - Masonry
+    - SDWebImage
 
 EXTERNAL SOURCES:
   CSLUILibrary:
@@ -20,9 +27,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: e49b10996e5795c5286166d7a81dfff35d204900
-  CSLUILibrary: 0dc5eeaee46c7de7bedfd4fe8903b7d969e246f6
+  CSLUILibrary: 7d0585ce74b4fe0dfd0d7819c54b6c7f1458af99
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
 
-PODFILE CHECKSUM: dcb3a5259f252801e91beac3a59c8853b84dc179
+PODFILE CHECKSUM: 9bedded28824ed0c21125d97481cb67259ba1ebc
 
 COCOAPODS: 1.8.4

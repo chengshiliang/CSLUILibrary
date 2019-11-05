@@ -1,8 +1,8 @@
 //
-//  LabelController.h
+//  RecycleViewController.h
 //  CSLUILibraryDemo
 //
-//  Created by SZDT00135 on 2019/10/31.
+//  Created by SZDT00135 on 2019/11/5.
 //  Copyright © 2019 csl. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LabelController : SLViewController
+@interface RecycleViewController : SLViewController
 
 @end
 

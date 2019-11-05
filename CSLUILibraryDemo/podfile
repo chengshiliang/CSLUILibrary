@@ -1,7 +1,9 @@
 source 'https://github.com/Cocoapods/Specs.git'
 platform :ios, '8.0'
 target 'CSLUILibraryDemo' do
-pod 'CSLCommonLibrary', '0.2.0'
+pod 'CSLCommonLibrary', '0.2.3'
+pod 'SDWebImage', '~> 5.0'
+pod 'Masonry'
 pod 'CSLUILibrary', :path => '../'
 end
 inhibit_all_warnings!

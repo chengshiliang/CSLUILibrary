@@ -165,6 +165,24 @@
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="20.239880059970016"/>
         </scene>
+        <!--Recycle View Controller-->
+        <scene sceneID="cIh-R7-mdY">
+            <objects>
+                <viewController storyboardIdentifier="recycle" id="VbN-SP-AZq" customClass="RecycleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oT6-vn-LbG"/>
+                        <viewControllerLayoutGuide type="bottom" id="sop-Pc-cGW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nen-ye-Ifg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mnk-74-Cy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2120" y="20"/>
+        </scene>
         <!--Image View Controller-->
         <scene sceneID="hKU-59-ab5">
             <objects>
@@ -177,7 +195,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Vrr-tt-Vhj">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Vrr-tt-Vhj" customClass="SLScrollView">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4j-Pp-ffj">

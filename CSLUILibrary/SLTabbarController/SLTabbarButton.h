@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, SLButtonImagePosition) {
     SLButtonImagePositionBottom = 3      // 图片在文字下侧
 };
 @interface SLTabbarButton : UIButton
-// Button 的样式 默认为 JBCButtonImagePositionLeft
+// Button 的样式 默认为 SLButtonImagePositionTop
 @property (nonatomic) SLButtonImagePosition imagePosition;
 // 图片和文字之间的间距
 @property (nonatomic, assign) CGFloat imageTitleSpace;

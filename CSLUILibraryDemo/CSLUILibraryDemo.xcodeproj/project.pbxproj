@@ -18,6 +18,11 @@
 		158C6C5C236A96C700F80FA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C5B236A96C700F80FA6 /* main.m */; };
 		15EFE138236FCD8A00912334 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFE137236FCD8A00912334 /* BaseNavigationController.m */; };
 		15EFE1532370FE7D00912334 /* 11.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE1522370FE7D00912334 /* 11.PNG */; };
+		15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFE17E23717B8100912334 /* RecycleViewController.m */; };
+		15EFE18423717E7C00912334 /* cir3.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18023717E7C00912334 /* cir3.png */; };
+		15EFE18523717E7C00912334 /* cir2.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18123717E7C00912334 /* cir2.png */; };
+		15EFE18623717E7C00912334 /* cir0.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18223717E7C00912334 /* cir0.png */; };
+		15EFE18723717E7C00912334 /* cir1.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18323717E7C00912334 /* cir1.png */; };
 		D85475017630C8A0F1E343DE /* libPods-CSLUILibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +46,12 @@
 		15EFE136236FCD8A00912334 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		15EFE137236FCD8A00912334 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		15EFE1522370FE7D00912334 /* 11.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.PNG; sourceTree = "<group>"; };
+		15EFE17D23717B8100912334 /* RecycleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecycleViewController.h; sourceTree = "<group>"; };
+		15EFE17E23717B8100912334 /* RecycleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecycleViewController.m; sourceTree = "<group>"; };
+		15EFE18023717E7C00912334 /* cir3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir3.png; sourceTree = "<group>"; };
+		15EFE18123717E7C00912334 /* cir2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir2.png; sourceTree = "<group>"; };
+		15EFE18223717E7C00912334 /* cir0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir0.png; sourceTree = "<group>"; };
+		15EFE18323717E7C00912334 /* cir1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir1.png; sourceTree = "<group>"; };
 		4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83958D723C86C661A88C9606 /* Pods-CSLUILibraryDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.release.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.release.xcconfig"; sourceTree = "<group>"; };
 		CC1DC1C3CACFE58F133EC4CB /* Pods-CSLUILibraryDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.debug.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +105,7 @@
 				158C6C4D236A96C600F80FA6 /* AppDelegate.m */,
 				158C6C4F236A96C600F80FA6 /* ViewController.h */,
 				158C6C50236A96C600F80FA6 /* ViewController.m */,
+				15EFE17C23717B6B00912334 /* Component */,
 				15EFE135236FCD7000912334 /* Base */,
 				1550CC31236AD724002CB249 /* BasicElement */,
 				158C6C52236A96C600F80FA6 /* Main.storyboard */,
@@ -104,6 +116,10 @@
 				158C6C5B236A96C700F80FA6 /* main.m */,
 				15EFE1522370FE7D00912334 /* 11.PNG */,
 				15596B5C236C2E200073C0CB /* 3.jpg */,
+				15EFE18223717E7C00912334 /* cir0.png */,
+				15EFE18323717E7C00912334 /* cir1.png */,
+				15EFE18123717E7C00912334 /* cir2.png */,
+				15EFE18023717E7C00912334 /* cir3.png */,
 			);
 			path = CSLUILibraryDemo;
 			sourceTree = "<group>";
@@ -115,6 +131,15 @@
 				15EFE137236FCD8A00912334 /* BaseNavigationController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		15EFE17C23717B6B00912334 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				15EFE17D23717B8100912334 /* RecycleViewController.h */,
+				15EFE17E23717B8100912334 /* RecycleViewController.m */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		74ED8899ABC998C81C328A3A /* Pods */ = {
@@ -193,8 +218,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EFE1532370FE7D00912334 /* 11.PNG in Resources */,
+				15EFE18623717E7C00912334 /* cir0.png in Resources */,
+				15EFE18723717E7C00912334 /* cir1.png in Resources */,
 				158C6C59236A96C700F80FA6 /* LaunchScreen.storyboard in Resources */,
+				15EFE18423717E7C00912334 /* cir3.png in Resources */,
 				158C6C56236A96C700F80FA6 /* Assets.xcassets in Resources */,
+				15EFE18523717E7C00912334 /* cir2.png in Resources */,
 				158C6C54236A96C600F80FA6 /* Main.storyboard in Resources */,
 				15596B5D236C2E200073C0CB /* 3.jpg in Resources */,
 			);
@@ -236,6 +265,7 @@
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				15EFE138236FCD8A00912334 /* BaseNavigationController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
+				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,
 				158C6C4E236A96C600F80FA6 /* AppDelegate.m in Sources */,
 			);
