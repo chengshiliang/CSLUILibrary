@@ -34,20 +34,20 @@
     return self;
 }
 
-- (CGSize)sizeWithFont:(UIFont*)font{
+- (CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size{
     if ([self emptyString]) return CGSizeZero;
-    return [self boundingRectWithSize:CGSizeMake(0, 0) options:NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
+    return [self boundingRectWithSize:size options:NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
 }
 
 - (CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width {
     if ([self emptyString]) return 0;
-    CGSize titleSize = [self sizeWithFont:font constrainedToSize:CGSizeMake(width > 0 ? width : kScreenWidth, CGFLOAT_MAX)];
+    CGSize titleSize = [self sizeWithFont:font size:CGSizeMake(width > 0 ? width : kScreenWidth, CGFLOAT_MAX)];
     return titleSize.height;
 }
 
 - (CGFloat)widthWithFont:(UIFont*)font height:(CGFloat)height {
     if ([self emptyString]) return 0;
-    CGSize titleSize = [self sizeWithFont:font constrainedToSize:CGSizeMake(kScreenWidth, height > 0 ? height : kScreenHeight)];
+    CGSize titleSize = [self sizeWithFont:font size:CGSizeMake(kScreenWidth, height > 0 ? height : kScreenHeight)];
     return titleSize.width;
 }
 @end

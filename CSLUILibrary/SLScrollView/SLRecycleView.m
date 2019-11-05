@@ -75,7 +75,7 @@
         label.text = [title blankString];
     }
     label.textColor = self.titleColor ?: SLUIHexColor(0x333333);
-    label.font = self.titleFont ?: SLUINormalFont(17.0);
+    label.font = self.titleFont ?: SLUINormalFont(15.0);
     label.textAlignment = NSTextAlignmentCenter;
     label.lineBreakMode = self.breakMode;
     CGFloat height = 0;

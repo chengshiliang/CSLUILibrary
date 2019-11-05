@@ -1,6 +1,6 @@
 PODS:
   - CSLCommonLibrary (0.2.3)
-  - CSLUILibrary (0.0.4):
+  - CSLUILibrary (0.0.5):
     - CSLCommonLibrary
     - Masonry
     - SDWebImage
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: e49b10996e5795c5286166d7a81dfff35d204900
-  CSLUILibrary: 7d0585ce74b4fe0dfd0d7819c54b6c7f1458af99
+  CSLUILibrary: 7cdc7aac1e3c886008e8ac54348e551ee0069082
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
 

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (Util)
 -(BOOL)emptyString;
 -(NSString *)blankString;
--(CGSize)sizeWithFont:(UIFont*)font;
+-(CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size;
 -(CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width;
 -(CGFloat)widthWithFont:(UIFont*)font height:(CGFloat)height;
 @end

@@ -20,7 +20,7 @@ typedef void (^RecycelViewScrollBlock)(NSInteger);
 @property (nonatomic) BOOL manualScroll;// 默认yes
 @property (nonatomic) BOOL showTitle;// 默认no
 @property (nonatomic, strong) UIFont *titleFont;// 文字字体
-@property (nonatomic, strong) UIFont *titleColor;// 文字颜色
+@property (nonatomic, strong) UIColor *titleColor;// 文字颜色
 @property (nonatomic) NSTimeInterval autoTime;// 默认3.0
 @property (nonatomic, strong) UIImage *currentIndicatorImage;
 @property (nonatomic, strong) UIImage *indicatorImage;
