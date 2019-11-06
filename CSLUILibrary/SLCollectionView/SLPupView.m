@@ -11,7 +11,11 @@
 
 static const NSString *const pupViewCellID = @"kPupViewCellID";
 
-@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate,SLCollectionViewLayoutDelegate>
+@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate>
+{
+    BOOL isRegiste;
+}
+@property(strong,nonatomic)SLCollectionViewLayout *layout;
 @property(strong,nonatomic)SLCollectionView *collectionView;
 @end
 @implementation SLPupView
@@ -29,19 +33,25 @@ static const NSString *const pupViewCellID = @"kPupViewCellID";
 }
 
 - (void)initialize {
-    SLCollectionViewLayout *layout=[[SLCollectionViewLayout alloc]init];
-    layout.delegate = self;
-    self.collectionView=[[SLCollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
+    self.layout=[[SLCollectionViewLayout alloc]init];
+    self.layout.delegate = self;
+    self.collectionView=[[SLCollectionView alloc]initWithFrame:self.bounds collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     [self addSubview:self.collectionView];
 }
 
 - (void)reloadData {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:)]) {
-        [self.delegate registerCell:self.collectionView];
-    } else {
-        [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
+    self.layout.columns = self.columns;
+    self.layout.rowMagrin = self.rowMagrin;
+    self.layout.columnMagrin = self.columnMagrin;
+    if (!isRegiste) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:)]) {
+            [self.delegate registerCell:self.collectionView];
+        } else {
+            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
+        }
+        isRegiste = YES;
     }
     [self.collectionView reloadData];
 }
@@ -59,8 +69,6 @@ static const NSString *const pupViewCellID = @"kPupViewCellID";
         return [self.delegate collectionView:collectionView customCellForItemAtIndexPath:indexPath];
     }
     SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:pupViewCellID forIndexPath:indexPath];
-    SLPupModel *model=self.dataSource[indexPath.row];
-    cell.model=model.data;
     return cell;
 }
 - (void)collectionView:(SLCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
