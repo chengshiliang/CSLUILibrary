@@ -1,6 +1,6 @@
 PODS:
   - CSLCommonLibrary (0.2.3)
-  - CSLUILibrary (0.0.5):
+  - CSLUILibrary (0.0.6):
     - CSLCommonLibrary
     - JSONModel
     - Masonry
@@ -14,9 +14,6 @@ PODS:
 DEPENDENCIES:
   - CSLCommonLibrary (= 0.2.3)
   - CSLUILibrary (from `../`)
-  - JSONModel
-  - Masonry
-  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -31,11 +28,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: e49b10996e5795c5286166d7a81dfff35d204900
-  CSLUILibrary: 33b39c1163f53325278ce6fed473aac818061f50
+  CSLUILibrary: 68cdaf3c4e68a0a12290fee03e1fdc84a841d57f
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
 
-PODFILE CHECKSUM: d99df7d3ae5fe120a08adfb1130dc154743adbe5
+PODFILE CHECKSUM: dcb3a5259f252801e91beac3a59c8853b84dc179
 
 COCOAPODS: 1.8.4

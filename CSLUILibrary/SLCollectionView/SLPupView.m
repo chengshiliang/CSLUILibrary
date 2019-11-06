@@ -9,9 +9,9 @@
 #import <CSLUILibrary/SLCollectionViewLayout.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
-static const NSString *const pupViewCellID = @"kPupViewCellID";
+static NSString *const pupViewCellID = @"kPupViewCellID";
 
-@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate,SLCollectionViewLayoutDelegate>
 {
     BOOL isRegiste;
 }
