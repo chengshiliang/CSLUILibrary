@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.translucent = NO;//默认设置导航栏不透明
+    self.navigationBar.barTintColor = SLUIHexColor(0xe0e0e0);
     if ([self presentingViewController]) return;
     WeakSelf;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]init];

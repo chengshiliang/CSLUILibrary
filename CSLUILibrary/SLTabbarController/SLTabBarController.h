@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTabBarController : UITabBarController
-- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages layoutTabbar:(void(^ _Nullable)(SLTabbarButton *tabbar))layoutTabbarBlock;
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^ _Nullable)(SLTabbarButton *tabbar))layoutTabbarBlock;
 
 - (void)sl_setTbbarBackgroundColor:(UIColor *)color;
 @end

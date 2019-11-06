@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
   s.dependency 'CSLCommonLibrary'
   s.dependency 'Masonry'
   s.dependency 'SDWebImage'
+  s.dependency 'JSONModel'
 end

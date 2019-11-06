@@ -45,13 +45,20 @@
     self.currentSelectIndex = 0;
 }
 
-- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages layoutTabbar:(void(^)(SLTabbarButton *tabbar))layoutTabbarBlock{
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^)(SLTabbarButton *tabbar))layoutTabbarBlock{
     NSAssert(viewControllers.count == titles.count, @"vc length is not equals to title length");
     NSAssert(viewControllers.count == normalImages.count, @"vc length is not equals to normalImage length");
     NSAssert(viewControllers.count == selectImages.count, @"vc length is not equals to selectImage length");
+    NSAssert(viewControllers.count == navFlags.count, @"vc length is not equals to navFlags length");
     NSMutableArray *viewControllerArrayM = [NSMutableArray arrayWithCapacity:viewControllers.count];
+    int i = 0;
     for (UIViewController *vc in viewControllers) {
-        [viewControllerArrayM addObject:[[SLNavigationController alloc]initWithRootViewController:vc]];
+        if ([navFlags[i] boolValue]) {
+            [viewControllerArrayM addObject:[[SLNavigationController alloc]initWithRootViewController:vc]];
+        } else {
+            [viewControllerArrayM addObject:vc];
+        }
+        i ++;
     }
     self.viewControllers = viewControllerArrayM.copy;
     self.titleArray = titles.copy;

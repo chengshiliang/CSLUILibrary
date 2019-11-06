@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543E9792372739A00A8F9BA /* PupViewController.m */; };
+		1543E97D2372761400A8F9BA /* CustomPupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543E97C2372761400A8F9BA /* CustomPupModel.m */; };
 		1550CC34236AD749002CB249 /* LabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1550CC33236AD749002CB249 /* LabelController.m */; };
 		15596B5B236C29480073C0CB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15596B5A236C29480073C0CB /* ImageViewController.m */; };
 		15596B5D236C2E200073C0CB /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15596B5C236C2E200073C0CB /* 3.jpg */; };
@@ -27,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1543E9782372739A00A8F9BA /* PupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PupViewController.h; sourceTree = "<group>"; };
+		1543E9792372739A00A8F9BA /* PupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PupViewController.m; sourceTree = "<group>"; };
+		1543E97B2372761400A8F9BA /* CustomPupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPupModel.h; sourceTree = "<group>"; };
+		1543E97C2372761400A8F9BA /* CustomPupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPupModel.m; sourceTree = "<group>"; };
 		1550CC32236AD749002CB249 /* LabelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelController.h; sourceTree = "<group>"; };
 		1550CC33236AD749002CB249 /* LabelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelController.m; sourceTree = "<group>"; };
 		15596B58236C28700073C0CB /* CSLUILibraryPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLUILibraryPrefixHeader.pch; sourceTree = "<group>"; };
@@ -138,6 +144,10 @@
 			children = (
 				15EFE17D23717B8100912334 /* RecycleViewController.h */,
 				15EFE17E23717B8100912334 /* RecycleViewController.m */,
+				1543E9782372739A00A8F9BA /* PupViewController.h */,
+				1543E9792372739A00A8F9BA /* PupViewController.m */,
+				1543E97B2372761400A8F9BA /* CustomPupModel.h */,
+				1543E97C2372761400A8F9BA /* CustomPupModel.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -263,7 +273,9 @@
 			files = (
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
+				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15EFE138236FCD8A00912334 /* BaseNavigationController.m in Sources */,
+				1543E97D2372761400A8F9BA /* CustomPupModel.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,

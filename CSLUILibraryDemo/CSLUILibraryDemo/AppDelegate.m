@@ -23,7 +23,7 @@
     ViewController *homeVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
     
     SLTabBarController *tabBarVC = [[SLTabBarController alloc] init];
-    [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"tabBar_home_normal"]] selectImages:@[[UIImage imageNamed:@"tabBar_home_press"]] layoutTabbar:^(SLTabbarButton * _Nonnull tabbar) {
+    [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"tabBar_home_normal"]] selectImages:@[[UIImage imageNamed:@"tabBar_home_press"]] navFlags:@[@(true)] layoutTabbar:^(SLTabbarButton * _Nonnull tabbar) {
         // 自定义选中文字颜色和未选中文字颜色,自定义SLTabbarButton 类的属性
         tabbar.showTitle = NO;
     }];
