@@ -19,7 +19,6 @@
 @end
 @implementation PupViewController
 - (void)viewDidLoad {
-    NSLog(@"HERE");
     [super viewDidLoad];
     _colorAry = [NSMutableArray array];
     [_colorAry addObject:[UIColor whiteColor]];
@@ -46,6 +45,7 @@
     self.pupView.columnMagrin = 5.0f;
     self.pupView.rowMagrin = 5.0f;
     [self.pupView reloadData];
+    NSLog(@"reloadData");
 }
 
 - (void)registerCell:(SLCollectionView *)collectionView {

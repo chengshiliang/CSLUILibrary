@@ -15,7 +15,7 @@
 @implementation SLNavTransitionAnimation
 - (instancetype)init {
     if (self == [super init]) {
-        NSTimeInterval transitionDuration = 1.0f;
+        NSTimeInterval transitionDuration = 0.5f;
         [self transitionDurationBlock:^NSTimeInterval(id<UIViewControllerContextTransitioning>  _Nullable transitionContext) {
             return transitionDuration;
         }];
