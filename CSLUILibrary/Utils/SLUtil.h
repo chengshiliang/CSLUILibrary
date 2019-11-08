@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIFont *)fontSize:(LabelType)type;
 + (UIColor *)color:(LabelType)type;
 + (NSString*)fiterName:(FilterType)type;
-
++ (BOOL)bangsScreen;
 @end
 
 NS_ASSUME_NONNULL_END

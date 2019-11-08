@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'CSLUILibrary'
-  s.version      = '0.0.6'
+  s.version      = '0.0.7'
   s.summary      = 'UI configurable interface Library'
   s.homepage     = 'https://github.com/chengshiliang/CSLUILibrary'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.source_files = 'CSLUILibrary/**/*.{h,m}'
   s.requires_arc = true
   s.frameworks   = 'Foundation', 'UIKit'
+  s.resources    = 'CSLUILibrary/Resources/*.png'
   s.dependency 'CSLCommonLibrary'
   s.dependency 'Masonry'
   s.dependency 'SDWebImage'

@@ -24,6 +24,7 @@
 		15EFE18523717E7C00912334 /* cir2.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18123717E7C00912334 /* cir2.png */; };
 		15EFE18623717E7C00912334 /* cir0.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18223717E7C00912334 /* cir0.png */; };
 		15EFE18723717E7C00912334 /* cir1.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18323717E7C00912334 /* cir1.png */; };
+		15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FF8BB623751F8100B920B2 /* SearchViewController.m */; };
 		D85475017630C8A0F1E343DE /* libPods-CSLUILibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		15EFE18123717E7C00912334 /* cir2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir2.png; sourceTree = "<group>"; };
 		15EFE18223717E7C00912334 /* cir0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir0.png; sourceTree = "<group>"; };
 		15EFE18323717E7C00912334 /* cir1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir1.png; sourceTree = "<group>"; };
+		15FF8BB523751F8100B920B2 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		15FF8BB623751F8100B920B2 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83958D723C86C661A88C9606 /* Pods-CSLUILibraryDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.release.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.release.xcconfig"; sourceTree = "<group>"; };
 		CC1DC1C3CACFE58F133EC4CB /* Pods-CSLUILibraryDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.debug.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				15EFE17E23717B8100912334 /* RecycleViewController.m */,
 				1543E9782372739A00A8F9BA /* PupViewController.h */,
 				1543E9792372739A00A8F9BA /* PupViewController.m */,
+				15FF8BB523751F8100B920B2 /* SearchViewController.h */,
+				15FF8BB623751F8100B920B2 /* SearchViewController.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				158C6C45236A96C600F80FA6 /* Sources */,
 				158C6C46236A96C600F80FA6 /* Frameworks */,
 				158C6C47236A96C600F80FA6 /* Resources */,
+				27437BFECB7A0A91A570F1D6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,6 +243,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		27437BFECB7A0A91A570F1D6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BEB19D70C70AC84895066277 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +293,7 @@
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15EFE138236FCD8A00912334 /* BaseNavigationController.m in Sources */,
+				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,

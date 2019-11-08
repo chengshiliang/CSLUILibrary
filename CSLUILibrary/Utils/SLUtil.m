@@ -93,4 +93,15 @@
             break;
     }
 }
+
++ (BOOL)bangsScreen {
+    if (@available(iOS 11.0, *)) {
+        UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+        CGFloat bottomSafeInset = keyWindow.safeAreaInsets.bottom;
+        if (bottomSafeInset > 0) {
+            return YES;
+        }
+    }
+    return NO;
+}
 @end

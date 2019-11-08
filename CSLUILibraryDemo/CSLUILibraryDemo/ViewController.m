@@ -11,6 +11,7 @@
 #import "ImageViewController.h"
 #import "RecycleViewController.h"
 #import "PupViewController.h"
+#import "SearchViewController.h"
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -34,7 +35,7 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        return 2;
+        return 3;
     }
     return 0;
 }
@@ -67,6 +68,8 @@
             cell.textLabel.text = @"RecycleView";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"PupView";
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"SearchControler";
         }
     }
     return cell;
@@ -98,6 +101,9 @@
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
             PupViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"pupview"];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 2) {
+            SearchViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"search"];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

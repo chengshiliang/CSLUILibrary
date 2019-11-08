@@ -28,5 +28,6 @@
 #import <CSLUILibrary/NSString+Util.h>
 #import <CSLUILibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLUtil.h>
+#import <CSLUILibrary/SLSearchController.h>
 
 #endif /* Header_h */

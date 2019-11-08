@@ -183,6 +183,34 @@
             </objects>
             <point key="canvasLocation" x="2120" y="20"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="5gt-7Q-UZT">
+            <objects>
+                <viewController storyboardIdentifier="search" id="fWg-H1-2hN" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WYH-VD-pbv"/>
+                        <viewControllerLayoutGuide type="bottom" id="IPw-yW-D98"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GGw-Sb-VS1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-5d-aQp" customClass="SLButton">
+                                <rect key="frame" x="98" y="199" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="goSearch"/>
+                                <connections>
+                                    <action selector="goSearch:" destination="fWg-H1-2hN" eventType="touchUpInside" id="Rby-cw-Hs2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XR-Py-Wia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2853" y="13"/>
+        </scene>
         <!--Image View Controller-->
         <scene sceneID="hKU-59-ab5">
             <objects>
