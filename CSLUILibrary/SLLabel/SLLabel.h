@@ -23,8 +23,22 @@ typedef NS_ENUM(NSInteger, LabelType){
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLLabel : UILabel
+@property (nonatomic, assign) double lineHeight;// 图文显示总高度
 @property (nonatomic, assign) LabelType labelType;
+@property (nonatomic, strong) NSMutableAttributedString *attributeString;
 - (CGRect)getContentRect;
+/**
+ * 图文混排，插入文字获取图片等内容
+ */
+- (void)addAttributeString:(NSString *)string font:(UIFont *)font color:(UIColor *)color;
+/**
+ * 图文混排，插入文字获取图片等内容
+ * width、height 不传默认取图片的宽度和高度
+ */
+- (void)addAttributeImage:(UIImage *)image;
+- (void)addAttributeImage:(UIImage *)image width:(CGFloat)width height:(CGFloat)height;
+
+- (void)reload;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -121,8 +121,10 @@
 }
 
 - (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis {
-    [self setRadis:cornerRadis];
-    [self sl_setImage:image];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [self setRadis:cornerRadis];
+        [self sl_setImage:image];
+    });
 }
 
 - (void)setCornerRadis:(BOOL)cornerRadis {
@@ -142,6 +144,7 @@
     }
     shaperLayer.path = bezierPath.CGPath;
     self.layer.mask = shaperLayer;
+//    self.layer.shouldRasterize = YES;光栅栏效果
 }
 
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image {

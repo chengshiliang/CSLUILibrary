@@ -114,14 +114,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coreText" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjY-t2-zSA" customClass="SLLabel">
+                                <rect key="frame" x="0.0" y="467" width="355" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="1hO-MA-mRj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RYg-Mz-Z8P" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="08u-vF-Qy0"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0vt-yB-ddq" secondAttribute="trailing" symbolic="YES" id="56K-Cq-vPs"/>
+                            <constraint firstItem="ejO-xd-Kdn" firstAttribute="top" secondItem="cjY-t2-zSA" secondAttribute="bottom" id="6tY-fY-9Yy"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z1X-h2-eYh" secondAttribute="trailing" symbolic="YES" id="70J-ES-NaC"/>
                             <constraint firstItem="9bt-Qx-NtS" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" constant="20" id="8jM-jf-XpP"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="top" secondItem="RYg-Mz-Z8P" secondAttribute="top" id="Abr-Ji-h9Y"/>
+                            <constraint firstItem="cjY-t2-zSA" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" id="Ceb-iO-SVd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="07a-L5-ahE" secondAttribute="trailing" symbolic="YES" id="ECH-1K-ihW"/>
                             <constraint firstItem="Smh-GX-hAM" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="Eu1-a3-bzq"/>
                             <constraint firstItem="h26-ls-Eyg" firstAttribute="top" secondItem="Smh-GX-hAM" secondAttribute="top" id="Iiy-h6-2Ru"/>
@@ -134,13 +145,14 @@
                             <constraint firstItem="07a-L5-ahE" firstAttribute="top" secondItem="RYg-Mz-Z8P" secondAttribute="bottom" constant="20" id="VxO-rX-tQV"/>
                             <constraint firstItem="Smh-GX-hAM" firstAttribute="top" secondItem="9bt-Qx-NtS" secondAttribute="bottom" constant="20" id="XgJ-1c-nMH"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RYg-Mz-Z8P" secondAttribute="trailing" symbolic="YES" id="Xnv-W3-Amx"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q4b-GF-w2o" secondAttribute="trailing" symbolic="YES" id="YTV-cg-Ij3"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q4b-GF-w2o" secondAttribute="trailing" constant="20" symbolic="YES" id="YTV-cg-Ij3"/>
                             <constraint firstItem="h26-ls-Eyg" firstAttribute="leading" secondItem="Smh-GX-hAM" secondAttribute="trailing" constant="50" id="Zdg-1D-MPq"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h26-ls-Eyg" secondAttribute="trailing" symbolic="YES" id="Zqh-Ma-g37"/>
                             <constraint firstItem="g5a-vS-SdI" firstAttribute="top" secondItem="Smh-GX-hAM" secondAttribute="bottom" constant="20" id="adk-22-PEV"/>
                             <constraint firstItem="0vt-yB-ddq" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="trailing" constant="50" id="as0-lY-b3O"/>
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="leading" secondItem="g5a-vS-SdI" secondAttribute="trailing" constant="50" id="dGv-kZ-qEw"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4v-OK-gxG" secondAttribute="trailing" symbolic="YES" id="hEP-CL-1AY"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4v-OK-gxG" secondAttribute="trailing" constant="20" symbolic="YES" id="hEP-CL-1AY"/>
+                            <constraint firstAttribute="trailing" secondItem="cjY-t2-zSA" secondAttribute="trailing" constant="20" symbolic="YES" id="ia8-2o-DJc"/>
                             <constraint firstItem="g5a-vS-SdI" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="jof-M2-gud"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g5a-vS-SdI" secondAttribute="trailing" symbolic="YES" id="kzO-YG-Bjc"/>
                             <constraint firstItem="9bt-Qx-NtS" firstAttribute="top" secondItem="0ub-UR-K7I" secondAttribute="bottom" constant="50" id="qXS-cY-gqO"/>
@@ -150,6 +162,7 @@
                     </view>
                     <connections>
                         <outlet property="bold" destination="0vt-yB-ddq" id="bP0-oo-6ri"/>
+                        <outlet property="coreText" destination="cjY-t2-zSA" id="XuO-aP-inf"/>
                         <outlet property="disable" destination="q4b-GF-w2o" id="u2I-Tw-G6p"/>
                         <outlet property="h1" destination="9bt-Qx-NtS" id="tO5-Lz-d1p"/>
                         <outlet property="h2" destination="Smh-GX-hAM" id="mba-4l-j7O"/>
@@ -195,9 +208,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-5d-aQp" customClass="SLButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-5d-aQp" customClass="SLButton">
                                 <rect key="frame" x="98" y="199" width="66" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="goSearch"/>
                                 <connections>
                                     <action selector="goSearch:" destination="fWg-H1-2hN" eventType="touchUpInside" id="Rby-cw-Hs2"/>
@@ -205,6 +217,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EUx-5d-aQp" firstAttribute="top" secondItem="WYH-VD-pbv" secondAttribute="bottom" constant="179" id="Sor-3Q-KTS"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EUx-5d-aQp" secondAttribute="trailing" constant="20" symbolic="YES" id="auf-Fa-Hnt"/>
+                            <constraint firstItem="EUx-5d-aQp" firstAttribute="leading" secondItem="GGw-Sb-VS1" secondAttribute="leadingMargin" constant="82" id="wgG-2T-N8v"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3XR-Py-Wia" userLabel="First Responder" sceneMemberID="firstResponder"/>

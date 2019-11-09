@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet SLLabel *normal;
 @property (weak, nonatomic) IBOutlet SLLabel *select;
 @property (weak, nonatomic) IBOutlet SLLabel *disable;
+@property (weak, nonatomic) IBOutlet SLLabel *coreText;
 
 @end
 
@@ -47,6 +48,12 @@
     self.select.labelType = LabelSelect;
     
     self.disable.labelType = LabelDisabel;
+    
+    [self.coreText addAttributeString:@"\r\ntest\r\n" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor]];
+    [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100];
+    [self.coreText addAttributeString:@"\r\ntest2" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor]];
+    
+//    [self.coreText reload];
 }
 
 @end
