@@ -32,11 +32,11 @@
 #define SLUIBoldFont(size) [UIFont boldSystemFontOfSize:size]
 #define SLUINormalFont(size) [UIFont systemFontOfSize:size]
 
-#define SLH1LabelFont SLUIBoldFont(38.0)
-#define SLH2LabelFont SLUIBoldFont(34.0)
-#define SLH3LabelFont SLUIBoldFont(30.0)
-#define SLH4LabelFont SLUIBoldFont(28.0)
-#define SLH5LabelFont SLUIBoldFont(24.0)
+#define SLH1LabelFont SLUIBoldFont(40.0)
+#define SLH2LabelFont SLUIBoldFont(36.0)
+#define SLH3LabelFont SLUIBoldFont(32.0)
+#define SLH4LabelFont SLUIBoldFont(26.0)
+#define SLH5LabelFont SLUIBoldFont(22.0)
 #define SLH6LabelFont SLUIBoldFont(20.0)
 #define SLBoldLabelFont SLUIBoldFont(17.0)
 #define SLNormalLabelFont SLUINormalFont(17.0)

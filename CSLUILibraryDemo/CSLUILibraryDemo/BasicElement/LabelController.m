@@ -48,10 +48,19 @@
     self.select.labelType = LabelSelect;
     
     self.disable.labelType = LabelDisabel;
-    
-    [self.coreText addAttributeString:@"\r\ntest\r\n" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor]];
-    [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100];
-    [self.coreText addAttributeString:@"\r\ntest2" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor]];
+
+    [self.coreText addAttributeString:@"\ntest\r\n" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor] click:^(NSString * _Nonnull string) {
+        NSLog(@"STRING%@",string);
+    }];
+    [self.coreText addAttributeString:@"te\r\nst1\r" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:nil click:^(NSString * _Nonnull string) {
+        NSLog(@"STRING333%@",string);
+    }];
+    [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100 click:^(UIImage * _Nonnull image) {
+        NSLog(@"IMAGE%@",image);
+    }];
+    [self.coreText addAttributeString:@"\r\nhttps://www.baidu.com" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)} click:^(NSString * _Nonnull string) {
+        NSLog(@"STRING222%@",string);
+    }];
     
 //    [self.coreText reload];
 }

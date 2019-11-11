@@ -22,7 +22,7 @@ DEPENDENCIES:
   - "UITableView+FDTemplateLayoutCell"
 
 SPEC REPOS:
-  https://github.com/Cocoapods/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - CSLCommonLibrary
     - JSONModel
     - Masonry

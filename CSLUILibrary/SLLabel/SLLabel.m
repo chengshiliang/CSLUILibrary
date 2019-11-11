@@ -13,12 +13,14 @@
 #import <CSLUILibrary/SLUtil.h>
 #import <CSLUILibrary/SLUIConfig.h>
 #import <CSLUILibrary/NSString+Util.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 #define SLCoreTextImageWidthPro @"SLCoreTextImageWidthPro"
 #define SLCoreTextImageHeightPro @"SLCoreTextImageHeightPro"
 
-static const NSString *kCoreTextImageKey = @"image";
-static const NSString *kCoreTextImageFrameKey = @"frame";
+static const NSString *kCoreTextContentKey = @"content";
+static const NSString *kCoreTextFrameKey = @"frame";
+static const NSString *kCoreTextClickKey = @"onClick";
 
 static CGFloat ctRunDelegateGetWidthCallback (void * refCon ){
     NSDictionary *infoDict = (__bridge NSDictionary*)refCon;
@@ -41,8 +43,8 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
 }
 
 @interface SLLabel()
-@property (nonatomic, strong) NSMutableDictionary *imageViewFrames;
-@property (nonatomic, assign) NSInteger imageSpaceIndex;
+@property (nonatomic, strong) NSMutableDictionary *coreTextFrames;
+@property (nonatomic, assign) NSInteger contentSpaceIndex;
 @end
 
 @implementation SLLabel
@@ -64,17 +66,17 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     self.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
-- (NSMutableDictionary *)imageViewFrames {
-    if (!_imageViewFrames) {
-        _imageViewFrames = [NSMutableDictionary dictionary];
+- (NSMutableDictionary *)coreTextFrames {
+    if (!_coreTextFrames) {
+        _coreTextFrames = [NSMutableDictionary dictionary];
     }
-    return _imageViewFrames;
+    return _coreTextFrames;
 }
 
 - (NSMutableAttributedString *)attributeString {
     if (!_attributeString) {
         _attributeString = [[NSMutableAttributedString alloc]initWithString:self.text attributes:@{NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.textColor}];
-        self.imageSpaceIndex = self.text.length;
+        self.contentSpaceIndex = self.text.length;
     }
     return _attributeString;
 }
@@ -96,25 +98,64 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     return [self textRectForBounds:self.frame limitedToNumberOfLines:self.numberOfLines];
 }
 
-- (void)addAttributeString:(NSString *)string font:(UIFont *)font color:(UIColor *)color {
+- (void)addAttributeString:(NSString *)string
+                      font:(UIFont *)font
+                     color:(UIColor *)color
+                     click:(void(^)(NSString *string))clickBlock {
+    [self addAttributeString:string
+                        font:font
+                       color:color
+                  attributes:nil
+                       click:clickBlock];
+}
+
+- (void)addAttributeString:(NSString *)string
+                      font:(UIFont *)font
+                     color:(UIColor *)color
+                attributes:(NSDictionary *)attributes
+                     click:(void(^)(NSString *string))clickBlock {
     if ([string emptyString]) return;
-    NSMutableAttributedString *stringAttributeM = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
+    self.userInteractionEnabled = YES;
+    NSMutableDictionary *attributesM = [NSMutableDictionary dictionary];
+    [attributesM addEntriesFromDictionary:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
+    if(attributes) [attributesM addEntriesFromDictionary:attributes];
+    NSMutableAttributedString *stringAttributeM = [[NSMutableAttributedString alloc] initWithString:string attributes:attributesM.copy];
     [self.attributeString appendAttributedString:stringAttributeM];
-    self.imageSpaceIndex += string.length;
-}
-
-- (void)addAttributeImage:(UIImage *)image {
-    [self addAttributeImage:image width:image.size.width height:image.size.height];
-}
-
-- (void)addAttributeImage:(UIImage *)image width:(CGFloat)width height:(CGFloat)height {
-    if (!image) return;
-    [self.attributeString appendAttributedString:[self imageSpaceWithWidth:width heith:height]];
-    NSString *key = [NSString stringWithFormat:@"%ld", self.imageSpaceIndex];
-    if (!self.imageViewFrames[key]) {
-        self.imageViewFrames[key] = @{kCoreTextImageKey:image}.copy;
+    
+    if ([string hasPrefix:@"\r\n"]) {
+        self.contentSpaceIndex += 2;
+        string = [string substringFromIndex:2];
+    } else if ([string hasPrefix:@"\r"] || [string hasPrefix:@"\n"]) {
+        self.contentSpaceIndex += 1;
+        string = [string substringFromIndex:1];
     }
-    self.imageSpaceIndex += 1;
+    NSString *key = [NSString stringWithFormat:@"%ld", self.contentSpaceIndex];
+    if (!self.coreTextFrames[key]) {
+        self.coreTextFrames[key] = @{kCoreTextContentKey:string, kCoreTextClickKey:clickBlock}.copy;
+    }
+    self.contentSpaceIndex += string.length;
+}
+
+- (void)addAttributeImage:(UIImage *)image
+                    click:(void(^)(UIImage *image))clickBlock{
+    [self addAttributeImage:image
+                      width:image.size.width
+                     height:image.size.height
+                      click:clickBlock];
+}
+
+- (void)addAttributeImage:(UIImage *)image
+                    width:(CGFloat)width
+                   height:(CGFloat)height
+                    click:(void(^)(UIImage *image))clickBlock{
+    if (!image) return;
+    self.userInteractionEnabled = YES;
+    [self.attributeString appendAttributedString:[self imageSpaceWithWidth:width heith:height]];
+    NSString *key = [NSString stringWithFormat:@"%ld", self.contentSpaceIndex];
+    if (!self.coreTextFrames[key]) {
+        self.coreTextFrames[key] = @{kCoreTextContentKey:image, kCoreTextClickKey:clickBlock}.copy;
+    }
+    self.contentSpaceIndex += 1;
 }
 
 - (void)reload {
@@ -149,13 +190,14 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
             CTRunRef runRef = (__bridge CTRunRef)runAry[j];
             CFRange runRange = CTRunGetStringRange(runRef);
             double runWidth = CTRunGetTypographicBounds(runRef, CFRangeMake(0, 0), 0, 0, 0);
-            for (NSString *key in self.imageViewFrames) {
-                NSInteger imageSpaceIndex = [key integerValue];
-                if (imageSpaceIndex != runRange.location || imageSpaceIndex >= runRange.location + runRange.length) continue;
-                if (!self.imageViewFrames[key]) continue;
-                NSMutableDictionary *dicM = [self.imageViewFrames[key] mutableCopy];
-                [dicM setValue:[NSValue valueWithCGRect:CGRectMake(startX, heightAddup, runWidth, runHeight)] forKey:kCoreTextImageFrameKey];
-                self.imageViewFrames[key] = dicM.copy;
+            NSMutableDictionary *tempCoreTextFrames = self.coreTextFrames.mutableCopy;
+            for (NSString *key in tempCoreTextFrames) {
+                NSInteger contentSpaceIndex = [key integerValue];
+                if (contentSpaceIndex != runRange.location || contentSpaceIndex >= runRange.location + runRange.length) continue;
+                if (!tempCoreTextFrames[key]) continue;
+                NSMutableDictionary *dicM = [tempCoreTextFrames[key] mutableCopy];
+                [dicM setValue:[NSValue valueWithCGRect:CGRectMake(startX, heightAddup, runWidth, runHeight)] forKey:kCoreTextFrameKey];
+                self.coreTextFrames[key] = dicM.copy;
             }
             startX += runWidth;
         }
@@ -166,22 +208,40 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
 }
 
 - (void)layoutSubviews{
-    if (self.imageViewFrames.allKeys.count <= 0) return;
+//    self.sl_height = self.lineHeight;
+    if (self.coreTextFrames.allKeys.count <= 0) return;
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[SLImageView class]]) {
             [subView removeFromSuperview];
         }
     }
-    for (NSString *key in self.imageViewFrames) {
-        NSMutableDictionary *dicM = [self.imageViewFrames[key] mutableCopy];
-        NSValue *frameValue = dicM[kCoreTextImageFrameKey];
-        UIImage *image = dicM[kCoreTextImageKey];
+    for (NSString *key in self.coreTextFrames) {
+        NSMutableDictionary *dicM = [self.coreTextFrames[key] mutableCopy];
+        NSValue *frameValue = dicM[kCoreTextFrameKey];
+        id content = dicM[kCoreTextContentKey];
         CGRect imageViewFrame = [frameValue CGRectValue];
         if (imageViewFrame.size.width <= 0) continue;
+        if (![content isKindOfClass:[UIImage class]]) continue;
         SLImageView *imageView = [[SLImageView alloc] init];
-        [imageView sl_setImage:image];
+        [imageView sl_setImage:(UIImage *)content];
         imageView.frame = imageViewFrame;
         [self addSubview:imageView];
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (self.coreTextFrames.allKeys.count <= 0) return;
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    for (NSString *key in self.coreTextFrames) {
+        NSMutableDictionary *dicM = [self.coreTextFrames[key] mutableCopy];
+        NSValue *frameValue = dicM[kCoreTextFrameKey];
+        CGRect viewFrame = [frameValue CGRectValue];
+        if (viewFrame.size.width <= 0) continue;
+        if (!CGRectContainsPoint(viewFrame, touchPoint)) continue;
+        id content = dicM[kCoreTextContentKey];
+        void(^clickBlock)(id) = dicM[kCoreTextClickKey];
+        if (clickBlock) clickBlock(content);
     }
 }
 
