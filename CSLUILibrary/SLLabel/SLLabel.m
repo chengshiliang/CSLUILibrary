@@ -204,11 +204,6 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
         heightAddup += runHeight;
     }
     self.lineHeight = heightAddup;
-    [self setNeedsLayout];
-}
-
-- (void)layoutSubviews{
-//    self.sl_height = self.lineHeight;
     if (self.coreTextFrames.allKeys.count <= 0) return;
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[SLImageView class]]) {
@@ -226,6 +221,13 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
         [imageView sl_setImage:(UIImage *)content];
         imageView.frame = imageViewFrame;
         [self addSubview:imageView];
+    }
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews{
+    if (self.lineHeight > 0.0) {
+        self.sl_height = self.lineHeight;
     }
 }
 

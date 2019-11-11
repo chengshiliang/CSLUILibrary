@@ -104,4 +104,22 @@
     }
     return NO;
 }
+
++ (void)runInMain:(void (^) ())block
+{
+    if ([[NSThread currentThread] isMainThread]) {
+        block();
+    }else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
+}
+
++ (void)runBackground:(void (^) ())block
+{
+    if ([[NSThread currentThread] isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(0, 0), block);
+    }else {
+        block();
+    }
+}
 @end

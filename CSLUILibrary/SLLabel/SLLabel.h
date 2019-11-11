@@ -21,6 +21,9 @@ typedef NS_ENUM(NSInteger, LabelType){
 };
 
 NS_ASSUME_NONNULL_BEGIN
+/**
+ 图文混合类型的frame必须相对内容本身设置足够大，才会显示出来。内部会对多余的frame大小进行更新
+ */
 
 @interface SLLabel : UILabel
 @property (nonatomic, assign) double lineHeight;// 图文显示总高度

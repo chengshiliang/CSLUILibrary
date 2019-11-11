@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)color:(LabelType)type;
 + (NSString*)fiterName:(FilterType)type;
 + (BOOL)bangsScreen;
++ (void)runInMain:(void(^)())block;
++ (void)runBackground:(void(^)())block;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -29,5 +29,6 @@
 #import <CSLUILibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLUtil.h>
 #import <CSLUILibrary/SLSearchController.h>
+#import <CSLUILibrary/SLImageDownLoader.h>
 
 #endif /* Header_h */

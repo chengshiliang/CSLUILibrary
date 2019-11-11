@@ -66,6 +66,11 @@ typedef NS_ENUM(NSInteger, FilterType) {
 - (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis;
 // 保存图片数据到本地
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image;
+- (void)decodeImage:(UIImage *)image toSize:(CGSize)size;
+/**
+ 解码图片
+ */
++ (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size;
 @end
 
 NS_ASSUME_NONNULL_END
