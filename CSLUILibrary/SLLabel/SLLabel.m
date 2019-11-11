@@ -18,9 +18,9 @@
 #define SLCoreTextImageWidthPro @"SLCoreTextImageWidthPro"
 #define SLCoreTextImageHeightPro @"SLCoreTextImageHeightPro"
 
-static const NSString *kCoreTextContentKey = @"content";
-static const NSString *kCoreTextFrameKey = @"frame";
-static const NSString *kCoreTextClickKey = @"onClick";
+static NSString *kCoreTextContentKey = @"content";
+static NSString *kCoreTextFrameKey = @"frame";
+static NSString *kCoreTextClickKey = @"onClick";
 
 static CGFloat ctRunDelegateGetWidthCallback (void * refCon ){
     NSDictionary *infoDict = (__bridge NSDictionary*)refCon;
@@ -129,7 +129,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
         self.contentSpaceIndex += 1;
         string = [string substringFromIndex:1];
     }
-    NSString *key = [NSString stringWithFormat:@"%ld", self.contentSpaceIndex];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)self.contentSpaceIndex];
     if (!self.coreTextFrames[key]) {
         self.coreTextFrames[key] = @{kCoreTextContentKey:string, kCoreTextClickKey:clickBlock}.copy;
     }
@@ -151,7 +151,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     if (!image) return;
     self.userInteractionEnabled = YES;
     [self.attributeString appendAttributedString:[self imageSpaceWithWidth:width heith:height]];
-    NSString *key = [NSString stringWithFormat:@"%ld", self.contentSpaceIndex];
+    NSString *key = [NSString stringWithFormat:@"%ld", (long)self.contentSpaceIndex];
     if (!self.coreTextFrames[key]) {
         self.coreTextFrames[key] = @{kCoreTextContentKey:image, kCoreTextClickKey:clickBlock}.copy;
     }

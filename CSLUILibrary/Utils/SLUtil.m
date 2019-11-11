@@ -105,8 +105,7 @@
     return NO;
 }
 
-+ (void)runInMain:(void (^) ())block
-{
++ (void)runInMain:(void (^)(void))block {
     if ([[NSThread currentThread] isMainThread]) {
         block();
     }else {
@@ -114,8 +113,7 @@
     }
 }
 
-+ (void)runBackground:(void (^) ())block
-{
++ (void)runBackground:(void (^)(void))block {
     if ([[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_global_queue(0, 0), block);
     }else {

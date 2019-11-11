@@ -32,15 +32,15 @@
 
 @end
 @interface SLDownOperation : NSObject
-@property (strong, nonatomic) NSOperation *operation;
+@property (strong, nonatomic) SDWebImageCombinedOperation *operation;
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) void (^complete) (UIImage *image,NSURL *imageURL,CGFloat progress,BOOL finished,NSError *error);
 
-+ (SLDownOperation *)operateWithUrl:(NSString *)url operation:(NSOperation *)operation complete:(void (^) (UIImage *image,NSURL *imageURL,CGFloat progress,BOOL finished,NSError *error))complete;
++ (SLDownOperation *)operateWithUrl:(NSString *)url operation:(SDWebImageCombinedOperation *)operation complete:(void (^) (UIImage *image,NSURL *imageURL,CGFloat progress,BOOL finished,NSError *error))complete;
 @end
 
 @implementation SLDownOperation
-+ (SLDownOperation *)operateWithUrl:(NSString *)url operation:(NSOperation *)operation complete:(void (^) (UIImage *image,NSURL *imageURL,CGFloat progress,BOOL finished,NSError *error))complete {
++ (SLDownOperation *)operateWithUrl:(NSString *)url operation:(SDWebImageCombinedOperation *)operation complete:(void (^) (UIImage *image,NSURL *imageURL,CGFloat progress,BOOL finished,NSError *error))complete {
     SLDownOperation *operate = [[SLDownOperation alloc] init];
     operate.operation = operation;
     operate.url = url;
@@ -67,7 +67,7 @@
 }
 - (UIImage *)downloadImage:(NSString *)url complete:(void(^)(UIImage *image,NSURL *imageUrl,CGFloat progress,BOOL finished,NSError *error))completeBlock {
     if ([url emptyString]) {
-        !completeBlock?:completeBlock(nil,nil,0.0,true,[NSError errorWithDomain:@"com.csl.imageDownload" code:-1 userInfo:@{NSLocalizedFailureErrorKey: @"图片下载url为空"}]);
+        !completeBlock?:completeBlock(nil,nil,0.0,true,[NSError errorWithDomain:@"com.csl.imageDownload" code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey: @"图片下载url为空"}]);
         return nil;
     }
     NSURL *imageUrl = [NSURL URLWithString:url];
@@ -100,7 +100,7 @@
     [self.lock unlock];
     NSLog(@"开始下载");
     WeakSelf;
-    NSOperation *operation = [[SDWebImageManager sharedManager] loadImageWithURL:imageUrl options:SDWebImageRefreshCached context:NULL progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+    SDWebImageCombinedOperation *operation = [[SDWebImageManager sharedManager] loadImageWithURL:imageUrl options:SDWebImageRefreshCached context:NULL progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         StrongSelf;
         [strongSelf.lock lock];
         NSString *urlString = targetURL.absoluteString;
@@ -122,7 +122,7 @@
             if (!error) {
                 !operation.complete?:operation.complete(image, imageURL, 100.0, true,nil);
             } else {
-                !operation.complete?:operation.complete(nil, nil, 0.0,false,[NSError errorWithDomain:@"com.csl.imageDownload" code:-1 userInfo:@{NSLocalizedFailureErrorKey: [NSString stringWithFormat:@"图片%@下载失败", urlString]}]);
+                !operation.complete?:operation.complete(nil, nil, 0.0,false,[NSError errorWithDomain:@"com.csl.imageDownload" code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"图片%@下载失败", urlString]}]);
             }
         }
         if (strongSelf.nextDownQueue.count == 0) {
@@ -146,7 +146,7 @@
     [self.downOperations removeObjectForKey:url];
     for (int i = 0 ; i < sameDownOperation.count; i ++) {
         SLDownOperation *operation = sameDownOperation[i];
-        if (operation.operation && ![operation.operation isCancelled]) {
+        if (operation.operation) {
             [operation.operation cancel];
         }
     }
