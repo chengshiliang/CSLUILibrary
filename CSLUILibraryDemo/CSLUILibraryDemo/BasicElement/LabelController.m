@@ -20,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet SLLabel *normal;
 @property (weak, nonatomic) IBOutlet SLLabel *select;
 @property (weak, nonatomic) IBOutlet SLLabel *disable;
-@property (weak, nonatomic) IBOutlet SLLabel *coreText;
+@property (weak, nonatomic) IBOutlet SLCoreText *coreText;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coreTextHeight;
 
 @end
 
@@ -61,8 +62,17 @@
     [self.coreText addAttributeString:@"\r\nhttps://www.baidu.com" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)} click:^(NSString * _Nonnull string) {
         NSLog(@"STRING222%@",string);
     }];
-    
+    __weak typeof (self)weakSelf = self;
+    self.coreText.lineHeightChange = ^(double lineHeight) {
+        __strong typeof (weakSelf)strongSelf = weakSelf;
+        strongSelf.coreTextHeight.constant = lineHeight;
+    };
 //    [self.coreText reload];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
 }
 
 @end

@@ -13,6 +13,7 @@
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLViewController.h>
 #import <CSLUILibrary/SLLabel.h>
+#import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>
 #import <CSLUILibrary/SLImageView.h>
 #import <CSLUILibrary/SLScrollView.h>
