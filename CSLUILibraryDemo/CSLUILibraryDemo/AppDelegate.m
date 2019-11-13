@@ -8,13 +8,13 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "YYFPSLabel.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SLUIConfig share] configLabel:LabelH1 font:[UIFont boldSystemFontOfSize:36.0] color:nil];
@@ -31,6 +31,12 @@
     [tabBarVC sl_setTbbarBackgroundColor: [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabBar_bg"]]];
     self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UILabel *_fpsLabel = [YYFPSLabel new];
+        [_fpsLabel sizeToFit];
+        _fpsLabel.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 60, 50, 20);
+        [[UIApplication sharedApplication].keyWindow addSubview:_fpsLabel];
+    });
     return YES;
 }
 

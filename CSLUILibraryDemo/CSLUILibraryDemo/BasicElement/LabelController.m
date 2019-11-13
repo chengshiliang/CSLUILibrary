@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet SLLabel *disable;
 @property (weak, nonatomic) IBOutlet SLCoreText *coreText;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *coreTextHeight;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coreTextWidth;
 @end
 
 @implementation LabelController
@@ -53,9 +53,6 @@
     [self.coreText addAttributeString:@"\ntest\r\n" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor] click:^(NSString * _Nonnull string) {
         NSLog(@"STRING%@",string);
     }];
-    [self.coreText addAttributeString:@"te\r\nst1\r" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:nil click:^(NSString * _Nonnull string) {
-        NSLog(@"STRING333%@",string);
-    }];
     [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100 click:^(UIImage * _Nonnull image) {
         NSLog(@"IMAGE%@",image);
     }];
@@ -63,9 +60,10 @@
         NSLog(@"STRING222%@",string);
     }];
     __weak typeof (self)weakSelf = self;
-    self.coreText.lineHeightChange = ^(double lineHeight) {
+    self.coreText.sizeChange = ^(double lineHeight, double lineWidth) {
         __strong typeof (weakSelf)strongSelf = weakSelf;
         strongSelf.coreTextHeight.constant = lineHeight;
+        strongSelf.coreTextWidth.constant = lineWidth;
     };
 //    [self.coreText reload];
 }

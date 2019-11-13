@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="S10-cb-tqc">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="S10-cb-tqc" customClass="MyTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -41,6 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="671" y="121"/>
         </scene>
         <!--Label Controller-->
         <scene sceneID="a0b-tS-ep5">
@@ -55,77 +54,78 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bt-Qx-NtS" customClass="SLLabel">
-                                <rect key="frame" x="20" y="70" width="17" height="21"/>
+                                <rect key="frame" x="20" y="50" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smh-GX-hAM" customClass="SLLabel">
-                                <rect key="frame" x="20" y="111" width="20" height="21"/>
+                                <rect key="frame" x="20" y="91" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxH-sm-x3v" customClass="SLLabel">
-                                <rect key="frame" x="20" y="152" width="20" height="21"/>
+                                <rect key="frame" x="20" y="132" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oW-5k-Aja" customClass="SLLabel">
-                                <rect key="frame" x="20" y="193" width="20" height="21"/>
+                                <rect key="frame" x="20" y="173" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYe-zd-ihk" customClass="SLLabel">
-                                <rect key="frame" x="20" y="234" width="20" height="21"/>
+                                <rect key="frame" x="20" y="214" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="h6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4v-OK-gxG" customClass="SLLabel">
-                                <rect key="frame" x="20" y="275" width="20" height="21"/>
+                                <rect key="frame" x="20" y="255" width="20" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vt-yB-ddq" customClass="SLLabel">
-                                <rect key="frame" x="87" y="70" width="34" height="21"/>
+                                <rect key="frame" x="87" y="50" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="normal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h26-ls-Eyg" customClass="SLLabel">
-                                <rect key="frame" x="90" y="111" width="53" height="21"/>
+                                <rect key="frame" x="90" y="91" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="select" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1X-h2-eYh" customClass="SLLabel">
-                                <rect key="frame" x="90" y="152" width="47" height="21"/>
+                                <rect key="frame" x="90" y="132" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="disable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4b-GF-w2o" customClass="SLLabel">
-                                <rect key="frame" x="90" y="193" width="55" height="21"/>
+                                <rect key="frame" x="90" y="173" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coreText" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjY-t2-zSA" customClass="SLCoreText">
-                                <rect key="frame" x="0.0" y="316" width="375" height="20"/>
+                                <rect key="frame" x="0.0" y="296" width="64.5" height="20"/>
                                 <color key="backgroundColor" red="1" green="0.21176470589999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="1hO-MA-mRj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64.5" id="Gru-SR-i0U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-qz-ZCB">
-                                <rect key="frame" x="0.0" y="336" width="42" height="21"/>
+                                <rect key="frame" x="0.0" y="316" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -133,6 +133,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cjY-t2-zSA" secondAttribute="trailing" constant="20" symbolic="YES" id="0Jl-vf-Mc1"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dvy-qz-ZCB" secondAttribute="trailing" constant="20" symbolic="YES" id="2Lf-zr-kom"/>
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="4M7-9r-Dmm"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0vt-yB-ddq" secondAttribute="trailing" constant="20" symbolic="YES" id="56K-Cq-vPs"/>
@@ -156,7 +157,6 @@
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="leading" secondItem="pxH-sm-x3v" secondAttribute="trailing" constant="50" id="bYh-5e-6vm"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4v-OK-gxG" secondAttribute="trailing" constant="20" symbolic="YES" id="hEP-CL-1AY"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="top" secondItem="LYe-zd-ihk" secondAttribute="bottom" constant="20" id="hkl-to-cFo"/>
-                            <constraint firstAttribute="trailing" secondItem="cjY-t2-zSA" secondAttribute="trailing" id="ia8-2o-DJc"/>
                             <constraint firstItem="dvy-qz-ZCB" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" id="mOg-Hu-gqd"/>
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="bottom" constant="20" id="oMR-x9-7d9"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="top" id="pEb-0j-55B"/>
@@ -171,6 +171,7 @@
                         <outlet property="bold" destination="0vt-yB-ddq" id="xX4-In-2Gn"/>
                         <outlet property="coreText" destination="cjY-t2-zSA" id="Jqy-Oj-SP6"/>
                         <outlet property="coreTextHeight" destination="1hO-MA-mRj" id="hio-fJ-2Z8"/>
+                        <outlet property="coreTextWidth" destination="Gru-SR-i0U" id="KKj-C1-EXC"/>
                         <outlet property="disable" destination="q4b-GF-w2o" id="MoX-Go-s7s"/>
                         <outlet property="h1" destination="9bt-Qx-NtS" id="Kdw-cr-JSq"/>
                         <outlet property="h2" destination="Smh-GX-hAM" id="ghA-Ir-z8w"/>
@@ -217,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUx-5d-aQp" customClass="SLButton">
-                                <rect key="frame" x="98" y="199" width="66" height="30"/>
+                                <rect key="frame" x="98" y="179" width="66" height="30"/>
                                 <state key="normal" title="goSearch"/>
                                 <connections>
                                     <action selector="goSearch:" destination="fWg-H1-2hN" eventType="touchUpInside" id="Rby-cw-Hs2"/>
@@ -249,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Vrr-tt-Vhj" customClass="SLScrollView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4j-Pp-ffj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1946"/>
@@ -413,7 +414,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZa-WJ-R49" customClass="SLPupView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>

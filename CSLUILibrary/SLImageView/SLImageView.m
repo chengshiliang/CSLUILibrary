@@ -41,18 +41,15 @@
     if (!image) return;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         @autoreleasepool{
-            NSLog(@"begin");
-            UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
-            CGContextRef ctx = UIGraphicsGetCurrentContext();
-            CGRect area = CGRectMake(0, 0, image.size.width, image.size.height);
-            CGContextScaleCTM(ctx, 1, -1);
-            CGContextTranslateCTM(ctx, 0, -area.size.height);
-            CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
-            CGContextSetAlpha(ctx, alpha);
-            CGContextDrawImage(ctx, area, image.CGImage);
-            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            NSLog(@"end");
+            CIContext *context = [CIContext contextWithOptions:nil];
+            CIImage *inputImage= [CIImage imageWithCGImage:image.CGImage];
+            CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+            [filter setValue:inputImage forKey:kCIInputImageKey]; 
+            [filter setValue:@(alpha) forKey: @"inputRadius"];
+            CIImage *result=[filter valueForKey:kCIOutputImageKey];
+            CGImageRef outImage=[context createCGImage:result fromRect:[result extent]];      
+            UIImage *newImage=[UIImage imageWithCGImage:outImage];          
+            CGImageRelease(outImage);
             [self sl_setImage:newImage];
         }
     });

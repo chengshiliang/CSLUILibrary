@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLCoreText : SLLabel
 @property (nonatomic, strong) NSMutableAttributedString *attributeString;
-@property (nonatomic, copy) void(^lineHeightChange)(double lineHeight);
+@property (nonatomic, copy) void(^sizeChange)(double lineHeight, double lineWidth);
 /**
  * 图文混排，插入文字获取图片等内容
  attributes: 自定义的富文本属性，如下划线等

@@ -31,5 +31,8 @@
 #import <CSLUILibrary/SLUtil.h>
 #import <CSLUILibrary/SLSearchController.h>
 #import <CSLUILibrary/SLImageDownLoader.h>
+#import <CSLUILibrary/SLTableView.h>
+#import <CSLUILibrary/SLTableModel.h>
+#import <CSLUILibrary/SLTableViewCell.h>
 
 #endif /* Header_h */

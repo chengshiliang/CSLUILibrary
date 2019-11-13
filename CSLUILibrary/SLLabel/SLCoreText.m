@@ -58,6 +58,8 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     if (!_attributeString) {
         _attributeString = [[NSMutableAttributedString alloc]initWithString:self.text attributes:@{NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.textColor}];
         self.contentSpaceIndex = self.text.length;
+        self.userInteractionEnabled = YES;
+        self.lineHeight = MAXFLOAT;
     }
     return _attributeString;
 }
@@ -79,8 +81,6 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
                 attributes:(NSDictionary *)attributes
                      click:(void(^)(NSString *string))clickBlock {
     if ([string emptyString]) return;
-    self.userInteractionEnabled = YES;
-    self.lineHeight = MAXFLOAT;
     NSMutableDictionary *attributesM = [NSMutableDictionary dictionary];
     [attributesM addEntriesFromDictionary:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
     if(attributes) [attributesM addEntriesFromDictionary:attributes];
@@ -114,8 +114,6 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
                    height:(CGFloat)height
                     click:(void(^)(UIImage *image))clickBlock{
     if (!image) return;
-    self.userInteractionEnabled = YES;
-    self.lineHeight = MAXFLOAT;
     [self.attributeString appendAttributedString:[self imageSpaceWithWidth:width heith:height]];
     NSString *key = [NSString stringWithFormat:@"%ld", (long)self.contentSpaceIndex];
     if (!self.coreTextFrames[key]) {
@@ -125,7 +123,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
 }
 
 - (void)reload {
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -143,6 +141,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     memset(pointAry, 0, sizeof(pointAry));
     CTFrameGetLineOrigins(frameRef, CFRangeMake(0, 0), pointAry);
     double heightAddup = 0;
+    double widthMax = 0;
     for (int i = 0; i < lineAry.count; i++) {
         CTLineRef lineRef = (__bridge CTLineRef)lineAry[i];
         NSArray *runAry =  (__bridge NSArray*)CTLineGetGlyphRuns(lineRef);
@@ -168,10 +167,12 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
             startX += runWidth;
         }
         heightAddup += runHeight;
+        widthMax = MAX(startX, widthMax);
     }
     self.lineHeight = heightAddup;
     self.sl_height = heightAddup;
-    !self.lineHeightChange?:self.lineHeightChange(heightAddup);
+    self.sl_width = widthMax;
+    !self.sizeChange?:self.sizeChange(heightAddup, widthMax);
     if (self.coreTextFrames.allKeys.count <= 0) return;
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[SLImageView class]]) {

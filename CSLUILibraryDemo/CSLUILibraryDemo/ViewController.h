@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MyTableView;
+@protocol MyTableViewDelegate <NSObject>
+- (void)didSelect:(MyTableView *)tableView indexPath:(NSIndexPath *)indexpath;
+@end
+@interface MyTableView : SLTableView
+@property (nonatomic, strong) id<MyTableViewDelegate> tableDelegate;
+@end
 
 @interface ViewController : SLViewController
 

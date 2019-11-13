@@ -16,5 +16,4 @@ Pod::Spec.new do |s|
   s.dependency 'Masonry'
   s.dependency 'SDWebImage'
   s.dependency 'JSONModel'
-  s.dependency 'UITableView+FDTemplateLayoutCell'
 end

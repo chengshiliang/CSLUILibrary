@@ -5,13 +5,11 @@ PODS:
     - JSONModel
     - Masonry
     - SDWebImage
-    - "UITableView+FDTemplateLayoutCell"
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
   - SDWebImage (5.2.5):
     - SDWebImage/Core (= 5.2.5)
   - SDWebImage/Core (5.2.5)
-  - "UITableView+FDTemplateLayoutCell (1.6)"
 
 DEPENDENCIES:
   - CSLCommonLibrary (= 0.2.3)
@@ -19,7 +17,6 @@ DEPENDENCIES:
   - JSONModel
   - Masonry
   - SDWebImage (~> 5.0)
-  - "UITableView+FDTemplateLayoutCell"
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -27,7 +24,6 @@ SPEC REPOS:
     - JSONModel
     - Masonry
     - SDWebImage
-    - "UITableView+FDTemplateLayoutCell"
 
 EXTERNAL SOURCES:
   CSLUILibrary:
@@ -35,12 +31,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: e49b10996e5795c5286166d7a81dfff35d204900
-  CSLUILibrary: c6d0cb8b0b60fb336bef24412b1ee5dadca07a43
+  CSLUILibrary: 868d4476b9117a8e7b8581cd31f9ccb46428e085
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
-  "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
 
-PODFILE CHECKSUM: f61472211b402628bb51e7f55bb4a1e85c8423ef
+PODFILE CHECKSUM: d99df7d3ae5fe120a08adfb1130dc154743adbe5
 
 COCOAPODS: 1.8.4
