@@ -16,28 +16,6 @@
 #import "CSLDelegateProxy.h"
 
 @implementation MyTableView
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 2;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 2;
-//    } else if (section == 1) {
-//        return 3;
-//    }
-//    return 0;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 44;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 30;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 0.000001;
-//}
 - (SLTableViewCell *)tableView:(MyTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * ViewControllerCellId = @"ViewControllerCellId";
     SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ViewControllerCellId];
@@ -46,13 +24,16 @@
                                       reuseIdentifier:ViewControllerCellId];
         cell.backgroundColor = [UIColor greenColor];
     }
+    SLTableModel *tableModel = self.tableDataSource[indexPath.section];
+    SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
+    MyTableModel *model = (MyTableModel *)rowModel.tableRowData;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"UILabel";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"UIImageView";
         } else {
-            cell.textLabel.text = [NSString stringWithFormat:@"indexpath~~~~~%ld---%ld",indexPath.section, indexPath.row];
+            cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -62,10 +43,10 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"SearchControler";
         } else {
-            cell.textLabel.text = [NSString stringWithFormat:@"indexpath~~~~~%ld---%ld",indexPath.section, indexPath.row];
+            cell.textLabel.text = model.key;
         }
     } else {
-        cell.textLabel.text = [NSString stringWithFormat:@"indexpath~~~~~%ld---%ld",indexPath.section, indexPath.row];
+        cell.textLabel.text = model.key;
     }
     return cell;
 }
@@ -86,7 +67,9 @@
     }
 }
 @end
+@implementation MyTableModel
 
+@end
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet MyTableView *tableView;
 @end
@@ -125,27 +108,29 @@
         }
     }];
     self.tableView.tableDelegate = (id<MyTableViewDelegate>)delegateProxy;
-    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:.1f target:self selector:@selector(updateData) userInfo:nil repeats:NO];
+    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(updateData) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)updateData {
     NSMutableArray<SLTableModel *> *array = [NSMutableArray array];
     [array addObjectsFromArray:self.tableView.tableDataSource];
-    for (int i = 0; i< 50; i ++) {
+    for (int i = 0; i< 3; i ++) {
         SLTableModel *tableModel = [[SLTableModel alloc]init];
-        tableModel.tableHeaderHeight = arc4random()%2 == 0 ? 20 : 40;
-        tableModel.tableFooterHeight = arc4random()%2 == 0 ? 40 : 60;
+        tableModel.tableHeaderHeight = 30;
+//        tableModel.tableFooterHeight = 0.0001;
         NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
-        for (int j = 0; j < 50; j ++) {
+        for (int j = 0; j < 3; j ++) {
             SLRowTableModel *rowModel = [[SLRowTableModel alloc]init];
-            rowModel.tableRowHeight = arc4random()%2 == 0 ? 100 : 20;
+            rowModel.tableRowHeight = 44;
+            rowModel.tableRowData = [[MyTableModel alloc]initWithDictionary:@{@"key": [NSString stringWithFormat:@"section---%d;row---%d",i,j]} error:nil];
             [subArray addObject:rowModel];
         }
         tableModel.rowDataSource = subArray.copy;
         [array addObject:tableModel];
     }
     self.tableView.tableDataSource = array.copy;
+    [self.tableView reloadData];
 }
 
 @end

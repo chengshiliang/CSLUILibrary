@@ -14,7 +14,9 @@
 @interface MyTableView : SLTableView
 @property (nonatomic, strong) id<MyTableViewDelegate> tableDelegate;
 @end
-
+@interface MyTableModel: SLModel
+@property (nonatomic, copy) NSString *key;
+@end
 @interface ViewController : SLViewController
 
 

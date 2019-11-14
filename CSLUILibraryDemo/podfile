@@ -5,7 +5,6 @@ pod 'CSLCommonLibrary', '0.2.3'
 pod 'SDWebImage', '~> 5.0'
 pod 'Masonry'
 pod 'JSONModel'
-pod 'UITableView+FDTemplateLayoutCell'
 pod 'CSLUILibrary', :path => '../'
 end
 inhibit_all_warnings!

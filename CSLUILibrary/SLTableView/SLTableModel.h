@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLRowTableModel : SLModel
 @property (nonatomic, assign) float tableRowHeight;
-//@property (nonatomic, strong) SLModel * tableRowData;
+@property (nonatomic, strong) SLModel * tableRowData;
 @end
 
 @protocol SLTableModel <NSObject>
