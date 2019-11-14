@@ -21,8 +21,8 @@
 
 @implementation ImageViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     __weak typeof (self) weakSelf = self;
     [[SLImageDownLoader share] downloadImage:@"http://img.hb.aicdn.com/0f608994c82c2efce030741f233b29b9ba243db81ddac-RSdX35_fw658" complete:^(UIImage * _Nonnull image, NSURL * _Nonnull imageUrl, CGFloat progress, BOOL finished, NSError * _Nonnull error) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
