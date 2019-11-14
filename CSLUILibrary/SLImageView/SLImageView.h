@@ -9,29 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, FilterType) {
-    OriginImage,
-    CIPhotoEffectMono,
-    CIPhotoEffectChrome,
-    CIPhotoEffectFade,
-    CIPhotoEffectInstant,
-    CIPhotoEffectNoir,
-    CIPhotoEffectProcess,
-    CIPhotoEffectTonal,
-    CIPhotoEffectTransfer,
-    CISRGBToneCurveToLinear,
-    CIVignetteEffect
-};
-
 @interface SLImageView : UIImageView
-// 滤镜类型
-@property (nonatomic, assign) FilterType filterType;
 // 倒圆角
 @property (nonatomic, assign) BOOL cornerRadis;
 // 倒角
 @property (nonatomic, assign) CGFloat radis;
-//// 是否开启光栅栏 默认开启
-//@property (nonatomic, assign) BOOL rasterize;
 
 - (void)sl_setImage:(UIImage *)image;
 /*
@@ -42,7 +24,7 @@ typedef NS_ENUM(NSInteger, FilterType) {
 - (void)sl_scaleImage:(UIImage*)image;
 // 缩放图片到指定大小
 - (void)sl_scaleImage:(UIImage*)image size:(CGSize)imageSize;
-/*设置图片透明度
+/*设置高斯模糊效果
  *alpha: alpha:0 ~ 1之间, alpha 越大，效果越明显
  */
 - (void)sl_setAlphaForImage:(UIImage *)image alpha:(CGFloat)alpha;
@@ -59,14 +41,6 @@ typedef NS_ENUM(NSInteger, FilterType) {
  *greenWeight: 每个bitmap的blue的权重比:0 ~ 1之间，默认0.5，在原油bitmap的基础上进行弱化
  */
 - (void)sl_imageBlackToTransparent:(UIImage*)image red:(CGFloat)redWeight blue:(CGFloat)blueWeight green:(CGFloat)greenWeight;
-/* 创建滤镜图片
- * filterName: 滤镜效果名称 可参考官网的名称类型
- */
-- (void)sl_filterImage:(UIImage *)image filterName:(NSString *)filterName;
-// 给图片设置倒圆角
-- (void)sl_corner:(UIImage *)image cornerRadis:(BOOL)cornerRadis;
-// 自定义图片倒角
-- (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis;
 // 保存图片数据到本地
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image;
 /**

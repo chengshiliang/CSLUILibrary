@@ -24,6 +24,10 @@
                                       reuseIdentifier:ViewControllerCellId];
         cell.backgroundColor = [UIColor greenColor];
     }
+    return cell;
+}
+
+- (void)tableView:(SLTableView *)tableView willDisplayCell:(SLTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     SLTableModel *tableModel = self.tableDataSource[indexPath.section];
     SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
     MyTableModel *model = (MyTableModel *)rowModel.tableRowData;
@@ -48,7 +52,13 @@
     } else {
         cell.textLabel.text = model.key;
     }
-    return cell;
+}
+
+- (void)tableView:(SLTableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section API_AVAILABLE(ios(6.0)) {
+    
+}
+- (void)tableView:(SLTableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section API_AVAILABLE(ios(6.0)) {
+    
 }
 
 - (NSString *)tableView:(MyTableView *)tableView titleForHeaderInSection:(NSInteger)section{

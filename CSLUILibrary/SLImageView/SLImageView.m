@@ -37,7 +37,6 @@
 }
 
 - (void)initialize {
-//    self.rasterize = YES;
     imageViewQueue = dispatch_queue_create("com.csl.imageViewQueue", DISPATCH_QUEUE_CONCURRENT);
 }
 
@@ -57,16 +56,16 @@
 
 - (void)sl_scaleImage:(UIImage*)image size:(CGSize)imageSize{
     if (!image) return;
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 1.0f);
-    [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.contentMode = UIViewContentModeScaleAspectFill;
-        self.clipsToBounds=YES;
-        self.image = newImage;
-//        self.layer.shouldRasterize = self.rasterize;// 光栅栏效果
-//        self.layer.contents = (id)newImage.CGImage;
+    dispatch_async(imageViewQueue, ^{
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 1.0f);
+        [image drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.contentMode = UIViewContentModeScaleAspectFill;
+            self.clipsToBounds=YES;
+            self.image = newImage;
+        });
     });
 }
 
@@ -158,43 +157,6 @@
     });
 }
 
-- (void)setFilterType:(FilterType)filterType {
-    _filterType = filterType;
-    NSString *fiterName = [SLUtil fiterName:filterType];
-    [self sl_filterImage:self.image filterName:fiterName];
-}
-
-- (void)sl_filterImage:(UIImage *)image filterName:(NSString *)filterName {
-    if ([filterName isEqualToString:@"OriginImage"]) {
-        [self sl_setImage:image];
-    }else{
-        dispatch_async(imageViewQueue, ^{
-            @autoreleasepool{
-                CIImage *ciImage = [[CIImage alloc] initWithImage:image];
-                CIFilter *filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, ciImage, nil];
-                [filter setDefaults];
-                CIContext *context = [CIContext contextWithOptions:nil];
-                CIImage *outputImage = [filter outputImage];
-                CGImageRef cgImage = [context createCGImage:outputImage fromRect:[outputImage extent]];
-                UIImage *newImage = [UIImage imageWithCGImage:cgImage];
-                CGImageRelease(cgImage);
-                [self sl_setImage:newImage];
-            }
-        });
-    }
-}
-
-- (void)sl_corner:(UIImage *)image cornerRadis:(BOOL)cornerRadis {
-    [self setCornerRadis:YES];
-    [self sl_setImage:image];
-}
-
-- (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis {
-    [self setRadis:cornerRadis];
-    dispatch_async(imageViewQueue, ^{
-        [self sl_setImage:image];
-    });
-}
 
 - (void)setCornerRadis:(BOOL)cornerRadis {
     _cornerRadis = cornerRadis;
