@@ -135,7 +135,7 @@
         CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
         CFDataRef dataRef = CGDataProviderCopyData(dataProviderRef);
         long dataLength = CFDataGetLength(dataRef);
-        UInt8 *pixBuf = CFDataGetBytePtr(dataRef);
+        UInt8 *pixBuf = (UInt8 *)CFDataGetBytePtr(dataRef);
         for (int offset = 0; offset<dataLength; offset+=4) {
             @autoreleasepool{
                 int red = pixBuf[offset] * redWeight;

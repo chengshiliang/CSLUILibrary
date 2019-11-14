@@ -149,7 +149,7 @@
 
 - (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self respondsToSelector:@selector(tableView:cellForRowAtIndexPath:)]) {
-        return [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return (SLTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     NSString * TableViewCellId = [NSString stringWithFormat:@"%@CellID", NSStringFromClass(self.class)];
     SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
