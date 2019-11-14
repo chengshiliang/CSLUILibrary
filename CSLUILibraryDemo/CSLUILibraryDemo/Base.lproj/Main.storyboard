@@ -253,7 +253,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4j-Pp-ffj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1946"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2147"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原始图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h46-Uu-DnM" customClass="SLLabel">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
@@ -315,16 +315,28 @@
                                                     <constraint firstAttribute="height" constant="180" id="x8V-V9-rPN"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BlurEffect 毛玻璃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwO-U1-E1e" customClass="SLLabel">
+                                                <rect key="frame" x="0.0" y="925" width="132" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络图片下载示例" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gD-dd-Bv4" customClass="SLLabel">
-                                                <rect key="frame" x="0.0" y="925" width="375" height="21"/>
+                                                <rect key="frame" x="0.0" y="1126" width="375" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iNo-Cn-pMu" customClass="SLImageView">
-                                                <rect key="frame" x="0.0" y="946" width="375" height="1000"/>
+                                                <rect key="frame" x="0.0" y="1147" width="375" height="1000"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1000" id="aZg-ez-QlI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i4y-Zg-Lna" customClass="SLImageView">
+                                                <rect key="frame" x="0.0" y="946" width="375" height="180"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="9BT-ry-Mrt"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -332,30 +344,36 @@
                                         <constraints>
                                             <constraint firstItem="8qq-9y-cu4" firstAttribute="top" secondItem="h46-Uu-DnM" secondAttribute="bottom" id="29E-tu-etH"/>
                                             <constraint firstItem="6gD-dd-Bv4" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="4oC-te-f33"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PwO-U1-E1e" secondAttribute="trailing" constant="20" symbolic="YES" id="5kv-iy-CK5"/>
                                             <constraint firstItem="5bf-wM-9Pt" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="7hl-Kt-rlb"/>
                                             <constraint firstAttribute="trailing" secondItem="8qq-9y-cu4" secondAttribute="trailing" id="9D7-yR-Xb0"/>
                                             <constraint firstItem="8qq-9y-cu4" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="CX4-7U-5Ro"/>
+                                            <constraint firstItem="i4y-Zg-Lna" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="HX6-8u-8Nb"/>
                                             <constraint firstItem="jqv-na-c9N" firstAttribute="bottom" secondItem="l5a-5Y-Zd7" secondAttribute="top" id="Hb7-sN-ZJh"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R9M-8b-NQb" secondAttribute="trailing" constant="20" symbolic="YES" id="HiV-Vh-YWg"/>
                                             <constraint firstItem="R9M-8b-NQb" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="JEZ-Cb-8AW"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jqv-na-c9N" secondAttribute="trailing" constant="20" symbolic="YES" id="KMf-dH-IMH"/>
+                                            <constraint firstItem="iNo-Cn-pMu" firstAttribute="top" secondItem="6gD-dd-Bv4" secondAttribute="bottom" id="M6p-aa-vko"/>
                                             <constraint firstItem="ZHb-ZC-piq" firstAttribute="bottom" secondItem="jqv-na-c9N" secondAttribute="top" id="MXW-LB-9gg"/>
                                             <constraint firstItem="ZHb-ZC-piq" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="NJc-Cc-EEP"/>
+                                            <constraint firstItem="PwO-U1-E1e" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="Np2-49-mTE"/>
                                             <constraint firstItem="l5a-5Y-Zd7" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="Qeo-Uw-kYN"/>
                                             <constraint firstItem="Tm2-NS-3fu" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="TOZ-li-xV0"/>
-                                            <constraint firstAttribute="height" constant="1946" id="Tfj-XU-Z8x"/>
-                                            <constraint firstItem="tHx-eS-IGn" firstAttribute="bottom" secondItem="6gD-dd-Bv4" secondAttribute="top" id="VUH-Or-5Vd"/>
+                                            <constraint firstAttribute="height" constant="2147" id="Tfj-XU-Z8x"/>
+                                            <constraint firstAttribute="trailing" secondItem="i4y-Zg-Lna" secondAttribute="trailing" id="UbJ-ce-Kgr"/>
                                             <constraint firstAttribute="trailing" secondItem="tHx-eS-IGn" secondAttribute="trailing" id="Y4Z-0k-Rbj"/>
                                             <constraint firstItem="R9M-8b-NQb" firstAttribute="top" secondItem="Tm2-NS-3fu" secondAttribute="bottom" id="Y9X-Gy-rjQ"/>
+                                            <constraint firstItem="PwO-U1-E1e" firstAttribute="top" secondItem="tHx-eS-IGn" secondAttribute="bottom" id="Ylg-1i-Ztc"/>
                                             <constraint firstItem="jqv-na-c9N" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="cWl-yq-tF5"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uq2-un-w8i" secondAttribute="trailing" constant="20" symbolic="YES" id="cgr-oI-bcR"/>
                                             <constraint firstAttribute="trailing" secondItem="iNo-Cn-pMu" secondAttribute="trailing" id="cz9-ox-jLt"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5bf-wM-9Pt" secondAttribute="trailing" constant="20" symbolic="YES" id="g4e-Kw-dg5"/>
-                                            <constraint firstItem="iNo-Cn-pMu" firstAttribute="top" secondItem="6gD-dd-Bv4" secondAttribute="bottom" id="gzz-fZ-UiE"/>
                                             <constraint firstAttribute="trailing" secondItem="6gD-dd-Bv4" secondAttribute="trailing" id="jIZ-Uh-JVZ"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h46-Uu-DnM" secondAttribute="trailing" constant="20" symbolic="YES" id="jJ6-o4-RwV"/>
                                             <constraint firstItem="iNo-Cn-pMu" firstAttribute="leading" secondItem="q4j-Pp-ffj" secondAttribute="leading" id="jbA-bV-fK9"/>
+                                            <constraint firstItem="i4y-Zg-Lna" firstAttribute="top" secondItem="PwO-U1-E1e" secondAttribute="bottom" id="kS3-pW-be6"/>
                                             <constraint firstAttribute="trailing" secondItem="l5a-5Y-Zd7" secondAttribute="trailing" id="leL-LK-Dkf"/>
+                                            <constraint firstItem="i4y-Zg-Lna" firstAttribute="bottom" secondItem="6gD-dd-Bv4" secondAttribute="top" id="mRi-pR-XsA"/>
                                             <constraint firstItem="Tm2-NS-3fu" firstAttribute="top" secondItem="5bf-wM-9Pt" secondAttribute="bottom" id="ndV-gL-mBe"/>
                                             <constraint firstItem="l5a-5Y-Zd7" firstAttribute="bottom" secondItem="uq2-un-w8i" secondAttribute="top" id="nrh-nE-qo6"/>
                                             <constraint firstAttribute="trailing" secondItem="ZHb-ZC-piq" secondAttribute="trailing" id="oi9-ba-y9O"/>
@@ -393,6 +411,7 @@
                         <outlet property="imageView3" destination="ZHb-ZC-piq" id="lhA-j8-gH8"/>
                         <outlet property="imageView4" destination="l5a-5Y-Zd7" id="p4R-GW-UDY"/>
                         <outlet property="imageView5" destination="tHx-eS-IGn" id="p8A-Fh-Nl7"/>
+                        <outlet property="imageView6" destination="i4y-Zg-Lna" id="E1r-v9-bhl"/>
                         <outlet property="netImageView" destination="iNo-Cn-pMu" id="ISz-a8-pTv"/>
                         <outlet property="scrollView" destination="Vrr-tt-Vhj" id="alt-mH-0Wx"/>
                     </connections>

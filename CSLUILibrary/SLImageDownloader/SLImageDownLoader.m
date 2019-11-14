@@ -163,7 +163,7 @@
     [self.lock lock];
     [self.downOperations removeAllObjects];
     [self.nextDownQueue removeAllObjects];
-    [self.lock lock];
+    [self.lock unlock];
 }
 
 - (NSMutableArray *)nextDownQueue {

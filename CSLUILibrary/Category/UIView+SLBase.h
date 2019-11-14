@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, EffectStyle) {
+    EffectStyleDefault,
+    EffectStyleBlack,
+    EffectStyleTranslucent
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (SLBase)
@@ -16,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat sl_y;
 @property (nonatomic, assign) CGFloat sl_x;
 
+// 设置图片的毛玻璃效果
+- (void)sl_blurEffect;
+- (void)sl_blurEffectWithSyle:(EffectStyle)style;
+- (void)sl_blurEffect:(CGRect)rect;
+- (void)sl_blurEffect:(CGRect)rect style:(EffectStyle)style;
 @end
 
 NS_ASSUME_NONNULL_END

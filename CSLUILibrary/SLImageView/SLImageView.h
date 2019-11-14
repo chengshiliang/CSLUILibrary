@@ -30,6 +30,8 @@ typedef NS_ENUM(NSInteger, FilterType) {
 @property (nonatomic, assign) BOOL cornerRadis;
 // 倒角
 @property (nonatomic, assign) CGFloat radis;
+//// 是否开启光栅栏 默认开启
+//@property (nonatomic, assign) BOOL rasterize;
 
 - (void)sl_setImage:(UIImage *)image;
 /*
@@ -41,9 +43,10 @@ typedef NS_ENUM(NSInteger, FilterType) {
 // 缩放图片到指定大小
 - (void)sl_scaleImage:(UIImage*)image size:(CGSize)imageSize;
 /*设置图片透明度
- *alpha: alpha:0 ~ 1之间
+ *alpha: alpha:0 ~ 1之间, alpha 越大，效果越明显
  */
 - (void)sl_setAlphaForImage:(UIImage *)image alpha:(CGFloat)alpha;
+
 // 设置图片每个bitmap的权重比：0.5
 - (void)sl_imageBlackToTransparent:(UIImage*)image;
 /*
@@ -66,10 +69,10 @@ typedef NS_ENUM(NSInteger, FilterType) {
 - (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis;
 // 保存图片数据到本地
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image;
-- (void)decodeImage:(UIImage *)image toSize:(CGSize)size;
 /**
  解码图片
  */
+- (void)decodeImage:(UIImage *)image toSize:(CGSize)size;
 + (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size;
 @end
 

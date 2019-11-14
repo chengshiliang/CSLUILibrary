@@ -7,8 +7,39 @@
 
 #import "SLImageView.h"
 #import <CSLUILibrary/SLUtil.h>
+#import <Accelerate/Accelerate.h>
+
+@interface SLImageView()
+{
+    dispatch_queue_t imageViewQueue;
+}
+@end
 
 @implementation SLImageView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self == [super initWithFrame:frame]) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self == [super init]) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize {
+//    self.rasterize = YES;
+    imageViewQueue = dispatch_queue_create("com.csl.imageViewQueue", DISPATCH_QUEUE_CONCURRENT);
+}
 
 - (void)sl_setImage:(UIImage *)image {
     [self sl_setImage:image compressionQuality:0.5];
@@ -34,24 +65,53 @@
         self.contentMode = UIViewContentModeScaleAspectFill;
         self.clipsToBounds=YES;
         self.image = newImage;
+//        self.layer.shouldRasterize = self.rasterize;// 光栅栏效果
+//        self.layer.contents = (id)newImage.CGImage;
     });
 }
 
 - (void)sl_setAlphaForImage:(UIImage *)image alpha:(CGFloat)alpha {
     if (!image) return;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        @autoreleasepool{
-            CIContext *context = [CIContext contextWithOptions:nil];
-            CIImage *inputImage= [CIImage imageWithCGImage:image.CGImage];
-            CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-            [filter setValue:inputImage forKey:kCIInputImageKey]; 
-            [filter setValue:@(alpha) forKey: @"inputRadius"];
-            CIImage *result=[filter valueForKey:kCIOutputImageKey];
-            CGImageRef outImage=[context createCGImage:result fromRect:[result extent]];      
-            UIImage *newImage=[UIImage imageWithCGImage:outImage];          
-            CGImageRelease(outImage);
-            [self sl_setImage:newImage];
+    if (alpha < 0.0 || alpha > 1.0) {
+        alpha = 0.5;
+    }
+    dispatch_async(imageViewQueue, ^{
+        int boxSize = (int)(alpha * 100);
+        boxSize = boxSize - (boxSize % 2) + 1;
+        CGImageRef img = image.CGImage;
+        vImage_Buffer inBuffer, outBuffer;
+        vImage_Error error;
+        void *pixelBuffer;
+        CGDataProviderRef inProvider = CGImageGetDataProvider(img);
+        CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+        inBuffer.width = CGImageGetWidth(img);
+        inBuffer.height = CGImageGetHeight(img);
+        inBuffer.rowBytes = CGImageGetBytesPerRow(img);
+        inBuffer.data = (void*)CFDataGetBytePtr(inBitmapData);
+        pixelBuffer = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
+        if(pixelBuffer == NULL) {
+            NSLog(@"No pixelbuffer");
+            return;
         }
+        outBuffer.data = pixelBuffer;
+        outBuffer.width = CGImageGetWidth(img);
+        outBuffer.height = CGImageGetHeight(img);
+        outBuffer.rowBytes = CGImageGetBytesPerRow(img);
+        error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
+        if (error) {
+            NSLog(@"error from convolution %ld", error);
+            return;
+        }
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef ctx = CGBitmapContextCreate( outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpace, kCGImageAlphaNoneSkipLast);
+        CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
+        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+        CFRelease(inBitmapData);
+        free(pixelBuffer);
+        CGColorSpaceRelease(colorSpace);
+        CGImageRelease(imageRef);
+        CGContextRelease(ctx);
+        [self sl_setImage:newImage];
     });
 }
 
@@ -65,34 +125,36 @@
 
 - (void)sl_imageBlackToTransparent:(UIImage *)image red:(CGFloat)redWeight blue:(CGFloat)blueWeight green:(CGFloat)greenWeight{
     if (!image) return;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        @autoreleasepool{
-            CGImageRef imageRef = image.CGImage;
-            size_t width = CGImageGetWidth(imageRef);
-            size_t height = CGImageGetHeight(imageRef);
-            size_t pix = CGImageGetBitsPerComponent(imageRef);
-            size_t perRowSize = CGImageGetBytesPerRow(imageRef);
-            CGColorSpaceRef colorSpaceRef = CGImageGetColorSpace(imageRef);
-            CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-            CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
-            CFDataRef dataRef = CGDataProviderCopyData(dataProviderRef);
-            long dataLength = CFDataGetLength(dataRef);
-            UInt8 *pixBuf = CFDataGetMutableBytePtr((CFMutableDataRef)dataRef);
-            for (int offset = 0; offset<dataLength; offset+=4) {
-                @autoreleasepool{
-                    int red = pixBuf[offset] * redWeight;
-                    int green = pixBuf[offset + 1] * greenWeight;
-                    int blue = pixBuf[offset + 2] * blueWeight;
-                    pixBuf[offset] = red;
-                    pixBuf[offset + 1] = green;
-                    pixBuf[offset + 2] = blue;
-                }
+    dispatch_async(imageViewQueue, ^{
+        CGImageRef imageRef = image.CGImage;
+        size_t width = CGImageGetWidth(imageRef);
+        size_t height = CGImageGetHeight(imageRef);
+        size_t pix = CGImageGetBitsPerComponent(imageRef);
+        size_t perRowSize = CGImageGetBytesPerRow(imageRef);
+        CGColorSpaceRef colorSpaceRef = CGImageGetColorSpace(imageRef);
+        CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
+        CGDataProviderRef dataProviderRef = CGImageGetDataProvider(imageRef);
+        CFDataRef dataRef = CGDataProviderCopyData(dataProviderRef);
+        long dataLength = CFDataGetLength(dataRef);
+        UInt8 *pixBuf = CFDataGetBytePtr(dataRef);
+        for (int offset = 0; offset<dataLength; offset+=4) {
+            @autoreleasepool{
+                int red = pixBuf[offset] * redWeight;
+                int green = pixBuf[offset + 1] * greenWeight;
+                int blue = pixBuf[offset + 2] * blueWeight;
+                pixBuf[offset] = red;
+                pixBuf[offset + 1] = green;
+                pixBuf[offset + 2] = blue;
             }
-            CGContextRef context = CGBitmapContextCreate(pixBuf, width, height, pix, perRowSize, colorSpaceRef, alphaInfo);
-            CGImageRef filterImageRef = CGBitmapContextCreateImage(context);
-            UIImage *filterImage =  [UIImage imageWithCGImage:filterImageRef];
-            [self sl_setImage:filterImage];
         }
+        CGContextRef context = CGBitmapContextCreate(pixBuf, width, height, pix, perRowSize, colorSpaceRef, alphaInfo);
+        CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+        UIImage *newImage =  [UIImage imageWithCGImage:newImageRef];
+        CFRelease(dataRef);
+        CGImageRelease(newImageRef);
+        CGColorSpaceRelease(colorSpaceRef);
+        CGContextRelease(context);
+        [self sl_setImage:newImage];
     });
 }
 
@@ -106,7 +168,7 @@
     if ([filterName isEqualToString:@"OriginImage"]) {
         [self sl_setImage:image];
     }else{
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_async(imageViewQueue, ^{
             @autoreleasepool{
                 CIImage *ciImage = [[CIImage alloc] initWithImage:image];
                 CIFilter *filter = [CIFilter filterWithName:filterName keysAndValues:kCIInputImageKey, ciImage, nil];
@@ -128,8 +190,8 @@
 }
 
 - (void)sl_corner:(UIImage *)image radis:(CGFloat)cornerRadis {
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self setRadis:cornerRadis];
+    [self setRadis:cornerRadis];
+    dispatch_async(imageViewQueue, ^{
         [self sl_setImage:image];
     });
 }
@@ -151,12 +213,11 @@
     }
     shaperLayer.path = bezierPath.CGPath;
     self.layer.mask = shaperLayer;
-//    self.layer.shouldRasterize = YES;光栅栏效果
 }
 
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image {
     if (!image) return;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_async(imageViewQueue, ^{
         NSData* imageData =  UIImagePNGRepresentation(image);
         NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         filePath = [filePath stringByAppendingPathComponent:fileName];
@@ -170,54 +231,48 @@
 
 + (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size {
     if (image == nil) return nil;
-    @autoreleasepool{
-        // animated images
-        if (image.images != nil) return image;
-        CGImageRef imageRef = image.CGImage;
-        CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
-        BOOL anyAlpha = (alpha == kCGImageAlphaFirst ||
-                         alpha == kCGImageAlphaLast ||
-                         alpha == kCGImageAlphaPremultipliedFirst ||
-                         alpha == kCGImageAlphaPremultipliedLast);
-        if (anyAlpha) {
-            NSLog(@"图片解压失败，存在alpha通道");
-            return image;
-        }
-        CGColorSpaceModel imageColorSpaceModel = CGColorSpaceGetModel(CGImageGetColorSpace(imageRef));
-        CGColorSpaceRef colorspaceRef = CGImageGetColorSpace(imageRef);
-        BOOL unsupportedColorSpace = (imageColorSpaceModel == kCGColorSpaceModelUnknown ||
-                                      imageColorSpaceModel == kCGColorSpaceModelMonochrome ||
-                                      imageColorSpaceModel == kCGColorSpaceModelCMYK ||
-                                      imageColorSpaceModel == kCGColorSpaceModelIndexed);
-        if (unsupportedColorSpace) {
-            colorspaceRef = CGColorSpaceCreateDeviceRGB();
-        }
-        size_t width = size.width;
-        size_t height = size.height;
-        NSUInteger bytesPerPixel = 4;
-        NSUInteger bytesPerRow = bytesPerPixel * width;
-        NSUInteger bitsPerComponent = 8;
-        CGContextRef context = CGBitmapContextCreate(NULL,
-                                                     width,
-                                                     height,
-                                                     bitsPerComponent,
-                                                     bytesPerRow,
-                                                     colorspaceRef,
-                                                     kCGBitmapByteOrderDefault|kCGImageAlphaNoneSkipLast);
-        CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-        CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
-        UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
-                                                         scale:image.scale
-                                                   orientation:image.imageOrientation];
-        if (unsupportedColorSpace) {
-            CGColorSpaceRelease(colorspaceRef);
-        }
-        
-        CGContextRelease(context);
-        CGImageRelease(imageRefWithoutAlpha);
-        NSLog(@"图片解压成功");
-        return imageWithoutAlpha;
+    // animated images
+    if (image.images != nil) return image;
+    CGImageRef imageRef = image.CGImage;
+    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
+    BOOL anyAlpha = (alpha == kCGImageAlphaFirst ||
+                     alpha == kCGImageAlphaLast ||
+                     alpha == kCGImageAlphaPremultipliedFirst ||
+                     alpha == kCGImageAlphaPremultipliedLast);
+    if (anyAlpha) {
+        NSLog(@"图片解压失败，存在alpha通道");
+        return image;
     }
+    CGColorSpaceModel imageColorSpaceModel = CGColorSpaceGetModel(CGImageGetColorSpace(imageRef));
+    CGColorSpaceRef colorspaceRef = CGImageGetColorSpace(imageRef);
+    BOOL unsupportedColorSpace = (imageColorSpaceModel == kCGColorSpaceModelUnknown ||
+                                  imageColorSpaceModel == kCGColorSpaceModelMonochrome ||
+                                  imageColorSpaceModel == kCGColorSpaceModelCMYK ||
+                                  imageColorSpaceModel == kCGColorSpaceModelIndexed);
+    if (unsupportedColorSpace) {
+        colorspaceRef = CGColorSpaceCreateDeviceRGB();
+    }
+    size_t width = size.width;
+    size_t height = size.height;
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 colorspaceRef,
+                                                 kCGBitmapByteOrderDefault|kCGImageAlphaNoneSkipLast);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
+    UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
+                                                     scale:image.scale
+                                               orientation:image.imageOrientation];
+    CGImageRelease(imageRefWithoutAlpha);
+    CGColorSpaceRelease(colorspaceRef);
+    CGContextRelease(context);
+    return imageWithoutAlpha;
 }
 
 @end

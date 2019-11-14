@@ -128,12 +128,12 @@
     return self.tableDataSource.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(SLTableView *)tableView numberOfRowsInSection:(NSInteger)section {
     SLTableModel *tableModel = self.tableDataSource[section];
     return tableModel.rowDataSource.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(SLTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLTableModel *tableModel = self.tableDataSource[indexPath.section];
     SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
     return rowModel.tableRowHeight;
@@ -147,7 +147,7 @@
     return tableModel.tableFooterHeight;
 }
 
-- (SLTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self respondsToSelector:@selector(tableView:cellForRowAtIndexPath:)]) {
         return [self tableView:tableView cellForRowAtIndexPath:indexPath];
     }
@@ -160,14 +160,15 @@
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(SLTableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if ([self respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
         return [self tableView:tableView titleForHeaderInSection:section];
     }
     return @"";
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(SLTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if ([self respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
     }

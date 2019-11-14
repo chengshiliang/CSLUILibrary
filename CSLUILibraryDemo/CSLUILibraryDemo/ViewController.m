@@ -62,6 +62,7 @@
 }
 
 - (void)tableView:(MyTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (self.tableDelegate && [self.tableDelegate respondsToSelector:@selector(didSelect:indexPath:)]) {
         [self.tableDelegate didSelect:tableView indexPath:indexPath];
     }
@@ -115,12 +116,12 @@
 - (void)updateData {
     NSMutableArray<SLTableModel *> *array = [NSMutableArray array];
     [array addObjectsFromArray:self.tableView.tableDataSource];
-    for (int i = 0; i< 3; i ++) {
+    for (int i = 0; i< 10; i ++) {
         SLTableModel *tableModel = [[SLTableModel alloc]init];
         tableModel.tableHeaderHeight = 30;
 //        tableModel.tableFooterHeight = 0.0001;
         NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
-        for (int j = 0; j < 3; j ++) {
+        for (int j = 0; j < 10; j ++) {
             SLRowTableModel *rowModel = [[SLRowTableModel alloc]init];
             rowModel.tableRowHeight = 44;
             rowModel.tableRowData = [[MyTableModel alloc]initWithDictionary:@{@"key": [NSString stringWithFormat:@"section---%d;row---%d",i,j]} error:nil];

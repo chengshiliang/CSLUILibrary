@@ -56,4 +56,37 @@
     temp.origin.x = sl_x;
     self.frame = temp;
 }
+
+- (void)sl_blurEffect {
+    [self sl_blurEffect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+}
+
+- (void)sl_blurEffectWithSyle:(EffectStyle)style {
+    [self sl_blurEffect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) style:style];
+}
+
+- (void)sl_blurEffect:(CGRect)rect {
+    [self sl_blurEffect:rect style:EffectStyleDefault];
+}
+
+- (void)sl_blurEffect:(CGRect)rect style:(EffectStyle)style {
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:rect];
+    switch (style) {
+        case EffectStyleDefault:
+            toolbar.barStyle = UIBarStyleDefault;
+            break;
+        case EffectStyleBlack:
+            toolbar.barStyle = UIBarStyleBlack;
+            break;
+        case EffectStyleTranslucent:
+            toolbar.barStyle = UIBarStyleBlack;
+            toolbar.translucent = YES;
+            break;
+        default:
+            break;
+    }
+    [self addSubview:toolbar];
+}
+
+
 @end
