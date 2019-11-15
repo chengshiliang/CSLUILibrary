@@ -9,9 +9,6 @@
 #import "SearchViewController.h"
 
 @implementation SearchViewController
-{
-    SLSearchController *_vc;
-};
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,12 +46,6 @@
 //    vc.cancelButtonTextFont = [UIFont systemFontOfSize:17.0f];
 //    vc.view.backgroundColor = [UIColor whiteColor];
     [vc show];
-    _vc = vc;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [_vc dismiss];
-    _vc = nil;
 }
 
 @end

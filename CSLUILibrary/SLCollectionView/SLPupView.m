@@ -35,10 +35,18 @@ static NSString *const pupViewCellID = @"kPupViewCellID";
 - (void)initialize {
     self.layout=[[SLCollectionViewLayout alloc]init];
     self.layout.delegate = self;
-    self.collectionView=[[SLCollectionView alloc]initWithFrame:self.bounds collectionViewLayout:self.layout];
+    self.layout.columns = 3;
+    self.layout.rowMagrin = 0;
+    self.layout.columnMagrin = 0;
+    self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     [self addSubview:self.collectionView];
+}
+
+- (void)layoutSubviews {
+    NSLog(@"layoutSubviews");
+    self.collectionView.frame = self.bounds;
 }
 
 - (void)reloadData {

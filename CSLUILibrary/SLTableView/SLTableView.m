@@ -103,8 +103,11 @@
             [strongSelf.indexPaths removeAllObjects];
             NSArray *visibleCells = [strongSelf visibleCells];
             for (SLTableViewCell *cell in visibleCells) {
-                if (fabs(cell.cellDataSource.tableRowHeight - cell.frame.size.height) > 0.1) {
-                    [strongSelf.indexPaths addObject:[strongSelf indexPathForCell:cell]];
+                NSIndexPath *indexPath = [strongSelf indexPathForCell:cell];
+                SLTableModel *tableModel = strongSelf.tableDataSource[indexPath.section];
+                SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
+                if (fabs(rowModel.tableRowHeight - cell.frame.size.height) > 0.1) {
+                    [strongSelf.indexPaths addObject:indexPath];
                 }
             }
             if (strongSelf.indexPaths.count > 0) {
@@ -148,9 +151,6 @@
 }
 
 - (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self respondsToSelector:@selector(tableView:cellForRowAtIndexPath:)]) {
-        return (SLTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    }
     NSString * TableViewCellId = [NSString stringWithFormat:@"%@CellID", NSStringFromClass(self.class)];
     SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
     if (cell == nil){
@@ -158,20 +158,6 @@
                                       reuseIdentifier:TableViewCellId];
     }
     return cell;
-}
-
-- (NSString *)tableView:(SLTableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if ([self respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-        return [self tableView:tableView titleForHeaderInSection:section];
-    }
-    return @"";
-}
-
-- (void)tableView:(SLTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if ([self respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-    }
 }
 
 @end

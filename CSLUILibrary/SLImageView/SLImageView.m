@@ -29,13 +29,6 @@
     return self;
 }
 
-- (instancetype)init {
-    if (self == [super init]) {
-        [self initialize];
-    }
-    return self;
-}
-
 - (void)initialize {
     imageViewQueue = dispatch_queue_create("com.csl.imageViewQueue", DISPATCH_QUEUE_CONCURRENT);
 }

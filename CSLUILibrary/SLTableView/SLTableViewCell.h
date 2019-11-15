@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLTableViewCell : UITableViewCell
-@property (nonatomic, copy) SLRowTableModel *cellDataSource;
+
 @end
 
 NS_ASSUME_NONNULL_END

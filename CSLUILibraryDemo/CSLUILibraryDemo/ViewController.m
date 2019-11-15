@@ -16,17 +16,6 @@
 #import "CSLDelegateProxy.h"
 
 @implementation MyTableView
-- (SLTableViewCell *)tableView:(MyTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * ViewControllerCellId = @"ViewControllerCellId";
-    SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ViewControllerCellId];
-    if (cell == nil){
-        cell = [[SLTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:ViewControllerCellId];
-        cell.backgroundColor = [UIColor greenColor];
-    }
-    return cell;
-}
-
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(SLTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     SLTableModel *tableModel = self.tableDataSource[indexPath.section];
     SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
@@ -54,13 +43,6 @@
     }
 }
 
-- (void)tableView:(SLTableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section API_AVAILABLE(ios(6.0)) {
-    
-}
-- (void)tableView:(SLTableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section API_AVAILABLE(ios(6.0)) {
-    
-}
-
 - (NSString *)tableView:(MyTableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return @"基础元素";
@@ -82,6 +64,9 @@
 
 @end
 @interface ViewController ()
+{
+    NSTimer *timer;
+}
 @property (weak, nonatomic) IBOutlet MyTableView *tableView;
 @end
 
@@ -119,17 +104,21 @@
         }
     }];
     self.tableView.tableDelegate = (id<MyTableViewDelegate>)delegateProxy;
-    NSTimer *timer =  [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(updateData) userInfo:nil repeats:NO];
+    timer =  [NSTimer scheduledTimerWithTimeInterval:.5f target:self selector:@selector(updateData) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)updateData {
     NSMutableArray<SLTableModel *> *array = [NSMutableArray array];
     [array addObjectsFromArray:self.tableView.tableDataSource];
-    for (int i = 0; i< 10; i ++) {
+    if (array.count >= 10000 && timer) {
+        [timer invalidate];
+        timer = nil;
+        return;
+    }
+    for (int i = 0; i< 100; i ++) {
         SLTableModel *tableModel = [[SLTableModel alloc]init];
         tableModel.tableHeaderHeight = 30;
-//        tableModel.tableFooterHeight = 0.0001;
         NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
         for (int j = 0; j < 10; j ++) {
             SLRowTableModel *rowModel = [[SLRowTableModel alloc]init];
@@ -141,6 +130,7 @@
         [array addObject:tableModel];
     }
     self.tableView.tableDataSource = array.copy;
+    NSLog(@"tableView.tableDataSource%ld", array.count);
     [self.tableView reloadData];
 }
 
