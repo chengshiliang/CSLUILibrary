@@ -16,7 +16,7 @@
 #import "CSLDelegateProxy.h"
 
 @implementation MyTableView
-- (void)tableView:(SLTableView *)tableView willDisplayCell:(SLTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     SLTableModel *tableModel = self.tableDataSource[indexPath.section];
     SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
     MyTableModel *model = (MyTableModel *)rowModel.tableRowData;
@@ -122,15 +122,14 @@
         NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
         for (int j = 0; j < 10; j ++) {
             SLRowTableModel *rowModel = [[SLRowTableModel alloc]init];
-            rowModel.tableRowHeight = 44;
-            rowModel.tableRowData = [[MyTableModel alloc]initWithDictionary:@{@"key": [NSString stringWithFormat:@"section---%d;row---%d",i,j]} error:nil];
+            rowModel.tableRowHeight = 50;
+            rowModel.tableRowData = [[MyTableModel alloc]initWithDictionary:@{@"key": [NSString stringWithFormat:@"section---%ld;row---%d",self.tableView.tableDataSource.count + i,j]} error:nil];
             [subArray addObject:rowModel];
         }
         tableModel.rowDataSource = subArray.copy;
         [array addObject:tableModel];
     }
     self.tableView.tableDataSource = array.copy;
-    NSLog(@"tableView.tableDataSource%ld", array.count);
     [self.tableView reloadData];
 }
 

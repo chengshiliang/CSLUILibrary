@@ -11,14 +11,9 @@
 #import <CSLUILibrary/SLTableViewCell.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
-//static const NSInteger maxTableCount = 200;
-//static const NSInteger minRefreshCount = 10;
-
 @interface SLTableView()<UITableViewDelegate, UITableViewDataSource>
 @property (assign, nonatomic) CFRunLoopObserverRef observer;
-//@property (strong, nonatomic) NSMutableArray *spareArray;
 @property (strong, nonatomic) NSMutableArray *indexPaths;
-//@property (nonatomic, strong) NSMutableArray<SLTableModel *> *dataArr;
 @property (nonatomic, strong) NSLock *lock;
 @end
 
@@ -37,10 +32,8 @@
 }
 
 - (void)initial {
-//    self.spareArray = [NSMutableArray array];
     self.indexPaths = [NSMutableArray array];
     self.lock = [[NSLock alloc]init];
-//    self.dataArr = [NSMutableArray array];
     self.estimatedSectionHeaderHeight = 0;
     self.estimatedSectionFooterHeight = 0;
     self.estimatedRowHeight = 0;
@@ -150,11 +143,11 @@
     return tableModel.tableFooterHeight;
 }
 
-- (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString * TableViewCellId = [NSString stringWithFormat:@"%@CellID", NSStringFromClass(self.class)];
-    SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
     if (cell == nil){
-        cell = [[SLTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:TableViewCellId];
     }
     return cell;
