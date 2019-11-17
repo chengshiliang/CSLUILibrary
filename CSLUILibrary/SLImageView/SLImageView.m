@@ -8,6 +8,7 @@
 #import "SLImageView.h"
 #import <CSLUILibrary/SLUtil.h>
 #import <Accelerate/Accelerate.h>
+#import <CSLUILibrary/UIImage+SLBase.h>
 
 @interface SLImageView()
 {
@@ -76,6 +77,7 @@
         void *pixelBuffer;
         CGDataProviderRef inProvider = CGImageGetDataProvider(img);
         CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+        CFRelease(inProvider);
         inBuffer.width = CGImageGetWidth(img);
         inBuffer.height = CGImageGetHeight(img);
         inBuffer.rowBytes = CGImageGetBytesPerRow(img);
@@ -181,53 +183,7 @@
 }
 
 - (void)decodeImage:(UIImage *)image toSize:(CGSize)size {
-    [self sl_setImage:[[self class] decodeImage:image toSize:size]];
-}
-
-+ (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size {
-    if (image == nil) return nil;
-    // animated images
-    if (image.images != nil) return image;
-    CGImageRef imageRef = image.CGImage;
-    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(imageRef);
-    BOOL anyAlpha = (alpha == kCGImageAlphaFirst ||
-                     alpha == kCGImageAlphaLast ||
-                     alpha == kCGImageAlphaPremultipliedFirst ||
-                     alpha == kCGImageAlphaPremultipliedLast);
-    if (anyAlpha) {
-        NSLog(@"图片解压失败，存在alpha通道");
-        return image;
-    }
-    CGColorSpaceModel imageColorSpaceModel = CGColorSpaceGetModel(CGImageGetColorSpace(imageRef));
-    CGColorSpaceRef colorspaceRef = CGImageGetColorSpace(imageRef);
-    BOOL unsupportedColorSpace = (imageColorSpaceModel == kCGColorSpaceModelUnknown ||
-                                  imageColorSpaceModel == kCGColorSpaceModelMonochrome ||
-                                  imageColorSpaceModel == kCGColorSpaceModelCMYK ||
-                                  imageColorSpaceModel == kCGColorSpaceModelIndexed);
-    if (unsupportedColorSpace) {
-        colorspaceRef = CGColorSpaceCreateDeviceRGB();
-    }
-    size_t width = size.width;
-    size_t height = size.height;
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 width,
-                                                 height,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorspaceRef,
-                                                 kCGBitmapByteOrderDefault|kCGImageAlphaNoneSkipLast);
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
-    UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
-                                                     scale:image.scale
-                                               orientation:image.imageOrientation];
-    CGImageRelease(imageRefWithoutAlpha);
-    CGColorSpaceRelease(colorspaceRef);
-    CGContextRelease(context);
-    return imageWithoutAlpha;
+    [self sl_setImage:[UIImage decodeImage:image toSize:size]];
 }
 
 @end

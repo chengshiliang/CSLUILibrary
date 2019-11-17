@@ -34,5 +34,7 @@
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLTableModel.h>
 #import <CSLUILibrary/SLTableViewCell.h>
+#import <CSLUILibrary/SLImage.h>
+#import <CSLUILibrary/UIImage+SLBase.h>
 
 #endif /* Header_h */
