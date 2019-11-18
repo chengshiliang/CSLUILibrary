@@ -7,6 +7,7 @@
 
 #import "SLUtil.h"
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/UIViewController+SLBase.h>
 
 @implementation SLUtil
 + (UIFont *)fontSize:(LabelType)type {
@@ -90,5 +91,24 @@
     }else {
         block();
     }
+}
+
++ (void)setStatusBarIsHidden:(BOOL)isHidden{
+    [[UIApplication sharedApplication]setStatusBarHidden:isHidden withAnimation:NO];
+    UIViewController *controller=[UIViewController sl_getCurrentViewController];
+    [controller prefersStatusBarHidden];
+    [controller setNeedsStatusBarAppearanceUpdate];
+}
+
++ (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle{
+    [[UIApplication sharedApplication]setStatusBarStyle:statusBarStyle];
+    UIViewController *controller=[UIViewController sl_getCurrentViewController];
+    [controller setNeedsStatusBarAppearanceUpdate];
+}
+
++ (UIView *)duplicateComponent:(UIView *)view {
+    if(view==nil) return nil;
+    NSData * tempArchive = [NSKeyedArchiver archivedDataWithRootObject:view];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
 }
 @end

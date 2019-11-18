@@ -10,10 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLNavigationController : UINavigationController
-- (void)sl_setTransluentNavBar;
-- (void)sl_setBackgroundImage:(UIImage *)image;
-- (void)sl_setBackgroundImage:(UIImage *)image barMetrics:(UIBarMetrics)barMetrics;
-- (void)sl_setBackImage:(UIImage *)image;
+
 @end
 
 NS_ASSUME_NONNULL_END

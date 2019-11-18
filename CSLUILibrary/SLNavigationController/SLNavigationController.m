@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.navigationBar.translucent = NO;//默认设置导航栏不透明
     self.navigationBar.barTintColor = SLUIHexColor(0xe0e0e0);
-    if ([self presentingViewController]) return;
+    if ([self presentedViewController]) return;
     WeakSelf;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]init];
     [panGesture on:self click:^(UIGestureRecognizer *gesture) {
@@ -81,29 +81,6 @@
             break;
         }
     }
-}
-- (void)sl_setTransluentNavBar {
-    [self sl_setBackgroundImage:self.image];
-}
-- (void)sl_setBackgroundImage:(UIImage *)image {
-    [self sl_setBackgroundImage:image barMetrics:UIBarMetricsDefault];
-}
-- (void)sl_setBackgroundImage:(UIImage *)image barMetrics:(UIBarMetrics)barMetrics {
-    [self.navigationBar setBackgroundImage:image forBarMetrics:barMetrics];
-}
-
-- (void)sl_setBackImage:(UIImage *)image {
-    self.navigationBar.backIndicatorImage = image;
-    self.navigationBar.backIndicatorTransitionMaskImage = image;
-}
-
-- (UIImage *)image {
-    UIGraphicsBeginImageContext(self.navigationBar.bounds.size);
-    [[[UIColor whiteColor]colorWithAlphaComponent:0.0] setFill];
-    UIRectFill(CGRectMake(0, 0, self.navigationBar.bounds.size.width, self.navigationBar.bounds.size.height));
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 - (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated{
