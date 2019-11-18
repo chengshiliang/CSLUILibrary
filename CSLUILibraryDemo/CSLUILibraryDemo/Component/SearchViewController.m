@@ -9,16 +9,7 @@
 #import "SearchViewController.h"
 
 @implementation SearchViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
+
 - (IBAction)goSearch:(id)sender {
 //    __weak typeof (self)weakSelf = self;
     SLSearchController *vc = [SLSearchController initWithParentVC:self

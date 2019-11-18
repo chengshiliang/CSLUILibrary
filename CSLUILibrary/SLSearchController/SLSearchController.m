@@ -84,13 +84,13 @@
     [self.searchController removeFromParentViewController];
     [self removeFromParentViewController];
     [self.view removeFromSuperview];
-    if (self.parentVC && ![self.parentVC presentingViewController]) {
+    if (self.parentVC && ![self.parentVC presentedViewController]) {
         self.parentVC.navigationController.navigationBarHidden = NO;
     }
 }
 
 - (void)show {
-    if (![self.parentVC presentingViewController]) {
+    if (![self.parentVC presentedViewController]) {
         self.parentVC.navigationController.navigationBarHidden = YES;
     }
     [self.parentVC addChildViewController:self];
