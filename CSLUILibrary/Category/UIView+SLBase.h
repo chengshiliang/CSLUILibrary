@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sl_blurEffectWithSyle:(EffectStyle)style;
 - (void)sl_blurEffect:(CGRect)rect;
 - (void)sl_blurEffect:(CGRect)rect style:(EffectStyle)style;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
