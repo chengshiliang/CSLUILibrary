@@ -1,18 +1,16 @@
 //
-//  SLNavTransitionAnimation.m
-//  CSLUILibrary
+//  SLNavPushTransitionAnimation.m
+//  CSLCommonLibrary
 //
-//  Created by SZDT00135 on 2019/11/4.
+//  Created by SZDT00135 on 2019/11/19.
 //
 
-#import "SLNavTransitionAnimation.h"
+#import "SLNavPushTransitionAnimation.h"
 #import "NSObject+NavAnimation.h"
 #import "CAAnimation+DelegateProxy.h"
 #import <CSLUILibrary/SLUIConsts.h>
-@interface SLNavTransitionAnimation()
-@end
 
-@implementation SLNavTransitionAnimation
+@implementation SLNavPushTransitionAnimation
 - (instancetype)init {
     if (self == [super init]) {
         NSTimeInterval transitionDuration = 0.5f;
@@ -33,13 +31,14 @@
                 toView = toVC.view;
             }
             UIView *containerView = [transitionContext containerView];
-            [containerView insertSubview:toView belowSubview:fromView];
+            [containerView addSubview:toView];
             
+            toView.frame = CGRectMake(toView.frame.size.width, 0, toView.frame.size.width, toView.frame.size.height);
             [UIView animateWithDuration:transitionDuration animations:^{
-                fromView.frame =  CGRectMake(fromView.frame.size.width, fromView.frame.origin.y, fromView.frame.size.width, fromView.frame.size.height);
+                toView.frame = CGRectMake(0, 0, toView.frame.size.width, toView.frame.size.height);
             } completion:^(BOOL finished) {
                 // 务必 compelte Context
-                [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+                [transitionContext completeTransition:YES];
             }];
             
 //            CATransition *transition = [CATransition animation];

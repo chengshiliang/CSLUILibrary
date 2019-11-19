@@ -13,9 +13,15 @@
  改变导航栏透明度
  */
 - (void)didChangeNavigationBarAlpha:(UIScrollView *)scrollView{
-    if(scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= scrollView.sl_insetTop){
-        CGFloat alpha = (scrollView.sl_insetTop - scrollView.contentOffset.y);
-        self.alpha = (alpha / 100.f);
+    NSLog(@"scrollView.contentOffset.y%lf", scrollView.sl_insetTop);
+    if(scrollView.contentOffset.y > 0){
+        if (scrollView.contentOffset.y <= scrollView.sl_insetTop) {
+            CGFloat alpha = (scrollView.sl_insetTop - scrollView.contentOffset.y);
+            NSLog(@"alpha%lf", alpha/100.0f);
+            self.alpha = MAX(0.1, (alpha / 100.f));
+        } else {
+            self.alpha = 0.0;
+        }
     }
 }
 @end

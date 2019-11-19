@@ -6,7 +6,8 @@
 //  Copyright © 2019 csl. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseController.h"
+
 @class MyTableView;
 @protocol MyTableViewDelegate <NSObject>
 - (void)didSelect:(MyTableView *)tableView indexPath:(NSIndexPath *)indexpath;
@@ -17,7 +18,7 @@
 @interface MyTableModel: SLModel
 @property (nonatomic, copy) NSString *key;
 @end
-@interface ViewController : SLViewController
+@interface ViewController : BaseController
 
 
 @end

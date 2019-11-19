@@ -9,6 +9,7 @@
 #import "UINavigationController+DelegateProxy.h"
 #import "UIGestureRecognizer+Action.h"
 #import <CSLUILibrary/SLNavTransitionAnimation.h>
+#import <CSLUILibrary/SLNavPushTransitionAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
 @interface SLNavigationController ()
@@ -17,10 +18,21 @@
 
 @implementation SLNavigationController
 
++ (void)initialize {
+    if (Iphone11) {
+        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-kScreenWidth, 0)
+        forBarMetrics:UIBarMetricsDefault];
+    } else {
+        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
+        forBarMetrics:UIBarMetricsDefault];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.translucent = NO;//默认设置导航栏不透明
-    self.navigationBar.barTintColor = SLUIHexColor(0xe0e0e0);
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationBar.barTintColor = SLUIHexColor(0xffffff);
     if ([self presentedViewController]) return;
     WeakSelf;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]init];
@@ -34,7 +46,7 @@
         }else if (panGesture.state == UIGestureRecognizerStateChanged){
             [strongSelf.percentAnimation updateInteractiveTransition:precent];
         }else {
-            if (strongSelf.percentAnimation.percentComplete > 0.5) {
+            if (strongSelf.percentAnimation.percentComplete > 0.3) {
                 [strongSelf.percentAnimation finishInteractiveTransition];
             }else {
                 [strongSelf.percentAnimation cancelInteractiveTransition];
@@ -42,8 +54,6 @@
             strongSelf.percentAnimation = nil;
         }
     }];
-    //self.navigationBar.clipsToBounds = YES; 也可以处理黑线问题
-    //self.navigationBarHidden 和 self.navigationBar.hidden 是不一样的。一个处理controller的显示隐藏。一个处理navibar的显示和隐藏
     [self interactionControllerForAnimation:^id<UIViewControllerInteractiveTransitioning>(UINavigationController * navigationController, id<UIViewControllerAnimatedTransitioning> animationController) {
         if ([animationController isKindOfClass:[SLNavTransitionAnimation class]]) {
             StrongSelf;
@@ -54,13 +64,17 @@
     
     [self animationControllerForOperation:^id<UIViewControllerInteractiveTransitioning>(UINavigationController *navigationController, UINavigationControllerOperation operation, UIViewController * fromVC, UIViewController * toVC) {
         if (operation == UINavigationControllerOperationPop) {
-            return (id<UIViewControllerInteractiveTransitioning>)[[SLNavTransitionAnimation alloc] init];;
+            return (id<UIViewControllerInteractiveTransitioning>)[[SLNavTransitionAnimation alloc] init];
+        } else if (operation == UINavigationControllerOperationPush) {
+            return (id<UIViewControllerInteractiveTransitioning>)[[SLNavPushTransitionAnimation alloc] init];
         }
         return nil;
     }];
     
     [self.view addGestureRecognizer:panGesture];
-    
+    /**
+      系统返回手势
+     */
     //        NSArray *targets = [self.navigationController.interactivePopGestureRecognizer valueForKey:@"targets"];
     //        id target = [[targets lastObject] valueForKey:@"target"];
     //        SEL actionSel = NSSelectorFromString(@"handleNavigationTransition:");
@@ -70,6 +84,8 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    //self.navigationBar.clipsToBounds = YES; 也可以处理黑线问题
+    //self.navigationBarHidden 和 self.navigationBar.hidden 是不一样的。一个处理controller的显示隐藏。一个处理navibar的显示和隐藏
     for (UIView *view in self.navigationBar.subviews) {
         if ([view isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
             for (UIView *subView in view.subviews) {
@@ -91,6 +107,7 @@
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if (self.viewControllers.count) {
         viewController.hidesBottomBarWhenPushed = YES;
+//        viewController.navigationController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     }
     [super pushViewController:viewController animated:animated];
 }

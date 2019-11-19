@@ -8,7 +8,7 @@
 
 #import "ImageViewController.h"
 
-@interface ImageViewController ()
+@interface ImageViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet SLImageView *imageView1;
 @property (weak, nonatomic) IBOutlet SLImageView *imageView2;
 @property (weak, nonatomic) IBOutlet SLImageView *imageView3;
@@ -42,6 +42,10 @@
     self.imageView5.cornerRadis = YES;
     [self.imageView6 sl_blurEffect];
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.navigationController.navigationBar didChangeNavigationBarAlpha:scrollView];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

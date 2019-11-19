@@ -6,11 +6,11 @@
 //  Copyright © 2019 csl. All rights reserved.
 //
 
-#import "SLViewController.h"
+#import "BaseController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PupViewController : SLViewController
+@interface PupViewController : BaseController
 
 @end
 

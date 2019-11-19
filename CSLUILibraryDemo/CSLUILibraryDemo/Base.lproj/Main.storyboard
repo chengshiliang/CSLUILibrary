@@ -394,6 +394,9 @@
                                     <constraint firstAttribute="bottom" secondItem="q4j-Pp-ffj" secondAttribute="bottom" id="gx7-F5-rnI"/>
                                     <constraint firstItem="q4j-Pp-ffj" firstAttribute="top" secondItem="Vrr-tt-Vhj" secondAttribute="top" id="lOf-OW-lUt"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="NSK-Oa-OXG" id="61A-bT-Gca"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
