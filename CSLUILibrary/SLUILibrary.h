@@ -13,7 +13,6 @@
 
 #import <CSLUILibrary/NSString+Util.h>
 #import <CSLUILibrary/UIView+SLBase.h>
-#import <CSLUILibrary/UINavigationBar+SLBase.h>
 #import <CSLUILibrary/UIViewController+SLBase.h>
 #import <CSLUILibrary/UIScrollView+SLBase.h>
 #import <CSLUILibrary/UIImage+SLBase.h>

@@ -44,10 +44,6 @@
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.navigationController.navigationBar didChangeNavigationBarAlpha:scrollView];
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
     [[SLImageDownLoader share] cancelAllDownLoad];
 }
