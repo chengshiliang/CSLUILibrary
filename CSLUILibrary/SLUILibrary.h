@@ -16,6 +16,7 @@
 #import <CSLUILibrary/UINavigationBar+SLBase.h>
 #import <CSLUILibrary/UIViewController+SLBase.h>
 #import <CSLUILibrary/UIScrollView+SLBase.h>
+#import <CSLUILibrary/UIImage+SLBase.h>
 
 #import <CSLUILibrary/SLUtil.h>
 #import <CSLUILibrary/SLImageDownLoader.h>
@@ -35,6 +36,7 @@
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>
+#import <CSLUILibrary/SLImage.h>
 #import <CSLUILibrary/SLButton.h>
 #import <CSLUILibrary/SLImageView.h>
 #import <CSLUILibrary/SLScrollView.h>

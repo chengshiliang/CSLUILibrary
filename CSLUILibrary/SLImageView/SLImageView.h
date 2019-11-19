@@ -47,7 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
  解码图片
  */
 - (void)decodeImage:(UIImage *)image toSize:(CGSize)size;
-+ (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size;
 @end
 
 NS_ASSUME_NONNULL_END
