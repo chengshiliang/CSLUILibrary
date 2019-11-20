@@ -9,34 +9,33 @@
 #import "RecycleViewController.h"
 
 @interface RecycleViewController ()
+@property (weak, nonatomic) IBOutlet SLRecycleView *scollView1;
+@property (weak, nonatomic) IBOutlet SLRecycleView *scollView2;
 @end
 
 @implementation RecycleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SLRecycleView* scollView1=[[SLRecycleView alloc]initWithFrame:CGRectMake(10,80, 160,320)];
-    scollView1.indicatorColor = [UIColor whiteColor];
-    scollView1.currentIndicatorColor = [UIColor redColor];
-    scollView1.autoTime = 3.0f;
-    scollView1.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    scollView1.titleDatas=@[@"cir0FWEFQWJFIOQWEJFIOQWEJFOIWQEJFIOEQJFIOJFEIOEWJFIOEJFIO",@"cir1",@"cir2",@"cir3"];
-    scollView1.showTitle = YES;
-    scollView1.layer.masksToBounds=YES;
-    scollView1.titleSpace = 15.0f;
-    [self.view addSubview:scollView1];
-    [scollView1 startLoading];
+    self.scollView1.autoScroll = NO;
+    self.scollView1.indicatorColor = [UIColor whiteColor];
+    self.scollView1.currentIndicatorColor = [UIColor redColor];
+    self.scollView1.autoTime = 3.0f;
+    self.scollView1.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    self.scollView1.titleDatas=@[@"cir0FWEFQWJFIOQWEJFIOQWEJFOIWQEJFIOEQJFIOJFEIOEWJFIOEJFIO",@"cir1",@"cir2",@"cir3"];
+    self.scollView1.showTitle = YES;
+    self.scollView1.layer.masksToBounds=YES;
+    self.scollView1.titleSpace = 15.0f;
+    [self.scollView1 startLoading];
 
-    SLRecycleView* scollView2=[[SLRecycleView alloc]initWithFrame:CGRectMake(180,80, 160,320)];
-    scollView2.indicatorColor = [UIColor whiteColor];
-    scollView2.currentIndicatorColor = [UIColor redColor];
-    scollView2.layer.masksToBounds=YES;
-    scollView2.autoTime = 3.0f;
-    scollView2.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    scollView2.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    scollView2.verticalScroll=YES;
-    [scollView2 startLoading];
-    [self.view addSubview:scollView2];
+    self.scollView2.indicatorColor = [UIColor whiteColor];
+    self.scollView2.currentIndicatorColor = [UIColor redColor];
+    self.scollView2.layer.masksToBounds=YES;
+    self.scollView2.autoTime = 3.0f;
+    self.scollView2.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    self.scollView2.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    self.scollView2.verticalScroll=YES;
+    [self.scollView2 startLoading];
 }
 
 @end

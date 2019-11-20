@@ -7,8 +7,6 @@
 //
 
 #import "PupViewController.h"
-#import <CSLUILibrary/SLPupView.h>
-#import <CSLUILibrary/SLPupModel.h>
 
 @interface PupViewController()<SLPupViewDelegate>
 {

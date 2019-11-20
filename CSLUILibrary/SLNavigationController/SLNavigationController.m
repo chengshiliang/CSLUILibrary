@@ -6,8 +6,7 @@
 //
 
 #import "SLNavigationController.h"
-#import "UINavigationController+DelegateProxy.h"
-#import "UIGestureRecognizer+Action.h"
+#import <CSLCommonLibrary/SLCommonLibrary.h>
 #import <CSLUILibrary/SLNavTransitionAnimation.h>
 #import <CSLUILibrary/SLNavPushTransitionAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
@@ -28,10 +27,15 @@
     }
 }
 
+#pragma mark navigationBar.translucent 设置导航栏是否半透明。透明时，非滚动视图会被navigationbar遮挡，不透明时，不会遮挡任何视图
+
+#pragma mark if (automaticallyAdjustsScrollViewInsets) { if (navigationBar.translucent) 非滚动视图会被导航栏遮挡,滚动视图不会被遮挡 else 非滚动视图和滚动视图都不会被遮挡 }
+#pragma mark if (!automaticallyAdjustsScrollViewInsets) { if (navigationBar.translucent) 非滚动视图和滚动视图都会被遮挡 else 非滚动视图和滚动视图都不会被遮挡 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationBar.translucent = NO;//默认设置导航栏不透明
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationBar.barTintColor = SLUIHexColor(0xffffff);
     if ([self presentedViewController]) return;
     WeakSelf;

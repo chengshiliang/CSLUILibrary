@@ -18,10 +18,16 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = YES;// 设置self.view不占据nav块内容
     self.extendedLayoutIncludesOpaqueBars = NO;// 设置self.view不占据nav块内容
-    self.edgesForExtendedLayout = UIRectEdgeNone;// 设置self.view不占据nav块内容
     UIImage *image = [UIImage imageNamed:@"SLIconBack"];
     [self sl_setBackImage:image];
 }
+
+#pragma mark automaticallyAdjustsScrollViewInsets 为yes是，只会保证滚动视图的内容自动偏移，不会被UINavigationBar与UITabBar遮挡。对非滚动视图不会有任何调整
+
+#pragma mark if (automaticallyAdjustsScrollViewInsets) { if (navigationBar.translucent) 非滚动视图会被导航栏遮挡,滚动视图不会被遮挡 else 非滚动视图和滚动视图都不会被遮挡 }
+#pragma mark if (!automaticallyAdjustsScrollViewInsets) { if (navigationBar.translucent) 非滚动视图和滚动视图都会被遮挡 else 非滚动视图和滚动视图都不会被遮挡 }
+
+#pragma mark edgesForExtendedLayout 边缘延伸属性，默认为UIRectEdgeAll。视图会延伸显示到导航栏的下面被覆盖；其值为UIRectEdgeNone意味着子控件本身会自动躲避导航栏和标签栏，以免被遮挡。 当你的view是UIScrollerView或其子（UITableView）时, automaticallyAdjustsScrollViewInsets设置为yes，控制器的view会在UIScrollerView或其子（UITableView）顶部添加inset，所以UIScrollerView或其子（UITableView）会出现在navigation bar的底部。但是滚动时又能覆盖整个屏幕：
 
 - (void)sl_setTransluentNavBar {
     [self sl_setBackgroundImage:self.image];

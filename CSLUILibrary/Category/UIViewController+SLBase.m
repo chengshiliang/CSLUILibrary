@@ -6,7 +6,12 @@
 //
 
 #import "UIViewController+SLBase.h"
+#import <CSLUILibrary/UIImage+SLBase.h>
+#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/SLCommonLibrary.h>
+#import <objc/runtime.h>
 
+static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 
 @implementation UIViewController (SLBase)
 + (UIViewController *)sl_getRootViewController{
@@ -42,4 +47,31 @@
     }
     return nil;
 }
+
+- (void)sl_setTranslucent:(BOOL)translucent {
+    if ([self presentedViewController]) return;
+    self.navigationController.navigationBar.translucent = translucent;
+}
+
+- (void)sl_scrollToTranslucent {
+    if ([self presentedViewController]) return;
+    objc_setAssociatedObject(self, &kViewControllerTranslucentKey, @(self.navigationController.navigationBar.isTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self sl_setTranslucent:YES];
+    UIColor *alphaColor = [UIColor colorWithWhite:1 alpha:1];
+    UIImage *alphaImage = [UIImage sl_imageWithColor:alphaColor];
+    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
+    WeakSelf;
+    [self swizzDisappearMethod:self callback:^(NSObject *__unsafe_unretained  _Nonnull disappearObj) {
+        StrongSelf;
+        NSNumber *isTranslucent = objc_getAssociatedObject(strongSelf, &kViewControllerTranslucentKey);
+        [strongSelf sl_setTranslucent:[isTranslucent boolValue]];
+    }];
+}
+
+- (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha {
+    UIColor *alphaColor = [UIColor colorWithWhite:1 alpha:alpha];
+    UIImage *alphaImage = [UIImage sl_imageWithColor:alphaColor];
+    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
+}
+
 @end

@@ -6,7 +6,9 @@
 //
 
 #import "SLSearchResultController.h"
+
 static NSString *SLSearchResultTableCellId = @"SLSearchResultTableCellId";
+
 @implementation SLSearchResultController
 - (void)viewDidLoad {
     [super viewDidLoad];

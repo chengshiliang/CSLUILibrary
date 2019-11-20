@@ -9,7 +9,8 @@
 #import <CSLUILibrary/SLUtil.h>
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/UIView+SLBase.h>
-#import "UIControl+Events.h"
+#import <CSLCommonLibrary/SLCommonLibrary.h>
+
 @interface SLSearchContentController()
 {
     BOOL isPresented;

@@ -6,8 +6,7 @@
 //
 
 #import "SLNavTransitionAnimation.h"
-#import "NSObject+NavAnimation.h"
-#import "CAAnimation+DelegateProxy.h"
+#import <CSLCommonLibrary/SLCommonLibrary.h>
 #import <CSLUILibrary/SLUIConsts.h>
 @interface SLNavTransitionAnimation()
 @end

@@ -10,5 +10,6 @@
 #define CSLUILibraryPrefixHeader_pch
 
 #import <CSLUILibrary/SLUILibrary.h>
+#import <CSLCommonLibrary/SLCommonLibrary.h>
 
 #endif /* CSLUILibraryPrefixHeader_pch */

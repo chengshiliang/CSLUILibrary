@@ -22,6 +22,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="S10-cb-tqc" customClass="MyTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -198,12 +199,40 @@
                     <view key="view" contentMode="scaleToFill" id="nen-ye-Ifg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-D4-ReT" customClass="SLRecycleView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BRd-D4-ReT" secondAttribute="height" multiplier="375:300" id="OOe-L9-KTs"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejn-b9-Opv" customClass="SLRecycleView">
+                                <rect key="frame" x="0.0" y="300" width="375" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ejn-b9-Opv" secondAttribute="height" multiplier="375:300" id="MHe-M1-tf1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ejn-b9-Opv" firstAttribute="leading" secondItem="nen-ye-Ifg" secondAttribute="leading" id="cph-WK-Sgp"/>
+                            <constraint firstItem="ejn-b9-Opv" firstAttribute="top" secondItem="BRd-D4-ReT" secondAttribute="bottom" id="fnW-Fl-2tF"/>
+                            <constraint firstAttribute="trailing" secondItem="ejn-b9-Opv" secondAttribute="trailing" id="olA-eJ-zFp"/>
+                            <constraint firstAttribute="trailing" secondItem="BRd-D4-ReT" secondAttribute="trailing" id="pMc-0G-0z5"/>
+                            <constraint firstItem="BRd-D4-ReT" firstAttribute="top" secondItem="oT6-vn-LbG" secondAttribute="bottom" id="r15-Ix-fd1"/>
+                            <constraint firstItem="BRd-D4-ReT" firstAttribute="leading" secondItem="nen-ye-Ifg" secondAttribute="leading" id="t52-gr-5te"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scollView1" destination="BRd-D4-ReT" id="XS4-wh-uqS"/>
+                        <outlet property="scollView2" destination="ejn-b9-Opv" id="ciX-Es-hCa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mnk-74-Cy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2120" y="20"/>
+            <point key="canvasLocation" x="2119.1999999999998" y="19.340329835082461"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="5gt-7Q-UZT">
@@ -240,7 +269,7 @@
         <!--Image View Controller-->
         <scene sceneID="hKU-59-ab5">
             <objects>
-                <viewController storyboardIdentifier="imageView" id="NSK-Oa-OXG" customClass="ImageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imageView" automaticallyAdjustsScrollViewInsets="NO" id="NSK-Oa-OXG" customClass="ImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yha-4S-duX"/>
                         <viewControllerLayoutGuide type="bottom" id="i6v-Pn-uYv"/>
@@ -401,13 +430,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Vrr-tt-Vhj" firstAttribute="leading" secondItem="dhF-M8-InT" secondAttribute="leading" id="Cmu-1h-lIM"/>
                             <constraint firstItem="q4j-Pp-ffj" firstAttribute="centerX" secondItem="dhF-M8-InT" secondAttribute="centerX" id="Cti-dx-ni2"/>
                             <constraint firstAttribute="trailing" secondItem="Vrr-tt-Vhj" secondAttribute="trailing" id="NiX-hc-XT7"/>
                             <constraint firstItem="i6v-Pn-uYv" firstAttribute="top" secondItem="Vrr-tt-Vhj" secondAttribute="bottom" id="Y65-bP-Fw8"/>
-                            <constraint firstItem="Vrr-tt-Vhj" firstAttribute="leading" secondItem="dhF-M8-InT" secondAttribute="leading" id="erj-5Q-xJT"/>
-                            <constraint firstItem="Vrr-tt-Vhj" firstAttribute="top" secondItem="yha-4S-duX" secondAttribute="bottom" id="tAN-Ue-zHJ"/>
+                            <constraint firstItem="Vrr-tt-Vhj" firstAttribute="top" secondItem="dhF-M8-InT" secondAttribute="top" id="nTH-DE-lPs"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="imageView1" destination="8qq-9y-cu4" id="ngb-op-kVw"/>
                         <outlet property="imageView2" destination="Tm2-NS-3fu" id="hiz-Wb-aEH"/>

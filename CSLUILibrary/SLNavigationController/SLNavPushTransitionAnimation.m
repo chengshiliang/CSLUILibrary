@@ -6,14 +6,13 @@
 //
 
 #import "SLNavPushTransitionAnimation.h"
-#import "NSObject+NavAnimation.h"
-#import "CAAnimation+DelegateProxy.h"
+#import <CSLCommonLibrary/SLCommonLibrary.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
 @implementation SLNavPushTransitionAnimation
 - (instancetype)init {
     if (self == [super init]) {
-        NSTimeInterval transitionDuration = 0.5f;
+        NSTimeInterval transitionDuration = 0.3f;
         [self transitionDurationBlock:^NSTimeInterval(id<UIViewControllerContextTransitioning>  _Nullable transitionContext) {
             return transitionDuration;
         }];
@@ -33,7 +32,7 @@
             UIView *containerView = [transitionContext containerView];
             [containerView addSubview:toView];
             
-            toView.frame = CGRectMake(toView.frame.size.width, 0, toView.frame.size.width, toView.frame.size.height);
+            toView.frame = CGRectMake(toView.frame.size.width, 0, kScreenWidth, kScreenHeight);
             [UIView animateWithDuration:transitionDuration animations:^{
                 toView.frame = CGRectMake(0, 0, toView.frame.size.width, toView.frame.size.height);
             } completion:^(BOOL finished) {

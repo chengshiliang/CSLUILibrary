@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet SLImageView *imageView4;
 @property (weak, nonatomic) IBOutlet SLImageView *imageView5;
 @property (weak, nonatomic) IBOutlet SLImageView *imageView6;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet SLScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet SLImageView *netImageView;
 @end
 
@@ -42,9 +42,23 @@
     self.imageView5.cornerRadis = YES;
     [self.imageView6 sl_blurEffect];
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+    
+    [self sl_scrollToTranslucent];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"%lf----%lf", scrollView.contentOffset.y,scrollView.sl_insetTop);
+    CGFloat alpha = 1.0;
+    if (scrollView.contentOffset.y > -scrollView.sl_insetTop) {
+        CGFloat offset = scrollView.contentOffset.y+scrollView.sl_insetTop;
+        alpha = offset * 1 / scrollView.sl_insetTop;
+        alpha = 1-alpha;
+    }
+    [self sl_scrollToTranslucentWithAlpha:alpha];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [[SLImageDownLoader share] cancelAllDownLoad];
 }
 

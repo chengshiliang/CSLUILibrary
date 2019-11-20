@@ -8,13 +8,18 @@
 #import "SLRecycleView.h"
 #import <SDWebImage/SDWebImage.h>
 #import <CSLUILibrary/SLImageView.h>
+#import <CSLUILibrary/SLScrollView.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLView.h>
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLPageControl.h>
 #import <CSLUILibrary/NSString+Util.h>
+#import <CSLUILibrary/UIViewController+SLBase.h>
 
-@interface SLRecycleView() <UIScrollViewDelegate>
+@interface SLRecycleView() <UIScrollViewDelegate, UIGestureRecognizerDelegate>
+{
+    BOOL needRefresh;
+}
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic,assign) NSInteger currentPage;
 @property (nonatomic, strong) SLPageControl *pageControl;
@@ -41,7 +46,7 @@
     self.bottomSpace = 15.0f;
     self.titleSpace = 10.0f;
     
-    self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    self.scrollView = [[SLScrollView alloc] initWithFrame:self.bounds];
     self.scrollView.bounces = YES;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
@@ -51,6 +56,16 @@
     self.scrollView.backgroundColor=[UIColor clearColor];
     [self addSubview:self.scrollView];
     self.viewArr=[NSMutableArray array];
+    
+    [[UIViewController sl_getCurrentViewController].navigationController.interactivePopGestureRecognizer requireGestureRecognizerToFail:self.scrollView.panGestureRecognizer];//手势冲突处理，此处目前不加也没问题
+}
+
+- (void)layoutSubviews {
+    self.scrollView.frame = self.bounds;
+    if (needRefresh) {
+        needRefresh = NO;
+        [self startLoading];
+    }
 }
 
 - (SLImageView *)imageView:(NSString *)imageUrl {
@@ -90,9 +105,12 @@
     return label;
 }
 
-- (void)startLoading
-{
+- (void)startLoading {
+    if (self.scrollView.bounds.size.width <= 0 && needRefresh == NO) {
+        needRefresh = YES;
+    }
     [self.viewArr makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.viewArr removeAllObjects];
     [self.timer invalidate];
     [self.pageControl removeFromSuperview];
     if (self.imageDatas.count == 0) return;
@@ -143,8 +161,10 @@
     startX = self.verticalScroll ? 0 : scrollWidth;
     startY = self.verticalScroll ? scrollHeight : 0;
     [self.scrollView scrollRectToVisible:CGRectMake(startX, startY, scrollWidth, scrollHeight) animated:NO];
-    self.timer = [NSTimer timerWithTimeInterval:self.autoTime target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    if (self.autoScroll) {
+        self.timer = [NSTimer timerWithTimeInterval:self.autoTime target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }
     
     if (self.hidePageControl || self.imageDatas.count < 2) return;
     
@@ -228,10 +248,9 @@
         }
     }
     
-    if (self.autoScroll) {
-        self.timer = [NSTimer timerWithTimeInterval:self.autoTime target:self selector:@selector(runTimePage)userInfo:nil repeats:YES];
-        [[NSRunLoop  currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
-    }
+    if (!self.autoScroll) return;
+    self.timer = [NSTimer timerWithTimeInterval:self.autoTime target:self selector:@selector(runTimePage)userInfo:nil repeats:YES];
+    [[NSRunLoop  currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {

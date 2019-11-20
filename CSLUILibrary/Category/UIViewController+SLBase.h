@@ -17,6 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
  获取多次present出来最底层presenting的控制器
  */
 + (UIViewController *)sl_getPresentingViewController;
+
+- (void)sl_setTranslucent:(BOOL)translucent;
+/**
+ 页面滚动导航栏变透明
+ */
+- (void)sl_scrollToTranslucent;
+- (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha;
+
 @end
 
 NS_ASSUME_NONNULL_END

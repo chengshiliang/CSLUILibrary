@@ -7,7 +7,6 @@
 //
 
 #import "LabelController.h"
-//#import "SLLabel.h"
 
 @interface LabelController ()
 @property (weak, nonatomic) IBOutlet SLLabel *h1;

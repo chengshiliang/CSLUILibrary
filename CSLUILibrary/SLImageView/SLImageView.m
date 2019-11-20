@@ -77,7 +77,6 @@
         void *pixelBuffer;
         CGDataProviderRef inProvider = CGImageGetDataProvider(img);
         CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
-        CFRelease(inProvider);
         inBuffer.width = CGImageGetWidth(img);
         inBuffer.height = CGImageGetHeight(img);
         inBuffer.rowBytes = CGImageGetBytesPerRow(img);

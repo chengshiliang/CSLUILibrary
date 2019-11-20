@@ -31,6 +31,17 @@
     return self;
 }
 
+// 当tableview的父view添加了手势之后，tablew是不会响应点击事件的。此时应该在tableview的父view上面的手势代理中实现该方法。
+// cancelsTouchesInView = NO;  //如果为YES，手势识别了，会取消touch事件
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//
+//    UIView *view = touch.view;
+//
+//
+//    return ![view isKindOfClass:NSClassFromString(@"UITableViewCellContentView")];
+//
+//}
+
 - (void)initial {
     self.indexPaths = [NSMutableArray array];
     self.lock = [[NSLock alloc]init];

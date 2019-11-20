@@ -9,7 +9,7 @@
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLTabbarButton.h>
-#import "UIControl+Events.h"
+#import <CSLCommonLibrary/SLCommonLibrary.h>
 
 @interface SLTabBarController ()
 @property(nonatomic, strong) SLTabbarButton *selectBarButton;
@@ -109,6 +109,7 @@
         }
     }
     [self.tabBar insertSubview:tabbarView atIndex:0];
+    self.tabBar.barTintColor = SLUIHexColor(0xffffff);
     self.mTabBar = tabbarView;
 }
 

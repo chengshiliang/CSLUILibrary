@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIScrollView (SLBase)
-@property (readonly, nonatomic) UIEdgeInsets sl_edgeInset;
+@property (readonly, nonatomic) UIEdgeInsets sl_inset;
 
 @property (assign, nonatomic) CGFloat sl_insetTop;
 @property (assign, nonatomic) CGFloat sl_insetBottom;

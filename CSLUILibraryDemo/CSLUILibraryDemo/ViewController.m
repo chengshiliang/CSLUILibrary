@@ -13,8 +13,6 @@
 #import "PupViewController.h"
 #import "SearchViewController.h"
 
-#import "CSLDelegateProxy.h"
-
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     SLTableModel *tableModel = self.tableDataSource[indexPath.section];
@@ -65,7 +63,7 @@
 @end
 @interface ViewController ()
 {
-    NSTimer *timer;
+    SLTimer *timer;
 }
 @property (weak, nonatomic) IBOutlet MyTableView *tableView;
 @end
@@ -74,6 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
     CSLDelegateProxy *delegateProxy = [[CSLDelegateProxy alloc]initWithDelegateProxy:@protocol(MyTableViewDelegate)];
     __weak typeof (self)weakSelf = self;
     [delegateProxy addSelector:@selector(didSelect:indexPath:) callback:^(NSArray *params) {
@@ -104,19 +103,22 @@
         }
     }];
     self.tableView.tableDelegate = (id<MyTableViewDelegate>)delegateProxy;
-    timer =  [NSTimer scheduledTimerWithTimeInterval:.5f target:self selector:@selector(updateData) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    timer =  [SLTimer sl_timerWithTimeInterval:.5f target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
+        __strong typeof (weakSelf)strongSelf = weakSelf;
+        [strongSelf updateData];
+    }];
 }
 
 - (void)updateData {
     NSMutableArray<SLTableModel *> *array = [NSMutableArray array];
     [array addObjectsFromArray:self.tableView.tableDataSource];
-    if (array.count >= 10000 && timer) {
+    if (array.count >= 100 && timer) {
         [timer invalidate];
         timer = nil;
         return;
     }
-    for (int i = 0; i< 100; i ++) {
+    for (int i = 0; i< 10; i ++) {
         SLTableModel *tableModel = [[SLTableModel alloc]init];
         tableModel.tableHeaderHeight = 30;
         NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
