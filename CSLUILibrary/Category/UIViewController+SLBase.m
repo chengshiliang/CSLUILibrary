@@ -8,7 +8,7 @@
 #import "UIViewController+SLBase.h"
 #import <CSLUILibrary/UIImage+SLBase.h>
 #import <CSLUILibrary/SLUIConsts.h>
-#import <CSLCommonLibrary/SLCommonLibrary.h>
+#import <CSLCommonLibrary/NSObject+Base.h>
 #import <objc/runtime.h>
 
 static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";

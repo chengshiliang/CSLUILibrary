@@ -9,7 +9,7 @@
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLTabbarButton.h>
-#import <CSLCommonLibrary/SLCommonLibrary.h>
+#import <CSLCommonLibrary/UIControl+Events.h>
 
 @interface SLTabBarController ()
 @property(nonatomic, strong) SLTabbarButton *selectBarButton;

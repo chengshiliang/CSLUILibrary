@@ -6,7 +6,8 @@
 //
 
 #import "SLNavigationController.h"
-#import <CSLCommonLibrary/SLCommonLibrary.h>
+#import <CSLCommonLibrary/UINavigationController+DelegateProxy.h>
+#import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 #import <CSLUILibrary/SLNavTransitionAnimation.h>
 #import <CSLUILibrary/SLNavPushTransitionAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
