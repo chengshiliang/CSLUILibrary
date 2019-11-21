@@ -15,37 +15,20 @@
 @end
 
 @implementation SLTabbarButton
-
-- (void)setImagePosition:(SLButtonImagePosition)imagePosition {
-    _imagePosition = imagePosition;
+- (void)show {
     [self setNeedsLayout];
 }
 
-- (void)setImageTitleSpace:(CGFloat)imageTitleSpace {
-    _imageTitleSpace = imageTitleSpace;
-    [self setNeedsLayout];
-}
-
-- (void)setImageSize:(CGSize)imageSize {
-    _imageSize = imageSize;
-    [self setNeedsLayout];
-}
-
-- (void)setShowTitle:(BOOL)showTitle {
-    _showTitle = showTitle;
-    [self setNeedsLayout];
-}
-
-//核心代码部分----------------------------------------------------
 - (CGRect)titleRectForContentRect:(CGRect)contentRect {
     return _titleReact;
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect {
-    if (self.imageSize.width > 0 || self.imageSize.height > 0) {
+    if ((self.imageSize.width > 0 || self.imageSize.height > 0)) {
+        NSLog(@"imageSize%@", NSStringFromCGSize(self.imageSize));
         CGFloat imageW = self.imageSize.width;
         CGFloat imageH = self.imageSize.height;
-        if (!self.showTitle) {
+        if (self.buttonType == SLButtonTypeOnlyImage) {// 只有图片显示
             _titleReact = CGRectZero;
             //内容总高度
             CGFloat totalHeight = imageH;
@@ -53,8 +36,7 @@
             CGFloat imageX = (contentRect.size.width - imageW)/2.0;
             _imageReact = CGRectMake(imageX, imageY, imageW, imageH);
             return _imageReact;
-        }
-        if (self.imagePosition == SLButtonImagePositionLeft) {
+        } else if (self.buttonType == SLButtonTypeLeft) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -68,8 +50,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.imagePosition == SLButtonImagePositionTop) {
-            
+        } else if (self.buttonType == SLButtonTypeTop) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总高度
             CGFloat totalHeight = titleSize.height + imageH + self.imageTitleSpace;
@@ -83,7 +64,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.imagePosition == SLButtonImagePositionRight) {
+        } else if (self.buttonType == SLButtonTypeRight) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -113,6 +94,9 @@
             return _imageReact;
         }
     } else {
+        if (self.buttonType == SLButtonTypeOnlyTitle) {
+            _titleReact = CGRectMake(0, 0, contentRect.size.width, contentRect.size.height);
+        }
         return [super imageRectForContentRect:contentRect];
     }
 }
@@ -123,38 +107,5 @@
                                     image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
     }
     [super setImage:image forState:state];
-}
-//核心代码部分----------------------------------------------------
-
-- (void)setFont:(UIFont *)font {
-    self.titleLabel.font = font;
-}
-
-- (UIFont *)font {
-    return self.titleLabel.font;
-}
-
-- (UIColor *)titleColor {
-    return self.currentTitleColor;
-}
-
-- (void)setTitleColor:(UIColor *)titleColor {
-    [self setTitleColor:titleColor forState:self.state];
-}
-
-- (UIImage *)image {
-    return self.currentImage;
-}
-
-- (void)setImage:(UIImage *)image {
-    [self setImage:image forState:self.state];
-}
-
-- (NSString *)title {
-    return self.currentTitle;
-}
-
-- (void)setTitle:(NSString *)title {
-    [self setTitle:title forState:self.state];
 }
 @end

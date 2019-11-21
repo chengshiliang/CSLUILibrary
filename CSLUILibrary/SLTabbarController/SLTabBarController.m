@@ -10,16 +10,12 @@
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLTabbarView.h>
-#import <CSLCommonLibrary/UIControl+Events.h>
 
 @interface SLTabBarController ()
 {
     BOOL isLayout;
 }
-@property(nonatomic, strong) SLTabbarButton *selectBarButton;
-@property(nonatomic, assign) NSInteger currentSelectIndex;
 @property(nonatomic, strong) SLTabbarView *mTabBar;
-@property(nonatomic, copy) void(^configTabbarBlock)(SLTabbarView *tabbar);
 @property(nonatomic, copy) NSArray *titleArray;
 @property(nonatomic, copy) NSArray *normalImageArray;
 @property(nonatomic, copy) NSArray *selectImageArray;
@@ -40,7 +36,6 @@
 }
 
 - (void)initialize {
-    self.currentSelectIndex = 100;
     self.tabBar.barTintColor = SLUIHexColor(0xffffff);
     self.tabBar.translucent = NO;
     self.tabBar.backgroundImage = [UIImage new];
@@ -66,7 +61,7 @@
     self.titleArray = titles.copy;
     self.normalImageArray = normalImages.copy;
     self.selectImageArray = selectImages.copy;
-    self.configTabbarBlock = [layoutTabbarBlock copy];
+    [self createTabBar:layoutTabbarBlock];
     isLayout = NO;
 }
 
@@ -74,7 +69,7 @@
     [super viewWillLayoutSubviews];
     if (!isLayout) {
         isLayout = YES;
-        [self createTabBar:self.configTabbarBlock];
+        self.mTabBar.frame = CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
     }
 }
 
@@ -84,45 +79,32 @@
     float tabbarHeight = self.tabBar.frame.size.height;
     SLTabbarView *tabbarView = [[SLTabbarView alloc] initWithFrame:CGRectMake(0, 0, tabbarWidth, tabbarHeight)];
     tabbarView.backgroundColor = SLUIHexColor(0xffffff);
-    if (self.titleArray.count > 0) {
-        float tabbarItemWidth = tabbarWidth/self.titleArray.count;
-        for (int i = 0; i < self.titleArray.count; i++){
-            SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
-            [tabbarBt setFrame:CGRectMake(i*tabbarItemWidth, 0, tabbarItemWidth, tabbarHeight)];
-            WeakSelf;
-            [tabbarBt onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl *control) {
-                StrongSelf;
-                if ([control isKindOfClass:[SLTabbarButton class]]) {
-                    SLTabbarButton *currentBt = (SLTabbarButton *)control;
-                    if (strongSelf.selectBarButton == currentBt) {
-                        return;
-                    }
-                    strongSelf.currentSelectIndex = currentBt.tag;
-                    strongSelf.selectBarButton.selected = NO;
-                    strongSelf.selectBarButton = currentBt;
-                    strongSelf.selectBarButton.selected = YES;
-                }
-            }];
-            tabbarBt.tag = 100+i;
-            [tabbarBt setTitle:self.titleArray[i] forState:UIControlStateNormal];
-            [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
-            [tabbarBt setTitleColor:SLUIHexColor(0x0000ff) forState:UIControlStateSelected];
-            UIImage *normalImage = self.normalImageArray[i];
-            [tabbarBt setImage:normalImage forState:UIControlStateNormal];
-            [tabbarBt setImage:self.selectImageArray[i] forState:UIControlStateSelected];
-            [tabbarView addSubview:tabbarBt];
-            if (tabbarBt.tag == self.currentSelectIndex) {
-                self.selectBarButton = tabbarBt;
-                self.selectBarButton.selected = YES;
-            }
-        }
-    }
-    if (layoutTabbarBlock) {
-        layoutTabbarBlock(tabbarView);
-    }
     [self.tabBar insertSubview:tabbarView atIndex:0];
     self.tabBar.clipsToBounds = YES;
     self.mTabBar = tabbarView;
+    WeakSelf;
+    self.mTabBar.clickSLTabbarIndex = ^(NSInteger index) {
+        StrongSelf;
+        strongSelf.selectedIndex = index;
+    };
+    if (layoutTabbarBlock) {
+        layoutTabbarBlock(tabbarView);
+    }
+    if (self.titleArray.count <= 0) return;
+    float tabbarItemWidth = tabbarWidth/self.titleArray.count;
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:self.titleArray.count];
+    for (int i = 0; i < self.titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setFrame:CGRectMake(i*tabbarItemWidth, 0, tabbarItemWidth, tabbarHeight)];
+        [tabbarBt setTitle:self.titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x0000ff) forState:UIControlStateSelected];
+        UIImage *normalImage = self.normalImageArray[i];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:self.selectImageArray[i] forState:UIControlStateSelected];
+        [arrayM addObject:tabbarBt];
+    }
+    self.mTabBar.buttons = arrayM.copy;
 }
 
 - (void)sl_setTbbarBackgroundColor:(UIColor *)color {

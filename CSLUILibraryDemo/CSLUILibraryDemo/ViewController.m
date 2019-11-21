@@ -13,6 +13,7 @@
 #import "PupViewController.h"
 #import "SearchViewController.h"
 #import "NavTranslucentViewController.h"
+#import "TabbarController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -24,7 +25,9 @@
             cell.textLabel.text = @"UILabel";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"UIImageView";
-        } else {
+        } else if (indexPath.row == 2) {
+           cell.textLabel.text = @"TabbarView";
+       } else {
             cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 1) {
@@ -96,7 +99,10 @@
                 } else if (indexPath.row == 1) {
                     ImageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"imageView"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
-                }
+                } else if (indexPath.row == 2) {
+                   TabbarController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
+                   [strongSelf.navigationController pushViewController:vc animated:YES];
+               }
             } else if (indexPath.section == 1) {
                 if (indexPath.row == 0) {
                     RecycleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"recycle"];
