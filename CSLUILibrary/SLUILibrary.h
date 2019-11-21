@@ -25,6 +25,7 @@
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLViewController.h>
 
+#import <CSLUILibrary/SLTabbarView.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLPupView.h>
 #import <CSLUILibrary/SLTableView.h>

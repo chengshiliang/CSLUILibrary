@@ -17,9 +17,6 @@
 #define WeakSelf __weak typeof (self) weakSelf = self
 #define StrongSelf __strong typeof (weakSelf) strongSelf = weakSelf
 
-#define WeakObj(obj) __weak typeof (obj) weakObj = obj
-#define StrongObj(obj) __strong typeof (weakObj) strongObj = weakObj
-
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 

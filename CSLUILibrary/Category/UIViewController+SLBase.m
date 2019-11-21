@@ -105,7 +105,6 @@ static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 - (SLPercentDrivenInteractiveTransition *)interactiveTransition {
     SLPercentDrivenInteractiveTransition *interactiveTransition = objc_getAssociatedObject(self, _cmd);
     if (!interactiveTransition) {
-        NSLog(@"new interactiveTransition");
         interactiveTransition = [[SLPercentDrivenInteractiveTransition alloc]init];
         objc_setAssociatedObject(self, _cmd, interactiveTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
