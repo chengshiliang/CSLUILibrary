@@ -49,6 +49,7 @@ static int buttonTag = 100;
         } else {
             button.selected = NO;
         }
+        if (self.configSLTabbarButton) self.configSLTabbarButton(button);
         [self addSubview:button];
         [button show];
     }

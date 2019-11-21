@@ -16,6 +16,7 @@
 
 @implementation SLTabbarButton
 - (void)show {
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self setNeedsLayout];
 }
 
@@ -24,11 +25,10 @@
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect {
-    if ((self.imageSize.width > 0 || self.imageSize.height > 0)) {
-        NSLog(@"imageSize%@", NSStringFromCGSize(self.imageSize));
+    if ((self.imageSize.width > 0 || self.imageSize.height > 0) && self.buttonTypes != SLButtonTypeOnlyTitle) {
         CGFloat imageW = self.imageSize.width;
         CGFloat imageH = self.imageSize.height;
-        if (self.buttonType == SLButtonTypeOnlyImage) {// 只有图片显示
+        if (self.buttonTypes == SLButtonTypeOnlyImage) {// 只有图片显示
             _titleReact = CGRectZero;
             //内容总高度
             CGFloat totalHeight = imageH;
@@ -36,7 +36,7 @@
             CGFloat imageX = (contentRect.size.width - imageW)/2.0;
             _imageReact = CGRectMake(imageX, imageY, imageW, imageH);
             return _imageReact;
-        } else if (self.buttonType == SLButtonTypeLeft) {
+        } else if (self.buttonTypes == SLButtonTypeLeft) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -50,7 +50,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.buttonType == SLButtonTypeTop) {
+        } else if (self.buttonTypes == SLButtonTypeTop) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总高度
             CGFloat totalHeight = titleSize.height + imageH + self.imageTitleSpace;
@@ -64,7 +64,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.buttonType == SLButtonTypeRight) {
+        } else if (self.buttonTypes == SLButtonTypeRight) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -94,8 +94,10 @@
             return _imageReact;
         }
     } else {
-        if (self.buttonType == SLButtonTypeOnlyTitle) {
+        if (self.buttonTypes == SLButtonTypeOnlyTitle) {
             _titleReact = CGRectMake(0, 0, contentRect.size.width, contentRect.size.height);
+            _imageReact = CGRectZero;
+            return _imageReact;
         }
         return [super imageRectForContentRect:contentRect];
     }
