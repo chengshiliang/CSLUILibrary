@@ -12,6 +12,7 @@
 #import "RecycleViewController.h"
 #import "PupViewController.h"
 #import "SearchViewController.h"
+#import "NavTranslucentViewController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -36,6 +37,12 @@
         } else {
             cell.textLabel.text = model.key;
         }
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"NavTranslucent";
+        } else {
+            cell.textLabel.text = model.key;
+        }
     } else {
         cell.textLabel.text = model.key;
     }
@@ -46,6 +53,8 @@
         return @"基础元素";
     } else if (section == 1) {
         return @"常见功能组件";
+    } else if (section == 2) {
+        return @"特色功能";
     } else {
         return @"";
     }
@@ -97,6 +106,11 @@
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 } else if (indexPath.row == 2) {
                     SearchViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"search"];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                }
+            } else if (indexPath.section == 2) {
+                if (indexPath.row == 0) {
+                    NavTranslucentViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 }
             }

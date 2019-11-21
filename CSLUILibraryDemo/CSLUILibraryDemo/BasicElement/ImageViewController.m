@@ -42,19 +42,6 @@
     self.imageView5.cornerRadis = YES;
     [self.imageView6 sl_blurEffect];
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
-    
-    [self sl_scrollToTranslucent];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"%lf----%lf", scrollView.contentOffset.y,scrollView.sl_insetTop);
-    CGFloat alpha = 1.0;
-    if (scrollView.contentOffset.y > -scrollView.sl_insetTop) {
-        CGFloat offset = scrollView.contentOffset.y+scrollView.sl_insetTop;
-        alpha = offset * 1 / scrollView.sl_insetTop;
-        alpha = 1-alpha;
-    }
-    [self sl_scrollToTranslucentWithAlpha:alpha];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

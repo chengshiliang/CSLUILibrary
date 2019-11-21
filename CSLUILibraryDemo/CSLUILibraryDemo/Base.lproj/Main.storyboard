@@ -12,8 +12,8 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vXK-pT-y78"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ngr-g6-DZD"/>
+                        <viewControllerLayoutGuide type="top" id="ikZ-3A-z7V"/>
+                        <viewControllerLayoutGuide type="bottom" id="VNQ-iB-bHa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -27,10 +27,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ngr-g6-DZD" firstAttribute="top" secondItem="S10-cb-tqc" secondAttribute="bottom" id="0Ei-Ef-4L8"/>
+                            <constraint firstItem="VNQ-iB-bHa" firstAttribute="top" secondItem="S10-cb-tqc" secondAttribute="bottom" id="0Ei-Ef-4L8"/>
                             <constraint firstItem="S10-cb-tqc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YyJ-VA-ine"/>
                             <constraint firstAttribute="trailing" secondItem="S10-cb-tqc" secondAttribute="trailing" id="oyD-cg-ep3"/>
-                            <constraint firstItem="S10-cb-tqc" firstAttribute="top" secondItem="vXK-pT-y78" secondAttribute="bottom" id="sQI-XN-j0R"/>
+                            <constraint firstItem="S10-cb-tqc" firstAttribute="top" secondItem="ikZ-3A-z7V" secondAttribute="bottom" id="sQI-XN-j0R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SLUILibraryDemoEntry" id="6r6-LB-Bya"/>
@@ -47,8 +47,8 @@
             <objects>
                 <viewController storyboardIdentifier="label" id="dAp-Jy-imK" customClass="LabelController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0ub-UR-K7I"/>
-                        <viewControllerLayoutGuide type="bottom" id="ejO-xd-Kdn"/>
+                        <viewControllerLayoutGuide type="top" id="Jad-M0-HNe"/>
+                        <viewControllerLayoutGuide type="bottom" id="qa3-Oo-iLM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mh7-sM-HBt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -162,7 +162,7 @@
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="bottom" constant="20" id="oMR-x9-7d9"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="top" id="pEb-0j-55B"/>
                             <constraint firstItem="cjY-t2-zSA" firstAttribute="top" secondItem="H4v-OK-gxG" secondAttribute="bottom" constant="20" id="q1b-ya-ZMk"/>
-                            <constraint firstItem="9bt-Qx-NtS" firstAttribute="top" secondItem="0ub-UR-K7I" secondAttribute="bottom" constant="50" id="qXS-cY-gqO"/>
+                            <constraint firstItem="9bt-Qx-NtS" firstAttribute="top" secondItem="Jad-M0-HNe" secondAttribute="bottom" constant="50" id="qXS-cY-gqO"/>
                             <constraint firstItem="2oW-5k-Aja" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="sGb-Af-d5S"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="wkc-FG-PcL"/>
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="top" secondItem="pxH-sm-x3v" secondAttribute="top" id="zBh-w7-WPs"/>
@@ -193,8 +193,8 @@
             <objects>
                 <viewController storyboardIdentifier="recycle" id="VbN-SP-AZq" customClass="RecycleViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oT6-vn-LbG"/>
-                        <viewControllerLayoutGuide type="bottom" id="sop-Pc-cGW"/>
+                        <viewControllerLayoutGuide type="top" id="J88-TE-dfe"/>
+                        <viewControllerLayoutGuide type="bottom" id="UCr-ta-rgL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nen-ye-Ifg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -221,7 +221,7 @@
                             <constraint firstItem="ejn-b9-Opv" firstAttribute="top" secondItem="BRd-D4-ReT" secondAttribute="bottom" id="fnW-Fl-2tF"/>
                             <constraint firstAttribute="trailing" secondItem="ejn-b9-Opv" secondAttribute="trailing" id="olA-eJ-zFp"/>
                             <constraint firstAttribute="trailing" secondItem="BRd-D4-ReT" secondAttribute="trailing" id="pMc-0G-0z5"/>
-                            <constraint firstItem="BRd-D4-ReT" firstAttribute="top" secondItem="oT6-vn-LbG" secondAttribute="bottom" id="r15-Ix-fd1"/>
+                            <constraint firstItem="BRd-D4-ReT" firstAttribute="top" secondItem="J88-TE-dfe" secondAttribute="bottom" id="r15-Ix-fd1"/>
                             <constraint firstItem="BRd-D4-ReT" firstAttribute="leading" secondItem="nen-ye-Ifg" secondAttribute="leading" id="t52-gr-5te"/>
                         </constraints>
                     </view>
@@ -239,8 +239,8 @@
             <objects>
                 <viewController storyboardIdentifier="search" id="fWg-H1-2hN" customClass="SearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WYH-VD-pbv"/>
-                        <viewControllerLayoutGuide type="bottom" id="IPw-yW-D98"/>
+                        <viewControllerLayoutGuide type="top" id="zje-Q8-1l8"/>
+                        <viewControllerLayoutGuide type="bottom" id="rLy-I7-rl1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GGw-Sb-VS1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -256,7 +256,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EUx-5d-aQp" firstAttribute="top" secondItem="WYH-VD-pbv" secondAttribute="bottom" constant="179" id="Sor-3Q-KTS"/>
+                            <constraint firstItem="EUx-5d-aQp" firstAttribute="top" secondItem="zje-Q8-1l8" secondAttribute="bottom" constant="179" id="Sor-3Q-KTS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EUx-5d-aQp" secondAttribute="trailing" constant="20" symbolic="YES" id="auf-Fa-Hnt"/>
                             <constraint firstItem="EUx-5d-aQp" firstAttribute="leading" secondItem="GGw-Sb-VS1" secondAttribute="leadingMargin" constant="82" id="wgG-2T-N8v"/>
                         </constraints>
@@ -271,8 +271,8 @@
             <objects>
                 <viewController storyboardIdentifier="imageView" automaticallyAdjustsScrollViewInsets="NO" id="NSK-Oa-OXG" customClass="ImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yha-4S-duX"/>
-                        <viewControllerLayoutGuide type="bottom" id="i6v-Pn-uYv"/>
+                        <viewControllerLayoutGuide type="top" id="N1p-wA-n4o"/>
+                        <viewControllerLayoutGuide type="bottom" id="Una-QC-a2F"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dhF-M8-InT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -433,7 +433,7 @@
                             <constraint firstItem="Vrr-tt-Vhj" firstAttribute="leading" secondItem="dhF-M8-InT" secondAttribute="leading" id="Cmu-1h-lIM"/>
                             <constraint firstItem="q4j-Pp-ffj" firstAttribute="centerX" secondItem="dhF-M8-InT" secondAttribute="centerX" id="Cti-dx-ni2"/>
                             <constraint firstAttribute="trailing" secondItem="Vrr-tt-Vhj" secondAttribute="trailing" id="NiX-hc-XT7"/>
-                            <constraint firstItem="i6v-Pn-uYv" firstAttribute="top" secondItem="Vrr-tt-Vhj" secondAttribute="bottom" id="Y65-bP-Fw8"/>
+                            <constraint firstItem="Una-QC-a2F" firstAttribute="top" secondItem="Vrr-tt-Vhj" secondAttribute="bottom" id="Y65-bP-Fw8"/>
                             <constraint firstItem="Vrr-tt-Vhj" firstAttribute="top" secondItem="dhF-M8-InT" secondAttribute="top" id="nTH-DE-lPs"/>
                         </constraints>
                     </view>
@@ -458,8 +458,8 @@
             <objects>
                 <viewController storyboardIdentifier="pupview" id="ccg-Le-UnN" customClass="PupViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="N6Z-LZ-hsZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="F6Y-BW-YsH"/>
+                        <viewControllerLayoutGuide type="top" id="LrI-hC-feo"/>
+                        <viewControllerLayoutGuide type="bottom" id="9pp-lS-U67"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3iY-yn-2yP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -473,9 +473,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="QZa-WJ-R49" secondAttribute="trailing" id="2hb-sI-zju"/>
-                            <constraint firstItem="F6Y-BW-YsH" firstAttribute="top" secondItem="QZa-WJ-R49" secondAttribute="bottom" id="Vlp-sg-gYm"/>
+                            <constraint firstItem="9pp-lS-U67" firstAttribute="top" secondItem="QZa-WJ-R49" secondAttribute="bottom" id="Vlp-sg-gYm"/>
                             <constraint firstItem="QZa-WJ-R49" firstAttribute="leading" secondItem="3iY-yn-2yP" secondAttribute="leading" id="dCA-Rm-jQS"/>
-                            <constraint firstItem="QZa-WJ-R49" firstAttribute="top" secondItem="N6Z-LZ-hsZ" secondAttribute="bottom" id="oSK-O4-eiv"/>
+                            <constraint firstItem="QZa-WJ-R49" firstAttribute="top" secondItem="LrI-hC-feo" secondAttribute="bottom" id="oSK-O4-eiv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -485,6 +485,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebH-jH-rIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2111.1999999999998" y="691.304347826087"/>
+        </scene>
+        <!--Nav Translucent View Controller-->
+        <scene sceneID="GCj-Zk-boK">
+            <objects>
+                <viewController storyboardIdentifier="translucent" id="cNK-gk-kV1" customClass="NavTranslucentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vdj-aJ-Jtf"/>
+                        <viewControllerLayoutGuide type="bottom" id="iBj-gE-wEx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pDf-cO-Eam">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Do7-Gm-Wqz" customClass="SLScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-nu-nmy">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UEl-2G-jFg" customClass="SLImageView">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="400" id="EeV-1G-xOT"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="900" id="CGE-Ur-v80"/>
+                                            <constraint firstAttribute="trailing" secondItem="UEl-2G-jFg" secondAttribute="trailing" id="Czb-cT-qwM"/>
+                                            <constraint firstItem="UEl-2G-jFg" firstAttribute="top" secondItem="Jqq-nu-nmy" secondAttribute="top" id="Lbf-GA-lbc"/>
+                                            <constraint firstItem="UEl-2G-jFg" firstAttribute="leading" secondItem="Jqq-nu-nmy" secondAttribute="leading" id="Q3f-hr-wnG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Jqq-nu-nmy" secondAttribute="trailing" id="4QQ-kX-63v"/>
+                                    <constraint firstItem="Jqq-nu-nmy" firstAttribute="centerX" secondItem="Do7-Gm-Wqz" secondAttribute="centerX" id="5Fc-AE-zX2"/>
+                                    <constraint firstItem="Jqq-nu-nmy" firstAttribute="top" secondItem="Do7-Gm-Wqz" secondAttribute="top" id="FeX-Bf-Vt9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jqq-nu-nmy" secondAttribute="bottom" id="JZ5-zf-0gT"/>
+                                    <constraint firstItem="Jqq-nu-nmy" firstAttribute="leading" secondItem="Do7-Gm-Wqz" secondAttribute="leading" id="VvM-5n-XOd"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="cNK-gk-kV1" id="n7y-Vr-bkW"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Do7-Gm-Wqz" firstAttribute="leading" secondItem="pDf-cO-Eam" secondAttribute="leading" id="MER-IT-hwi"/>
+                            <constraint firstItem="iBj-gE-wEx" firstAttribute="top" secondItem="Do7-Gm-Wqz" secondAttribute="bottom" id="VQR-EO-54c"/>
+                            <constraint firstItem="Do7-Gm-Wqz" firstAttribute="top" secondItem="pDf-cO-Eam" secondAttribute="top" id="lpD-fV-Va8"/>
+                            <constraint firstAttribute="trailing" secondItem="Do7-Gm-Wqz" secondAttribute="trailing" id="xpo-kq-JDX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="UEl-2G-jFg" id="qzJ-da-2Jh"/>
+                        <outlet property="scrollView" destination="Do7-Gm-Wqz" id="hKV-Oc-d2y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Kb-BO-tTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2852" y="692"/>
         </scene>
     </scenes>
 </document>

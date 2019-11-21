@@ -110,6 +110,7 @@
     }
     [self.tabBar insertSubview:tabbarView atIndex:0];
     self.tabBar.barTintColor = SLUIHexColor(0xffffff);
+    self.tabBar.translucent = NO;
     self.mTabBar = tabbarView;
 }
 

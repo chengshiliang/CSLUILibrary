@@ -9,6 +9,8 @@
 #import <CSLUILibrary/UIImage+SLBase.h>
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLCommonLibrary/NSObject+Base.h>
+#import <CSLCommonLibrary/UIViewController+DelegateProxy.h>
+#import <CSLUILibrary/SLViewController.h>
 #import <objc/runtime.h>
 
 static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
@@ -55,11 +57,20 @@ static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 
 - (void)sl_scrollToTranslucent {
     if ([self presentedViewController]) return;
-    objc_setAssociatedObject(self, &kViewControllerTranslucentKey, @(self.navigationController.navigationBar.isTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self sl_scrollToTranslucentPreDeal];
     [self sl_setTranslucent:YES];
-    UIColor *alphaColor = [UIColor colorWithWhite:1 alpha:1];
-    UIImage *alphaImage = [UIImage sl_imageWithColor:alphaColor];
-    [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
+    [self sl_scrollToTranslucentWithAlpha:1];
+}
+
+- (void)sl_scrollToNoTranslucent {
+    if ([self presentedViewController]) return;
+    [self sl_scrollToTranslucentPreDeal];
+    [self sl_setTranslucent:NO];
+    [self sl_scrollToTranslucentWithAlpha:0];
+}
+
+- (void)sl_scrollToTranslucentPreDeal {
+    objc_setAssociatedObject(self, &kViewControllerTranslucentKey, @(self.navigationController.navigationBar.isTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     WeakSelf;
     [self swizzDisappearMethod:self callback:^(NSObject *__unsafe_unretained  _Nonnull disappearObj) {
         StrongSelf;
@@ -69,9 +80,35 @@ static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 }
 
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha {
+    if ([self presentedViewController]) return;
     UIColor *alphaColor = [UIColor colorWithWhite:1 alpha:alpha];
     UIImage *alphaImage = [UIImage sl_imageWithColor:alphaColor];
     [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
 }
 
+- (void)sl_addPresentTrasition:(UIViewController *)presentController {
+    WeakSelf;
+    [self.interactiveTransition presentedController:presentController];
+    [self addPresentedController:presentController];
+    [self presentingControllerBlock:^id<UIViewControllerAnimatedTransitioning> _Nonnull(UIViewController * _Nonnull presentingController, UIViewController * _Nonnull sourceController) {
+        return [[SLPresentTransitionAnimation alloc]init];
+    }];
+    [self dismissedControllerBlock:^id<UIViewControllerAnimatedTransitioning> _Nonnull(UIViewController * _Nonnull dismissedController) {
+        return [[SLDissmissTransitionAnimation alloc]init];
+    }];
+    [self interactionDismissedControllerBlock:^id<UIViewControllerInteractiveTransitioning> _Nonnull(id<UIViewControllerAnimatedTransitioning>  _Nonnull animator) {
+        StrongSelf;
+        return strongSelf.interactiveTransition.isInteractive?strongSelf.interactiveTransition:nil;
+    }];
+}
+
+- (SLPercentDrivenInteractiveTransition *)interactiveTransition {
+    SLPercentDrivenInteractiveTransition *interactiveTransition = objc_getAssociatedObject(self, _cmd);
+    if (!interactiveTransition) {
+        NSLog(@"new interactiveTransition");
+        interactiveTransition = [[SLPercentDrivenInteractiveTransition alloc]init];
+        objc_setAssociatedObject(self, _cmd, interactiveTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return interactiveTransition;
+}
 @end

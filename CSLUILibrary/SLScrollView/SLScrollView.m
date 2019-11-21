@@ -26,6 +26,7 @@
     if (@available(iOS 11, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
+    self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
 #pragma 事件传递和响应的一些笔记

@@ -44,7 +44,7 @@
     [panGesture on:self click:^(UIGestureRecognizer *gesture) {
         StrongSelf;
         CGPoint movePoint = [panGesture translationInView:strongSelf.view];
-        float precent = movePoint.x/[UIScreen mainScreen].bounds.size.width;
+        float precent = movePoint.x/kScreenWidth;
         if (panGesture.state == UIGestureRecognizerStateBegan) {
             strongSelf.percentAnimation = [[UIPercentDrivenInteractiveTransition alloc] init];
             [strongSelf popViewControllerAnimated:YES];

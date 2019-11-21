@@ -19,6 +19,7 @@
 		158C6C59236A96C700F80FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158C6C57236A96C700F80FA6 /* LaunchScreen.storyboard */; };
 		158C6C5C236A96C700F80FA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C5B236A96C700F80FA6 /* main.m */; };
 		15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */; };
+		15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D15962238627B1006DD86B /* NavTranslucentViewController.m */; };
 		15EFE1532370FE7D00912334 /* 11.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE1522370FE7D00912334 /* 11.PNG */; };
 		15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFE17E23717B8100912334 /* RecycleViewController.m */; };
 		15EFE18423717E7C00912334 /* cir3.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18023717E7C00912334 /* cir3.png */; };
@@ -52,6 +53,8 @@
 		158C6C5B236A96C700F80FA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15B3C7DC237A8843009CAFFE /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		15D15961238627B1006DD86B /* NavTranslucentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTranslucentViewController.h; sourceTree = "<group>"; };
+		15D15962238627B1006DD86B /* NavTranslucentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTranslucentViewController.m; sourceTree = "<group>"; };
 		15EFE1522370FE7D00912334 /* 11.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.PNG; sourceTree = "<group>"; };
 		15EFE17D23717B8100912334 /* RecycleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecycleViewController.h; sourceTree = "<group>"; };
 		15EFE17E23717B8100912334 /* RecycleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecycleViewController.m; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 				158C6C4D236A96C600F80FA6 /* AppDelegate.m */,
 				158C6C4F236A96C600F80FA6 /* ViewController.h */,
 				158C6C50236A96C600F80FA6 /* ViewController.m */,
+				15D159602386279B006DD86B /* Other */,
 				15EFE17C23717B6B00912334 /* Component */,
 				15EFE135236FCD7000912334 /* Base */,
 				1550CC31236AD724002CB249 /* BasicElement */,
@@ -133,6 +137,15 @@
 				15EFE18023717E7C00912334 /* cir3.png */,
 			);
 			path = CSLUILibraryDemo;
+			sourceTree = "<group>";
+		};
+		15D159602386279B006DD86B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				15D15961238627B1006DD86B /* NavTranslucentViewController.h */,
+				15D15962238627B1006DD86B /* NavTranslucentViewController.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		15EFE135236FCD7000912334 /* Base */ = {
@@ -303,6 +316,7 @@
 				153FDD422383CF3700EFE6FB /* BaseController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,
+				15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */,
 				158C6C4E236A96C600F80FA6 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

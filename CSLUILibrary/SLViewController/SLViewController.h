@@ -9,6 +9,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface SLPresentTransitionAnimation : NSObject
+
+@end
+
+@interface SLDissmissTransitionAnimation : NSObject
+
+@end
+
+@interface SLPercentDrivenInteractiveTransition : UIPercentDrivenInteractiveTransition
+@property(nonatomic, assign)BOOL isInteractive;
+@property(nonatomic, assign) BOOL shouldComplete;
+- (void)presentedController:(UIViewController *)presentedController;
+@end
+
 @interface SLViewController : UIViewController
 - (void)sl_setTransluentNavBar;// 设置顶部导航栏背景色为半透明颜色，但导航栏本身并不透明，如果想要导航栏透明，请调用# UINavigationBar (SLBase) - (void)didChangeNavigationBarAlpha:(UIScrollView *)scrollView
 
