@@ -19,12 +19,13 @@
 
 @implementation TabbarController
 
+#pragma mark 同一个view添加到不同的父视图上，不会被添加两次，他会从原来的父视图移除，然后添加到新的父视图上。
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSArray *titleArray = @[@"test1", @"test2", @"test3", @"test4", @"test5"];
     NSArray *imageArray = @[@"tabBar_cart_normal", @"tabBar_category_normal", @"tabBar_find_normal", @"tabBar_home_normal", @"tabBar_myJD_normal"];
     NSArray *selectImageArray = @[@"tabBar_cart_press", @"tabBar_category_press", @"tabBar_find_press", @"tabBar_home_press", @"tabBar_myJD_press"];
-    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:titleArray.count];
+    NSMutableArray *arrayM1 = [NSMutableArray arrayWithCapacity:titleArray.count];
     for (int i = 0; i < titleArray.count; i++){
         SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
         [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
@@ -34,31 +35,100 @@
         UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
         [tabbarBt setImage:normalImage forState:UIControlStateNormal];
         [tabbarBt setImage:selectImage forState:UIControlStateSelected];
-        [arrayM addObject:tabbarBt];
+        [arrayM1 addObject:tabbarBt];
     }
     
-    [self.onlyText initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    NSMutableArray *arrayM2 = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0xff0000) forState:UIControlStateSelected];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
+        UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:selectImage forState:UIControlStateSelected];
+        [arrayM2 addObject:tabbarBt];
+    }
+    
+    NSMutableArray *arrayM3 = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0xff0000) forState:UIControlStateSelected];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
+        UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:selectImage forState:UIControlStateSelected];
+        [arrayM3 addObject:tabbarBt];
+    }
+    
+    NSMutableArray *arrayM4 = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0xff0000) forState:UIControlStateSelected];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
+        UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:selectImage forState:UIControlStateSelected];
+        [arrayM4 addObject:tabbarBt];
+    }
+    
+    NSMutableArray *arrayM5 = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0xff0000) forState:UIControlStateSelected];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
+        UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:selectImage forState:UIControlStateSelected];
+        [arrayM5 addObject:tabbarBt];
+    }
+    
+    NSMutableArray *arrayM6 = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++){
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:SLUIHexColor(0xff0000) forState:UIControlStateSelected];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
+        UIImage *selectImage =[UIImage imageNamed:selectImageArray[i]];
+        [tabbarBt setImage:normalImage forState:UIControlStateNormal];
+        [tabbarBt setImage:selectImage forState:UIControlStateSelected];
+        [arrayM6 addObject:tabbarBt];
+    }
+    
+    [self.onlyText initButtons:[NSArray arrayWithArray:arrayM1] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
         button.tabbarButtonType = SLButtonTypeOnlyTitle;
     }];
-    
-    [self.onlyImage initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+
+    [self.onlyImage initButtons:[NSArray arrayWithArray:arrayM2] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
         button.tabbarButtonType = SLButtonTypeOnlyImage;
     }];
 
-    [self.imageTop initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageTop initButtons:[NSArray arrayWithArray:arrayM3] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
         button.tabbarButtonType = SLButtonTypeImageTop;
+        button.imageTitleSpace = -10.f;
     }];
 
-    [self.imageBottom initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageBottom initButtons:[NSArray arrayWithArray:arrayM4] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
         button.tabbarButtonType = SLButtonTypeImageBottom;
-    }];
-    
-    [self.imageLeft initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
-        button.tabbarButtonType = SLButtonTypeImageLeft;
+        button.imageTitleSpace = -10.f;
     }];
 
-    [self.imageRight initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageLeft initButtons:[NSArray arrayWithArray:arrayM5] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+        button.tabbarButtonType = SLButtonTypeImageLeft;
+        button.imageTitleSpace = -20.f;
+    }];
+
+    [self.imageRight initButtons:[NSArray arrayWithArray:arrayM6] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
         button.tabbarButtonType = SLButtonTypeImageRight;
+        button.imageTitleSpace = -20.f;
     }];
 }
 

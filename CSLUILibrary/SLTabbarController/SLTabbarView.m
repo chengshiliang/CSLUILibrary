@@ -21,6 +21,7 @@ static int buttonTag = 100;
 @implementation SLTabbarView
 
 - (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock {
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.buttons = buttons.copy;
     for (int i = 0; i < buttons.count; i++){
         SLTabbarButton *button = buttons[i];
