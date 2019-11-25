@@ -16,6 +16,7 @@
 static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 
 @implementation UIViewController (SLBase)
+@dynamic interactiveTransition;
 + (UIViewController *)sl_getRootViewController{
     UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
     NSAssert(window, @"The window is empty");
@@ -91,10 +92,10 @@ static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
     [self.interactiveTransition presentedController:presentController];
     [self addPresentedController:presentController];
     [self presentingControllerBlock:^id<UIViewControllerAnimatedTransitioning> _Nonnull(UIViewController * _Nonnull presentingController, UIViewController * _Nonnull sourceController) {
-        return [[SLPresentTransitionAnimation alloc]init];
+        return (id<UIViewControllerAnimatedTransitioning>)[[SLPresentTransitionAnimation alloc]init];
     }];
     [self dismissedControllerBlock:^id<UIViewControllerAnimatedTransitioning> _Nonnull(UIViewController * _Nonnull dismissedController) {
-        return [[SLDissmissTransitionAnimation alloc]init];
+        return (id<UIViewControllerAnimatedTransitioning>)[[SLDissmissTransitionAnimation alloc]init];
     }];
     [self interactionDismissedControllerBlock:^id<UIViewControllerInteractiveTransitioning> _Nonnull(id<UIViewControllerAnimatedTransitioning>  _Nonnull animator) {
         StrongSelf;
