@@ -40,9 +40,10 @@
     self.tabBar.translucent = NO;
     self.tabBar.backgroundImage = [UIImage new];
     self.tabBar.shadowImage = [UIImage new];
+    self.tabBar.clipsToBounds = YES;
 }
 
-- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock{
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(nonnull void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock{
     NSAssert(viewControllers.count == titles.count, @"vc length is not equals to title length");
     NSAssert(viewControllers.count == normalImages.count, @"vc length is not equals to normalImage length");
     NSAssert(viewControllers.count == selectImages.count, @"vc length is not equals to selectImage length");
@@ -61,7 +62,7 @@
     self.titleArray = titles.copy;
     self.normalImageArray = normalImages.copy;
     self.selectImageArray = selectImages.copy;
-    [self createTabBar:layoutTabbarBlock];
+    [self createTabBar:layoutTabbarBlock configTabbarButton:configTabbarButtonBlock];
     isLayout = NO;
 }
 
@@ -73,14 +74,13 @@
     }
 }
 
-- (void)createTabBar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock{
+- (void)createTabBar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock{
     [self.mTabBar removeFromSuperview];
     float tabbarWidth  = self.tabBar.frame.size.width;
     float tabbarHeight = self.tabBar.frame.size.height;
     SLTabbarView *tabbarView = [[SLTabbarView alloc] initWithFrame:CGRectMake(0, 0, tabbarWidth, tabbarHeight)];
     tabbarView.backgroundColor = SLUIHexColor(0xffffff);
     [self.tabBar insertSubview:tabbarView atIndex:0];
-    self.tabBar.clipsToBounds = YES;
     self.mTabBar = tabbarView;
     WeakSelf;
     self.mTabBar.clickSLTabbarIndex = ^(NSInteger index) {
@@ -104,7 +104,7 @@
         [tabbarBt setImage:self.selectImageArray[i] forState:UIControlStateSelected];
         [arrayM addObject:tabbarBt];
     }
-    self.mTabBar.buttons = arrayM.copy;
+    [self.mTabBar initButtons:arrayM.copy configTabbarButton:configTabbarButtonBlock];
 }
 
 - (void)sl_setTbbarBackgroundColor:(UIColor *)color {

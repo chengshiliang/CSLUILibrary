@@ -13,15 +13,16 @@
 static int buttonTag = 100;
 
 @interface SLTabbarView()
+@property (nonatomic, copy) NSArray<SLTabbarButton *> *buttons;
 @property(nonatomic, strong) SLTabbarButton *selectBarButton;
 @property(nonatomic, assign) NSInteger currentSelectIndex;
 @end
 
 @implementation SLTabbarView
 
-- (void)setButtons:(NSArray<SLTabbarButton *> *)buttons {
-    _buttons = buttons.copy;
-    for (int i = 0; i < self.buttons.count; i++){
+- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock {
+    self.buttons = buttons.copy;
+    for (int i = 0; i < buttons.count; i++){
         SLTabbarButton *button = buttons[i];
         button.tag = buttonTag+i;
         if (self.currentSelectIndex == 0) {
@@ -49,9 +50,8 @@ static int buttonTag = 100;
         } else {
             button.selected = NO;
         }
-        if (self.configSLTabbarButton) self.configSLTabbarButton(button);
+        if (configTabbarButtonBlock) configTabbarButtonBlock(button);
         [self addSubview:button];
-        [button show];
     }
 }
 

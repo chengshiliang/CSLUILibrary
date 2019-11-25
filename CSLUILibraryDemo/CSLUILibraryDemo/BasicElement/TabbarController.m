@@ -28,17 +28,36 @@
         SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
         [tabbarBt setTitle:titleArray[i] forState:UIControlStateNormal];
         [tabbarBt setTitleColor:SLUIHexColor(0x666666) forState:UIControlStateNormal];
-        UIImage *normalImage = imageArray[i];
+        UIImage *normalImage = [UIImage imageNamed:imageArray[i]];
         [tabbarBt setImage:normalImage forState:UIControlStateNormal];
         [arrayM addObject:tabbarBt];
     }
     self.onlyText.clickSLTabbarIndex = ^(NSInteger index) {
-        NSLog(@"clickindex%ld", index);
+//        NSLog(@"clickindex%ld", index);
     };
-    self.onlyText.buttons = arrayM.copy;
-    self.onlyText.configSLTabbarButton = ^(SLTabbarButton * _Nonnull barButton) {
-
-    };
+    [self.onlyText initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+        button.tabbarButtonType = SLButtonTypeOnlyTitle;
+    }];
+    
+//    [self.onlyImage initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+//        button.tabbarButtonType = SLButtonTypeOnlyImage;
+//    }];
+//    
+//    [self.imageLeft initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+//        button.tabbarButtonType = SLButtonTypeImageLeft;
+//    }];
+//    
+//    [self.imageRight initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+//        button.tabbarButtonType = SLButtonTypeImageRight;
+//    }];
+//    
+//    [self.imageTop initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+//        button.tabbarButtonType = SLButtonTypeImageTop;
+//    }];
+//    
+//    [self.imageBottom initButtons:arrayM.copy configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+//        button.tabbarButtonType = SLButtonTypeImageBottom;
+//    }];
 }
 
 @end

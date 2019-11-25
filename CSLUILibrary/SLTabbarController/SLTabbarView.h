@@ -10,9 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 @class SLTabbarButton;
 @interface SLTabbarView : SLView
-@property (nonatomic, copy) NSArray<SLTabbarButton *> *buttons;
-@property (nonatomic, copy) void(^configSLTabbarButton)(SLTabbarButton *barButton);
 @property (nonatomic, copy) void(^clickSLTabbarIndex)(NSInteger index);
+
+- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void(^)(SLTabbarButton *button))configTabbarButtonBlock;
 @end
 
 NS_ASSUME_NONNULL_END

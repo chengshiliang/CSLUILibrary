@@ -456,7 +456,7 @@
         <!--Tabbar Controller-->
         <scene sceneID="FRW-dZ-Hgy">
             <objects>
-                <viewController restorationIdentifier="tabbar" id="Emy-Oj-laL" customClass="TabbarController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tabbar" id="Emy-Oj-laL" customClass="TabbarController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8cK-st-taX"/>
                         <viewControllerLayoutGuide type="bottom" id="Z4f-ZH-lgP"/>

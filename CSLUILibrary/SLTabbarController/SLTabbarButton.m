@@ -15,9 +15,21 @@
 @end
 
 @implementation SLTabbarButton
-- (void)show {
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self == [super initWithFrame:frame]) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize {
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self setNeedsLayout];
 }
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect {
@@ -25,10 +37,11 @@
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect {
-    if ((self.imageSize.width > 0 || self.imageSize.height > 0) && self.buttonTypes != SLButtonTypeOnlyTitle) {
+    if ((self.imageSize.width > 0 || self.imageSize.height > 0) && self.tabbarButtonType != SLButtonTypeOnlyTitle) {
+        NSLog(@"imageSize111%@", NSStringFromCGSize(self.imageSize));
         CGFloat imageW = self.imageSize.width;
         CGFloat imageH = self.imageSize.height;
-        if (self.buttonTypes == SLButtonTypeOnlyImage) {// 只有图片显示
+        if (self.tabbarButtonType == SLButtonTypeOnlyImage) {// 只有图片显示
             _titleReact = CGRectZero;
             //内容总高度
             CGFloat totalHeight = imageH;
@@ -36,7 +49,7 @@
             CGFloat imageX = (contentRect.size.width - imageW)/2.0;
             _imageReact = CGRectMake(imageX, imageY, imageW, imageH);
             return _imageReact;
-        } else if (self.buttonTypes == SLButtonTypeLeft) {
+        } else if (self.tabbarButtonType == SLButtonTypeImageLeft) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -50,7 +63,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.buttonTypes == SLButtonTypeTop) {
+        } else if (self.tabbarButtonType == SLButtonTypeImageTop) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总高度
             CGFloat totalHeight = titleSize.height + imageH + self.imageTitleSpace;
@@ -64,7 +77,7 @@
             CGFloat titleH = titleSize.height;
             _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             return _imageReact;
-        } else if (self.buttonTypes == SLButtonTypeRight) {
+        } else if (self.tabbarButtonType == SLButtonTypeImageRight) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             //内容总宽度
             CGFloat totalWidth = titleSize.width + imageW + self.imageTitleSpace;
@@ -94,20 +107,29 @@
             return _imageReact;
         }
     } else {
-        if (self.buttonTypes == SLButtonTypeOnlyTitle) {
-            _titleReact = CGRectMake(0, 0, contentRect.size.width, contentRect.size.height);
+        NSLog(@"imageSize222%@", NSStringFromCGSize(self.imageSize));
+        if (self.tabbarButtonType == SLButtonTypeOnlyTitle) {
+            CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
+            CGFloat titleX = (contentRect.size.width - titleSize.width)/2.0;
+            CGFloat titleY = (contentRect.size.height - titleSize.height)/2.0;
+            CGFloat titleW = titleSize.width;
+            CGFloat titleH = titleSize.height;
+            _titleReact = CGRectMake(titleX, titleY, titleW, titleH);
             _imageReact = CGRectZero;
             return _imageReact;
         }
+        _titleReact = CGRectZero;
         return [super imageRectForContentRect:contentRect];
     }
 }
 
-- (void)setImage:(UIImage *)image forState:(UIControlState)state {
-    if (self.imageSize.height <= 0 && self.imageSize.height <= 0) {
+- (void)layoutSubviews {
+    UIImage *image = self.currentImage;
+    if (self.imageSize.width <= 0 && self.imageSize.height <= 0) {
         self.imageSize = CGSizeMake(image.size.width > self.frame.size.width ? self.frame.size.width : image.size.width,
                                     image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
     }
-    [super setImage:image forState:state];
+    NSLog(@"imageSize%@~~~~~%ld", NSStringFromCGSize(self.imageSize), self.tabbarButtonType);
+    [super layoutSubviews];
 }
 @end
