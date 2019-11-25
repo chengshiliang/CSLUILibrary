@@ -55,11 +55,17 @@ static int buttonTag = 100;
     }
 }
 
+- (NSInteger)currentIndex {
+    return self.currentSelectIndex;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
+    if (self.buttons.count <= 0) return;
+    CGFloat width = self.frame.size.width*1.0/self.buttons.count;
     for (int i = 0; i < self.buttons.count; i++){
         SLTabbarButton *tabbarBt = self.buttons[i];
-        [tabbarBt setFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        [tabbarBt setFrame:CGRectMake(i*width, 0, width, self.frame.size.height)];
     }
 }
 

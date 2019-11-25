@@ -38,7 +38,6 @@
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect {
     if ((self.imageSize.width > 0 || self.imageSize.height > 0) && self.tabbarButtonType != SLButtonTypeOnlyTitle) {
-        NSLog(@"imageSize111%@", NSStringFromCGSize(self.imageSize));
         CGFloat imageW = self.imageSize.width;
         CGFloat imageH = self.imageSize.height;
         if (self.tabbarButtonType == SLButtonTypeOnlyImage) {// 只有图片显示
@@ -107,7 +106,6 @@
             return _imageReact;
         }
     } else {
-        NSLog(@"imageSize222%@", NSStringFromCGSize(self.imageSize));
         if (self.tabbarButtonType == SLButtonTypeOnlyTitle) {
             CGSize titleSize = [self.currentTitle sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
             CGFloat titleX = (contentRect.size.width - titleSize.width)/2.0;
@@ -129,7 +127,6 @@
         self.imageSize = CGSizeMake(image.size.width > self.frame.size.width ? self.frame.size.width : image.size.width,
                                     image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
     }
-    NSLog(@"imageSize%@~~~~~%ld", NSStringFromCGSize(self.imageSize), self.tabbarButtonType);
     [super layoutSubviews];
 }
 @end

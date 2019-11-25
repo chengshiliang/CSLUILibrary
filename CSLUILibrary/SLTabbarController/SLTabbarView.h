@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SLTabbarButton;
 @interface SLTabbarView : SLView
 @property (nonatomic, copy) void(^clickSLTabbarIndex)(NSInteger index);
+@property (nonatomic, assign, readonly) NSInteger currentIndex;
 
 - (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void(^)(SLTabbarButton *button))configTabbarButtonBlock;
 @end
