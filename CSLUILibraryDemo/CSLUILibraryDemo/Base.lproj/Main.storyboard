@@ -693,5 +693,62 @@
             </objects>
             <point key="canvasLocation" x="2852" y="692"/>
         </scene>
+        <!--Static Collection View Controller-->
+        <scene sceneID="geA-kH-pUa">
+            <objects>
+                <viewController storyboardIdentifier="staticcollect" id="vZG-A1-phK" customClass="StaticCollectionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GTt-bt-aIR"/>
+                        <viewControllerLayoutGuide type="bottom" id="ziV-24-Y1e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lMh-Gy-g8A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-TV-FXH" customClass="SLStaticCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2Cs-TV-FXH" secondAttribute="height" multiplier="375:180" id="xkp-lT-qel"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c3K-D9-adF" customClass="SLStaticCollectionView">
+                                <rect key="frame" x="0.0" y="200" width="375" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="c3K-D9-adF" secondAttribute="height" multiplier="375:180" id="5sy-j4-wUa"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21b-zV-r6G" customClass="SLHorizontalCollectionView">
+                                <rect key="frame" x="0.0" y="400" width="375" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="21b-zV-r6G" secondAttribute="height" multiplier="375:180" id="ZBr-iK-DxQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2Cs-TV-FXH" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="0vT-OE-1Kx"/>
+                            <constraint firstItem="c3K-D9-adF" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="DiE-Le-AeY"/>
+                            <constraint firstAttribute="trailing" secondItem="c3K-D9-adF" secondAttribute="trailing" id="UzD-pv-qLq"/>
+                            <constraint firstAttribute="trailing" secondItem="21b-zV-r6G" secondAttribute="trailing" id="Yz1-O0-wN7"/>
+                            <constraint firstItem="21b-zV-r6G" firstAttribute="top" secondItem="c3K-D9-adF" secondAttribute="bottom" constant="20" id="bc4-gw-8Fd"/>
+                            <constraint firstAttribute="trailing" secondItem="2Cs-TV-FXH" secondAttribute="trailing" id="c5f-a4-IoD"/>
+                            <constraint firstItem="21b-zV-r6G" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="fQ8-8p-IaI"/>
+                            <constraint firstItem="c3K-D9-adF" firstAttribute="top" secondItem="2Cs-TV-FXH" secondAttribute="bottom" constant="20" id="fUg-Qh-ybK"/>
+                            <constraint firstItem="2Cs-TV-FXH" firstAttribute="top" secondItem="GTt-bt-aIR" secondAttribute="bottom" id="xaA-HZ-lI5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="horizontalCollectionView" destination="21b-zV-r6G" id="wf0-6B-ffx"/>
+                        <outlet property="noRuleCollectionView" destination="c3K-D9-adF" id="ogT-4X-Axt"/>
+                        <outlet property="staticCollectionView" destination="2Cs-TV-FXH" id="qwN-3c-NNy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfD-fR-00J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2111.1999999999998" y="1382.1589205397302"/>
+        </scene>
     </scenes>
 </document>

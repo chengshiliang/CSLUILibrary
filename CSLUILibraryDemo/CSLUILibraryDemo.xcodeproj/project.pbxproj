@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */; };
+		1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */; };
+		1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */; };
 		153FDD422383CF3700EFE6FB /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153FDD412383CF3700EFE6FB /* BaseController.m */; };
 		1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543E9792372739A00A8F9BA /* PupViewController.m */; };
 		1550CC34236AD749002CB249 /* LabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1550CC33236AD749002CB249 /* LabelController.m */; };
@@ -32,6 +35,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1502C2EA238BBCD900C93443 /* StaticCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewController.h; sourceTree = "<group>"; };
+		1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewController.m; sourceTree = "<group>"; };
+		1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewCell.h; sourceTree = "<group>"; };
+		1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewCell.m; sourceTree = "<group>"; };
+		1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticCollectionViewCell.xib; sourceTree = "<group>"; };
 		153FDD402383CF3700EFE6FB /* BaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		153FDD412383CF3700EFE6FB /* BaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		1543E9782372739A00A8F9BA /* PupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PupViewController.h; sourceTree = "<group>"; };
@@ -169,6 +177,11 @@
 				15EFE17E23717B8100912334 /* RecycleViewController.m */,
 				1543E9782372739A00A8F9BA /* PupViewController.h */,
 				1543E9792372739A00A8F9BA /* PupViewController.m */,
+				1502C2EA238BBCD900C93443 /* StaticCollectionViewController.h */,
+				1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */,
+				1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */,
+				1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */,
+				1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */,
 				15FF8BB523751F8100B920B2 /* SearchViewController.h */,
 				15FF8BB623751F8100B920B2 /* SearchViewController.m */,
 			);
@@ -259,6 +272,7 @@
 				158C6C56236A96C700F80FA6 /* Assets.xcassets in Resources */,
 				15EFE18523717E7C00912334 /* cir2.png in Resources */,
 				158C6C54236A96C600F80FA6 /* Main.storyboard in Resources */,
+				1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */,
 				15596B5D236C2E200073C0CB /* 3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +328,7 @@
 			files = (
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
+				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
@@ -323,6 +338,7 @@
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,
 				15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */,
+				1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */,
 				158C6C4E236A96C600F80FA6 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

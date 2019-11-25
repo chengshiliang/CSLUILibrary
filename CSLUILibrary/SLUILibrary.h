@@ -32,7 +32,8 @@
 #import <CSLUILibrary/SLTableViewCell.h>
 #import <CSLUILibrary/SLCollectionViewCell.h>
 #import <CSLUILibrary/SLCollectionView.h>
-#import <CSLUILibrary/SLCollectionViewLayout.h>
+#import <CSLUILibrary/SLHorizontalCollectionView.h>
+#import <CSLUILibrary/SLStaticCollectionView.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>

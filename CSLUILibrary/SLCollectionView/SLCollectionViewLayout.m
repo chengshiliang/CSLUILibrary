@@ -79,6 +79,7 @@
             }
         }
     }
-    return CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
+    self.collectViewContentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
+    return self.collectViewContentSize;
 }
 @end

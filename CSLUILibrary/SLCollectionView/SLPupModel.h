@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLPupModel : SLModel
 @property (nonatomic) float width;
 @property (nonatomic) float height;// 瀑布流item的宽度和高度
-@property (nonatomic) SLModel *data;
+@property (nonatomic) SLModel<Optional> *data;
 @end
 
 NS_ASSUME_NONNULL_END

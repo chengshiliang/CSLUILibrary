@@ -14,6 +14,7 @@
 #import "SearchViewController.h"
 #import "NavTranslucentViewController.h"
 #import "TabbarController.h"
+#import "StaticCollectionViewController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -37,7 +38,9 @@
             cell.textLabel.text = @"PupView";
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"SearchControler";
-        } else {
+        } else if (indexPath.row == 3) {
+           cell.textLabel.text = @"StaticCollectionView";
+       } else {
             cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 2) {
@@ -112,6 +115,9 @@
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 } else if (indexPath.row == 2) {
                     SearchViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"search"];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                } else if (indexPath.row == 3) {
+                    StaticCollectionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"staticcollect"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 }
             } else if (indexPath.section == 2) {

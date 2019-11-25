@@ -8,12 +8,11 @@
 
 #import "PupViewController.h"
 
-@interface PupViewController()<SLPupViewDelegate>
+@interface PupViewController()<SLCollectionViewProtocol>
 {
     NSMutableArray *_colorAry;
 }
 @property (weak, nonatomic) IBOutlet SLPupView *pupView;
-@property (nonatomic, copy) NSArray *dataSource;
 @end
 @implementation PupViewController
 - (void)viewDidLoad {
@@ -31,13 +30,9 @@
         SLPupModel *model = [SLPupModel new];
         model.width = 300;
         model.height = 50*(i+1);
-        NSError *error;
-        SLModel *country = [[SLModel alloc] initWithDictionary: @{@"imageUrl": [NSString stringWithFormat:@"cir%d", i%4]} error:&error];
-        model.data = country;
         [arrM addObject:model];
     }
-    self.dataSource = arrM.copy;
-    self.pupView.dataSource = self.dataSource;
+    self.pupView.dataSource = arrM.copy;
     self.pupView.delegate = self;
     self.pupView.columns = 4;
     self.pupView.columnMagrin = 5.0f;
@@ -45,12 +40,14 @@
     [self.pupView reloadData];
 }
 
-- (void)registerCell:(SLCollectionView *)collectionView {
-    [collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:@"xxxxx"];
+static NSString *const cellId = @"kPupViewCellID";
+
+- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
+    [collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
 }
 
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"xxxxx" forIndexPath:indexPath];
+- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
+    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
     return cell;
 }
