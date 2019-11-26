@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLStaticCollectViewLayout : UICollectionViewLayout
 @property(assign,nonatomic) int columns;//列数 默认1列
-@property(assign,nonatomic) int count; // 总数
+@property(assign,nonatomic) NSUInteger count; // 总数
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
 @end

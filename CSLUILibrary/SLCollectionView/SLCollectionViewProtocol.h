@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SLCollectionView;
+@class SLView;
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLCollectionViewProtocol <NSObject>
