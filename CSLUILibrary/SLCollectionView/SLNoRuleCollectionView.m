@@ -1,25 +1,26 @@
 //
-//  SLHorizontalCollectionView.m
-//  CSLCommonLibrary
+//  SLNoRuleCollectionView.m
+//  CSLUILibrary
 //
-//  Created by SZDT00135 on 2019/11/25.
+//  Created by SZDT00135 on 2019/11/26.
 //
 
-#import "SLHorizontalCollectionView.h"
-#import <CSLUILibrary/SLHorizontalCollectionViewLayout.h>
+#import "SLNoRuleCollectionView.h"
+#import <CSLUILibrary/SLNoRuleCollectionViewLayout.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
-static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
+static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
-@interface SLHorizontalCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface SLNoRuleCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isRegiste;
 }
-@property(strong,nonatomic)SLHorizontalCollectionViewLayout *layout;
+@property(strong,nonatomic)SLNoRuleCollectionViewLayout *layout;
 @property(strong,nonatomic)SLCollectionView *collectionView;
-
 @end
-@implementation SLHorizontalCollectionView
+
+@implementation SLNoRuleCollectionView
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initialize];
@@ -33,9 +34,12 @@ static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
 }
 
 - (void)initialize {
-    self.layout=[[SLHorizontalCollectionViewLayout alloc]init];
-    self.layout.columnMagrin = 0;
-    self.bounces = YES;
+    self.layout=[[SLNoRuleCollectionViewLayout alloc]init];
+    self.columns = 3;
+    self.rowMagrin = 0;
+    self.columnMagrin = 0;
+    self.xlarge = 1.5;
+    self.ylarge = 1.5;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
@@ -46,15 +50,22 @@ static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
     self.collectionView.frame = self.bounds;
 }
 
+- (CGSize)pupContentSize {
+    return self.layout.collectViewContentSize;
+}
+
 - (void)reloadData {
-    self.layout.data = self.dataSource;
+    self.layout.columns = self.columns;
+    self.layout.xlarge = self.xlarge;
+    self.layout.ylarge = self.ylarge;
+    self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
-    self.collectionView.bounces = self.bounces;
+    self.layout.data = self.dataSource.copy;
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
-            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
+            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:noRuleViewCellID];
         }
         isRegiste = YES;
     }
@@ -68,7 +79,7 @@ static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
     if (self.delegate && [self.delegate respondsToSelector:@selector(collectionView:customCellForItemAtIndexPath:forView:)]) {
         return [self.delegate collectionView:collectionView customCellForItemAtIndexPath:indexPath forView:self];
     }
-    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:pupViewCellID forIndexPath:indexPath];
+    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:noRuleViewCellID forIndexPath:indexPath];
     return cell;
 }
 - (void)collectionView:(SLCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

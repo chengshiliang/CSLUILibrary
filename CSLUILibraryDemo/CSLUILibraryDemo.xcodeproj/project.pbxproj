@@ -12,6 +12,7 @@
 		1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */; };
 		153FDD422383CF3700EFE6FB /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153FDD412383CF3700EFE6FB /* BaseController.m */; };
 		1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543E9792372739A00A8F9BA /* PupViewController.m */; };
+		1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */; };
 		1550CC34236AD749002CB249 /* LabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1550CC33236AD749002CB249 /* LabelController.m */; };
 		15596B5B236C29480073C0CB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15596B5A236C29480073C0CB /* ImageViewController.m */; };
 		15596B5D236C2E200073C0CB /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15596B5C236C2E200073C0CB /* 3.jpg */; };
@@ -44,6 +45,8 @@
 		153FDD412383CF3700EFE6FB /* BaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		1543E9782372739A00A8F9BA /* PupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PupViewController.h; sourceTree = "<group>"; };
 		1543E9792372739A00A8F9BA /* PupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PupViewController.m; sourceTree = "<group>"; };
+		1545EBD2238D147600157D71 /* NoRuleCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoRuleCollectionViewController.h; sourceTree = "<group>"; };
+		1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoRuleCollectionViewController.m; sourceTree = "<group>"; };
 		1550CC32236AD749002CB249 /* LabelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelController.h; sourceTree = "<group>"; };
 		1550CC33236AD749002CB249 /* LabelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelController.m; sourceTree = "<group>"; };
 		15596B58236C28700073C0CB /* CSLUILibraryPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLUILibraryPrefixHeader.pch; sourceTree = "<group>"; };
@@ -179,6 +182,8 @@
 				1543E9792372739A00A8F9BA /* PupViewController.m */,
 				1502C2EA238BBCD900C93443 /* StaticCollectionViewController.h */,
 				1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */,
+				1545EBD2238D147600157D71 /* NoRuleCollectionViewController.h */,
+				1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */,
 				1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */,
 				1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */,
 				1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */,
@@ -336,6 +341,7 @@
 				15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */,
 				153FDD422383CF3700EFE6FB /* BaseController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
+				1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,
 				15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */,
 				1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */,

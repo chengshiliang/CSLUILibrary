@@ -45,7 +45,7 @@
     self.autoTime = 3.0f;
     self.bottomSpace = 15.0f;
     self.titleSpace = 10.0f;
-    
+    self.cellMargin = 0.0f;
     self.scrollView = [[SLScrollView alloc] initWithFrame:self.bounds];
     self.scrollView.bounces = YES;
     self.scrollView.pagingEnabled = YES;
@@ -63,7 +63,6 @@
 - (void)layoutSubviews {
     self.scrollView.frame = self.bounds;
     if (needRefresh) {
-        needRefresh = NO;
         [self startLoading];
     }
 }
@@ -71,7 +70,12 @@
 - (SLImageView *)imageView:(NSString *)imageUrl {
     CGFloat scrollWidth = self.scrollView.bounds.size.width;
     CGFloat scrollHeight = self.scrollView.bounds.size.height;
-    SLImageView *imageView = [[SLImageView alloc]initWithFrame:CGRectMake(0, 0, scrollWidth, scrollHeight)];
+    SLImageView *imageView = [[SLImageView alloc]init];
+    if (self.verticalScroll) {
+        imageView.frame = CGRectMake(0, 0, scrollWidth, scrollHeight-self.cellMargin);
+    } else {
+        imageView.frame = CGRectMake(0, 0, scrollWidth-self.cellMargin, scrollHeight);
+    }
     if ([imageUrl hasPrefix:@"http://"] || [imageUrl hasPrefix:@"https://"]) {
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:self.placeHolderImage];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -101,12 +105,16 @@
         label.numberOfLines = 1;
         height = 20;
     }
-    label.frame = CGRectMake(0, scrollHeight-height-self.bottomSpace-self.titleSpace, scrollWidth, height);
+    if (self.verticalScroll) {
+        label.frame = CGRectMake(0, scrollHeight-height-self.bottomSpace-self.titleSpace, scrollWidth, height);
+    } else {
+        label.frame = CGRectMake(0, scrollHeight-height-self.bottomSpace-self.titleSpace, scrollWidth-self.cellMargin, height);
+    }
     return label;
 }
 
 - (void)startLoading {
-    if (self.scrollView.bounds.size.width <= 0 && needRefresh == NO) {
+    if (needRefresh == NO) {
         needRefresh = YES;
     }
     [self.viewArr makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -120,7 +128,12 @@
     CGFloat scrollWidth = self.scrollView.bounds.size.width;
     CGFloat scrollHeight = self.scrollView.bounds.size.height;
     if (self.imageDatas.count == 1) {
-        SLView *view = [[SLView alloc]initWithFrame:CGRectMake(0, 0, scrollWidth, scrollHeight)];
+        SLView *view = [[SLView alloc]init];
+        if (self.verticalScroll) {
+            view.frame = CGRectMake(0, self.cellMargin*1.0/2, scrollWidth, scrollHeight-self.cellMargin);
+        } else {
+            view.frame = CGRectMake(self.cellMargin*1.0/2, 0, scrollWidth-self.cellMargin, scrollHeight);
+        }
         [view addSubview:[self imageView:self.imageDatas[0]]];
         [view addSubview:[self label:self.titleDatas[0]]];
         [self.viewArr addObject:view];
@@ -131,26 +144,35 @@
         return;
     }
     
-    CGFloat startX = 0;
-    CGFloat startY = 0;
     for (NSInteger i = 0; i < self.imageDatas.count; i++) {
-        startX = self.verticalScroll ? 0 : scrollWidth * (i +1);
-        startY = self.verticalScroll ? scrollHeight * (i +1) : 0;
-        SLView *view=[[SLView alloc]initWithFrame:CGRectMake( startX, startY, scrollWidth, scrollHeight)];
+        SLView *view=[[SLView alloc]init];
+        if (self.verticalScroll) {
+            view.frame = CGRectMake(0, scrollHeight * (i +1) + self.cellMargin*1.0/2, scrollWidth, scrollHeight-self.cellMargin);
+        } else {
+            view.frame = CGRectMake(scrollWidth * (i +1) + self.cellMargin*1.0/2, 0, scrollWidth-self.cellMargin, scrollHeight);
+        }
         [view addSubview:[self imageView:self.imageDatas[i]]];
         [view addSubview:[self label:self.titleDatas[i]]];
         [self.viewArr addObject:view];
         [self.scrollView addSubview:view];
     }
     
-    SLView *firstView = [[SLView alloc]initWithFrame:CGRectMake(0 , 0, scrollWidth, scrollHeight)];
+    SLView *firstView = [[SLView alloc]init];
+    if (self.verticalScroll) {
+        firstView.frame = CGRectMake(0, self.cellMargin*1.0/2, scrollWidth, scrollHeight-self.cellMargin);
+    } else {
+        firstView.frame = CGRectMake(self.cellMargin*1.0/2, 0, scrollWidth-self.cellMargin, scrollHeight);
+    }
     [firstView addSubview:[self imageView:self.imageDatas[self.imageDatas.count - 1]]];
     [firstView addSubview:[self label:self.titleDatas[self.titleDatas.count - 1]]];
     [self.viewArr addObject:firstView];
     [self.scrollView addSubview:firstView];
-    startX = self.verticalScroll ? 0 : (self.imageDatas.count + 1)*scrollWidth;
-    startY = self.verticalScroll ? scrollHeight * (self.imageDatas.count +1) : 0;
-    SLView *endView = [[SLView alloc]initWithFrame:CGRectMake(startX , startY, scrollWidth, scrollHeight)];
+    SLView *endView = [[SLView alloc]init];
+    if (self.verticalScroll) {
+        endView.frame = CGRectMake(0, scrollHeight * (self.imageDatas.count +1) + self.cellMargin*1.0/2, scrollWidth, scrollHeight-self.cellMargin);
+    } else {
+        endView.frame = CGRectMake(scrollWidth * (self.imageDatas.count +1) + self.cellMargin*1.0/2, 0, scrollWidth-self.cellMargin, scrollHeight);
+    }
     [endView addSubview:[self imageView:self.imageDatas[0]]];
     [endView addSubview:[self label:self.titleDatas[0]]];
     [self.viewArr addObject:endView];
@@ -158,9 +180,7 @@
     CGSize contentSize = CGSizeMake(scrollWidth * (self.imageDatas.count + 2), scrollHeight);
     if (self.verticalScroll) contentSize = CGSizeMake(scrollWidth, scrollHeight* (self.imageDatas.count + 2));
     [self.scrollView setContentSize:contentSize];
-    startX = self.verticalScroll ? 0 : scrollWidth;
-    startY = self.verticalScroll ? scrollHeight : 0;
-    [self.scrollView scrollRectToVisible:CGRectMake(startX, startY, scrollWidth, scrollHeight) animated:NO];
+    [self.scrollView scrollRectToVisible:CGRectMake(self.verticalScroll ? 0 : scrollWidth, self.verticalScroll ? scrollHeight : 0, scrollWidth, scrollHeight) animated:NO];
     if (self.autoScroll) {
         self.timer = [NSTimer timerWithTimeInterval:self.autoTime target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
@@ -168,7 +188,7 @@
     
     if (self.hidePageControl || self.imageDatas.count < 2) return;
     
-    self.pageControl = [[SLPageControl alloc] initWithFrame:CGRectMake((scrollWidth-100)/2,scrollHeight-15-self.bottomSpace , 100, 15)];
+    self.pageControl = [[SLPageControl alloc] initWithFrame:CGRectMake((scrollWidth-100)/2,scrollHeight-15-self.bottomSpace-(self.verticalScroll?self.cellMargin*1.0/2:0), 100, 15)];
     if(!self.manualScroll){
         for(UIGestureRecognizer *g in self.scrollView.gestureRecognizers){
             [self.scrollView removeGestureRecognizer:g];

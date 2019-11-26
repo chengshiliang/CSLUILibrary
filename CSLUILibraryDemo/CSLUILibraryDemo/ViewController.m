@@ -15,6 +15,7 @@
 #import "NavTranslucentViewController.h"
 #import "TabbarController.h"
 #import "StaticCollectionViewController.h"
+#import "NoRuleCollectionViewController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -39,8 +40,10 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"SearchControler";
         } else if (indexPath.row == 3) {
-           cell.textLabel.text = @"StaticCollectionView";
-       } else {
+            cell.textLabel.text = @"StaticCollectionView";
+        } else if (indexPath.row == 4) {
+            cell.textLabel.text = @"NoRuleCollectionView";
+        } else {
             cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 2) {
@@ -119,7 +122,10 @@
                 } else if (indexPath.row == 3) {
                     StaticCollectionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"staticcollect"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
-                }
+                } else if (indexPath.row == 4) {
+                   NoRuleCollectionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
+                   [strongSelf.navigationController pushViewController:vc animated:YES];
+               }
             } else if (indexPath.section == 2) {
                 if (indexPath.row == 0) {
                     NavTranslucentViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];

@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLHorizontalCollectionView : SLView
+@property(nonatomic,assign) BOOL bounces;
 @property(assign,nonatomic) int columns;//列数
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;

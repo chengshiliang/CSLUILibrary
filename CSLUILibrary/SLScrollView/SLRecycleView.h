@@ -19,6 +19,7 @@ typedef void (^RecycelViewScrollBlock)(NSInteger);
 @property (nonatomic) BOOL autoScroll;// 默认yes
 @property (nonatomic) BOOL manualScroll;// 默认yes
 @property (nonatomic) BOOL showTitle;// 默认no
+@property (nonatomic, assign) CGFloat cellMargin; // 轮播图之间的间隔
 @property (nonatomic, strong) UIFont *titleFont;// 文字字体
 @property (nonatomic, strong) UIColor *titleColor;// 文字颜色
 @property (nonatomic) NSTimeInterval autoTime;// 默认3.0
@@ -26,7 +27,7 @@ typedef void (^RecycelViewScrollBlock)(NSInteger);
 @property (nonatomic, strong) UIImage *indicatorImage;
 @property (nonatomic, strong) UIColor *currentIndicatorColor;
 @property (nonatomic, strong) UIColor *indicatorColor;
-@property (nonatomic, assign) CGFloat bottomSpace;// 文字距离底部距离，默认15.0
+@property (nonatomic, assign) CGFloat bottomSpace;// indicator距离底部距离，默认15.0
 @property (nonatomic, assign) CGFloat titleSpace;// 文字距离底部距离，默认10.0
 @property (nonatomic, strong) UIImage *placeHolderImage; // 网络请求时的占位图片
 @property (nonatomic, assign) NSLineBreakMode breakMode; // 文字换行样式

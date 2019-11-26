@@ -7,6 +7,7 @@
 
 #import "SLScrollView.h"
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @implementation SLScrollView
 
@@ -27,19 +28,19 @@
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    self.clipsToBounds = YES;
 }
 
 #pragma 事件传递和响应的一些笔记
 #pragma mark 扩大scrollView的滑动范围
 //- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-//
-//    CGRect rect = self.bounds;
-//    rect.origin.x -= 20.f;
-//    rect.size.width = [UIScreen mainScreen].bounds.size.width;
-//    if (CGRectContainsPoint(rect, point)) {
+//    self.sl_y += self.superview.sl_y-self.sl_y;
+//    self.sl_x += self.superview.sl_x-self.sl_x;
+//    self.sl_width += self.superview.sl_width-self.sl_width;
+//    self.sl_height += self.superview.sl_height-self.sl_height;
+//    if (CGRectContainsPoint(self.frame, point)) {
 //        return YES;
 //    }
-//
 //    return [super pointInside:point withEvent:event];
 //}
 

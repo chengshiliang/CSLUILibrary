@@ -9,10 +9,6 @@
 #import "StaticCollectionViewController.h"
 #import "StaticCollectionViewCell.h"
 
-@interface StaticCollectionModel : SLModel
-@property (nonatomic, copy) NSString *str;
-@end
-
 @implementation StaticCollectionModel
 
 @end
@@ -23,7 +19,6 @@
     NSArray *dataSource2;
 }
 @property (nonatomic, weak) IBOutlet SLStaticCollectionView *staticCollectionView;
-@property (nonatomic, weak) IBOutlet SLStaticCollectionView *noRuleCollectionView;
 @property (nonatomic, weak) IBOutlet SLHorizontalCollectionView *horizontalCollectionView;
 @end
 
@@ -56,8 +51,6 @@
     self.horizontalCollectionView.delegate = self;
     self.horizontalCollectionView.columnMagrin = 5.0f;
     [self.horizontalCollectionView reloadData];
-    
-    self.noRuleCollectionView.backgroundColor = [UIColor redColor];
 }
 
 static NSString *const cellId1 = @"kStaticCollectionViewCellID";

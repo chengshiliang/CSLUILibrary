@@ -35,9 +35,9 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
 - (void)initialize {
     self.layout=[[SLCollectionViewLayout alloc]init];
     self.layout.delegate = self;
-    self.layout.columns = 3;
-    self.layout.rowMagrin = 0;
-    self.layout.columnMagrin = 0;
+    self.columns = 3;
+    self.rowMagrin = 0;
+    self.columnMagrin = 0;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
