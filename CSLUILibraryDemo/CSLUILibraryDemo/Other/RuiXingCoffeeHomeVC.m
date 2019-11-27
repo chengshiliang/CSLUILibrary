@@ -18,18 +18,26 @@
     NSArray *dataSource;
 }
 @property (nonatomic, strong) IBOutlet SLStaticCollectionView *staticCollectionView;
+@property (nonatomic, strong) RuiXingCoffeeHomeHeaderView *headerView;
 @end
 
 @implementation RuiXingCoffeeHomeVC
 
 static NSString * const ruixingHomeHeaderID = @"ruixingHomeHeaderID";
+static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    recycleViewH = 300;
+    recycleViewH = kScreenWidth * 2.0/3;
     noRuleCollectionViewH = kScreenWidth * 0.75;
     
+    self.headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
+    
     NSMutableArray *arrM = [NSMutableArray array];
+    NSMutableArray *arrM1 = [NSMutableArray array];
+    SLCustomCollectionModel *staticModel = [SLCustomCollectionModel new];
+    staticModel.headerWidth = kScreenWidth;
+    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4);
     for (int i = 0; i < 6; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         pupModel.width = 200;
@@ -37,8 +45,10 @@ static NSString * const ruixingHomeHeaderID = @"ruixingHomeHeaderID";
         StaticCollectionModel *model = [StaticCollectionModel new];
         model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
         pupModel.data = model;
-        [arrM addObject:pupModel];
+        [arrM1 addObject:pupModel];
     }
+    staticModel.datas = arrM1.copy;
+    [arrM addObject:staticModel];
     dataSource = arrM.copy;
     self.staticCollectionView.dataSource = arrM.copy;
     self.staticCollectionView.delegate = self;
@@ -46,7 +56,10 @@ static NSString * const ruixingHomeHeaderID = @"ruixingHomeHeaderID";
     self.staticCollectionView.columnMagrin = 5.0f;
     self.staticCollectionView.rowMagrin = 5.0f;
     [self.staticCollectionView reloadData];
-    [self.staticCollectionView.collectionView registerNib:[UINib nibWithNibName:@"RuiXingCoffeeHomeHeaderView" bundle:[NSBundle mainBundle]] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
+    [self.staticCollectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
+    
+    [self.headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.staticCollectionView.collectionView.panGestureRecognizer];
+    [self.headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.staticCollectionView.collectionView.panGestureRecognizer];
 }
 
 static NSString *const cellId1 = @"kStaticCollectionViewCellID";
@@ -57,28 +70,18 @@ static NSString *const cellId1 = @"kStaticCollectionViewCellID";
     }
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
- 
- UICollectionReusableView *supplementaryView;
- 
- if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
-     RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
-     supplementaryView = view;
- }
-// else if ([kind isEqualToString:UICollectionElementKindSectionFooter]){
-// MGFooterView *view = (MGFooterView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reuseIdentifierFooter forIndexPath:indexPath];
-// view.footerLabel.text = [NSString stringWithFormat:@"MG这是Footer:%d",indexPath.section];
-// supplementaryView = view;
-//
-// }
- 
- return supplementaryView;
+- (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    UICollectionReusableView *supplementaryView = [UICollectionReusableView new];
+    RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
+    supplementaryView = view;
+    return supplementaryView;
 }
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
     if ([view isKindOfClass:[SLStaticCollectionView class]]) {
         StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        SLPupModel *pupModel = dataSource[indexPath.row];
+        SLCustomCollectionModel *staticModel = dataSource[indexPath.section];
+        SLPupModel *pupModel = staticModel.datas[indexPath.item];
         StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
         cell.title = model.str;
         return cell;

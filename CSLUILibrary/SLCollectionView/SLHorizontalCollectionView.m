@@ -16,8 +16,6 @@ static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
     BOOL isRegiste;
 }
 @property(strong,nonatomic)SLHorizontalCollectionViewLayout *layout;
-@property(strong,nonatomic)SLCollectionView *collectionView;
-
 @end
 @implementation SLHorizontalCollectionView
 - (void)awakeFromNib {

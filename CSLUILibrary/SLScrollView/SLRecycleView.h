@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^RecycelViewScrollBlock)(NSInteger);
 
 @interface SLRecycleView : SLView
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, copy) NSArray *imageDatas;
 @property (nonatomic, copy) NSArray *titleDatas;
 @property (nonatomic) BOOL verticalScroll;// 默认no

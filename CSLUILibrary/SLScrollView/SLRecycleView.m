@@ -20,7 +20,6 @@
 {
     BOOL needRefresh;
 }
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic,assign) NSInteger currentPage;
 @property (nonatomic, strong) SLPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *viewArr;

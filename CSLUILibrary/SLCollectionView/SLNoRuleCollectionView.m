@@ -16,7 +16,6 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
     BOOL isRegiste;
 }
 @property(strong,nonatomic)SLNoRuleCollectionViewLayout *layout;
-@property(strong,nonatomic)SLCollectionView *collectionView;
 @end
 
 @implementation SLNoRuleCollectionView

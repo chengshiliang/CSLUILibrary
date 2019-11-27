@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
+@property(strong,nonatomic)SLCollectionView *collectionView;
 - (void)reloadData;// 横向滚动collectionview刷新
 @end
 

@@ -16,7 +16,6 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
     BOOL isRegiste;
 }
 @property(strong,nonatomic)SLCollectionViewLayout *layout;
-@property(strong,nonatomic)SLCollectionView *collectionView;
 @end
 @implementation SLPupView
 

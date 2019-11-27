@@ -28,7 +28,6 @@
 		15D1597623868793006DD86B /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D1597523868793006DD86B /* TabbarController.m */; };
 		15DB4114238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4113238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m */; };
 		15DB411A238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4119238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m */; };
-		15DB411C238E282900DE1F5C /* RuiXingCoffeeHomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15DB411B238E282900DE1F5C /* RuiXingCoffeeHomeHeaderView.xib */; };
 		15EFE1532370FE7D00912334 /* 11.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE1522370FE7D00912334 /* 11.PNG */; };
 		15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFE17E23717B8100912334 /* RecycleViewController.m */; };
 		15EFE18423717E7C00912334 /* cir3.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18023717E7C00912334 /* cir3.png */; };
@@ -79,7 +78,6 @@
 		15DB4113238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuiXingCoffeeHomeVC.m; sourceTree = "<group>"; };
 		15DB4118238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuiXingCoffeeHomeHeaderView.h; sourceTree = "<group>"; };
 		15DB4119238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuiXingCoffeeHomeHeaderView.m; sourceTree = "<group>"; };
-		15DB411B238E282900DE1F5C /* RuiXingCoffeeHomeHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RuiXingCoffeeHomeHeaderView.xib; sourceTree = "<group>"; };
 		15EFE1522370FE7D00912334 /* 11.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.PNG; sourceTree = "<group>"; };
 		15EFE17D23717B8100912334 /* RecycleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecycleViewController.h; sourceTree = "<group>"; };
 		15EFE17E23717B8100912334 /* RecycleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecycleViewController.m; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				15DB4113238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m */,
 				15DB4118238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.h */,
 				15DB4119238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m */,
-				15DB411B238E282900DE1F5C /* RuiXingCoffeeHomeHeaderView.xib */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -296,7 +293,6 @@
 				15EFE18523717E7C00912334 /* cir2.png in Resources */,
 				158C6C54236A96C600F80FA6 /* Main.storyboard in Resources */,
 				1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */,
-				15DB411C238E282900DE1F5C /* RuiXingCoffeeHomeHeaderView.xib in Resources */,
 				15596B5D236C2E200073C0CB /* 3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
