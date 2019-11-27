@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (SLBase)
 @property(nonatomic, strong) SLPercentDrivenInteractiveTransition *interactiveTransition;
+@property(nonatomic, assign) BOOL statusBarHidden;
 
 + (UIViewController *)sl_getRootViewController;
 + (UIViewController *)sl_getCurrentViewController:(UIViewController *)currentViewController;
@@ -19,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
  获取多次present出来最底层presenting的控制器
  */
 + (UIViewController *)sl_getPresentingViewController;
+
+- (void)sl_setNavbarHidden:(BOOL)hidden;
+
+- (void)sl_hiddenNavbar;
 
 - (void)sl_setTranslucent:(BOOL)translucent;
 /**
@@ -29,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  页面向上滚动导航栏 不 变透明
  */
 - (void)sl_scrollToNoTranslucent;
+- (void)sl_scrollToTranslucentPreDeal;
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha;
 
 /**

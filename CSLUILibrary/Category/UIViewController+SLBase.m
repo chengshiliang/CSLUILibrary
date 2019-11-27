@@ -14,6 +14,8 @@
 #import <objc/runtime.h>
 
 static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
+static void *kViewControllerHiddenNavbarKey = "kViewControllerHiddenNavbarKey";
+static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbarKey";
 
 @implementation UIViewController (SLBase)
 @dynamic interactiveTransition;
@@ -49,6 +51,52 @@ static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
         return controller;
     }
     return nil;
+}
+
+-(BOOL)prefersStatusBarHidden {
+    return self.statusBarHidden;
+}
+
+-(UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationSlide;
+}
+
+- (void)sl_hideStatus:(BOOL)hidden {
+    self.statusBarHidden = hidden;
+    [UIView animateWithDuration:0.1 animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+    }];
+}
+
+- (void)sl_setNavbarHidden:(BOOL)hidden {
+    if ([self presentedViewController]) return;
+    self.navigationController.navigationBarHidden = hidden;
+}
+
+- (void)sl_hiddenNavbar {
+    if ([self presentedViewController]) return;
+    [self sl_hiddenNavbarPreDeal];
+    [self sl_setNavbarHidden:YES];
+    [self sl_hideStatus:YES];
+}
+
+- (void)setStatusBarHidden:(BOOL)statusBarHidden {
+    objc_setAssociatedObject(self, &kViewControllerHiddenStatusbarKey, @(statusBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)statusBarHidden {
+    NSNumber *statusBarHidden = objc_getAssociatedObject(self, &kViewControllerHiddenStatusbarKey);
+    return [statusBarHidden boolValue];
+}
+
+- (void)sl_hiddenNavbarPreDeal {
+    objc_setAssociatedObject(self, &kViewControllerHiddenNavbarKey, @(self.navigationController.isNavigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    WeakSelf;
+    [self swizzDisappearMethod:self callback:^(NSObject *__unsafe_unretained  _Nonnull disappearObj) {
+        StrongSelf;
+        NSNumber *isHidden = objc_getAssociatedObject(strongSelf, &kViewControllerHiddenNavbarKey);
+        [strongSelf sl_setNavbarHidden:[isHidden boolValue]];
+    }];
 }
 
 - (void)sl_setTranslucent:(BOOL)translucent {

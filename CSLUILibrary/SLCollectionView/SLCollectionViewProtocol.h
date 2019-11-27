@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
 @optional
+- (void)contentSizeChanged:(CGSize)contentSize forView:(SLView *)view;
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view;
 - (void)registerHeader:(SLCollectionView *)collectionView forView:(SLView *)view;
 - (void)registerFooter:(SLCollectionView *)collectionView forView:(SLView *)view;

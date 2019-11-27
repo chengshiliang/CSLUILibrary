@@ -8,6 +8,7 @@
 #import "SLNoRuleCollectionView.h"
 #import <CSLUILibrary/SLNoRuleCollectionViewLayout.h>
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLUIConsts.h>
 
 static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
@@ -34,6 +35,13 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
 - (void)initialize {
     self.layout=[[SLNoRuleCollectionViewLayout alloc]init];
+    WeakSelf;
+    self.layout.contentSizeChange = ^(NSValue *collectViewContentSize) {
+        StrongSelf;
+        if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(contentSizeChanged:forView:)]) {
+            [strongSelf.delegate contentSizeChanged:[collectViewContentSize CGSizeValue] forView:strongSelf];
+        }
+    };
     self.columns = 3;
     self.rowMagrin = 0;
     self.columnMagrin = 0;
@@ -47,10 +55,6 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
 - (void)layoutSubviews {
     self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
-}
-
-- (CGSize)pupContentSize {
-    return self.layout.collectViewContentSize;
 }
 
 - (void)reloadData {

@@ -73,7 +73,7 @@ static CGFloat minYLarge = 1.5;
     NSInteger xlarger = 1;
     float cellH = 0;
     NSInteger num = floor(model.width*1.0/cellWidth - self.xlarge);
-    if (num >= 0) {
+    if (num >= 0 && num < self.columnsY.count) {
         while (num >= 0) {
             if (minYIndex < self.columnsY.count-num-1) {
                 BOOL isOk = true;
@@ -129,7 +129,10 @@ static CGFloat minYLarge = 1.5;
             }
         }
     }
-    self.collectViewContentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
-    return self.collectViewContentSize;
+    CGSize contentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
+    if (self.contentSizeChange && contentSize.width > 0) {
+        self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
+    }
+    return contentSize;
 }
 @end

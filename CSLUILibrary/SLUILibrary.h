@@ -35,6 +35,7 @@
 #import <CSLUILibrary/SLHorizontalCollectionView.h>
 #import <CSLUILibrary/SLStaticCollectionView.h>
 #import <CSLUILibrary/SLNoRuleCollectionView.h>
+#import <CSLUILibrary/SLCustomCollectionView.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>

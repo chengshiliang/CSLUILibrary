@@ -17,7 +17,7 @@
     CGFloat noRuleCollectionViewH;
     NSArray *dataSource;
 }
-@property (nonatomic, strong) IBOutlet SLStaticCollectionView *staticCollectionView;
+@property (nonatomic, strong) IBOutlet SLCustomCollectionView *collectionView;
 @property (nonatomic, strong) RuiXingCoffeeHomeHeaderView *headerView;
 @end
 
@@ -28,6 +28,8 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self sl_hiddenNavbar];
+    
     recycleViewH = kScreenWidth * 2.0/3;
     noRuleCollectionViewH = kScreenWidth * 0.75;
     
@@ -37,7 +39,7 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     NSMutableArray *arrM1 = [NSMutableArray array];
     SLCustomCollectionModel *staticModel = [SLCustomCollectionModel new];
     staticModel.headerWidth = kScreenWidth;
-    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4);
+    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4) + 40;
     for (int i = 0; i < 6; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         pupModel.width = 200;
@@ -50,35 +52,33 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     staticModel.datas = arrM1.copy;
     [arrM addObject:staticModel];
     dataSource = arrM.copy;
-    self.staticCollectionView.dataSource = arrM.copy;
-    self.staticCollectionView.delegate = self;
-    self.staticCollectionView.columns = 2;
-    self.staticCollectionView.columnMagrin = 5.0f;
-    self.staticCollectionView.rowMagrin = 5.0f;
-    [self.staticCollectionView reloadData];
-    [self.staticCollectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
+    self.collectionView.dataSource = arrM.copy;
+    self.collectionView.delegate = self;
+    self.collectionView.columns = 2;
+    self.collectionView.columnMagrin = 5.0f;
+    self.collectionView.rowMagrin = 5.0f;
+    [self.collectionView reloadData];
+    [self.collectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
     
-    [self.headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.staticCollectionView.collectionView.panGestureRecognizer];
-    [self.headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.staticCollectionView.collectionView.panGestureRecognizer];
+    [self.headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+    [self.headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
 }
 
-static NSString *const cellId1 = @"kStaticCollectionViewCellID";
+static NSString *const cellId1 = @"kcollectionViewCellID";
 
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    if ([view isKindOfClass:[SLStaticCollectionView class]]) {
+    if ([view isKindOfClass:[SLCustomCollectionView class]]) {
         [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId1];
     }
 }
 
 - (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *supplementaryView = [UICollectionReusableView new];
     RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
-    supplementaryView = view;
-    return supplementaryView;
+    return view;
 }
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    if ([view isKindOfClass:[SLStaticCollectionView class]]) {
+    if ([view isKindOfClass:[SLCustomCollectionView class]]) {
         StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
         SLCustomCollectionModel *staticModel = dataSource[indexPath.section];
         SLPupModel *pupModel = staticModel.datas[indexPath.item];

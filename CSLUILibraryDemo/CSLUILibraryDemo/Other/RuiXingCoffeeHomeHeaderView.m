@@ -36,7 +36,8 @@
     self.recycleView.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
     [self addSubview:self.recycleView];
     [self.recycleView startLoading];
-    self.noRuleCollectionView = [[SLNoRuleCollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, kScreenWidth*3.0/4)];
+    self.noRuleCollectionView = [[SLNoRuleCollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, kScreenWidth*3.0/4+40)];
+    self.noRuleCollectionView.backgroundColor = [UIColor redColor];
     [self addSubview:self.noRuleCollectionView];
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 6; i ++) {
@@ -104,8 +105,14 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
 
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
     if ([view isKindOfClass:[SLNoRuleCollectionView class]]) {
-       [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId3];
-   }
+        [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId3];
+    }
+}
+
+- (void)contentSizeChanged:(CGSize)contentSize forView:(SLView *)view {
+    if ([view isKindOfClass:[SLNoRuleCollectionView class]]) {
+       self.noRuleCollectionView.frame = CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, contentSize.height);
+    }
 }
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
