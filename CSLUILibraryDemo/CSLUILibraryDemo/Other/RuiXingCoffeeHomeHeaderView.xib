@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RuiXingCoffeeHomeHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kf6-Um-7Gg" customClass="SLRecycleView">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="276"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="kf6-Um-7Gg" secondAttribute="height" multiplier="15:10" id="SKr-nV-oFh"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2L1-88-5yX" customClass="SLNoRuleCollectionView">
+                    <rect key="frame" x="0.0" y="276" width="414" height="276"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2L1-88-5yX" secondAttribute="height" multiplier="15:10" id="6eC-wz-0H5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kf6-Um-7Gg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EUa-zh-oSN"/>
+                <constraint firstAttribute="trailing" secondItem="2L1-88-5yX" secondAttribute="trailing" id="NBx-1B-2CX"/>
+                <constraint firstItem="2L1-88-5yX" firstAttribute="top" secondItem="kf6-Um-7Gg" secondAttribute="bottom" id="gdN-fR-o9r"/>
+                <constraint firstItem="2L1-88-5yX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h0N-eI-RNm"/>
+                <constraint firstItem="kf6-Um-7Gg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pDV-KU-9Ap"/>
+                <constraint firstAttribute="trailing" secondItem="kf6-Um-7Gg" secondAttribute="trailing" id="wK5-5P-Keg"/>
+            </constraints>
+            <connections>
+                <outlet property="noRuleCollectionView" destination="2L1-88-5yX" id="9Sb-di-Swk"/>
+                <outlet property="recycleRadio" destination="SKr-nV-oFh" id="0uz-Qa-BSV"/>
+                <outlet property="recycleView" destination="kf6-Um-7Gg" id="SE9-rh-dJb"/>
+            </connections>
+            <point key="canvasLocation" x="-133" y="-210"/>
+        </view>
+    </objects>
+</document>

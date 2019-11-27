@@ -807,5 +807,38 @@
             </objects>
             <point key="canvasLocation" x="1396" y="2062"/>
         </scene>
+        <!--Rui Xing Coffee HomeVC-->
+        <scene sceneID="1fE-rt-tL7">
+            <objects>
+                <viewController storyboardIdentifier="ruixinhome" id="BTm-6i-7aQ" customClass="RuiXingCoffeeHomeVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dVO-5q-Bzf"/>
+                        <viewControllerLayoutGuide type="bottom" id="D9x-Mj-ebz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DY1-iu-V0q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdJ-pX-nE1" customClass="SLStaticCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WdJ-pX-nE1" firstAttribute="leading" secondItem="DY1-iu-V0q" secondAttribute="leading" id="76Y-yM-M3G"/>
+                            <constraint firstAttribute="trailing" secondItem="WdJ-pX-nE1" secondAttribute="trailing" id="W73-eU-tQm"/>
+                            <constraint firstItem="D9x-Mj-ebz" firstAttribute="top" secondItem="WdJ-pX-nE1" secondAttribute="bottom" id="YZO-3Q-67i"/>
+                            <constraint firstItem="WdJ-pX-nE1" firstAttribute="top" secondItem="DY1-iu-V0q" secondAttribute="top" id="qv6-O4-bvf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="staticCollectionView" destination="WdJ-pX-nE1" id="QlD-Ga-ilS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlr-pW-ZtS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2852" y="1382"/>
+        </scene>
     </scenes>
 </document>

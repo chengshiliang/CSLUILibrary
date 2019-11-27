@@ -11,7 +11,7 @@
 
 static NSString *const pupViewCellID = @"kSLPupViewCellID";
 
-@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate,SLCollectionViewLayoutDelegate>
+@interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isRegiste;
 }
@@ -34,7 +34,6 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
 
 - (void)initialize {
     self.layout=[[SLCollectionViewLayout alloc]init];
-    self.layout.delegate = self;
     self.columns = 3;
     self.rowMagrin = 0;
     self.columnMagrin = 0;
@@ -45,7 +44,7 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = self.bounds;
+    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
 }
 
 - (CGSize)pupContentSize {
@@ -56,6 +55,7 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
     self.layout.columns = self.columns;
     self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
+    self.layout.data = self.dataSource;
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
@@ -65,11 +65,6 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
         isRegiste = YES;
     }
     [self.collectionView reloadData];
-}
-
-- (CGFloat)layout:(SLCollectionViewLayout *)layout heightWithWidth:(float)width indexPath:(NSIndexPath *)indexPath {
-    SLPupModel *model=self.dataSource[indexPath.row];
-    return width*(model.height*1.0)/model.width;
 }
 
 -(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

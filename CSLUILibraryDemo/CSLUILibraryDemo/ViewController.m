@@ -17,6 +17,7 @@
 #import "StaticCollectionViewController.h"
 #import "NoRuleCollectionViewController.h"
 #import "CustomViewController.h"
+#import "RuiXingCoffeeHomeVC.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,6 +53,8 @@
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             cell.textLabel.text = @"NavTranslucent";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"瑞幸咖啡首页";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -133,10 +136,13 @@
                    [strongSelf.navigationController pushViewController:vc animated:YES];
                }
             } else if (indexPath.section == 2) {
-                if (indexPath.row == 0) {
-                    NavTranslucentViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
-                }
+                 if (indexPath.row == 0) {
+                     NavTranslucentViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
+                     [strongSelf.navigationController pushViewController:vc animated:YES];
+                 } else if (indexPath.row == 1) {
+                     RuiXingCoffeeHomeVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"ruixinhome"];
+                     [strongSelf.navigationController pushViewController:vc animated:YES];
+                 }
             }
         }
     }];

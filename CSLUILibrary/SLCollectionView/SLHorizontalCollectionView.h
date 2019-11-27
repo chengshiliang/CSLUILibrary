@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) BOOL bounces;
 @property(assign,nonatomic) int columns;//列数
 @property(assign,nonatomic) float columnMagrin;//列距离
+@property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 - (void)reloadData;// 横向滚动collectionview刷新

@@ -9,14 +9,13 @@
 #import <CSLUILibrary/SLStaticCollectViewLayout.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
-static NSString *const pupViewCellID = @"kSLStaticViewCellID";
+static NSString *const staticViewCellID = @"kSLStaticViewCellID";
 
 @interface SLStaticCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isRegiste;
 }
 @property(strong,nonatomic)SLStaticCollectViewLayout *layout;
-@property(strong,nonatomic)SLCollectionView *collectionView;
 @end
 @implementation SLStaticCollectionView
 - (void)awakeFromNib {
@@ -36,7 +35,6 @@ static NSString *const pupViewCellID = @"kSLStaticViewCellID";
     self.layout.columns = 1;
     self.layout.rowMagrin = 0;
     self.layout.columnMagrin = 0;
-    self.layout.count = 1;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
@@ -44,19 +42,25 @@ static NSString *const pupViewCellID = @"kSLStaticViewCellID";
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = self.bounds;
+    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
 }
 
 - (void)reloadData {
     self.layout.columns = self.columns;
     self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
-    self.layout.count = self.dataSource.count;
+    self.layout.data = self.dataSource.copy;
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
-            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
+            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:staticViewCellID];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(registerHeader:forView:)]) {
+            [self.delegate registerHeader:self.collectionView forView:self];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(registerFooter:forView:)]) {
+            [self.delegate registerFooter:self.collectionView forView:self];
         }
         isRegiste = YES;
     }
@@ -70,7 +74,7 @@ static NSString *const pupViewCellID = @"kSLStaticViewCellID";
     if (self.delegate && [self.delegate respondsToSelector:@selector(collectionView:customCellForItemAtIndexPath:forView:)]) {
         return [self.delegate collectionView:collectionView customCellForItemAtIndexPath:indexPath forView:self];
     }
-    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:pupViewCellID forIndexPath:indexPath];
+    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:staticViewCellID forIndexPath:indexPath];
     return cell;
 }
 - (void)collectionView:(SLCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

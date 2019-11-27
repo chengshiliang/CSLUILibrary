@@ -8,10 +8,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SLPupModel;
 @interface SLStaticCollectViewLayout : UICollectionViewLayout
 @property(assign,nonatomic) int columns;//列数 默认1列
-@property(assign,nonatomic) NSUInteger count; // 总数
+@property(copy,nonatomic) NSArray<SLPupModel *> *data;
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
 @end

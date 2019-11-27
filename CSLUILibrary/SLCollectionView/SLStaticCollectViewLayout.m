@@ -6,6 +6,7 @@
 //
 
 #import "SLStaticCollectViewLayout.h"
+#import <CSLUILibrary/SLPupModel.h>
 
 @interface SLStaticCollectViewLayout()
 @property(strong, nonatomic)NSMutableArray *layoutAttributeArray;
@@ -21,7 +22,7 @@
 
 //系统在开始计算每一个cell之前调用,做一些初始化工作
 - (void)prepareLayout {
-    if (self.columns == 0) return;
+    if (self.columns == 0 || self.data.count == 0) return;
     [self.layoutAttributeArray removeAllObjects];
     NSInteger num=[self.collectionView numberOfItemsInSection:0];
     for(int i=0;i<num;i++){
@@ -37,9 +38,10 @@
 //计算某一个cell的frame
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     float cellWidth = (self.collectionView.bounds.size.width-(self.columns-1)*self.columnMagrin)/self.columns;
-    float rowCount = (self.count-1)/self.columns + 1;// 行数
-    float cellHeight = (self.collectionView.bounds.size.height-(rowCount-1)*self.rowMagrin)/rowCount;// 行高
+    float rowCount = (self.data.count-1)/self.columns + 1;// 行数
     NSInteger index = indexPath.row;
+    SLPupModel *model = self.data[index];
+    float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
     float cellX=(cellWidth+self.columnMagrin)*(index%self.columns);
     float cellY=(cellHeight+self.rowMagrin)*(index/self.columns);
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
@@ -48,6 +50,13 @@
 }
 //得到所有布局好后的cell实际大小
 -(CGSize)collectionViewContentSize {
-    return self.collectionView.bounds.size;
+    if (self.data.count == 0 || self.columns == 0) return self.collectionView.bounds.size;
+    float width = self.collectionView.bounds.size.width;
+    float cellWidth = (width-(self.columns-1)*self.columnMagrin)/self.columns;
+    float rowCount = (self.data.count-1)/self.columns + 1;// 行数
+    SLPupModel *model = self.data[0];
+    float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
+    float height = cellHeight * rowCount + (rowCount - 1)*self.rowMagrin;
+    return CGSizeMake(width, height);
 }
 @end

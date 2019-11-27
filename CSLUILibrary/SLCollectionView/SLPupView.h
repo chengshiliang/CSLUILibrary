@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign,nonatomic) int columns;//列数 默认3列
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
+@property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 @property(nonatomic,assign,readonly) CGSize pupContentSize;

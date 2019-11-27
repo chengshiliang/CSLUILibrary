@@ -6,6 +6,7 @@
 //
 
 #import "SLCollectionViewLayout.h"
+#import <CSLUILibrary/SLPupModel.h>
 
 @interface SLCollectionViewLayout()
 @property(strong, nonatomic)NSMutableArray *columnsY;
@@ -24,7 +25,7 @@
 
 //系统在开始计算每一个cell之前调用,做一些初始化工作
 - (void)prepareLayout {
-    if (self.columns == 0) return;
+    if (self.columns == 0 || self.data.count == 0) return;
     [self.columnsY removeAllObjects];
     [self.layoutAttributeArray removeAllObjects];
     for(int i=0;i<self.columns;i++){
@@ -58,10 +59,9 @@
     
     float cellY=[self.columnsY[minYIndex] floatValue];
     float cellX=(cellWidth+self.columnMagrin)*minYIndex;
-    float cellH = 0;
-    if(self.delegate&&[self.delegate respondsToSelector:@selector(layout:heightWithWidth:indexPath:)]){
-        cellH = [self.delegate layout:self heightWithWidth:cellWidth indexPath:indexPath];
-    }
+    NSInteger index = indexPath.item;
+    SLPupModel *model = self.data[index];
+    float cellH = model.height*1.0*cellWidth/model.width;// 行高
     self.columnsY[minYIndex] = @(cellY+self.rowMagrin+cellH);
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attr.frame=CGRectMake(cellX,cellY, cellWidth, cellH);

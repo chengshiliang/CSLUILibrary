@@ -12,6 +12,7 @@
     if (self == [super initWithFrame:frame collectionViewLayout:layout]) {
         self.backgroundColor = [UIColor whiteColor];
         self.bounces = YES;
+        self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     }
     return self;
 }

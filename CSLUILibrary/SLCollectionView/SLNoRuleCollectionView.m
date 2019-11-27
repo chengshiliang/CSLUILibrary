@@ -47,7 +47,7 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = self.bounds;
+    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
 }
 
 - (CGSize)pupContentSize {
