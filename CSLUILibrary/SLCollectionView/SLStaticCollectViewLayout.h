@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(copy,nonatomic) NSArray<SLPupModel *> *data;
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
+@property(copy,nonatomic) void(^contentSizeChange)(NSValue *collectViewContentSize);
 @end
 
 NS_ASSUME_NONNULL_END

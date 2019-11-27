@@ -15,10 +15,10 @@
 {
     CGFloat recycleViewH;
     CGFloat noRuleCollectionViewH;
-    NSArray *dataSource;
 }
 @property (nonatomic, strong) IBOutlet SLCustomCollectionView *collectionView;
 @property (nonatomic, strong) RuiXingCoffeeHomeHeaderView *headerView;
+@property (nonatomic, copy) NSArray *dataSource;
 @end
 
 @implementation RuiXingCoffeeHomeVC
@@ -28,18 +28,11 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self sl_hiddenNavbar];
-    
-    recycleViewH = kScreenWidth * 2.0/3;
-    noRuleCollectionViewH = kScreenWidth * 0.75;
-    
-    self.headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
-    
     NSMutableArray *arrM = [NSMutableArray array];
     NSMutableArray *arrM1 = [NSMutableArray array];
     SLCustomCollectionModel *staticModel = [SLCustomCollectionModel new];
     staticModel.headerWidth = kScreenWidth;
-    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4) + 40;
+    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4);
     for (int i = 0; i < 6; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         pupModel.width = 200;
@@ -51,7 +44,7 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     }
     staticModel.datas = arrM1.copy;
     [arrM addObject:staticModel];
-    dataSource = arrM.copy;
+    self.dataSource = arrM.copy;
     self.collectionView.dataSource = arrM.copy;
     self.collectionView.delegate = self;
     self.collectionView.columns = 2;
@@ -60,8 +53,14 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     [self.collectionView reloadData];
     [self.collectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
     
-    [self.headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
-    [self.headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+    RuiXingCoffeeHomeHeaderView *headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
+    [headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+    [headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self sl_hiddenNavbar];
 }
 
 static NSString *const cellId1 = @"kcollectionViewCellID";
@@ -74,13 +73,20 @@ static NSString *const cellId1 = @"kcollectionViewCellID";
 
 - (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
+    WeakSelf;
+    view.contentSizeChange = ^(CGFloat height) {
+        StrongSelf;
+        SLCustomCollectionModel *model = strongSelf.dataSource[0];
+        model.headerHeigth = height+kScreenWidth*2.0/3;
+        [strongSelf.collectionView reloadData];
+    };
     return view;
 }
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
     if ([view isKindOfClass:[SLCustomCollectionView class]]) {
         StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        SLCustomCollectionModel *staticModel = dataSource[indexPath.section];
+        SLCustomCollectionModel *staticModel = self.dataSource[indexPath.section];
         SLPupModel *pupModel = staticModel.datas[indexPath.item];
         StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
         cell.title = model.str;

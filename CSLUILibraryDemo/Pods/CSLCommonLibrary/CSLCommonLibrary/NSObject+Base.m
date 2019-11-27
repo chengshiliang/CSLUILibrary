@@ -29,6 +29,7 @@ static NSString * const SubclassSuffix = @"_Selector";
 static void *SubclassAssociationKey = &SubclassAssociationKey;
 static void *ClassDeallocAssociationKey = &ClassDeallocAssociationKey;
 static void *ClassDisappearAssociationKey = &ClassDisappearAssociationKey;
+static void *ClassAppearAssociationKey = &ClassAppearAssociationKey;
 
 static NSArray* ArgumentsTuple(NSInvocation *invocation) {
     NSUInteger numberOfArguments = invocation.methodSignature.numberOfArguments;
@@ -333,6 +334,52 @@ static void NSObjectForSelector(NSObject *target, SEL selector, Protocol *protoc
         if (!class_addMethod(classToSwizzle, disappearSelector, newDisappearIMP, method_getTypeEncoding(disappearMethod))) {
             originalDisappear = (__typeof__(originalDisappear))method_getImplementation(disappearMethod);
             originalDisappear = (__typeof__(originalDisappear))method_setImplementation(disappearMethod, newDisappearIMP);
+        }
+        [swizzledClasses() addObject:className];
+    }
+}
+
+- (void)swizzAppearMethod:(NSObject *)target callback:(void(^)(__unsafe_unretained NSObject *appearObj))callback {
+    @synchronized (swizzledClasses()) {
+        NSMutableArray *callbackArrayM = objc_getAssociatedObject(target, ClassAppearAssociationKey);
+        if (!callbackArrayM) {
+            callbackArrayM = [NSMutableArray array];
+        }
+        [callbackArrayM addObject:[callback copy]];
+        objc_setAssociatedObject(target, ClassAppearAssociationKey, callbackArrayM.mutableCopy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        Class classToSwizzle = target.class;
+        NSString *className = [NSStringFromClass(classToSwizzle) stringByAppendingString:@"Appear"];
+        if ([swizzledClasses() containsObject:className]) return;
+        SEL appearSelector = sel_registerName("viewDidAppear:");
+        __block void (*originalAppear)(__unsafe_unretained id, SEL) = NULL;
+        id newDisappear = ^(__unsafe_unretained NSObject *appearObj) {
+            NSMutableArray *realCallbackArray = objc_getAssociatedObject(appearObj, ClassAppearAssociationKey);
+            if (realCallbackArray) {
+                for (void(^currentCallback)(__unsafe_unretained NSObject *appearObj) in realCallbackArray) {
+                    if (currentCallback) {
+                        currentCallback(appearObj);
+                    }
+                }
+                objc_setAssociatedObject(appearObj, ClassAppearAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
+            if (originalAppear == NULL) {
+                struct objc_super superInfo = {
+                    .receiver = appearObj,
+                    .super_class = class_getSuperclass(classToSwizzle)
+                };
+                
+                void (*msgSend)(struct objc_super *, SEL) = (__typeof__(msgSend))objc_msgSendSuper;
+                msgSend(&superInfo, appearSelector);
+            } else {
+                originalAppear(appearObj, appearSelector);
+            }
+        };
+        
+        IMP newDisappearIMP = imp_implementationWithBlock(newDisappear);
+        Method appearMethod = class_getInstanceMethod(classToSwizzle, appearSelector);
+        if (!class_addMethod(classToSwizzle, appearSelector, newDisappearIMP, method_getTypeEncoding(appearMethod))) {
+            originalAppear = (__typeof__(originalAppear))method_getImplementation(appearMethod);
+            originalAppear = (__typeof__(originalAppear))method_setImplementation(appearMethod, newDisappearIMP);
         }
         [swizzledClasses() addObject:className];
     }

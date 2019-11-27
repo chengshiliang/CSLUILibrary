@@ -77,7 +77,7 @@ static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbar
     if ([self presentedViewController]) return;
     [self sl_hiddenNavbarPreDeal];
     [self sl_setNavbarHidden:YES];
-    [self sl_hideStatus:YES];
+//    [self sl_hideStatus:YES];
 }
 
 - (void)setStatusBarHidden:(BOOL)statusBarHidden {

@@ -6,6 +6,7 @@
 //
 
 #import "SLNoRuleCollectionViewLayout.h"
+#import <CSLUILibrary/SLUIConst.h>
 
 static CGFloat minXLarge = 1.5;
 static CGFloat minYLarge = 1.5;
@@ -129,9 +130,11 @@ static CGFloat minYLarge = 1.5;
             }
         }
     }
+    maxYCollumn-=self.rowMagrin;
     CGSize contentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
-    if (self.contentSizeChange && contentSize.width > 0) {
-        self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
+    if (contentSize.width > 0) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:SLNoRuleCollectionViewContentSizeChange object:[NSValue valueWithCGSize:contentSize]];
+        if (self.contentSizeChange && contentSize.width > 0) self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
     }
     return contentSize;
 }

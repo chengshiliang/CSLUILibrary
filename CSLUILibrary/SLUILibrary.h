@@ -9,6 +9,7 @@
 #define Header_h
 
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLUIConst.h>
 #import <CSLUILibrary/SLUIConfig.h>
 
 #import <CSLUILibrary/NSString+Util.h>

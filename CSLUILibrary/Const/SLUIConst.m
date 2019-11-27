@@ -9,7 +9,9 @@
 
 const NSString *const SLLabelFontSize = @"fontSize";
 const NSString *const SLLabelColor = @"color";
-
+const NSString *const SLNoRuleCollectionViewContentSizeChange = @"NoRuleCollectionViewContentSizeChange";
+const NSString *const SLStaticCollectionViewContentSizeChange = @"StaticRuleCollectionViewContentSizeChange";
+const NSString *const SLPupCollectionViewContentSizeChange = @"PupRuleCollectionViewContentSizeChange";
 @implementation SLUIConst
 
 @end

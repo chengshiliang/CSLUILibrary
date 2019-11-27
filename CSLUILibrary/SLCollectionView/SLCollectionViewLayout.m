@@ -7,6 +7,7 @@
 
 #import "SLCollectionViewLayout.h"
 #import <CSLUILibrary/SLPupModel.h>
+#import <CSLUILibrary/SLUIConst.h>
 
 @interface SLCollectionViewLayout()
 @property(strong, nonatomic)NSMutableArray *columnsY;
@@ -79,7 +80,8 @@
             }
         }
     }
-    self.collectViewContentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
-    return self.collectViewContentSize;
+    maxYCollumn -= self.rowMagrin;
+    CGSize contentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
+    return contentSize;
 }
 @end

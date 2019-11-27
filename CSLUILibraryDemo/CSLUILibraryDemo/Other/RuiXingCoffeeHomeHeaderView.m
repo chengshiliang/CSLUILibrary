@@ -9,6 +9,7 @@
 #import "RuiXingCoffeeHomeHeaderView.h"
 #import "StaticCollectionViewController.h"
 #import "StaticCollectionViewCell.h"
+#import <CSLCommonLibrary/NSNotificationCenter+Base.h>
 
 @interface RuiXingCoffeeHomeHeaderView()<SLCollectionViewProtocol>
 {
@@ -36,9 +37,9 @@
     self.recycleView.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
     [self addSubview:self.recycleView];
     [self.recycleView startLoading];
-    self.noRuleCollectionView = [[SLNoRuleCollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, kScreenWidth*3.0/4+40)];
-    self.noRuleCollectionView.backgroundColor = [UIColor redColor];
+    self.noRuleCollectionView = [[SLNoRuleCollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, kScreenWidth*3.0/4)];
     [self addSubview:self.noRuleCollectionView];
+    
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 6; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
@@ -97,7 +98,7 @@
     self.noRuleCollectionView.columns = 4;
     self.noRuleCollectionView.columnMagrin = 5.0f;
     self.noRuleCollectionView.rowMagrin = 5.0f;
-    self.noRuleCollectionView.insets = UIEdgeInsetsMake(20, 20, 20, 20);
+    self.noRuleCollectionView.insets = UIEdgeInsetsMake(0, 20, 0, 20);
     [self.noRuleCollectionView reloadData];
 }
 
@@ -111,7 +112,8 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
 
 - (void)contentSizeChanged:(CGSize)contentSize forView:(SLView *)view {
     if ([view isKindOfClass:[SLNoRuleCollectionView class]]) {
-       self.noRuleCollectionView.frame = CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, contentSize.height);
+        self.noRuleCollectionView.frame = CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, contentSize.height);
+        if (self.contentSizeChange) self.contentSizeChange(contentSize.height);
     }
 }
 
@@ -132,4 +134,52 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
    }
     return nil;
 }
+
+/**
+ - (void)swizzAppearMethod:(NSObject *)target callback:(void(^)(__unsafe_unretained NSObject *appearObj))callback {
+     @synchronized (swizzledClasses()) {
+         NSMutableArray *callbackArrayM = objc_getAssociatedObject(target, ClassAppearAssociationKey);
+         if (!callbackArrayM) {
+             callbackArrayM = [NSMutableArray array];
+         }
+         [callbackArrayM addObject:[callback copy]];
+         objc_setAssociatedObject(target, ClassAppearAssociationKey, callbackArrayM.mutableCopy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+         Class classToSwizzle = target.class;
+         NSString *className = [NSStringFromClass(classToSwizzle) stringByAppendingString:@"Appear"];
+         if ([swizzledClasses() containsObject:className]) return;
+         SEL appearSelector = sel_registerName("viewDidAppear:");
+         __block void (*originalAppear)(__unsafe_unretained id, SEL) = NULL;
+         id newDisappear = ^(__unsafe_unretained NSObject *appearObj) {
+             NSMutableArray *realCallbackArray = objc_getAssociatedObject(appearObj, ClassAppearAssociationKey);
+             if (realCallbackArray) {
+                 for (void(^currentCallback)(__unsafe_unretained NSObject *appearObj) in realCallbackArray) {
+                     if (currentCallback) {
+                         currentCallback(appearObj);
+                     }
+                 }
+                 objc_setAssociatedObject(appearObj, ClassAppearAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+             }
+             if (originalAppear == NULL) {
+                 struct objc_super superInfo = {
+                     .receiver = appearObj,
+                     .super_class = class_getSuperclass(classToSwizzle)
+                 };
+                 
+                 void (*msgSend)(struct objc_super *, SEL) = (__typeof__(msgSend))objc_msgSendSuper;
+                 msgSend(&superInfo, appearSelector);
+             } else {
+                 originalAppear(appearObj, appearSelector);
+             }
+         };
+         
+         IMP newDisappearIMP = imp_implementationWithBlock(newDisappear);
+         Method appearMethod = class_getInstanceMethod(classToSwizzle, appearSelector);
+         if (!class_addMethod(classToSwizzle, appearSelector, newDisappearIMP, method_getTypeEncoding(appearMethod))) {
+             originalAppear = (__typeof__(originalAppear))method_getImplementation(appearMethod);
+             originalAppear = (__typeof__(originalAppear))method_setImplementation(appearMethod, newDisappearIMP);
+         }
+         [swizzledClasses() addObject:className];
+     }
+ }
+ */
 @end

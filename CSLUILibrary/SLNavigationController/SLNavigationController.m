@@ -51,7 +51,7 @@
         }else if (panGesture.state == UIGestureRecognizerStateChanged){
             [strongSelf.percentAnimation updateInteractiveTransition:precent];
         }else {
-            if (strongSelf.percentAnimation.percentComplete > 0.3) {
+            if (strongSelf.percentAnimation.percentComplete > 0.1) {
                 [strongSelf.percentAnimation finishInteractiveTransition];
             }else {
                 [strongSelf.percentAnimation cancelInteractiveTransition];
@@ -117,9 +117,9 @@
 }
 
 -(UIViewController *)popViewControllerAnimated:(BOOL)animated{
-    if (self.viewControllers.count == 2) {
-        self.hidesBottomBarWhenPushed = NO;
-    }
+//    if (self.viewControllers.count == 2) {
+//        self.hidesBottomBarWhenPushed = NO;
+//    } 
     return [super popViewControllerAnimated:animated];
 }
 

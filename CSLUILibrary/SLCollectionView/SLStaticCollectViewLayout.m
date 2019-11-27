@@ -7,6 +7,7 @@
 
 #import "SLStaticCollectViewLayout.h"
 #import <CSLUILibrary/SLPupModel.h>
+#import <CSLUILibrary/SLUIConst.h>
 
 @interface SLStaticCollectViewLayout()
 @property(strong, nonatomic)NSMutableArray *layoutAttributeArray;
@@ -57,6 +58,11 @@
     SLPupModel *model = self.data[0];
     float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
     float height =  cellHeight * rowCount + (rowCount - 1)*self.rowMagrin;
-    return CGSizeMake(width, height);
+    CGSize contentSize = CGSizeMake(width, height);
+    if (contentSize.width > 0) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:SLStaticCollectionViewContentSizeChange object:[NSValue valueWithCGSize:contentSize]];
+        if (self.contentSizeChange && contentSize.width > 0) self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
+    }
+    return contentSize;
 }
 @end

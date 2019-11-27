@@ -39,6 +39,7 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
     self.layout.contentSizeChange = ^(NSValue *collectViewContentSize) {
         StrongSelf;
         if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(contentSizeChanged:forView:)]) {
+            strongSelf.collectionView.frame = CGRectMake(strongSelf.bounds.origin.x+strongSelf.insets.left, strongSelf.bounds.origin.y+strongSelf.insets.top, strongSelf.bounds.size.width-strongSelf.insets.left-strongSelf.insets.right, [collectViewContentSize CGSizeValue].height);
             [strongSelf.delegate contentSizeChanged:[collectViewContentSize CGSizeValue] forView:strongSelf];
         }
     };

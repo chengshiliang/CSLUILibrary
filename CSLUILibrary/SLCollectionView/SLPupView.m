@@ -46,10 +46,6 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
     self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
 }
 
-- (CGSize)pupContentSize {
-    return self.layout.collectViewContentSize;
-}
-
 - (void)reloadData {
     self.layout.columns = self.columns;
     self.layout.rowMagrin = self.rowMagrin;
