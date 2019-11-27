@@ -16,6 +16,7 @@
 @interface StaticCollectionViewController ()<SLCollectionViewProtocol>
 {
     NSArray *dataSource;
+    NSArray *dataSource2;
 }
 @property (nonatomic, weak) IBOutlet SLStaticCollectionView *staticCollectionView;
 @property (nonatomic, weak) IBOutlet SLHorizontalCollectionView *horizontalCollectionView;
@@ -25,7 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableArray *arrM1 = [NSMutableArray array];
     NSMutableArray *arrM2 = [NSMutableArray array];
+    SLStaticCollectionModel *staticModel = [SLStaticCollectionModel new];
     for (int i = 0; i < 6; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         pupModel.width = 200;
@@ -35,8 +38,11 @@
         pupModel.data = model;
         [arrM2 addObject:pupModel];
     }
+    staticModel.datas = arrM2.copy;
+    [arrM1 addObject:staticModel];
     dataSource = arrM2.copy;
-    self.staticCollectionView.dataSource = arrM2.copy;
+    dataSource2 = arrM1.copy;
+    self.staticCollectionView.dataSource = arrM1.copy;
     self.staticCollectionView.delegate = self;
     self.staticCollectionView.columns = 4;
     self.staticCollectionView.columnMagrin = 5.0f;
@@ -63,7 +69,8 @@ static NSString *const cellId2 = @"kHorizontalCollectionViewCellID";
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
     if ([view isKindOfClass:[SLStaticCollectionView class]]) {
         StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        SLPupModel *pupModel = dataSource[indexPath.row];
+        SLStaticCollectionModel *staticModel = dataSource2[indexPath.section];
+        SLPupModel *pupModel = staticModel.datas[indexPath.item];
         StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
         cell.title = model.str;
         return cell;

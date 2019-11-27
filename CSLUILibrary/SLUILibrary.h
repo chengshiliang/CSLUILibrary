@@ -44,6 +44,7 @@
 #import <CSLUILibrary/SLScrollView.h>
 #import <CSLUILibrary/SLRecycleView.h>
 
+#import <CSLUILibrary/SLStaticCollectionModel.h>
 #import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>

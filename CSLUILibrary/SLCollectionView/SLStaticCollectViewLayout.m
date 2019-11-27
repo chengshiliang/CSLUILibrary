@@ -7,6 +7,7 @@
 
 #import "SLStaticCollectViewLayout.h"
 #import <CSLUILibrary/SLPupModel.h>
+#import <CSLUILibrary/SLStaticCollectionModel.h>
 
 @interface SLStaticCollectViewLayout()
 @property(strong, nonatomic)NSMutableArray *layoutAttributeArray;
@@ -39,9 +40,10 @@
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     float cellWidth = (self.collectionView.bounds.size.width-(self.columns-1)*self.columnMagrin)/self.columns;
     float rowCount = (self.data.count-1)/self.columns + 1;// 行数
-    NSInteger index = indexPath.row;
-    SLPupModel *model = self.data[index];
-    float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
+    NSInteger index = indexPath.item;
+    SLStaticCollectionModel *model = self.data[indexPath.section];
+    SLPupModel *pupModel = model.datas[index];
+    float cellHeight = pupModel.height*1.0*cellWidth/pupModel.width;// 行高
     float cellX=(cellWidth+self.columnMagrin)*(index%self.columns);
     float cellY=(cellHeight+self.rowMagrin)*(index/self.columns);
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
@@ -53,10 +55,28 @@
     if (self.data.count == 0 || self.columns == 0) return self.collectionView.bounds.size;
     float width = self.collectionView.bounds.size.width;
     float cellWidth = (width-(self.columns-1)*self.columnMagrin)/self.columns;
-    float rowCount = (self.data.count-1)/self.columns + 1;// 行数
-    SLPupModel *model = self.data[0];
-    float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
-    float height = cellHeight * rowCount + (rowCount - 1)*self.rowMagrin;
+    float height = 0;
+    for (int i = 0; i < self.data.count; i++) {
+        SLStaticCollectionModel *staticModel = self.data[i];
+        height += staticModel.headerHeigth;
+        height += staticModel.footerHeigth;
+        if (staticModel.datas.count == 0) continue;
+        SLPupModel *model = staticModel.datas[0];
+        float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
+        float rowCount = (staticModel.datas.count-1)/self.columns + 1;// 行数
+        height += cellHeight * rowCount + (rowCount - 1)*self.rowMagrin;
+    }
     return CGSizeMake(width, height);
+}
+//计算section header 和footer 的frame
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    SLStaticCollectionModel *model = self.data[indexPath.section];
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        attr.frame = CGRectMake(0, 0, model.headerWidth, model.headerHeigth);
+    } else {
+        attr.frame = CGRectMake(0, 0, model.footerWidth, model.footerHeigth);
+    }
+    return attr;
 }
 @end

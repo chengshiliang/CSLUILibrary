@@ -67,8 +67,20 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
     [self.collectionView reloadData];
 }
 
--(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return self.dataSource.count;
+}
+
+- (UICollectionReusableView *)collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(sl_collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]) {
+        return [self.delegate sl_collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+    }
+    return [SLView new];
+}
+
+-(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    SLStaticCollectionModel *model = self.dataSource[section];
+    return model.datas.count;
 }
 -(SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(collectionView:customCellForItemAtIndexPath:forView:)]) {

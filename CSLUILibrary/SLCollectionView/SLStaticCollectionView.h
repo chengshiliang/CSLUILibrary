@@ -6,14 +6,14 @@
 //
 
 #import "SLView.h"
-#import <CSLUILibrary/SLPupModel.h>
+#import <CSLUILibrary/SLStaticCollectionModel.h>
 #import <CSLUILibrary/SLCollectionView.h>
 #import <CSLUILibrary/SLCollectionViewCell.h>
 #import <CSLUILibrary/SLCollectionViewProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 /**
- *宽高由外部给定。内部根据columns、dataSource.count计算cell的frame
+ *  处理cell风格统一的collectionview。支持header和footer。且数据源需和SLStaticCollectionModel关联
  */
 @interface SLStaticCollectionView : SLView
 @property(strong,nonatomic)SLCollectionView *collectionView;
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
-@property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
+@property(copy,nonatomic)NSArray<SLStaticCollectionModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 - (void)reloadData;// 静态collectionview刷新
 @end

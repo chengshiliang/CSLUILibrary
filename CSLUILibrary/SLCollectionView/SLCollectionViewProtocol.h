@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registerHeader:(SLCollectionView *)collectionView forView:(SLView *)view;
 - (void)registerFooter:(SLCollectionView *)collectionView forView:(SLView *)view;
 - (void)collectionView:(SLCollectionView *)collectionView customDidSelectItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
+- (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 NS_ASSUME_NONNULL_END
