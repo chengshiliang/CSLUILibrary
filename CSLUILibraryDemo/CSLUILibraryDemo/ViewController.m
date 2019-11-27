@@ -16,6 +16,7 @@
 #import "TabbarController.h"
 #import "StaticCollectionViewController.h"
 #import "NoRuleCollectionViewController.h"
+#import "CustomViewController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -29,7 +30,9 @@
             cell.textLabel.text = @"UIImageView";
         } else if (indexPath.row == 2) {
            cell.textLabel.text = @"TabbarView";
-       } else {
+        } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"CustomView";
+        } else {
             cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 1) {
@@ -106,9 +109,12 @@
                     ImageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"imageView"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 } else if (indexPath.row == 2) {
-                   TabbarController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
-                   [strongSelf.navigationController pushViewController:vc animated:YES];
-               }
+                    TabbarController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                } else if (indexPath.row == 3) {
+                    CustomViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"custom"];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                }
             } else if (indexPath.section == 1) {
                 if (indexPath.row == 0) {
                     RecycleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"recycle"];

@@ -39,6 +39,17 @@ static SLUIConfig *instance;
     [instance.labelConfigDicM setValue:dic forKey:[NSString stringWithFormat:@"%ld", (long)type]];
 }
 
+- (void)selfConfigLabel:(NSUInteger)type font:(UIFont *)fontSize color:(UIColor *)color {
+    if (type <= 9) {
+        [self configLabel:type font:fontSize color:color];
+        return;
+    }
+    NSAssert(fontSize, @"you should set font size not null");
+    NSAssert(color, @"you should set color not null");
+    NSDictionary *dic = @{SLLabelFontSize: fontSize,SLLabelColor: color};
+    [instance.labelConfigDicM setValue:dic forKey:[NSString stringWithFormat:@"%ld", (long)type]];
+}
+
 - (NSDictionary *)labelConfig {
     return [instance.labelConfigDicM copy];
 }

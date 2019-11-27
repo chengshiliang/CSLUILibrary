@@ -10,6 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLView : UIView
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            shadowColor:(UIColor *)shadowColor
+           shadowOffset:(CGSize)shadowOffset
+          shadowOpacity:(CGFloat)shadowOpacity
+           shadowRadius:(CGFloat)shadowRadius;
 
 @end
 

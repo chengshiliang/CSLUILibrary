@@ -772,5 +772,40 @@
             </objects>
             <point key="canvasLocation" x="2111" y="2063"/>
         </scene>
+        <!--Custom View Controller-->
+        <scene sceneID="VR3-wj-GlJ">
+            <objects>
+                <viewController storyboardIdentifier="custom" id="RAx-AZ-F0u" customClass="CustomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yR5-jg-IeG"/>
+                        <viewControllerLayoutGuide type="bottom" id="0eQ-pb-Jfm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BY7-iK-rPl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw5-HG-WKK" customClass="SLView">
+                                <rect key="frame" x="20" y="20" width="335" height="178.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hw5-HG-WKK" secondAttribute="height" multiplier="15:8" id="xJA-7e-7yX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hw5-HG-WKK" firstAttribute="top" secondItem="yR5-jg-IeG" secondAttribute="bottom" constant="20" id="NoQ-pM-3Pb"/>
+                            <constraint firstAttribute="trailing" secondItem="hw5-HG-WKK" secondAttribute="trailing" constant="20" id="url-A4-EnD"/>
+                            <constraint firstItem="hw5-HG-WKK" firstAttribute="leading" secondItem="BY7-iK-rPl" secondAttribute="leading" constant="20" id="yfZ-Td-xit"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cornerRadiusAndShadowView" destination="hw5-HG-WKK" id="JrN-cp-gUV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6dL-mR-LcZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1396" y="2062"/>
+        </scene>
     </scenes>
 </document>
