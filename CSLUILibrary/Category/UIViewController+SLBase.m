@@ -63,6 +63,12 @@ static void *kViewControllerHiddenNavbarKey = "kViewControllerHiddenNavbarKey";
     [self sl_setNavbarHidden:YES];
 }
 
+- (void)sl_showNavbar {
+    if ([self presentedViewController]) return;
+    [self sl_hiddenNavbarPreDeal];
+    [self sl_setNavbarHidden:NO];
+}
+
 - (void)sl_hiddenNavbarPreDeal {
     if ([self presentedViewController]) return;
     if (self.navigationController.viewControllers.count == 0) return;
@@ -120,7 +126,7 @@ static void *kViewControllerHiddenNavbarKey = "kViewControllerHiddenNavbarKey";
 
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha {
     if ([self presentedViewController]) return;
-    if (alpha == 1) {
+    if (alpha >= 1) {
         [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
         return;
     }

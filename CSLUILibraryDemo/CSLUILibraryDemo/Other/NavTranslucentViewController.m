@@ -27,15 +27,13 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat alpha = 1.0;
+    CGFloat alpha = 0;// 上滑透明度从0-1这里设置为0，否则设置为1
     if (scrollView.contentOffset.y > -scrollView.sl_insetTop) {
         CGFloat offset = scrollView.contentOffset.y+scrollView.sl_insetTop;
         CGFloat temp = offset * 1 / scrollView.sl_insetTop;
         alpha = MIN(1, temp);
-        NSLog(@"%lf=---%lf", alpha, temp);
-//        alpha = 1-alpha;
+//        alpha = 1-alpha;// 上滑透明度从0-1这里不用1-alpha，否则设置为1-alpha
     }
-    
     [self sl_scrollToTranslucentWithAlpha:alpha];
 }
 

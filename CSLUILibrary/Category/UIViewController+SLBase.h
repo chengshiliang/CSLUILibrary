@@ -22,8 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIViewController *)sl_getPresentingViewController;
 
 - (void)sl_setNavbarHidden:(BOOL)hidden;
-
+// 隐藏导航栏
 - (void)sl_hiddenNavbar;
+// 显示导航栏
+- (void)sl_showNavbar;
 
 - (void)sl_setTranslucent:(BOOL)translucent;
 /**
