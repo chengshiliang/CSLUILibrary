@@ -35,17 +35,10 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
 - (void)initialize {
     self.layout=[[SLNoRuleCollectionViewLayout alloc]init];
-    WeakSelf;
-    self.layout.contentSizeChange = ^(NSValue *collectViewContentSize) {
-        StrongSelf;
-        if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(contentSizeChanged:forView:)]) {
-            strongSelf.collectionView.frame = CGRectMake(strongSelf.bounds.origin.x+strongSelf.insets.left, strongSelf.bounds.origin.y+strongSelf.insets.top, strongSelf.bounds.size.width-strongSelf.insets.left-strongSelf.insets.right, [collectViewContentSize CGSizeValue].height);
-            [strongSelf.delegate contentSizeChanged:[collectViewContentSize CGSizeValue] forView:strongSelf];
-        }
-    };
     self.columns = 3;
     self.rowMagrin = 0;
     self.columnMagrin = 0;
+    self.ajustFrame = YES;
     self.xlarge = 1.5;
     self.ylarge = 1.5;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
@@ -65,6 +58,7 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
     self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource.copy;
+    self.layout.ajustFrame = self.ajustFrame;
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];

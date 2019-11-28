@@ -32,17 +32,10 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
 
 - (void)initialize {
     self.layout=[[SLStaticCollectViewLayout alloc]init];
-    WeakSelf;
-    self.layout.contentSizeChange = ^(NSValue *collectViewContentSize) {
-        StrongSelf;
-        if (strongSelf.delegate && [strongSelf.delegate respondsToSelector:@selector(contentSizeChanged:forView:)]) {
-            strongSelf.collectionView.frame = CGRectMake(strongSelf.bounds.origin.x+strongSelf.insets.left, strongSelf.bounds.origin.y+strongSelf.insets.top, strongSelf.bounds.size.width-strongSelf.insets.left-strongSelf.insets.right, [collectViewContentSize CGSizeValue].height);
-            [strongSelf.delegate contentSizeChanged:[collectViewContentSize CGSizeValue] forView:strongSelf];
-        }
-    };
     self.layout.columns = 1;
     self.layout.rowMagrin = 0;
     self.layout.columnMagrin = 0;
+    self.ajustFrame = YES;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
@@ -58,6 +51,7 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
     self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource.copy;
+    self.layout.ajustFrame = self.ajustFrame;
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];

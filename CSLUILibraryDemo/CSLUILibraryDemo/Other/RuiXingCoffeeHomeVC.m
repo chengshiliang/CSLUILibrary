@@ -73,13 +73,6 @@ static NSString *const cellId1 = @"kcollectionViewCellID";
 
 - (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
-    WeakSelf;
-    view.contentSizeChange = ^(CGFloat height) {
-        StrongSelf;
-        SLCustomCollectionModel *model = strongSelf.dataSource[0];
-        model.headerHeigth = height+kScreenWidth*2.0/3;
-        [strongSelf.collectionView reloadData];
-    };
     return view;
 }
 

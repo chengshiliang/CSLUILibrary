@@ -98,7 +98,7 @@
     self.noRuleCollectionView.columns = 4;
     self.noRuleCollectionView.columnMagrin = 5.0f;
     self.noRuleCollectionView.rowMagrin = 5.0f;
-    self.noRuleCollectionView.insets = UIEdgeInsetsMake(0, 20, 0, 20);
+    self.noRuleCollectionView.insets = UIEdgeInsetsMake(20, 20, 20, 20);
     [self.noRuleCollectionView reloadData];
 }
 
@@ -107,13 +107,6 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
     if ([view isKindOfClass:[SLNoRuleCollectionView class]]) {
         [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId3];
-    }
-}
-
-- (void)contentSizeChanged:(CGSize)contentSize forView:(SLView *)view {
-    if ([view isKindOfClass:[SLNoRuleCollectionView class]]) {
-        self.noRuleCollectionView.frame = CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, contentSize.height);
-        if (self.contentSizeChange) self.contentSizeChange(contentSize.height);
     }
 }
 

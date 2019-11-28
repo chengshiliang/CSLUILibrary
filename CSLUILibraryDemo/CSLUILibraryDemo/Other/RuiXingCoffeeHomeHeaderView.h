@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RuiXingCoffeeHomeHeaderView : UICollectionReusableView
 @property (strong, nonatomic) SLRecycleView *recycleView;
 @property (strong, nonatomic) SLNoRuleCollectionView *noRuleCollectionView;
-@property (copy, nonatomic) void(^contentSizeChange)(CGFloat height);
 @end
 
 NS_ASSUME_NONNULL_END

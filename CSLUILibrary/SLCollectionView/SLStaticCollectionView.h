@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
+@property(assign,nonatomic) BOOL ajustFrame;// 根据collectionview 的frame调整 item大小。默认为yes
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 - (void)reloadData;// 静态collectionview刷新

@@ -12,6 +12,9 @@ static CGFloat minXLarge = 1.5;
 static CGFloat minYLarge = 1.5;
 
 @interface SLNoRuleCollectionViewLayout()
+{
+    CGSize contentSize;
+}
 @property(strong, nonatomic)NSMutableArray *columnsY;
 @property(strong, nonatomic)NSMutableArray *layoutAttributeArray;
 @end
@@ -45,6 +48,23 @@ static CGFloat minYLarge = 1.5;
 }
 //计算所有cell的frame
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    if (!self.ajustFrame) return self.layoutAttributeArray.copy;
+    if (contentSize.width > 0 && contentSize.height > 0 && contentSize.height != self.collectionView.bounds.size.height) {
+        CGFloat scale = self.collectionView.bounds.size.height*1.0/contentSize.height;
+        CGFloat lastY = 0;
+        CGFloat yOffset = 0;
+        for (UICollectionViewLayoutAttributes *attr in self.layoutAttributeArray) {
+            CGRect preFrame = attr.frame;
+            CGFloat y = preFrame.origin.y;
+            CGFloat x = preFrame.origin.x;
+            CGFloat height = preFrame.size.height;
+            CGFloat width = preFrame.size.width;
+            y *= scale;
+            height *= scale;
+            preFrame = CGRectMake(x, y, width, height);
+            attr.frame = preFrame;
+        }
+    }
     return self.layoutAttributeArray.copy;
 }
 //计算某一个cell的frame
@@ -131,11 +151,12 @@ static CGFloat minYLarge = 1.5;
         }
     }
     maxYCollumn-=self.rowMagrin;
-    CGSize contentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
-    if (contentSize.width > 0) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:SLNoRuleCollectionViewContentSizeChange object:[NSValue valueWithCGSize:contentSize]];
-        if (self.contentSizeChange && contentSize.width > 0) self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
+    contentSize = CGSizeMake(self.collectionView.bounds.size.width, maxYCollumn);
+    if (self.ajustFrame) {
+        return CGSizeMake(self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+    } else {
+        return contentSize;
     }
-    return contentSize;
 }
+
 @end

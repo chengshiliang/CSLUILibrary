@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign,nonatomic) float ylarge;//纵向放大最小倍数 默认1.5倍,最小值也为1.5倍。如果高度超过原来所占高度的横向放大最小倍数，则放大。否则按比例缩放到自身的cell中。
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
-@property(copy,nonatomic) void(^contentSizeChange)(NSValue *collectViewContentSize);
+@property(assign,nonatomic) BOOL ajustFrame;// 根据collectionview 的frame调整 item大小。默认为yes
 @end
 
 NS_ASSUME_NONNULL_END

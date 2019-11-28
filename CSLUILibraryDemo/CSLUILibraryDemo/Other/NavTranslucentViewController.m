@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.imageView sl_setImage:[UIImage imageNamed:@"cir0"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self sl_scrollToTranslucent];
 }
 

@@ -10,6 +10,9 @@
 #import <CSLUILibrary/SLUIConst.h>
 
 @interface SLStaticCollectViewLayout()
+{
+    CGSize contentSize;
+}
 @property(strong, nonatomic)NSMutableArray *layoutAttributeArray;
 @end
 @implementation SLStaticCollectViewLayout
@@ -34,6 +37,23 @@
 }
 //计算所有cell的frame
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    if (!self.ajustFrame) return self.layoutAttributeArray.copy;
+    if (contentSize.width > 0 && contentSize.height > 0 && contentSize.height != self.collectionView.bounds.size.height) {
+        CGFloat scale = self.collectionView.bounds.size.height*1.0/contentSize.height;
+        CGFloat lastY = 0;
+        CGFloat yOffset = 0;
+        for (UICollectionViewLayoutAttributes *attr in self.layoutAttributeArray) {
+            CGRect preFrame = attr.frame;
+            CGFloat y = preFrame.origin.y;
+            CGFloat x = preFrame.origin.x;
+            CGFloat height = preFrame.size.height;
+            CGFloat width = preFrame.size.width;
+            y *= scale;
+            height *= scale;
+            preFrame = CGRectMake(x, y, width, height);
+            attr.frame = preFrame;
+        }
+    }
     return self.layoutAttributeArray.copy;
 }
 //计算某一个cell的frame
@@ -58,11 +78,11 @@
     SLPupModel *model = self.data[0];
     float cellHeight = model.height*1.0*cellWidth/model.width;// 行高
     float height =  cellHeight * rowCount + (rowCount - 1)*self.rowMagrin;
-    CGSize contentSize = CGSizeMake(width, height);
-    if (contentSize.width > 0) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:SLStaticCollectionViewContentSizeChange object:[NSValue valueWithCGSize:contentSize]];
-        if (self.contentSizeChange && contentSize.width > 0) self.contentSizeChange([NSValue valueWithCGSize:contentSize]);
+    contentSize = CGSizeMake(width, height);
+    if (self.ajustFrame) {
+        return CGSizeMake(self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+    } else {
+        return contentSize;
     }
-    return contentSize;
 }
 @end
