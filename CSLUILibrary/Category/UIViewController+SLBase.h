@@ -29,13 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)sl_setTranslucent:(BOOL)translucent;
 /**
- 页面向上滚动导航栏变透明
+ 页面滚动导航栏变透明
  */
 - (void)sl_scrollToTranslucent;
-/**
- 页面向上滚动导航栏 不 变透明
- */
-- (void)sl_scrollToNoTranslucent;
 
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha;
 

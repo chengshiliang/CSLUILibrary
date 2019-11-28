@@ -22,7 +22,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self sl_scrollToNoTranslucent];
+    [self sl_scrollToTranslucent];
     [self scrollViewDidScroll:self.scrollView];
 }
 
