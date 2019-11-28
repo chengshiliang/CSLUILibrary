@@ -1,5 +1,5 @@
 PODS:
-  - CSLCommonLibrary (0.3.0)
+  - CSLCommonLibrary (0.3.2)
   - CSLUILibrary (0.0.11):
     - CSLCommonLibrary
     - JSONModel
@@ -12,7 +12,7 @@ PODS:
   - SDWebImage/Core (5.3.1)
 
 DEPENDENCIES:
-  - CSLCommonLibrary (= 0.3.0)
+  - CSLCommonLibrary (= 0.3.2)
   - CSLUILibrary (from `../`)
   - JSONModel
   - Masonry
@@ -30,12 +30,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CSLCommonLibrary: 25ee09c9d92bd2a74c542291e6ed834fdf893d26
+  CSLCommonLibrary: 862e0b724ca9c0676091e852c1d6cd9714e74f9d
   CSLUILibrary: f658d8a4a72538b5edead6638a331bb8cfb8dcb0
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
 
-PODFILE CHECKSUM: 686de45208bf66cf57be28d7de5b225fcc292c0f
+PODFILE CHECKSUM: 78e164ee2753c626834b3d2225afe8fd398a23ab
 
 COCOAPODS: 1.8.4

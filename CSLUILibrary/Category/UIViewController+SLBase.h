@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  页面向上滚动导航栏 不 变透明
  */
 - (void)sl_scrollToNoTranslucent;
-- (void)sl_scrollToTranslucentPreDeal;
+
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha;
 
 /**

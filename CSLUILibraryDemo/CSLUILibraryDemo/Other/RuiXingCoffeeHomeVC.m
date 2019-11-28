@@ -63,6 +63,10 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     [self sl_hiddenNavbar];
 }
 
+-(BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 static NSString *const cellId1 = @"kcollectionViewCellID";
 
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {

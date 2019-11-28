@@ -15,7 +15,6 @@
 
 static void *kViewControllerTranslucentKey = "kViewControllerTranslucentKey";
 static void *kViewControllerHiddenNavbarKey = "kViewControllerHiddenNavbarKey";
-static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbarKey";
 
 @implementation UIViewController (SLBase)
 @dynamic interactiveTransition;
@@ -53,21 +52,6 @@ static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbar
     return nil;
 }
 
--(BOOL)prefersStatusBarHidden {
-    return self.statusBarHidden;
-}
-
--(UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    return UIStatusBarAnimationSlide;
-}
-
-- (void)sl_hideStatus:(BOOL)hidden {
-    self.statusBarHidden = hidden;
-    [UIView animateWithDuration:0.1 animations:^{
-        [self setNeedsStatusBarAppearanceUpdate];
-    }];
-}
-
 - (void)sl_setNavbarHidden:(BOOL)hidden {
     if ([self presentedViewController]) return;
     self.navigationController.navigationBarHidden = hidden;
@@ -77,26 +61,24 @@ static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbar
     if ([self presentedViewController]) return;
     [self sl_hiddenNavbarPreDeal];
     [self sl_setNavbarHidden:YES];
-//    [self sl_hideStatus:YES];
-}
-
-- (void)setStatusBarHidden:(BOOL)statusBarHidden {
-    objc_setAssociatedObject(self, &kViewControllerHiddenStatusbarKey, @(statusBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)statusBarHidden {
-    NSNumber *statusBarHidden = objc_getAssociatedObject(self, &kViewControllerHiddenStatusbarKey);
-    return [statusBarHidden boolValue];
 }
 
 - (void)sl_hiddenNavbarPreDeal {
-    objc_setAssociatedObject(self, &kViewControllerHiddenNavbarKey, @(self.navigationController.isNavigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    WeakSelf;
-    [self swizzDisappearMethod:self callback:^(NSObject *__unsafe_unretained  _Nonnull disappearObj) {
-        StrongSelf;
-        NSNumber *isHidden = objc_getAssociatedObject(strongSelf, &kViewControllerHiddenNavbarKey);
-        [strongSelf sl_setNavbarHidden:[isHidden boolValue]];
+    if ([self presentedViewController]) return;
+    if (self.navigationController.viewControllers.count == 0) return;
+    UIViewController *vc;
+    if (self.navigationController.viewControllers.count == 1) vc = self;
+    vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
+    if (!objc_getAssociatedObject(vc, &kViewControllerHiddenNavbarKey)) {
+        objc_setAssociatedObject(vc, &kViewControllerHiddenNavbarKey, @(vc.navigationController.isNavigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    [self swizzMethod:vc action:DidAppear callback:^(NSObject *__unsafe_unretained  _Nonnull obj) {
+        if (![obj isKindOfClass:[UIViewController class]]) return;
+        UIViewController *currentVc = obj;
+        NSNumber *isHidden = objc_getAssociatedObject(currentVc, &kViewControllerHiddenNavbarKey);
+        [currentVc sl_setNavbarHidden:[isHidden boolValue]];
     }];
+    objc_setAssociatedObject(self, &kViewControllerHiddenNavbarKey, @(self.navigationController.isNavigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)sl_setTranslucent:(BOOL)translucent {
@@ -108,28 +90,40 @@ static void *kViewControllerHiddenStatusbarKey = "kViewControllerHiddenStatusbar
     if ([self presentedViewController]) return;
     [self sl_scrollToTranslucentPreDeal];
     [self sl_setTranslucent:YES];
-    [self sl_scrollToTranslucentWithAlpha:1];
 }
 
 - (void)sl_scrollToNoTranslucent {
     if ([self presentedViewController]) return;
     [self sl_scrollToTranslucentPreDeal];
-    [self sl_setTranslucent:NO];
-    [self sl_scrollToTranslucentWithAlpha:0];
+    [self sl_setTranslucent:YES];
 }
 
 - (void)sl_scrollToTranslucentPreDeal {
-    objc_setAssociatedObject(self, &kViewControllerTranslucentKey, @(self.navigationController.navigationBar.isTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    WeakSelf;
-    [self swizzDisappearMethod:self callback:^(NSObject *__unsafe_unretained  _Nonnull disappearObj) {
-        StrongSelf;
-        NSNumber *isTranslucent = objc_getAssociatedObject(strongSelf, &kViewControllerTranslucentKey);
-        [strongSelf sl_setTranslucent:[isTranslucent boolValue]];
+    if ([self presentedViewController]) return;
+    if (self.navigationController.viewControllers.count == 0) return;
+    UIViewController *vc;
+    if (self.navigationController.viewControllers.count == 1) vc = self;
+    vc = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
+    objc_setAssociatedObject(vc, &kViewControllerTranslucentKey, @(vc.navigationController.navigationBar.isTranslucent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self swizzMethod:vc action:WillAppear callback:^(NSObject *__unsafe_unretained  _Nonnull obj) {
+        if (![obj isKindOfClass:[UIViewController class]]) return;
+        UIViewController *currentVc = obj;
+        NSNumber *isTranslucent = objc_getAssociatedObject(currentVc, &kViewControllerTranslucentKey);
+        [currentVc sl_setTranslucent:[isTranslucent boolValue]];
+        if (![isTranslucent boolValue]) {
+            [currentVc.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        } else {
+            [currentVc sl_scrollToTranslucentWithAlpha:0];
+        }
     }];
 }
 
 - (void)sl_scrollToTranslucentWithAlpha:(CGFloat)alpha {
     if ([self presentedViewController]) return;
+    if (alpha == 1) {
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        return;
+    }
     UIColor *alphaColor = [UIColor colorWithWhite:1 alpha:alpha];
     UIImage *alphaImage = [UIImage sl_imageWithColor:alphaColor];
     [self.navigationController.navigationBar setBackgroundImage:alphaImage forBarMetrics:UIBarMetricsDefault];
