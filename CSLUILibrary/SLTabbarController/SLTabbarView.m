@@ -41,13 +41,12 @@ static int buttonTag = 100;
                 strongSelf.selectBarButton.selected = NO;
                 strongSelf.selectBarButton = currentBt;
                 strongSelf.selectBarButton.selected = YES;
-                if (strongSelf.clickSLTabbarIndex) strongSelf.clickSLTabbarIndex(currentBt.tag - buttonTag);
+                if (strongSelf.clickSLTabbarIndex) strongSelf.clickSLTabbarIndex(currentBt ,currentBt.tag - buttonTag);
             }
         }];
         if (button.tag == self.currentSelectIndex) {
             self.selectBarButton = button;
             self.selectBarButton.selected = YES;
-            if (self.clickSLTabbarIndex) self.clickSLTabbarIndex(button.tag - buttonTag);
         } else {
             button.selected = NO;
         }
@@ -57,7 +56,22 @@ static int buttonTag = 100;
 }
 
 - (NSInteger)currentIndex {
-    return self.currentSelectIndex;
+    return self.currentSelectIndex-buttonTag;
+}
+
+- (SLTabbarButton *)selectButton {
+    return self.selectBarButton;
+}
+
+- (void)setIndex:(NSInteger)index {
+    _index = index;
+    if (self.currentIndex == index + buttonTag) return;
+    SLTabbarButton *btn = self.buttons[index];
+    self.currentSelectIndex = buttonTag + index;
+    self.selectBarButton.selected = NO;
+    self.selectBarButton = btn;
+    self.selectBarButton.selected = YES;
+    if (self.clickSLTabbarIndex) self.clickSLTabbarIndex(btn ,index);
 }
 
 - (void)layoutSubviews {
@@ -68,7 +82,6 @@ static int buttonTag = 100;
         SLTabbarButton *tabbarBt = self.buttons[i];
         totalPercent += MAX(0, tabbarBt.percent);
     }
-    NSLog(@"totalPercent %lf", totalPercent);
     if (self.direction == Vertical) {
         CGFloat tempHeight = 0;
         for (int i = 0; i < self.buttons.count; i++){
@@ -86,6 +99,7 @@ static int buttonTag = 100;
                 h = tabbarBtPercent*1.0*self.frame.size.height/totalPercent;
             }
             [tabbarBt setFrame:CGRectMake(0, y, self.frame.size.width, h)];
+            tabbarBt.offsetXY = y;
             tempHeight += h;
         }
         return;
@@ -106,8 +120,10 @@ static int buttonTag = 100;
             w = tabbarBtPercent*1.0*self.frame.size.width/totalPercent;
         }
         [tabbarBt setFrame:CGRectMake(x, 0, w, self.frame.size.height)];
+        tabbarBt.offsetXY = x;
         tempWidth += w;
     }
+    if (self.clickSLTabbarIndex) self.clickSLTabbarIndex(self.selectBarButton ,self.selectBarButton.tag - buttonTag);
 }
 
 @end

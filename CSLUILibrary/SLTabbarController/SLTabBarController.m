@@ -83,7 +83,7 @@
     [self.tabBar insertSubview:tabbarView atIndex:0];
     self.mTabBar = tabbarView;
     WeakSelf;
-    self.mTabBar.clickSLTabbarIndex = ^(NSInteger index) {
+    self.mTabBar.clickSLTabbarIndex = ^(SLTabbarButton *button,NSInteger index) {
         StrongSelf;
         strongSelf.selectedIndex = index;
     };

@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, SLTabbarButtonType) {
 // 图片区域的大小，默认为图片的大小
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) CGFloat percent;// frame权重，相当于html里面flex布局的flex值.默认为0
+@property (nonatomic, assign) CGFloat offsetXY; // 相对于父view的横/纵向偏移量
 @end
 
 NS_ASSUME_NONNULL_END
