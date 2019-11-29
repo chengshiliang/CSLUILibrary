@@ -63,10 +63,50 @@ static int buttonTag = 100;
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.buttons.count <= 0) return;
-    CGFloat width = self.frame.size.width*1.0/self.buttons.count;
+    CGFloat totalPercent = 0;
     for (int i = 0; i < self.buttons.count; i++){
         SLTabbarButton *tabbarBt = self.buttons[i];
-        [tabbarBt setFrame:CGRectMake(i*width, 0, width, self.frame.size.height)];
+        totalPercent += MAX(0, tabbarBt.percent);
+    }
+    NSLog(@"totalPercent %lf", totalPercent);
+    if (self.direction == Vertical) {
+        CGFloat tempHeight = 0;
+        for (int i = 0; i < self.buttons.count; i++){
+            SLTabbarButton *tabbarBt = self.buttons[i];
+            CGFloat y = tempHeight;
+            CGFloat h;
+            CGFloat tabbarBtPercent = MAX(tabbarBt.percent, 0);
+            if (tabbarBtPercent == 0) {
+                if (totalPercent <= 0) {
+                    h = self.frame.size.height * 1.0 / self.buttons.count;
+                } else {
+                    h = 0;
+                }
+            } else {
+                h = tabbarBtPercent*1.0*self.frame.size.height/totalPercent;
+            }
+            [tabbarBt setFrame:CGRectMake(0, y, self.frame.size.width, h)];
+            tempHeight += h;
+        }
+        return;
+    }
+    CGFloat tempWidth = 0;
+    for (int i = 0; i < self.buttons.count; i++){
+        SLTabbarButton *tabbarBt = self.buttons[i];
+        CGFloat x = tempWidth;
+        CGFloat w;
+        CGFloat tabbarBtPercent = MAX(tabbarBt.percent, 0);
+        if (tabbarBtPercent == 0) {
+            if (totalPercent <= 0) {
+                w = self.frame.size.width * 1.0 / self.buttons.count;
+            } else {
+                w = 0;
+            }
+        } else {
+            w = tabbarBtPercent*1.0*self.frame.size.width/totalPercent;
+        }
+        [tabbarBt setFrame:CGRectMake(x, 0, w, self.frame.size.height)];
+        tempWidth += w;
     }
 }
 

@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 UIKIT_EXTERN const NSString *const SLLabelFontSize;
 UIKIT_EXTERN const NSString *const SLLabelColor;
+typedef NS_ENUM(NSInteger, SLViewDirection) {
+    Horizontal,// 横向
+    Vertical,// 纵向
+};
 @interface SLUIConst : NSObject
 
 @end

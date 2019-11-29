@@ -104,6 +104,12 @@
     }
     
     [self.onlyText initButtons:[NSArray arrayWithArray:arrayM1] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+        NSInteger index = [arrayM1 indexOfObject:button];
+        if (index == 0) {
+            button.percent = 50;
+        } else {
+            button.percent = 150;
+        }
         button.tabbarButtonType = SLButtonTypeOnlyTitle;
     }];
 

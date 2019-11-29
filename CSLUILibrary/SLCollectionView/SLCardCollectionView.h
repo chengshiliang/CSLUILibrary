@@ -10,19 +10,16 @@
 #import <CSLUILibrary/SLCollectionView.h>
 #import <CSLUILibrary/SLCollectionViewCell.h>
 #import <CSLUILibrary/SLCollectionViewProtocol.h>
+#import <CSLUILibrary/SLUIConst.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSInteger, SLCardCollectionViewScrollDirection) {
-    Horizontal,// 横向
-    Vertical,// 纵向
-};
 @interface SLCardCollectionView : SLView
 @property(strong,nonatomic)SLCollectionView *collectionView;
 @property(nonatomic,assign) UIEdgeInsets insets;// sectionInset
 @property(copy,nonatomic)NSArray<SLModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 @property(nonatomic,assign)CGFloat itemMargin; // item 间距
-@property(nonatomic,assign)SLCardCollectionViewScrollDirection direction; //滚动方向
+@property(nonatomic,assign)SLViewDirection direction; //滚动方向
 @property(nonatomic,copy) void(^scrollEndBlock)(NSInteger index); // 滚动结束，当前显示中间的cell序号
 - (void)reloadData;// collectionview刷新
 @end

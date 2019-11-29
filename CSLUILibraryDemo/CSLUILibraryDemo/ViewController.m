@@ -30,9 +30,9 @@
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"UIImageView";
         } else if (indexPath.row == 2) {
-           cell.textLabel.text = @"TabbarView";
+           cell.textLabel.text = @"自定义tabbar";
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"CustomView";
+            cell.textLabel.text = @"特色view";
         } else {
             cell.textLabel.text = model.key;
         }

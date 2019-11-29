@@ -30,6 +30,7 @@
 
 - (void)initialize {
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.percent = 0;
 }
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect {
