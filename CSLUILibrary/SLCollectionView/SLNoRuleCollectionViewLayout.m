@@ -51,8 +51,6 @@ static CGFloat minYLarge = 1.5;
     if (!self.ajustFrame) return self.layoutAttributeArray.copy;
     if (contentSize.width > 0 && contentSize.height > 0 && contentSize.height != self.collectionView.bounds.size.height) {
         CGFloat scale = self.collectionView.bounds.size.height*1.0/contentSize.height;
-        CGFloat lastY = 0;
-        CGFloat yOffset = 0;
         for (UICollectionViewLayoutAttributes *attr in self.layoutAttributeArray) {
             CGRect preFrame = attr.frame;
             CGFloat y = preFrame.origin.y;

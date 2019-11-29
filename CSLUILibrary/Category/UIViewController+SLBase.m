@@ -69,7 +69,7 @@
 - (void)sl_hiddenNavbarPreDeal {
     [self swizzMethod:self action:WillDisappear callback:^(NSObject *__unsafe_unretained  _Nonnull obj) {
         if (![obj isKindOfClass:[UIViewController class]]) return;
-        UIViewController *currentVc = obj;
+        UIViewController *currentVc = (UIViewController *)obj;
         [currentVc sl_setNavbarHidden:NO];
     }];
 }
@@ -88,7 +88,7 @@
 - (void)sl_scrollToTranslucentPreDeal {
     [self swizzMethod:self action:WillDisappear callback:^(NSObject *__unsafe_unretained  _Nonnull obj) {
         if (![obj isKindOfClass:[UIViewController class]]) return;
-        UIViewController *currentVc = obj;
+        UIViewController *currentVc = (UIViewController *)obj;
         [currentVc sl_setTranslucent:NO];
         [currentVc.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     }];

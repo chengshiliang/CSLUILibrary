@@ -40,8 +40,6 @@
     if (!self.ajustFrame) return self.layoutAttributeArray.copy;
     if (contentSize.width > 0 && contentSize.height > 0 && contentSize.height != self.collectionView.bounds.size.height) {
         CGFloat scale = self.collectionView.bounds.size.height*1.0/contentSize.height;
-        CGFloat lastY = 0;
-        CGFloat yOffset = 0;
         for (UICollectionViewLayoutAttributes *attr in self.layoutAttributeArray) {
             CGRect preFrame = attr.frame;
             CGFloat y = preFrame.origin.y;
@@ -59,7 +57,6 @@
 //计算某一个cell的frame
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     float cellWidth = (self.collectionView.bounds.size.width-(self.columns-1)*self.columnMagrin)/self.columns;
-    float rowCount = (self.data.count-1)/self.columns + 1;// 行数
     NSInteger index = indexPath.item;
     SLPupModel *pupModel = self.data[index];
     float cellHeight = pupModel.height*1.0*cellWidth/pupModel.width;// 行高

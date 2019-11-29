@@ -80,6 +80,7 @@
     self.noRuleCollectionView.columns = 4;
     self.noRuleCollectionView.columnMagrin = 5.0f;
     self.noRuleCollectionView.rowMagrin = 5.0f;
+    self.noRuleCollectionView.ajustFrame = NO;
     [self.noRuleCollectionView reloadData];
 }
 

@@ -706,31 +706,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-TV-FXH" customClass="SLStaticCollectionView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="2Cs-TV-FXH" secondAttribute="height" multiplier="375:180" id="xkp-lT-qel"/>
+                                    <constraint firstAttribute="width" secondItem="2Cs-TV-FXH" secondAttribute="height" multiplier="375:100" id="xkp-lT-qel"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21b-zV-r6G" customClass="SLHorizontalCollectionView">
-                                <rect key="frame" x="0.0" y="220" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="21b-zV-r6G" secondAttribute="height" multiplier="375:180" id="ZBr-iK-DxQ"/>
+                                    <constraint firstAttribute="width" secondItem="21b-zV-r6G" secondAttribute="height" multiplier="375:100" id="ZBr-iK-DxQ"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mM2-Wq-puU" customClass="SLCardCollectionView">
+                                <rect key="frame" x="0.0" y="240" width="375" height="427"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2Cs-TV-FXH" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="0vT-OE-1Kx"/>
+                            <constraint firstAttribute="trailing" secondItem="mM2-Wq-puU" secondAttribute="trailing" id="5tZ-Wt-88y"/>
+                            <constraint firstItem="mM2-Wq-puU" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="JYE-QB-D5j"/>
+                            <constraint firstItem="mM2-Wq-puU" firstAttribute="top" secondItem="21b-zV-r6G" secondAttribute="bottom" constant="20" id="UuE-Xg-GVr"/>
                             <constraint firstAttribute="trailing" secondItem="21b-zV-r6G" secondAttribute="trailing" id="Yz1-O0-wN7"/>
-                            <constraint firstItem="21b-zV-r6G" firstAttribute="top" secondItem="2Cs-TV-FXH" secondAttribute="bottom" constant="40" id="bSJ-g9-Idr"/>
+                            <constraint firstItem="21b-zV-r6G" firstAttribute="top" secondItem="2Cs-TV-FXH" secondAttribute="bottom" constant="20" id="bSJ-g9-Idr"/>
                             <constraint firstAttribute="trailing" secondItem="2Cs-TV-FXH" secondAttribute="trailing" id="c5f-a4-IoD"/>
                             <constraint firstItem="21b-zV-r6G" firstAttribute="leading" secondItem="lMh-Gy-g8A" secondAttribute="leading" id="fQ8-8p-IaI"/>
+                            <constraint firstItem="ziV-24-Y1e" firstAttribute="top" secondItem="mM2-Wq-puU" secondAttribute="bottom" id="lhF-A2-Z2E"/>
                             <constraint firstItem="2Cs-TV-FXH" firstAttribute="top" secondItem="GTt-bt-aIR" secondAttribute="bottom" id="xaA-HZ-lI5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cardCollectionView" destination="mM2-Wq-puU" id="bAT-eX-c9Y"/>
                         <outlet property="horizontalCollectionView" destination="21b-zV-r6G" id="wf0-6B-ffx"/>
                         <outlet property="staticCollectionView" destination="2Cs-TV-FXH" id="qwN-3c-NNy"/>
                     </connections>

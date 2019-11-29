@@ -44,9 +44,9 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"SearchControler";
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"StaticCollectionView";
+            cell.textLabel.text = @"CollectionView";
         } else if (indexPath.row == 4) {
-            cell.textLabel.text = @"NoRuleCollectionView";
+            cell.textLabel.text = @"不规则的CollectionView";
         } else {
             cell.textLabel.text = model.key;
         }

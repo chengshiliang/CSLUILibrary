@@ -1,23 +1,23 @@
 //
-//  SLStaticCollectionView.m
-//  CSLCommonLibrary
+//  SLCardCollectionView.m
+//  CSLUILibrary
 //
-//  Created by SZDT00135 on 2019/11/25.
+//  Created by SZDT00135 on 2019/11/29.
 //
 
-#import "SLStaticCollectionView.h"
-#import <CSLUILibrary/SLStaticCollectViewLayout.h>
+#import "SLCardCollectionView.h"
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
 
-static NSString *const staticViewCellID = @"kSLStaticViewCellID";
+static NSString *const staticViewCellID = @"kSLCardViewCellID";
 
-@interface SLStaticCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface SLCardCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isRegiste;
 }
-@property(strong,nonatomic)SLStaticCollectViewLayout *layout;
+@property(strong,nonatomic)SLCardCollectViewFlowLayout *layout;
 @end
-@implementation SLStaticCollectionView
+@implementation SLCardCollectionView
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initialize];
@@ -31,11 +31,7 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
 }
 
 - (void)initialize {
-    self.layout=[[SLStaticCollectViewLayout alloc]init];
-    self.columns = 1;
-    self.rowMagrin = 0;
-    self.columnMagrin = 0;
-    self.ajustFrame = YES;
+    self.layout=[[SLCardCollectViewFlowLayout alloc]init];
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
@@ -43,30 +39,37 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
+    self.collectionView.frame = self.bounds;
 }
 
 - (void)reloadData {
-    self.layout.columns = self.columns;
-    self.layout.rowMagrin = self.rowMagrin;
-    self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource.copy;
-    self.layout.ajustFrame = self.ajustFrame;
+    self.layout.sectionInset = self.insets;
+    self.layout.minimumLineSpacing = self.itemMargin;
+    if (self.direction == Horizontal) {
+        self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    } else {
+        self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    }
     if (!isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
             [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:staticViewCellID];
         }
-        if (self.delegate && [self.delegate respondsToSelector:@selector(registerHeader:forView:)]) {
-            [self.delegate registerHeader:self.collectionView forView:self];
-        }
-        if (self.delegate && [self.delegate respondsToSelector:@selector(registerFooter:forView:)]) {
-            [self.delegate registerFooter:self.collectionView forView:self];
-        }
         isRegiste = YES;
     }
     [self.collectionView reloadData];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger index = 0;
+    if (self.direction == Vertical) {
+        index = floor(scrollView.contentOffset.y*1.0/(scrollView.frame.size.height - self.insets.bottom-self.insets.top + self.itemMargin));
+    } else {
+        index = floor(scrollView.contentOffset.x*1.0/(scrollView.frame.size.width - self.insets.left-self.insets.left + self.itemMargin));
+    }
+    if (self.scrollEndBlock) self.scrollEndBlock(MAX(index, 0));
 }
 
 -(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

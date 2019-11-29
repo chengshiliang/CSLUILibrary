@@ -11,7 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (SLBase)
 @property(nonatomic, strong) SLPercentDrivenInteractiveTransition *interactiveTransition;
-@property(nonatomic, assign) BOOL statusBarHidden;
 
 + (UIViewController *)sl_getRootViewController;
 + (UIViewController *)sl_getCurrentViewController:(UIViewController *)currentViewController;
