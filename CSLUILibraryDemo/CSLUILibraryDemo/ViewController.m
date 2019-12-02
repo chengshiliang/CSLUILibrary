@@ -18,6 +18,7 @@
 #import "NoRuleCollectionViewController.h"
 #import "CustomViewController.h"
 #import "RuiXingCoffeeHomeVC.h"
+#import "ButtonController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -32,6 +33,8 @@
         } else if (indexPath.row == 2) {
            cell.textLabel.text = @"自定义tabbar";
         } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"UIButton";
+        } else if (indexPath.row == 4) {
             cell.textLabel.text = @"特色view";
         } else {
             cell.textLabel.text = model.key;
@@ -115,6 +118,9 @@
                     TabbarController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 } else if (indexPath.row == 3) {
+                    ButtonController *vc = [storyboard instantiateViewControllerWithIdentifier:@"button"];
+                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                } else if (indexPath.row == 4) {
                     CustomViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"custom"];
                     [strongSelf.navigationController pushViewController:vc animated:YES];
                 }

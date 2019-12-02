@@ -453,6 +453,96 @@
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="692.20389805097454"/>
         </scene>
+        <!--Button Controller-->
+        <scene sceneID="F8S-Gx-XL0">
+            <objects>
+                <viewController storyboardIdentifier="button" id="zjK-FO-gQu" customClass="ButtonController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Tr-i5-NUR"/>
+                        <viewControllerLayoutGuide type="bottom" id="NgW-uJ-goh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Ut-dY-YCz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgy-Iq-wbD" customClass="SLButton">
+                                <rect key="frame" x="20" y="10" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="byq-3x-QDm"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgF-3D-MOT" customClass="SLButton">
+                                <rect key="frame" x="20" y="60" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MdY-Ht-Mfg"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKO-MN-cAc" customClass="SLButton">
+                                <rect key="frame" x="20" y="110" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qTF-v8-Rlj"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtP-l4-vif" customClass="SLButton">
+                                <rect key="frame" x="20" y="160" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6Tb-p7-bqe"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guh-61-5Ny" customClass="SLButton">
+                                <rect key="frame" x="20" y="210" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="t7b-Qv-tV9"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPQ-gj-x3D" customClass="SLButton">
+                                <rect key="frame" x="20" y="260" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BPC-UP-NIZ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yPQ-gj-x3D" secondAttribute="trailing" constant="20" id="4Su-6n-tPO"/>
+                            <constraint firstItem="QKO-MN-cAc" firstAttribute="top" secondItem="NgF-3D-MOT" secondAttribute="bottom" constant="20" id="9PX-XQ-cKc"/>
+                            <constraint firstItem="Xgy-Iq-wbD" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="E6p-Ib-CI3"/>
+                            <constraint firstItem="QKO-MN-cAc" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="FDF-LV-21L"/>
+                            <constraint firstItem="Guh-61-5Ny" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="Ihk-rn-FjR"/>
+                            <constraint firstAttribute="trailing" secondItem="NgF-3D-MOT" secondAttribute="trailing" constant="20" id="N9C-Rt-jWL"/>
+                            <constraint firstAttribute="trailing" secondItem="Guh-61-5Ny" secondAttribute="trailing" constant="20" id="Qtd-6t-dAn"/>
+                            <constraint firstAttribute="trailing" secondItem="Xgy-Iq-wbD" secondAttribute="trailing" constant="20" id="Qvo-nC-nbY"/>
+                            <constraint firstItem="yPQ-gj-x3D" firstAttribute="top" secondItem="Guh-61-5Ny" secondAttribute="bottom" constant="20" id="RoX-c0-GEY"/>
+                            <constraint firstItem="Xgy-Iq-wbD" firstAttribute="top" secondItem="5Tr-i5-NUR" secondAttribute="bottom" constant="10" id="Umw-Eb-BMv"/>
+                            <constraint firstItem="RtP-l4-vif" firstAttribute="top" secondItem="QKO-MN-cAc" secondAttribute="bottom" constant="20" id="Vos-MI-O2U"/>
+                            <constraint firstItem="RtP-l4-vif" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="Y1o-8T-4mL"/>
+                            <constraint firstItem="Guh-61-5Ny" firstAttribute="top" secondItem="RtP-l4-vif" secondAttribute="bottom" constant="20" id="cdZ-Vh-EZ7"/>
+                            <constraint firstItem="yPQ-gj-x3D" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="iAQ-Wt-1et"/>
+                            <constraint firstAttribute="trailing" secondItem="RtP-l4-vif" secondAttribute="trailing" constant="20" id="kGV-xT-QNY"/>
+                            <constraint firstItem="NgF-3D-MOT" firstAttribute="leading" secondItem="5Ut-dY-YCz" secondAttribute="leading" constant="20" id="lEn-pN-idp"/>
+                            <constraint firstItem="NgF-3D-MOT" firstAttribute="top" secondItem="Xgy-Iq-wbD" secondAttribute="bottom" constant="20" id="odh-ih-RpH"/>
+                            <constraint firstAttribute="trailing" secondItem="QKO-MN-cAc" secondAttribute="trailing" constant="20" id="qKw-i4-hIC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button1" destination="Xgy-Iq-wbD" id="tp3-co-dzE"/>
+                        <outlet property="button2" destination="NgF-3D-MOT" id="yZm-N9-eMf"/>
+                        <outlet property="button3" destination="QKO-MN-cAc" id="nDg-fr-gK0"/>
+                        <outlet property="button4" destination="RtP-l4-vif" id="ct9-Bz-aCK"/>
+                        <outlet property="button5" destination="Guh-61-5Ny" id="jTP-rJ-R7l"/>
+                        <outlet property="button6" destination="yPQ-gj-x3D" id="Inj-Kd-sNc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kg7-l7-Abr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1396" y="2741"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="FRW-dZ-Hgy">
             <objects>

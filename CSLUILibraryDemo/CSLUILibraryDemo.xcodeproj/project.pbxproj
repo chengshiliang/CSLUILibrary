@@ -10,6 +10,7 @@
 		1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */; };
 		1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */; };
 		1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */; };
+		150C579C2394ED8600FC8DE2 /* ButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150C579B2394ED8600FC8DE2 /* ButtonController.m */; };
 		153FDD422383CF3700EFE6FB /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153FDD412383CF3700EFE6FB /* BaseController.m */; };
 		1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543E9792372739A00A8F9BA /* PupViewController.m */; };
 		1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */; };
@@ -44,6 +45,8 @@
 		1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewCell.h; sourceTree = "<group>"; };
 		1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewCell.m; sourceTree = "<group>"; };
 		1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticCollectionViewCell.xib; sourceTree = "<group>"; };
+		150C579A2394ED8600FC8DE2 /* ButtonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonController.h; sourceTree = "<group>"; };
+		150C579B2394ED8600FC8DE2 /* ButtonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonController.m; sourceTree = "<group>"; };
 		153FDD402383CF3700EFE6FB /* BaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		153FDD412383CF3700EFE6FB /* BaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		1543E9782372739A00A8F9BA /* PupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PupViewController.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 			children = (
 				1550CC32236AD749002CB249 /* LabelController.h */,
 				1550CC33236AD749002CB249 /* LabelController.m */,
+				150C579A2394ED8600FC8DE2 /* ButtonController.h */,
+				150C579B2394ED8600FC8DE2 /* ButtonController.m */,
 				15596B59236C29480073C0CB /* ImageViewController.h */,
 				15596B5A236C29480073C0CB /* ImageViewController.m */,
 				15D1597423868793006DD86B /* TabbarController.h */,
@@ -346,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				150C579C2394ED8600FC8DE2 /* ButtonController.m in Sources */,
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
