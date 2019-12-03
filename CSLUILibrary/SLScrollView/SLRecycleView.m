@@ -90,7 +90,7 @@
     CGFloat scrollHeight = self.scrollView.bounds.size.height;
     SLLabel *label = [[SLLabel alloc]init];
     if (self.showTitle) {
-        label.text = [title blankString];
+        label.text = [NSString blankString:title];
     }
     label.textColor = self.titleColor ?: SLUIHexColor(0x333333);
     label.font = self.titleFont ?: SLUINormalFont(15.0);
