@@ -146,23 +146,27 @@
     SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
     return rowModel.tableRowHeight;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(SLTableView *)tableView heightForHeaderInSection:(NSInteger)section {
     SLTableModel *tableModel = self.tableDataSource[section];
     return tableModel.tableHeaderHeight;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(SLTableView *)tableView heightForFooterInSection:(NSInteger)section {
     SLTableModel *tableModel = self.tableDataSource[section];
     return tableModel.tableFooterHeight;
 }
 
-- (UITableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString * TableViewCellId = [NSString stringWithFormat:@"%@CellID", NSStringFromClass(self.class)];
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
+    SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+        cell = [[SLTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:TableViewCellId];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end

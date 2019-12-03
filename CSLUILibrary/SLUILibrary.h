@@ -26,7 +26,6 @@
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLViewController.h>
 
-#import <CSLUILibrary/SLIndicatorTabbarView.h>
 #import <CSLUILibrary/SLTabbarView.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLPupView.h>
@@ -52,5 +51,6 @@
 #import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>
+#import <CSLUILibrary/SLTableCellModel.h>
 
 #endif /* Header_h */

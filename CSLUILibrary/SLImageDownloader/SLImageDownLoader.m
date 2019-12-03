@@ -66,7 +66,7 @@
     return downLoader;
 }
 - (UIImage *)downloadImage:(NSString *)url complete:(void(^)(UIImage *image,NSURL *imageUrl,CGFloat progress,BOOL finished,NSError *error))completeBlock {
-    if ([url emptyString]) {
+    if ([NSString emptyString:url]) {
         !completeBlock?:completeBlock(nil,nil,0.0,true,[NSError errorWithDomain:@"com.csl.imageDownload" code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey: @"图片下载url为空"}]);
         return nil;
     }

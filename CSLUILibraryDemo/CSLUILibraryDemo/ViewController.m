@@ -19,6 +19,7 @@
 #import "CustomViewController.h"
 #import "RuiXingCoffeeHomeVC.h"
 #import "ButtonController.h"
+#import "CustomTableCellController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -35,6 +36,8 @@
         } else if (indexPath.row == 3) {
             cell.textLabel.text = @"UIButton";
         } else if (indexPath.row == 4) {
+            cell.textLabel.text = @"自定义cell";
+        } else if (indexPath.row == 5) {
             cell.textLabel.text = @"特色view";
         } else {
             cell.textLabel.text = model.key;
@@ -107,48 +110,42 @@
             NSIndexPath *indexPath = params[1];
             __strong typeof (weakSelf)strongSelf = weakSelf;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *vc = nil;
             if (indexPath.section == 0) {
                 if (indexPath.row == 0) {
-                    LabelController *vc = [storyboard instantiateViewControllerWithIdentifier:@"label"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"label"];
                 } else if (indexPath.row == 1) {
-                    ImageViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"imageView"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"imageView"];
                 } else if (indexPath.row == 2) {
-                    TabbarController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
                 } else if (indexPath.row == 3) {
-                    ButtonController *vc = [storyboard instantiateViewControllerWithIdentifier:@"button"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"button"];
                 } else if (indexPath.row == 4) {
-                    CustomViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"custom"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"cell"];
+                } else if (indexPath.row == 5) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"custom"];
                 }
             } else if (indexPath.section == 1) {
                 if (indexPath.row == 0) {
-                    RecycleViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"recycle"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"recycle"];
                 } else if (indexPath.row == 1) {
-                    PupViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"pupview"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"pupview"];
                 } else if (indexPath.row == 2) {
-                    SearchViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"search"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"search"];
                 } else if (indexPath.row == 3) {
-                    StaticCollectionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"staticcollect"];
-                    [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"staticcollect"];
                 } else if (indexPath.row == 4) {
-                   NoRuleCollectionViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
-                   [strongSelf.navigationController pushViewController:vc animated:YES];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
                }
             } else if (indexPath.section == 2) {
                  if (indexPath.row == 0) {
-                     NavTranslucentViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
-                     [strongSelf.navigationController pushViewController:vc animated:YES];
+                     vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
                  } else if (indexPath.row == 1) {
-                     RuiXingCoffeeHomeVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"ruixinhome"];
-                     [strongSelf.navigationController pushViewController:vc animated:YES];
+                     vc = [storyboard instantiateViewControllerWithIdentifier:@"ruixinhome"];
                  }
+            }
+            if (vc) {
+                [strongSelf.navigationController pushViewController:vc animated:YES];
             }
         }
     }];

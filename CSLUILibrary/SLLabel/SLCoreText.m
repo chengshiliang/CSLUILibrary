@@ -80,7 +80,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
                      color:(UIColor *)color
                 attributes:(NSDictionary *)attributes
                      click:(void(^)(NSString *string))clickBlock {
-    if ([string emptyString]) return;
+    if ([NSString emptyString:string]) return;
     NSMutableDictionary *attributesM = [NSMutableDictionary dictionary];
     [attributesM addEntriesFromDictionary:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
     if(attributes) [attributesM addEntriesFromDictionary:attributes];

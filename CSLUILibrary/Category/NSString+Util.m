@@ -10,44 +10,47 @@
 #import <CoreText/CoreText.h>
 
 @implementation NSString (Util)
-- (BOOL)emptyString {
-    if (!self) {
++ (BOOL)emptyString:(NSString *)str {
+    if (!str) {
         return YES;
     }
-    if ([self isKindOfClass:[NSNull class]]) {
+    if ([str isKindOfClass:[NSNull class]]) {
         return YES;
     }
-    if (!self.length) {
+    if (!str.length) {
+        return YES;
+    }
+    if ([str isEqual:[NSNull null]]) {
         return YES;
     }
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    NSString *trimmedStr = [self stringByTrimmingCharactersInSet:set];
+    NSString *trimmedStr = [str stringByTrimmingCharactersInSet:set];
     if (!trimmedStr.length) {
         return YES;
     }
     return NO;
 }
 
-- (NSString *)blankString {
-    if ([self emptyString]) {
++ (NSString *)blankString:(NSString *)str {
+    if ([self.class emptyString:str]) {
         return @"";
     }
-    return self;
+    return str;
 }
 
 - (CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size{
-    if ([self emptyString]) return CGSizeZero;
+    if ([self.class emptyString:self]) return CGSizeZero;
     return [self boundingRectWithSize:size options:NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
 }
 
 - (CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width {
-    if ([self emptyString]) return 0;
+    if ([self.class emptyString:self]) return 0;
     CGSize titleSize = [self sizeWithFont:font size:CGSizeMake(width > 0 ? width : kScreenWidth, CGFLOAT_MAX)];
     return titleSize.height;
 }
 
 - (CGFloat)widthWithFont:(UIFont*)font height:(CGFloat)height {
-    if ([self emptyString]) return 0;
+    if ([self.class emptyString:self]) return 0;
     CGSize titleSize = [self sizeWithFont:font size:CGSizeMake(kScreenWidth, height > 0 ? height : kScreenHeight)];
     return titleSize.width;
 }

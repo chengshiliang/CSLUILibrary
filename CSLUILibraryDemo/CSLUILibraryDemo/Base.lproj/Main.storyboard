@@ -543,6 +543,39 @@
             </objects>
             <point key="canvasLocation" x="1396" y="2741"/>
         </scene>
+        <!--Custom Table Cell Controller-->
+        <scene sceneID="ZE4-7B-GSI">
+            <objects>
+                <viewController storyboardIdentifier="cell" id="55W-ZD-9fM" customClass="CustomTableCellController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cyz-kU-KzN"/>
+                        <viewControllerLayoutGuide type="bottom" id="h5E-gQ-qbn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yyd-dB-ERD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-ij-XIO" customClass="CustomTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8XA-ij-XIO" firstAttribute="leading" secondItem="Yyd-dB-ERD" secondAttribute="leading" id="Cfs-M6-Ira"/>
+                            <constraint firstItem="8XA-ij-XIO" firstAttribute="top" secondItem="Cyz-kU-KzN" secondAttribute="bottom" id="CqX-Cc-tmC"/>
+                            <constraint firstAttribute="trailing" secondItem="8XA-ij-XIO" secondAttribute="trailing" id="KM8-Jx-fLg"/>
+                            <constraint firstItem="h5E-gQ-qbn" firstAttribute="top" secondItem="8XA-ij-XIO" secondAttribute="bottom" id="UuY-qv-euY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="8XA-ij-XIO" id="UhM-Xq-o7Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9V-3q-eIG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1397.5999999999999" y="3422.3388305847079"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="FRW-dZ-Hgy">
             <objects>

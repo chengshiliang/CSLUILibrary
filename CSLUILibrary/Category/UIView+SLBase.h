@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
  给view增加倒角和边框
  */
 - (void)addCornerRadius:(CGFloat)cornerRadius
-    borderWidth:(CGFloat)borderWidth
-    borderColor:(UIColor *)borderColor
-backGroundColor:(UIColor *)backColor;
+            borderWidth:(CGFloat)borderWidth
+            borderColor:(UIColor *)borderColor
+        backGroundColor:(UIColor *)backColor;
 @end
 
 NS_ASSUME_NONNULL_END
