@@ -9,6 +9,9 @@
 
 const NSString *const SLLabelFontSize = @"fontSize";
 const NSString *const SLLabelColor = @"color";
+const NSString *const SLAlertWidth = @"alertWidth";
+const NSString *const SLAlertContentInset = @"alertContentInset";
+const NSString *const SLAlertMessageInset = @"alertMessageInset";
 @implementation SLUIConst
 
 @end

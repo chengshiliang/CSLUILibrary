@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[SLUIConfig share] configLabel:LabelH1 font:[UIFont boldSystemFontOfSize:36.0] color:nil];
+    [[SLUIConfig share]configAlert:AlertView width:0 inset:UIEdgeInsetsMake(20, 20, 20, 20) contentInset:UIEdgeInsetsMake(10, 0, 10, 0)];
+    [[SLUIConfig share]configAlert:AlertSheet width:0 inset:UIEdgeInsetsMake(20, 20, 20, 20) contentInset:UIEdgeInsetsMake(10, 0, 10, 0)];
     [SLImageDownLoader share].maxQueueCount = 10;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

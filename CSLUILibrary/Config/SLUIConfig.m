@@ -12,6 +12,7 @@
 
 @interface SLUIConfig()
 @property (nonatomic, strong) NSMutableDictionary *labelConfigDicM;
+@property (nonatomic, strong) NSMutableDictionary *alertConfigDicM;
 @end
 
 @implementation SLUIConfig
@@ -22,8 +23,21 @@ static SLUIConfig *instance;
     dispatch_once(&onceToken, ^{
         instance = [[SLUIConfig alloc]init];
         instance.labelConfigDicM = [NSMutableDictionary dictionary];
+        instance.alertConfigDicM = [NSMutableDictionary dictionary];
     });
     return instance;
+}
+
+- (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset contentInset:(UIEdgeInsets)contentInset{
+    NSNumber *contentWidth = width > 0 ? @(width) : @(kScreenWidth * 0.8);
+    NSString *contentInsets = NSStringFromUIEdgeInsets(inset);
+    NSString *messageInset = NSStringFromUIEdgeInsets(contentInset);
+    NSDictionary *dic = @{SLAlertWidth: contentWidth,SLAlertContentInset: contentInsets, SLAlertMessageInset: messageInset};
+    [instance.alertConfigDicM setValue:dic forKey:[NSString stringWithFormat:@"%ld", (long)type]];
+}
+
+- (NSDictionary *)alertConfig {
+    return [instance.alertConfigDicM copy];
 }
 
 - (void)configLabel:(LabelType)type font:(UIFont *_Nullable)fontSize color:(UIColor *_Nullable)color {

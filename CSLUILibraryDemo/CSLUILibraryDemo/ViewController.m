@@ -20,6 +20,7 @@
 #import "RuiXingCoffeeHomeVC.h"
 #import "ButtonController.h"
 #import "CustomTableCellController.h"
+#import "AlertController.h"
 
 @implementation MyTableView
 - (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,6 +54,8 @@
             cell.textLabel.text = @"CollectionView";
         } else if (indexPath.row == 4) {
             cell.textLabel.text = @"不规则的CollectionView";
+        } else if (indexPath.row == 5) {
+            cell.textLabel.text = @"自定义弹窗";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -136,7 +139,9 @@
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"staticcollect"];
                 } else if (indexPath.row == 4) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
-               }
+                } else if (indexPath.row == 5) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
+                }
             } else if (indexPath.section == 2) {
                  if (indexPath.row == 0) {
                      vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];

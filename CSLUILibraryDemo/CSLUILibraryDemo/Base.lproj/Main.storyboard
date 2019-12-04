@@ -576,6 +576,85 @@
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="3422.3388305847079"/>
         </scene>
+        <!--Alert Controller-->
+        <scene sceneID="dQg-Nd-UD0">
+            <objects>
+                <viewController storyboardIdentifier="alert" id="pNw-hw-wMq" customClass="AlertController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zW8-GT-4ln"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ma3-mo-xLp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BPr-bJ-jqT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fo4-Ud-hQX" customClass="SLButton">
+                                <rect key="frame" x="20" y="20" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HIJ-qv-Jbf"/>
+                                </constraints>
+                                <state key="normal" title="常规弹窗"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2O-cA-mhN" customClass="SLButton">
+                                <rect key="frame" x="20" y="70" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vWD-0z-bCM"/>
+                                </constraints>
+                                <state key="normal" title="不带标题弹窗"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4l-KK-8UP" customClass="SLButton">
+                                <rect key="frame" x="20" y="120" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ugb-8F-8jq"/>
+                                </constraints>
+                                <state key="normal" title="不带内容弹窗"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fB-QZ-6hc" customClass="SLButton">
+                                <rect key="frame" x="20" y="170" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Wd0-ab-DGG"/>
+                                </constraints>
+                                <state key="normal" title="无内容弹窗"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxa-nZ-9kt" customClass="SLButton">
+                                <rect key="frame" x="20" y="220" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RRP-Ay-whq"/>
+                                </constraints>
+                                <state key="normal" title="自定义视图弹窗"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="S4l-KK-8UP" secondAttribute="trailing" constant="20" id="6Sl-sZ-Nlr"/>
+                            <constraint firstItem="S4l-KK-8UP" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="7s6-0d-tfB"/>
+                            <constraint firstAttribute="trailing" secondItem="s2O-cA-mhN" secondAttribute="trailing" constant="20" id="AUq-6L-6aK"/>
+                            <constraint firstItem="Fo4-Ud-hQX" firstAttribute="top" secondItem="zW8-GT-4ln" secondAttribute="bottom" constant="20" id="JgD-c8-JWc"/>
+                            <constraint firstItem="9fB-QZ-6hc" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="NmE-Nx-rW0"/>
+                            <constraint firstItem="qxa-nZ-9kt" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="O8D-Ks-vnu"/>
+                            <constraint firstAttribute="trailing" secondItem="9fB-QZ-6hc" secondAttribute="trailing" constant="20" id="VFT-gM-hM8"/>
+                            <constraint firstAttribute="trailing" secondItem="Fo4-Ud-hQX" secondAttribute="trailing" constant="20" id="ZVa-Jf-Wje"/>
+                            <constraint firstItem="Fo4-Ud-hQX" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="a4r-Xc-A30"/>
+                            <constraint firstItem="s2O-cA-mhN" firstAttribute="top" secondItem="Fo4-Ud-hQX" secondAttribute="bottom" constant="20" id="bXu-ni-K13"/>
+                            <constraint firstAttribute="trailing" secondItem="qxa-nZ-9kt" secondAttribute="trailing" constant="20" id="ccT-QD-aHR"/>
+                            <constraint firstItem="qxa-nZ-9kt" firstAttribute="top" secondItem="9fB-QZ-6hc" secondAttribute="bottom" constant="20" id="eIf-Cc-tpQ"/>
+                            <constraint firstItem="s2O-cA-mhN" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="g2c-zV-ajw"/>
+                            <constraint firstItem="S4l-KK-8UP" firstAttribute="top" secondItem="s2O-cA-mhN" secondAttribute="bottom" constant="20" id="qgx-4j-5iC"/>
+                            <constraint firstItem="9fB-QZ-6hc" firstAttribute="top" secondItem="S4l-KK-8UP" secondAttribute="bottom" constant="20" id="x0Y-ay-CQI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="customViewAlert" destination="qxa-nZ-9kt" id="WBq-98-kWb"/>
+                        <outlet property="normalAlert" destination="Fo4-Ud-hQX" id="Pdr-fR-Wfk"/>
+                        <outlet property="nothingAlert" destination="9fB-QZ-6hc" id="WVB-eK-E2D"/>
+                        <outlet property="onlyMessageAlert" destination="s2O-cA-mhN" id="ntz-iw-XcI"/>
+                        <outlet property="onlyTitleAlert" destination="S4l-KK-8UP" id="f8t-Pc-JHt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S87-wy-uPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="2740"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="FRW-dZ-Hgy">
             <objects>

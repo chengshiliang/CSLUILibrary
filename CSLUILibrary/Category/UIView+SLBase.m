@@ -93,11 +93,11 @@
            shadowOffset:(CGSize)shadowOffset
           shadowOpacity:(CGFloat)shadowOpacity
            shadowRadius:(CGFloat)shadowRadius {
+    UIBezierPath *bezierPath2 = [UIBezierPath bezierPathWithRoundedRect:CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height) cornerRadius:shadowRadius];
     self.layer.cornerRadius = cornerRadius;
     self.layer.shadowColor = shadowColor.CGColor;
-    self.layer.shadowOffset = shadowOffset;
     self.layer.shadowOpacity = shadowOpacity;
-    self.layer.shadowRadius = shadowRadius;
+    self.layer.shadowPath = bezierPath2.CGPath;
 }
 
 - (void)addCornerRadius:(CGFloat)cornerRadius
@@ -136,17 +136,11 @@
     UIGraphicsEndImageContext();
 }
 
-- (void)addCorner:(BOOL)corner
-      borderWidth:(CGFloat)borderWidth
-      borderColor:(UIColor * _Nullable)borderColor {
-    [self addCornerRadius:MIN(self.frame.size.width/2.0, self.frame.size.height/2.0)
-              borderWidth:borderWidth
-              borderColor:borderColor];
+- (void)addCorner:(BOOL)corner {
+    [self addCornerRadius:MIN(self.frame.size.width/2.0, self.frame.size.height/2.0)];
 }
 
-- (void)addCornerRadius:(CGFloat)cornerRadius
-            borderWidth:(CGFloat)borderWidth
-            borderColor:(UIColor * _Nullable)borderColor {
+- (void)addCornerRadius:(CGFloat)cornerRadius {
     CAShapeLayer *shaperLayer = [CAShapeLayer layer];
     shaperLayer.frame = self.bounds;
     UIBezierPath *bezierPath;

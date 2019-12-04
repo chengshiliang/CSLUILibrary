@@ -45,13 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 给view增加倒角和边框,不会覆盖原有的内容
 */
-- (void)addCorner:(BOOL)corner
-      borderWidth:(CGFloat)borderWidth
-      borderColor:(UIColor * _Nullable)borderColor;
+- (void)addCorner:(BOOL)corner;
 
-- (void)addCornerRadius:(CGFloat)cornerRadius
-            borderWidth:(CGFloat)borderWidth
-            borderColor:(UIColor * _Nullable)borderColor;
+- (void)addCornerRadius:(CGFloat)cornerRadius;
 @end
 
 NS_ASSUME_NONNULL_END

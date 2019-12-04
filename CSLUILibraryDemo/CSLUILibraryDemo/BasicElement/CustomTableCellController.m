@@ -17,7 +17,7 @@
 - (UIImageView *)leftImage {
     UIImageView *imageView = [super leftImage];
     if (!imageView) return nil;
-    [imageView addCorner:YES borderWidth:0.0 borderColor:nil];
+    [imageView addCorner:YES];
     return imageView;
 }
 
@@ -44,7 +44,7 @@
     if ([super leftView]) return [super leftView];
     UIImageView *imageView = [super leftImage];
     imageView.frame = CGRectMake(0, 3, 57, 54);
-    [imageView addCorner:YES borderWidth:0.0 borderColor:nil];
+    [imageView addCorner:YES];
     self.customLeftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [super leftViewSize].width, [super leftViewSize].height)];
     [self.customLeftView addSubview:imageView];
     UIView *dotView = [[UIView alloc]initWithFrame:CGRectMake(54, 0, 6, 6)];

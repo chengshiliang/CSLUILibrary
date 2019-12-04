@@ -14,8 +14,8 @@
 
 @implementation CustomViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.cornerRadiusAndShadowView addCornerRadius:10.0f
                                         shadowColor:[UIColor redColor]
                                        shadowOffset:CGSizeMake(5,-5)
