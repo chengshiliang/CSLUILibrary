@@ -28,13 +28,30 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sl_blurEffect:(CGRect)rect;
 - (void)sl_blurEffect:(CGRect)rect style:(EffectStyle)style;
 
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            shadowColor:(UIColor *)shadowColor
+           shadowOffset:(CGSize)shadowOffset
+          shadowOpacity:(CGFloat)shadowOpacity
+           shadowRadius:(CGFloat)shadowRadius;
+
 /**
- 给view增加倒角和边框
+ 给view增加倒角和边框,会覆盖原有的内容
  */
 - (void)addCornerRadius:(CGFloat)cornerRadius
             borderWidth:(CGFloat)borderWidth
-            borderColor:(UIColor *)borderColor
-        backGroundColor:(UIColor *)backColor;
+            borderColor:(UIColor * _Nullable)borderColor
+        backGroundColor:(UIColor * _Nullable)backColor;
+/**
+给view增加倒角和边框,不会覆盖原有的内容
+*/
+- (void)addCorner:(BOOL)corner
+      borderWidth:(CGFloat)borderWidth
+      borderColor:(UIColor * _Nullable)borderColor;
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            borderWidth:(CGFloat)borderWidth
+            borderColor:(UIColor * _Nullable)borderColor;
 @end
 
 NS_ASSUME_NONNULL_END

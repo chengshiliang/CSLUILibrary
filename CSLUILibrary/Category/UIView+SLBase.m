@@ -89,6 +89,18 @@
 }
 
 - (void)addCornerRadius:(CGFloat)cornerRadius
+            shadowColor:(UIColor *)shadowColor
+           shadowOffset:(CGSize)shadowOffset
+          shadowOpacity:(CGFloat)shadowOpacity
+           shadowRadius:(CGFloat)shadowRadius {
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.shadowColor = shadowColor.CGColor;
+    self.layer.shadowOffset = shadowOffset;
+    self.layer.shadowOpacity = shadowOpacity;
+    self.layer.shadowRadius = shadowRadius;
+}
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
             borderWidth:(CGFloat)borderWidth
             borderColor:(UIColor *)borderColor
         backGroundColor:(UIColor *)backColor {
@@ -110,7 +122,7 @@
         CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
     }
     UIBezierPath *bezierPath;
-    CGRect rect = CGRectMake(self.bounds.origin.x+borderWidth*1.0/2, self.bounds.origin.y+borderWidth*1.0/2, self.bounds.size.width-borderWidth, self.bounds.size.height-borderWidth);
+    CGRect rect = CGRectMake(self.bounds.origin.x+borderWidth*1.0/2, self.bounds.origin.y+borderWidth*1.0/2, self.bounds.size.width+borderWidth, self.bounds.size.height+borderWidth);
     if (cornerRadius > 0) {
         bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
     } else {
@@ -122,5 +134,28 @@
 
     self.layer.contents = (__bridge id)UIGraphicsGetImageFromCurrentImageContext().CGImage;
     UIGraphicsEndImageContext();
+}
+
+- (void)addCorner:(BOOL)corner
+      borderWidth:(CGFloat)borderWidth
+      borderColor:(UIColor * _Nullable)borderColor {
+    [self addCornerRadius:MIN(self.frame.size.width/2.0, self.frame.size.height/2.0)
+              borderWidth:borderWidth
+              borderColor:borderColor];
+}
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            borderWidth:(CGFloat)borderWidth
+            borderColor:(UIColor * _Nullable)borderColor {
+    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
+    shaperLayer.frame = self.bounds;
+    UIBezierPath *bezierPath;
+    if (cornerRadius > 0) {
+        bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius];
+    } else {
+        bezierPath = [UIBezierPath bezierPathWithRect:self.bounds];
+    }
+    shaperLayer.path = bezierPath.CGPath;
+    self.layer.mask = shaperLayer;
 }
 @end

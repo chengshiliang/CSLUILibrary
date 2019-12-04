@@ -151,26 +151,6 @@
     });
 }
 
-
-- (void)setCornerRadis:(BOOL)cornerRadis {
-    _cornerRadis = cornerRadis;
-    [self setRadis:MIN(self.bounds.size.width, self.bounds.size.height)/2.0];
-}
-
-- (void)setRadis:(CGFloat)radis {
-    _radis = radis;
-    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
-    shaperLayer.frame = self.bounds;
-    UIBezierPath *bezierPath;
-    if (radis > 0) {
-        bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radis];
-    } else {
-        bezierPath = [UIBezierPath bezierPathWithRect:self.bounds];
-    }
-    shaperLayer.path = bezierPath.CGPath;
-    self.layer.mask = shaperLayer;
-}
-
 - (void)sl_saveImageToLocal:(NSString*)fileName image:(UIImage *)image {
     if (!image) return;
     dispatch_async(imageViewQueue, ^{

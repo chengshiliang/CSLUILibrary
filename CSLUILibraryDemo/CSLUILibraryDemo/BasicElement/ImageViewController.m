@@ -39,7 +39,7 @@
     [self.imageView3 sl_setAlphaForImage:[UIImage imageNamed:@"3.jpg"] alpha:0.8f];
     [self.imageView4 sl_imageBlackToTransparent:[UIImage imageNamed:@"3.jpg"] weight:0.5f];
     [self.imageView5 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
-    self.imageView5.cornerRadis = YES;
+    [self.imageView5 addCorner:YES borderWidth:0.0 borderColor:nil];
     [self.imageView6 sl_blurEffect];
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
 }

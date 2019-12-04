@@ -48,14 +48,14 @@
 }
 
 - (CGSize)leftViewSize {// cell左边视图大小（包括图片和自定义view）
-    return self.leftCustomViewSize;
+    return ([self leftCustomViewSize].width > 0 && [self leftCustomViewSize].height > 0) ? [self leftCustomViewSize] : CGSizeMake(30, 30);
 }
 
 - (UIImageView *)leftImage {
     if ([NSString emptyString:self.leftImageUrl]) {
         return nil;
     }
-    CGSize imageSize = ([self leftViewSize].width > 0 && [self leftViewSize].height > 0) ? [self leftViewSize] : CGSizeMake(30, 30);
+    CGSize imageSize = [self leftViewSize];
     SLImageView *imageView = [[SLImageView alloc]initWithFrame:CGRectMake(0, 0, imageSize.width, imageSize.height)];
     if (self.isLeftImageLocal) {
         imageView.image = [UIImage imageNamed:self.leftImageUrl];
@@ -112,7 +112,7 @@
 
 - (UIImageView *)rightImage {
     if ([NSString emptyString:self.rightImageUrl]) return nil;
-    CGSize imageSize = ([self leftViewSize].width > 0 && [self leftViewSize].height > 0) ? [self leftViewSize] : CGSizeMake(30, 30);
+    CGSize imageSize = [self rightViewSize];
     SLImageView *imageView = [[SLImageView alloc]initWithFrame:CGRectMake(0, 0, imageSize.width, imageSize.height)];
     if (self.isRightImageLocal) {
         imageView.image = [UIImage imageNamed:self.rightImageUrl];
@@ -123,7 +123,7 @@
 }
 
 - (CGSize)rightViewSize {// cell右边视图大小（包括图片和自定义view）
-    return self.rightCustomViewSize;
+    return ([self rightCustomViewSize].width > 0 && [self rightCustomViewSize].height > 0) ? [self rightCustomViewSize] : CGSizeMake(30, 30);
 }
 
 - (float)spaceBetweenImageAndTitleAtRightItem {// cell右边文字和图片（自定义视图）间距 返回为yes(rightImage\rightView 返回非空)才调用

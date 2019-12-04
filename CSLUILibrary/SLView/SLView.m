@@ -25,15 +25,4 @@
 
 }
 
-- (void)addCornerRadius:(CGFloat)cornerRadius
-            shadowColor:(UIColor *)shadowColor
-           shadowOffset:(CGSize)shadowOffset
-          shadowOpacity:(CGFloat)shadowOpacity
-           shadowRadius:(CGFloat)shadowRadius {
-    self.layer.cornerRadius = cornerRadius;
-    self.layer.shadowColor = shadowColor.CGColor;
-    self.layer.shadowOffset = shadowOffset;
-    self.layer.shadowOpacity = shadowOpacity;
-    self.layer.shadowRadius = shadowRadius;
-}
 @end

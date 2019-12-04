@@ -10,11 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLImageView : UIImageView
-// 倒圆角
-@property (nonatomic, assign) BOOL cornerRadis;
-// 倒角
-@property (nonatomic, assign) CGFloat radis;
-
 - (void)sl_setImage:(UIImage *)image;
 /*
  *compressionQuality: 图片质量压缩值:0 ~ 1之间，默认0.5

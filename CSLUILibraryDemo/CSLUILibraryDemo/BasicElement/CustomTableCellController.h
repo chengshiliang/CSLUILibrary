@@ -9,6 +9,9 @@
 #import "SLViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@interface CustomTableCellModel : SLTableCellModel
+
+@end
 @interface CustomTableView : SLTableView
 
 @end

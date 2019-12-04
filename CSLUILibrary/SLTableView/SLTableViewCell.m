@@ -31,13 +31,12 @@
 
 - (void)setModel:(id <SLTableCellProtocol>)model {
     _model = model;
-    if (!model || ![model isKindOfClass:[SLTableCellModel class]]) {
+    if (!model || ![model conformsToProtocol:@protocol(SLTableCellProtocol)]) {
         [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         return;
     }
     UIEdgeInsets inset = [model contentInset];
     UIView *tempView = [[UIView alloc]init];
-    tempView.backgroundColor = [UIColor blueColor];
     [self.contentView addSubview:tempView];
     [tempView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView).with.insets(inset);
@@ -90,7 +89,6 @@
         CGFloat originTitleLabelY = 0;
         for (int i = 0; i < leftTitleCount; i++) {
             UILabel *titleLabel = leftTitleArray[i];
-            titleLabel.backgroundColor = [UIColor yellowColor];
             [titleViews addSubview:titleLabel];
             [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                make.left.mas_equalTo(titleViews);
@@ -107,15 +105,15 @@
         if (leftViewWidth > 0) {
             leftViewWidth += [model spaceBetweenMiddleItemAndLeftItem];
         }
-        middeleView.frame = CGRectMake(leftTitleMaxWidth, CGRectGetMidY(tempView.frame)-middeleView.frame.size.height/2.0, middeleView.frame.size.width, middeleView.frame.size.height);
         [tempView addSubview:middeleView];
         [middeleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(tempView).offset(leftTitleMaxWidth);
+            make.left.mas_equalTo(tempView).offset(leftViewWidth);
             make.centerY.mas_equalTo(tempView);
             make.height.mas_equalTo(middeleView.frame.size.height);
             make.width.mas_equalTo(middeleView.frame.size.width);
         }];
         leftViewWidth += middeleView.frame.size.width;
+        leftViewWidth += [model spaceBetweenMiddleItemAndRightItem];
     }
     
     UIView *rightView = nil;
@@ -140,6 +138,7 @@
             make.width.mas_equalTo(rightSize.width);
         }];
         rightViewWidth += rightSize.width;
+        
     }
     NSArray *rightTitleArray = [model rightTitles];
     NSInteger rightTitleCount = rightTitleArray ? rightTitleArray.count : 0;
@@ -159,18 +158,17 @@
             make.right.mas_equalTo(tempView).offset(-rightViewWidth);
             make.centerY.mas_equalTo(tempView);
             make.height.mas_equalTo(rightTitleHeight);
-            make.width.mas_equalTo(rightTitleMaxWidth);
+            make.left.mas_equalTo(tempView).offset(leftViewWidth);
         }];
         CGFloat originTitleLabelY = 0;
         for (int i = 0; i < rightTitleCount; i++) {
             UILabel *titleLabel = rightTitleArray[i];
-            titleLabel.backgroundColor = [UIColor redColor];
             [titleViews addSubview:titleLabel];
             [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                make.right.mas_equalTo(titleViews);
                make.top.mas_equalTo(titleViews).offset(originTitleLabelY);
                make.height.mas_equalTo(titleLabel.frame.size.height);
-               make.width.mas_equalTo(titleViews);
+               make.left.mas_equalTo(titleViews);
             }];
             originTitleLabelY += titleLabel.frame.size.height + [model spaceTitlesAtRightItem];
         }
