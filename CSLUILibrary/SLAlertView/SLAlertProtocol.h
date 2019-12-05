@@ -10,23 +10,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol SLAlertTitleLineProtocol <NSObject>
-
-- (UIColor *)lineViewBackcolor;
-- (CGFloat)lineViewLeftMargin;
-- (CGFloat)lineViewRightMargin;
+@protocol SLAlertActionProtocol <NSObject>
+@optional
+- (UIColor *)actionTitleColor;
+- (UIFont *)actionTitleFont;
 
 @end
 
-@protocol SLAlertMessageProtocol <NSObject>
+@protocol SLAlertLineProtocol <NSObject>
+@optional
+- (UIColor *)lineViewBackcolor;
+- (BOOL)lineShow;
+@end
 
+@protocol SLAlertMessageProtocol <NSObject>
+@optional
 - (UIColor *)messageColor;
 - (UIFont *)messageFont;
+- (NSTextAlignment)messageTextAlignment;
 
 @end
 
 @protocol SLAlertTitleProtocol <NSObject>
-
+@optional
 - (UIColor *)titleColor;
 - (UIFont *)titleFont;
 

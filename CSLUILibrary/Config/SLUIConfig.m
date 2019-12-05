@@ -28,11 +28,10 @@ static SLUIConfig *instance;
     return instance;
 }
 
-- (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset contentInset:(UIEdgeInsets)contentInset{
-    NSNumber *contentWidth = width > 0 ? @(width) : @(kScreenWidth * 0.8);
+- (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset{
+    NSNumber *contentWidth = width > 0 ? @(width) : @(kScreenWidth * 0.85);
     NSString *contentInsets = NSStringFromUIEdgeInsets(inset);
-    NSString *messageInset = NSStringFromUIEdgeInsets(contentInset);
-    NSDictionary *dic = @{SLAlertWidth: contentWidth,SLAlertContentInset: contentInsets, SLAlertMessageInset: messageInset};
+    NSDictionary *dic = @{SLAlertWidth: contentWidth,SLAlertContentInset: contentInsets};
     [instance.alertConfigDicM setValue:dic forKey:[NSString stringWithFormat:@"%ld", (long)type]];
 }
 

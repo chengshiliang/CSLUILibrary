@@ -124,9 +124,13 @@
 
 - (void)layoutSubviews {
     UIImage *image = self.currentImage;
-    if (self.imageSize.width <= 0 && self.imageSize.height <= 0) {
-        self.imageSize = CGSizeMake(image.size.width > self.frame.size.width ? self.frame.size.width : image.size.width,
-                                    image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
+    if (!image) {
+        _titleReact = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    } else {
+        if (self.imageSize.width <= 0 && self.imageSize.height <= 0) {
+            self.imageSize = CGSizeMake(image.size.width > self.frame.size.width ? self.frame.size.width : image.size.width,
+                                        image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
+        }
     }
     [super layoutSubviews];
 }

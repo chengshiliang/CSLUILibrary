@@ -40,7 +40,8 @@
 
 - (CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size{
     if ([self.class emptyString:self]) return CGSizeZero;
-    return [self boundingRectWithSize:size options:NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
+    CGSize result = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil] context:nil].size;
+    return CGSizeMake(ceil(result.width), ceil(result.height));
 }
 
 - (CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width {

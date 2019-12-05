@@ -5,7 +5,7 @@
 //  Created by SZDT00135 on 2019/11/4.
 //
 
-#import <UIKit/UIKit.h>
+#import "SLButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, SLTabbarButtonType) {
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, SLTabbarButtonType) {
     SLButtonTypeImageTop,        // 图片在文字上侧
     SLButtonTypeImageBottom      // 图片在文字下侧
 };
-@interface SLTabbarButton : UIButton
+@interface SLTabbarButton : SLButton
 @property (nonatomic, assign) SLTabbarButtonType tabbarButtonType;
 // 图片和文字之间的间距
 @property (nonatomic, assign) CGFloat imageTitleSpace;

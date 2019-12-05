@@ -20,9 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
  全局配置SLAlertView
  * width: alertview的宽度。i
  * inset：内部视图的内边距
- * contentinset: message内容的内边距
  */
-- (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset contentInset:(UIEdgeInsets)contentInset;
+- (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset;
 /**
  * 自定义字体和颜色，type应不包含 LabelType 范围内的数字
  */

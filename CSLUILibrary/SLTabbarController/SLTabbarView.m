@@ -34,7 +34,7 @@ static int buttonTag = 100;
             StrongSelf;
             if ([control isKindOfClass:[SLTabbarButton class]]) {
                 SLTabbarButton *currentBt = (SLTabbarButton *)control;
-                if (strongSelf.selectBarButton == currentBt) {
+                if (strongSelf.selectBarButton == currentBt && !strongSelf.canRepeatClick) {
                     return;
                 }
                 strongSelf.currentSelectIndex = currentBt.tag;
