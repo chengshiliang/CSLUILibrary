@@ -1,6 +1,6 @@
 PODS:
   - CSLCommonLibrary (0.3.3)
-  - CSLUILibrary (0.0.14):
+  - CSLUILibrary (0.0.15):
     - CSLCommonLibrary
     - JSONModel
     - Masonry
@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CSLCommonLibrary: 9fcccd7ef377e5dccf5681a9db289bc33c74f517
-  CSLUILibrary: 20ff5554cb4ef3e7718de6cb04d508374cfc8431
+  CSLUILibrary: 204cffc5f03a16c27ec5902e06da5353974c263d
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'CSLUILibrary'
-  s.version      = '0.0.14'
+  s.version      = '0.0.15'
   s.summary      = 'UI configurable interface Library'
   s.homepage     = 'https://github.com/chengshiliang/CSLUILibrary'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
