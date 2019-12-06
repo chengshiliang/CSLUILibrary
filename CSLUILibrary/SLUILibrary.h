@@ -47,6 +47,7 @@
 #import <CSLUILibrary/SLScrollView.h>
 #import <CSLUILibrary/SLRecycleView.h>
 #import <CSLUILibrary/SLAlertView.h>
+#import <CSLUILibrary/SLToast.h>
 
 #import <CSLUILibrary/SLCustomCollectionModel.h>
 #import <CSLUILibrary/SLPupModel.h>

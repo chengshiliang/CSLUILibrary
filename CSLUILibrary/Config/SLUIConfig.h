@@ -8,20 +8,30 @@
 #import <Foundation/Foundation.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLAlertView.h>
+#import <CSLUILibrary/SLToast.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLUIConfig : NSObject
 @property (nonatomic, readonly, copy) NSDictionary *labelConfig;
 @property (nonatomic, readonly, copy) NSDictionary *alertConfig;
+@property (nonatomic, strong) SLToastManager *toastManager;
+@property (nonatomic, strong) SLToastStyle *toastStyle;
 + (instancetype)share;
 - (void)configLabel:(LabelType)type font:(UIFont * _Nullable)fontSize color:(UIColor * _Nullable)color;
 /**
  全局配置SLAlertView
- * width: alertview的宽度。i
+ * width: alertview的宽度
  * inset：内部视图的内边距
  */
 - (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset;
+/**
+ 全局配置SLToast
+ * duration: toast时常
+ * position: toast位置
+ * maxCount: 同时显示的最大数
+ */
+- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position maxCount:(NSInteger)maxCount;
 /**
  * 自定义字体和颜色，type应不包含 LabelType 范围内的数字
  */

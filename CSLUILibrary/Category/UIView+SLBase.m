@@ -152,4 +152,9 @@
     shaperLayer.path = bezierPath.CGPath;
     self.layer.mask = shaperLayer;
 }
+
+- (UIView *)copyView:(UIView *)view {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:view];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
 @end

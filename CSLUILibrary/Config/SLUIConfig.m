@@ -24,8 +24,24 @@ static SLUIConfig *instance;
         instance = [[SLUIConfig alloc]init];
         instance.labelConfigDicM = [NSMutableDictionary dictionary];
         instance.alertConfigDicM = [NSMutableDictionary dictionary];
+        instance.toastManager = [[SLToastManager alloc]init];
+        instance.toastStyle = [[SLToastStyle alloc]init];
     });
     return instance;
+}
+
+- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position maxCount:(NSInteger)maxCount {
+    if (duration > 0) {
+        instance.toastManager.duration = duration;
+    }
+    if (position > 0) {
+        instance.toastManager.position = position;
+    }
+    if (maxCount > 0) {
+        instance.toastManager.maxCount = maxCount;
+    } else {
+        instance.toastManager.maxCount = 10000;
+    }
 }
 
 - (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset{
