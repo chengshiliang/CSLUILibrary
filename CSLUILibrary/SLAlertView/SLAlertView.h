@@ -50,7 +50,7 @@ AlertActionDestructive -- default SLUIHexColor(0xff0000)
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) SLView *titleLineView;// title的分割线
-@property (nonatomic, strong) SLTabbarView *buttonView;// 按钮容器视图
+
 - (instancetype)initWithType:(AlertType)type
                        title:(NSString * _Nullable)title
                      message:(NSString * _Nullable)message;

@@ -29,7 +29,7 @@ static SLUIConfig *instance;
 }
 
 - (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset{
-    NSNumber *contentWidth = width > 0 ? @(width) : @(kScreenWidth * 0.85);
+    NSNumber *contentWidth = width > 0 ? @(width) : (type == AlertView ? @(kScreenWidth * 0.85) : @(kScreenWidth * 0.95));
     NSString *contentInsets = NSStringFromUIEdgeInsets(inset);
     NSDictionary *dic = @{SLAlertWidth: contentWidth,SLAlertContentInset: contentInsets};
     [instance.alertConfigDicM setValue:dic forKey:[NSString stringWithFormat:@"%ld", (long)type]];

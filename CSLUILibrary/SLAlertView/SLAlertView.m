@@ -71,6 +71,7 @@
 @interface SLAlertView()
 @property (nonatomic, strong) NSMutableArray<SLAlertAction *> *actions;
 @property (nonatomic, strong) NSMutableArray<SLView *> *lineViews;
+@property (nonatomic, strong) SLTabbarView *buttonView;// 按钮容器视图
 @property (nonatomic, assign) AlertType type;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
@@ -90,7 +91,7 @@
         self.lineViews = [NSMutableArray array];
         NSDictionary *dic = [[SLUIConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
         self.width = [dic[SLAlertWidth] floatValue];
-        self.width = self.width > 1 ? self.width : kScreenWidth * 0.85;
+        self.width = self.width > 1 ? self.width : (type == AlertView ? kScreenWidth * 0.85 : kScreenWidth * 0.95);
         UIEdgeInsets contentInsets = [NSString emptyString:dic[SLAlertContentInset]] ? UIEdgeInsetsMake(20, 16, 20, 16) : UIEdgeInsetsFromString(dic[SLAlertContentInset]);
         self.contentInsets = contentInsets;
         self.originX = contentInsets.left;
@@ -138,11 +139,12 @@
                       type:(AlertActionType)type
                   callback:(void(^)(void))callback; {
     if ([NSString emptyString:title]) return;
+    int actionHeight = ceil(44* kScreenWidth*1.0 / 320);
     if (!self.buttonView) {
-        self.buttonView = [[SLTabbarView alloc]initWithFrame:CGRectMake(0, self.height, self.width, 44)];
+        self.buttonView = [[SLTabbarView alloc]initWithFrame:CGRectMake(0, self.height, self.width, actionHeight)];
         [self addSubview:self.buttonView];
         self.buttonView.canRepeatClick = YES;
-        self.height += 44;
+        self.height += actionHeight;
     }
     
     SLView *lineView = [[SLView alloc]init];
@@ -152,9 +154,9 @@
     [self.lineViews addObject:lineView];
     for (int i = 0; i < self.lineViews.count; i ++) {
         SLView *view = self.lineViews[i];
-        view.frame = CGRectMake(0, CGRectGetMinY(self.buttonView.frame)+44*i, self.buttonView.frame.size.width, 0.5);
+        view.frame = CGRectMake(0, CGRectGetMinY(self.buttonView.frame)+actionHeight*i, self.buttonView.frame.size.width, 0.5);
     }
-    if (self.actions.count == 1) {
+    if (self.actions.count == 1 && self.type == AlertView) {
         SLView *view = self.lineViews[1];
         view.frame = CGRectMake(CGRectGetMidX(self.buttonView.frame), CGRectGetMinY(self.buttonView.frame), 0.5, self.buttonView.frame.size.height);
     }
@@ -170,22 +172,32 @@
     NSMutableArray *normalArray = [NSMutableArray array];
     NSMutableArray *cancelArray = [NSMutableArray array];
     for (SLAlertAction *action in self.actions) {
-        if (action.actionType) {
+        if (action.actionType == AlertActionCancel) {
             [cancelArray addObject:action];
         } else {
             [normalArray addObject:action];
         }
     }
-    if (self.actions.count <= 2) {
-        self.actions = [cancelArray arrayByAddingObjectsFromArray:normalArray].mutableCopy;
+    if (self.type == AlertView) {
+        if (self.actions.count <= 2) {
+            self.actions = [cancelArray arrayByAddingObjectsFromArray:normalArray].mutableCopy;
+        } else {
+            self.actions = [normalArray arrayByAddingObjectsFromArray:cancelArray].mutableCopy;
+        }
     } else {
         self.actions = [normalArray arrayByAddingObjectsFromArray:cancelArray].mutableCopy;
     }
     CGFloat plusHeight = 0;
-    if (self.actions.count == 3) {
-        plusHeight = 88;
-    } else if (self.actions.count > 3) {
-        plusHeight = 44;
+    if (self.type == AlertView) {
+        if (self.actions.count == 3) {
+            plusHeight = actionHeight*2;
+        } else if (self.actions.count > 3) {
+            plusHeight = actionHeight;
+        }
+    } else {
+        if (self.actions.count > 1) {
+            plusHeight = actionHeight;
+        }
     }
     CGRect frame = self.buttonView.frame;
     frame.size.height += plusHeight;
@@ -265,7 +277,11 @@
     }
     self.height += self.contentInsets.bottom;
     self.height = MAX(30, self.height);
-    self.frame = CGRectMake(kScreenWidth/2.0-self.width/2.0, kScreenHeight/2.0-self.height/2.0, self.width, self.height);
+    if (self.type == AlertView) {
+        self.frame = CGRectMake(kScreenWidth/2.0-self.width/2.0, kScreenHeight/2.0-self.height/2.0, self.width, self.height);
+    } else {
+        self.frame = CGRectMake(kScreenWidth/2.0-self.width/2.0, kScreenHeight-self.height-10, self.width, self.height);
+    }
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     [backView addSubview:self];
