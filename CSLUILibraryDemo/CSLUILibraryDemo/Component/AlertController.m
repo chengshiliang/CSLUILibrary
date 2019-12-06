@@ -13,42 +13,59 @@
 @property (nonatomic, weak) IBOutlet SLButton *onlyMessageAlert;
 @property (nonatomic, weak) IBOutlet SLButton *onlyTitleAlert;
 @property (nonatomic, weak) IBOutlet SLButton *nothingAlert;
-@property (nonatomic, weak) IBOutlet SLButton *customViewAlert;
+@property (nonatomic, weak) IBOutlet SLButton *customViewAlert;// 自定义内容块的视图内容 如imageview、uitextfield
 @end
 
 @implementation AlertController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    WeakSelf;
     [self.normalAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:@"title" titleModel:nil titleLineModel:nil message:@"message" messageModel:nil];
-        [alert addActionWithTitle:@"取消" type:AlertActionCancel lineModel:nil actionModel:nil callback:^{
-            
-        }];
-        [alert addActionWithTitle:@"其他" type:AlertActionDestructive lineModel:nil actionModel:nil callback:^{
-
-        }];
-        [alert addActionWithTitle:@"确认" type:AlertActionDefault lineModel:nil actionModel:nil callback:^{
-
-        }];
+        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:@"title" message:@"message"];
+        [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
+        [alert show];
+    }];
+    
+    [self.onlyMessageAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:nil message:@"message"];
+        [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
+        [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
+        [alert show];
+    }];
+    
+    [self.onlyTitleAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:@"title" message:nil];
+        [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
+        [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
+        [alert addActionWithTitle:@"确认" type:AlertActionDefault callback:^{}];
+        [alert show];
+    }];
+    
+    [self.nothingAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:nil message:nil];
+        [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
+        [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
+        [alert addActionWithTitle:@"确认" type:AlertActionDefault callback:^{}];
+        [alert addActionWithTitle:@"第四选项" type:AlertActionDestructive callback:^{}];
         [alert show];
     }];
     
     [self.customViewAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        StrongSelf;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"title" message:@"message" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"其他" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
-        }]];
-        
-        [strongSelf presentViewController:alert animated:YES completion:nil];
+        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:nil message:nil];
+        [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
+        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 20, 100, 100)];
+        view1.backgroundColor = [UIColor redColor];
+        [alert addCustomView:view1 alignment:AlertContentViewAlignmentLeft];
+        [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
+        UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(0, 20, 100, 100)];
+        view2.backgroundColor = [UIColor greenColor];
+        [alert addCustomView:view2 alignment:AlertContentViewAlignmentRight];
+        [alert addActionWithTitle:@"确认" type:AlertActionDefault callback:^{}];
+        UIView *view3 = [[UIView alloc]initWithFrame:CGRectMake(0, 20, 100, 100)];
+        view3.backgroundColor = [UIColor blueColor];
+        [alert addCustomView:view3 alignment:AlertContentViewAlignmentCenter];
+        [alert addActionWithTitle:@"第四选项" type:AlertActionDestructive callback:^{}];
+        [alert show];
     }];
 }
 

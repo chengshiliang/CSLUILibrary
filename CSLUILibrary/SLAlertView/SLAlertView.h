@@ -6,7 +6,8 @@
 //
 
 #import "SLView.h"
-#import <CSLUILibrary/SLAlertProtocol.h>
+#import <CSLUILibrary/SLTabbarView.h>
+#import <CSLUILibrary/SLTabbarButton.h>
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, AlertType){
@@ -18,20 +19,46 @@ typedef NS_ENUM(NSInteger, AlertActionType){
     AlertActionDefault = 1,
     AlertActionDestructive = 2
 };
+typedef NS_ENUM(NSInteger, AlertContentViewAlignmentType) {
+    AlertContentViewAlignmentCenter = 0,
+    AlertContentViewAlignmentLeft = 1,
+    AlertContentViewAlignmentRight = 2,
+};
+
+@interface SLAlertAction : NSObject
+@property (nonatomic, assign) AlertActionType actionType;
+@property (nonatomic, copy) void(^callback)(void);
+@property (nonatomic, strong) SLTabbarButton *button;
+/**
+AlertActionCancel -- default  SLUIHexColor(0x007aff)
+AlertActionDefault -- default SLUIHexColor(0x007aff)
+AlertActionDestructive -- default SLUIHexColor(0xff0000)
+*/
+@property (nonatomic, strong) UIColor *titleColor;
+/**
+ AlertActionCancel -- default SLUIBoldFont(17.0)
+ AlertActionDefault -- default SLUINormalFont(17.0)
+ AlertActionDestructive -- default SLUINormalFont(17.0)
+ */
+@property (nonatomic, strong) UIFont *titleFont;
+@end
+
 @interface SLAlertView : SLView
-@property (nonatomic, copy) NSString *title;// 更新title，但不会引起frame变化。可能会引起...的现象
-@property (nonatomic, copy) NSString *message;// 更新message，但不会引起frame变化。会引起...的现象
+@property (nonatomic, weak) UIView *backView;
+@property (nonatomic, strong, readonly) NSArray<SLAlertAction *> *actionArray;
+@property (nonatomic, strong, readonly) NSArray<SLView *> *lineViewArray;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) SLView *titleLineView;// title的分割线
+@property (nonatomic, strong) SLTabbarView *buttonView;// 按钮容器视图
 - (instancetype)initWithType:(AlertType)type
-                       title:(NSString *)title
-                  titleModel:(id<SLAlertTitleProtocol> _Nullable)titleModel
-              titleLineModel:(id<SLAlertLineProtocol> _Nullable)titleLineModel
-                     message:(NSString *)message
-                messageModel:(id<SLAlertMessageProtocol> _Nullable)messageModel;
+                       title:(NSString * _Nullable)title
+                     message:(NSString * _Nullable)message;
 - (void)addActionWithTitle:(NSString *)title
                       type:(AlertActionType)type
-                 lineModel:(id<SLAlertLineProtocol> _Nullable)lineModel
-               actionModel:(id<SLAlertActionProtocol> _Nullable)actionModel
                   callback:(void(^)(void))callback;
+- (void)addCustomView:(UIView *)customView
+            alignment:(AlertContentViewAlignmentType)alignmentType;
 - (void)show;
 - (void)hide;
 @end
