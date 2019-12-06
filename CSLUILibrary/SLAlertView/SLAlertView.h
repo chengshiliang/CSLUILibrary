@@ -44,7 +44,7 @@ AlertActionDestructive -- default SLUIHexColor(0xff0000)
 @end
 
 @interface SLAlertView : SLView
-@property (nonatomic, weak) UIView *backView;
+@property (nonatomic, weak) SLView *backView;
 @property (nonatomic, strong, readonly) NSArray<SLAlertAction *> *actionArray;
 @property (nonatomic, strong, readonly) NSArray<SLView *> *lineViewArray;
 @property (nonatomic, strong) UILabel *titleLabel;

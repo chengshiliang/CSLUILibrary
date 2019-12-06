@@ -69,6 +69,7 @@
 @end
 
 @interface SLAlertView()
+@property (nonatomic, strong) NSMutableArray<SLAlertAction *> *cancelActions;
 @property (nonatomic, strong) NSMutableArray<SLAlertAction *> *actions;
 @property (nonatomic, strong) NSMutableArray<SLView *> *lineViews;
 @property (nonatomic, strong) SLTabbarView *buttonView;// 按钮容器视图
@@ -89,6 +90,7 @@
         self.type = type;
         self.actions = [NSMutableArray array];
         self.lineViews = [NSMutableArray array];
+        self.cancelActions = [NSMutableArray array];
         NSDictionary *dic = [[SLUIConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
         self.width = [dic[SLAlertWidth] floatValue];
         self.width = self.width > 1 ? self.width : (type == AlertView ? kScreenWidth * 0.85 : kScreenWidth * 0.95);
@@ -139,7 +141,20 @@
                       type:(AlertActionType)type
                   callback:(void(^)(void))callback; {
     if ([NSString emptyString:title]) return;
-    int actionHeight = ceil(44* kScreenWidth*1.0 / 320);
+    int actionHeight = self.type == AlertSheet ? ceil(44* kScreenWidth*1.0 / 320) : 44;
+    BOOL isActionCancel = self.type == AlertSheet && type == AlertActionCancel;// 是actionsheet类型的取消按钮
+    if (isActionCancel) {
+        SLAlertAction *action = [[SLAlertAction alloc]init];
+        action.actionType = type;
+        SLTabbarButton *tabbarBt = [[SLTabbarButton alloc] init];
+        [tabbarBt setTitle:title forState:UIControlStateNormal];
+        [tabbarBt setTitleColor:[action titleColor] forState:UIControlStateNormal];
+        tabbarBt.titleLabel.font = [action titleFont];
+        action.button = tabbarBt;
+        action.callback = [callback copy];
+        [self.cancelActions addObject:action];
+        return;
+    }
     if (!self.buttonView) {
         self.buttonView = [[SLTabbarView alloc]initWithFrame:CGRectMake(0, self.height, self.width, actionHeight)];
         [self addSubview:self.buttonView];
@@ -199,9 +214,7 @@
             plusHeight = actionHeight;
         }
     }
-    CGRect frame = self.buttonView.frame;
-    frame.size.height += plusHeight;
-    self.buttonView.frame = frame;
+    self.buttonView.sl_height = self.buttonView.sl_height + plusHeight;
     self.buttonView.direction = plusHeight > 0 ? Vertical : Horizontal;
     self.height += plusHeight;
     [self layoutButtons];
@@ -213,15 +226,11 @@
     if (self.actions.count > 0) {
         for (int i = 0; i < self.lineViews.count; i ++) {
             SLView *view = self.lineViews[i];
-            CGRect lineFrame = view.frame;
-            lineFrame.origin.y += customView.frame.origin.y + customView.frame.size.height;
-            view.frame = lineFrame;
+            view.sl_y = view.sl_y + customView.frame.origin.y + customView.frame.size.height;
         }
-        CGRect frame = self.buttonView.frame;
-        frame.origin.y += customView.frame.origin.y + customView.frame.size.height;
-        self.buttonView.frame = frame;
+        self.buttonView.sl_y = self.buttonView.sl_y + customView.frame.origin.y + customView.frame.size.height;
         [self layoutButtons];
-        self.height -= frame.size.height;
+        self.height -= self.buttonView.frame.size.height;
     }
     CGFloat viewRealWidth = customView.frame.size.width > self.contentWidth ? self.contentWidth : customView.frame.size.width;
     CGFloat viewRealHeight = customView.frame.size.height * viewRealWidth * 1.0/ customView.frame.size.width;
@@ -266,13 +275,9 @@
     if (self.actions.count > 0) {
         for (int i = 0; i < self.lineViews.count; i ++) {
             SLView *view = self.lineViews[i];
-            CGRect lineFrame = view.frame;
-            lineFrame.origin.y += self.contentInsets.bottom;
-            view.frame = lineFrame;
+            view.sl_y = view.sl_y + self.contentInsets.bottom;
         }
-        CGRect frame = self.buttonView.frame;
-        frame.origin.y += self.contentInsets.bottom;
-        self.buttonView.frame = frame;
+        self.buttonView.sl_y = self.contentInsets.bottom + self.buttonView.sl_y;
         [self layoutButtons];
     }
     self.height += self.contentInsets.bottom;
@@ -282,10 +287,49 @@
     } else {
         self.frame = CGRectMake(kScreenWidth/2.0-self.width/2.0, kScreenHeight-self.height-10, self.width, self.height);
     }
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    SLView *backView = [[SLView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     backView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
     [backView addSubview:self];
     self.backView = backView;
+    if (self.cancelActions.count > 0) {
+        int actionHeight = ceil(44* kScreenWidth*1.0 / 320);
+        CGFloat cancelButtonViewHeight = 10 + self.cancelActions.count*actionHeight;
+        SLTabbarView *cancelButonView = [[SLTabbarView alloc]initWithFrame:CGRectMake((kScreenWidth-self.width)/2.0, kScreenHeight - cancelButtonViewHeight, self.width, self.cancelActions.count*actionHeight)];
+        cancelButonView.canRepeatClick = YES;
+        cancelButonView.backgroundColor = SLUIHexColor(0xffffff);
+        cancelButonView.direction = Vertical;
+        [self.backView addSubview:cancelButonView];
+        self.sl_y = self.sl_y - cancelButtonViewHeight;
+        NSMutableArray *arrayM = [NSMutableArray array];
+        for (SLAlertAction *action in self.cancelActions) {
+            [arrayM addObject:action.button];
+        }
+        [cancelButonView initButtons:[NSArray arrayWithArray:arrayM] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+            button.tabbarButtonType = SLButtonTypeOnlyTitle;
+        }];
+        WeakSelf;
+        cancelButonView.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
+            StrongSelf;
+            SLAlertAction *action = strongSelf.cancelActions[index];
+            void(^callback)(void) = [action.callback copy];
+            if (callback && strongSelf.backView) {
+                callback();
+                [strongSelf hide];
+            }
+        };
+        [cancelButonView setNeedsLayout];
+        [cancelButonView layoutIfNeeded];
+        [cancelButonView addCornerRadius:10];
+        if (self.cancelActions.count > 1) {
+            for (int i = 1; i < self.cancelActions.count; i ++) {
+                SLView *lineView = [[SLView alloc]initWithFrame:CGRectMake(0, actionHeight*i, self.width, 0.5)];
+                lineView.backgroundColor = [self lineViewBackcolor];
+                lineView.hidden = ![self otherLineShow];
+                [cancelButonView addSubview:lineView];
+                [self.lineViews addObject:lineView];
+            }
+        }
+    }
     [[UIApplication sharedApplication].keyWindow addSubview:backView];
     [self addCornerRadius:10];
     self.clipsToBounds = YES;
@@ -300,7 +344,7 @@
 }
 
 - (NSArray<SLAlertAction *> *)actionArray {
-    return [self.actions copy];
+    return [[self.actions arrayByAddingObjectsFromArray:self.cancelActions] copy];
 }
 
 - (UIFont *)titleFont {
