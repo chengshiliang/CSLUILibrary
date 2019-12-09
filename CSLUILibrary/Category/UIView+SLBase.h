@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addCornerRadius:(CGFloat)cornerRadius;
 // 拷贝一个view
-- (UIView *)copyView:(UIView *)view;
++ (UIView *)copyView:(UIView *)view;
 @end
 
 NS_ASSUME_NONNULL_END

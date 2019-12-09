@@ -21,21 +21,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.normalAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:@"title" message:@"message"];
+        SLAlertView *alert = [[SLAlertView alloc]init];
+        UILabel *titleLabel = alert.titleLabel;
+        titleLabel.textColor = [UIColor redColor];
+        alert.titleLabel = titleLabel;
+        [alert addAlertWithType:AlertView title:@"title" message:@"message"];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
         [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
         [alert show];
     }];
     
     [self.onlyMessageAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertSheet title:@"title" message:@"message"];
+        SLAlertView *alert = [[SLAlertView alloc]init];
+        [alert addAlertWithType:AlertSheet title:@"title" message:@"message"];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
         [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
         [alert show];
     }];
     
     [self.onlyTitleAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:@"title" message:nil];
+        SLAlertView *alert = [[SLAlertView alloc]init];
+        [alert addAlertWithType:AlertView title:@"title" message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
         [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
         [alert addActionWithTitle:@"确认" type:AlertActionDefault callback:^{}];
@@ -43,7 +49,8 @@
     }];
     
     [self.nothingAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertSheet title:nil message:nil];
+        SLAlertView *alert = [[SLAlertView alloc]init];
+        [alert addAlertWithType:AlertSheet title:nil message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
         [alert addActionWithTitle:@"其他" type:AlertActionDestructive callback:^{}];
         [alert addActionWithTitle:@"确认" type:AlertActionDefault callback:^{}];
@@ -52,7 +59,8 @@
     }];
     
     [self.customViewAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLAlertView *alert = [[SLAlertView alloc]initWithType:AlertView title:nil message:nil];
+        SLAlertView *alert = [[SLAlertView alloc]init];
+        [alert addAlertWithType:AlertView title:nil message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel callback:^{}];
         UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 20, 100, 100)];
         view1.backgroundColor = [UIColor redColor];

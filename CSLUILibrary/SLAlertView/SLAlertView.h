@@ -51,9 +51,9 @@ AlertActionDestructive -- default SLUIHexColor(0xff0000)
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, strong) SLView *titleLineView;// title的分割线
 
-- (instancetype)initWithType:(AlertType)type
-                       title:(NSString * _Nullable)title
-                     message:(NSString * _Nullable)message;
+- (void)addAlertWithType:(AlertType)type
+                   title:(NSString * _Nullable)title
+                 message:(NSString * _Nullable)message;
 - (void)addActionWithTitle:(NSString *)title
                       type:(AlertActionType)type
                   callback:(void(^)(void))callback;

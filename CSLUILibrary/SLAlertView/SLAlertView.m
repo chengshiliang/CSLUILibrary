@@ -83,58 +83,54 @@
 
 @implementation SLAlertView
 
-- (instancetype)initWithType:(AlertType)type
-                       title:(NSString *)title
-                     message:(NSString *)message {
-    if (self == [super init]) {
-        self.type = type;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self == [super initWithFrame:frame]) {
         self.actions = [NSMutableArray array];
         self.lineViews = [NSMutableArray array];
         self.cancelActions = [NSMutableArray array];
-        NSDictionary *dic = [[SLUIConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
-        self.width = [dic[SLAlertWidth] floatValue];
-        self.width = self.width > 1 ? self.width : (type == AlertView ? kScreenWidth * 0.85 : kScreenWidth * 0.95);
-        UIEdgeInsets contentInsets = [NSString emptyString:dic[SLAlertContentInset]] ? UIEdgeInsetsMake(20, 16, 20, 16) : UIEdgeInsetsFromString(dic[SLAlertContentInset]);
-        self.contentInsets = contentInsets;
-        self.originX = contentInsets.left;
-        self.height = contentInsets.top;
-        self.contentWidth = self.width-contentInsets.left-contentInsets.right;
-        if (![NSString emptyString:title]) {
-            SLLabel *titleLabel = [[SLLabel alloc]init];
-            titleLabel.numberOfLines = 0;
-            titleLabel.textAlignment = NSTextAlignmentCenter;
-            titleLabel.font = [self titleFont];
-            titleLabel.textColor = [self titleColor];
-            CGSize titleSize = [title sizeWithFont:self.titleLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
-            titleLabel.frame = CGRectMake(self.originX, contentInsets.top, self.contentWidth, titleSize.height);
-            titleLabel.text = title;
-            [self addSubview:titleLabel];
-            self.height += titleSize.height;
-            self.titleLabel = titleLabel;
-            self.titleLineView = [[SLView alloc]init];
-            self.titleLineView.backgroundColor = [self lineViewBackcolor];
-            self.titleLineView.hidden = ![self titleLineShow];
-            self.titleLineView.frame = CGRectMake(0, self.height, self.width, 0.5);
-            [self addSubview:self.titleLineView];
-            self.height += self.titleLineView.frame.size.height;
-        }
-        if (![NSString emptyString:message]) {
-            self.height += 5;
-            SLLabel *messageLabel = [[SLLabel alloc]init];
-            messageLabel.numberOfLines = 0;
-            messageLabel.textAlignment = [self messageTextAlignment];
-            messageLabel.font = [self messageFont];
-            messageLabel.textColor = [self messageColor];
-            CGSize messageSize = [message sizeWithFont:messageLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
-            messageLabel.frame = CGRectMake(self.originX, self.height, self.contentWidth, messageSize.height);
-            messageLabel.text = message;
-            [self addSubview:messageLabel];
-            self.messageLabel = messageLabel;
-            self.height += messageLabel.frame.size.height;
-        }
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
+}
+
+- (void)addAlertWithType:(AlertType)type
+                   title:(NSString *)title
+                 message:(NSString *)message {
+    self.type = type;
+    [self.actions removeAllObjects];
+    [self.lineViews removeAllObjects];
+    [self.cancelActions removeAllObjects];
+    NSDictionary *dic = [[SLUIConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
+    self.width = [dic[SLAlertWidth] floatValue];
+    self.width = self.width > 1 ? self.width : (type == AlertView ? kScreenWidth * 0.85 : kScreenWidth * 0.95);
+    UIEdgeInsets contentInsets = [NSString emptyString:dic[SLAlertContentInset]] ? UIEdgeInsetsMake(20, 16, 20, 16) : UIEdgeInsetsFromString(dic[SLAlertContentInset]);
+    self.contentInsets = contentInsets;
+    self.originX = contentInsets.left;
+    self.height = contentInsets.top;
+    self.contentWidth = self.width-contentInsets.left-contentInsets.right;
+    if (![NSString emptyString:title]) {
+        SLLabel *titleLabel = [UIView copyView:self.titleLabel];
+        CGSize titleSize = [title sizeWithFont:self.titleLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
+        titleLabel.frame = CGRectMake(self.originX, contentInsets.top, self.contentWidth, titleSize.height);
+        titleLabel.text = title;
+        [self addSubview:titleLabel];
+        self.height += titleSize.height;
+        self.titleLineView = [[SLView alloc]init];
+        self.titleLineView.backgroundColor = [self lineViewBackcolor];
+        self.titleLineView.hidden = ![self titleLineShow];
+        self.titleLineView.frame = CGRectMake(0, self.height, self.width, 0.5);
+        [self addSubview:self.titleLineView];
+        self.height += self.titleLineView.frame.size.height;
+    }
+    if (![NSString emptyString:message]) {
+        self.height += 5;
+        SLLabel *messageLabel = [UIView copyView:self.messageLabel];
+        CGSize messageSize = [message sizeWithFont:messageLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
+        messageLabel.frame = CGRectMake(self.originX, self.height, self.contentWidth, messageSize.height);
+        messageLabel.text = message;
+        [self addSubview:messageLabel];
+        self.height += messageLabel.frame.size.height;
+    }
 }
 
 - (void)addActionWithTitle:(NSString *)title
@@ -345,6 +341,28 @@
 
 - (NSArray<SLAlertAction *> *)actionArray {
     return [[self.actions arrayByAddingObjectsFromArray:self.cancelActions] copy];
+}
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[SLLabel alloc]init];
+        _titleLabel.numberOfLines = 0;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = [self titleFont];
+        _titleLabel.textColor = [self titleColor];
+    }
+    return _titleLabel;
+}
+
+- (UILabel *)messageLabel {
+    if (!_messageLabel) {
+        _messageLabel = [[SLLabel alloc]init];
+        _messageLabel.numberOfLines = 0;
+        _messageLabel.textAlignment = [self messageTextAlignment];
+        _messageLabel.font = [self messageFont];
+        _messageLabel.textColor = [self messageColor];
+    }
+    return _messageLabel;
 }
 
 - (UIFont *)titleFont {

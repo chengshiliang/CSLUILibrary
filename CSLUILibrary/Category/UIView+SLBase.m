@@ -153,7 +153,8 @@
     self.layer.mask = shaperLayer;
 }
 
-- (UIView *)copyView:(UIView *)view {
++ (UIView *)copyView:(UIView *)view {
+    if (!view) return nil;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:view];
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
