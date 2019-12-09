@@ -13,6 +13,8 @@
 @interface SLUIConfig()
 @property (nonatomic, strong) NSMutableDictionary *labelConfigDicM;
 @property (nonatomic, strong) NSMutableDictionary *alertConfigDicM;
+@property (nonatomic, strong) SLToastManager *toastManager;
+@property (nonatomic, strong) SLToastStyle *toastStyle;
 @end
 
 @implementation SLUIConfig
@@ -42,6 +44,11 @@ static SLUIConfig *instance;
     } else {
         instance.toastManager.maxCount = 10000;
     }
+}
+
+- (void)configToastStyle:(SLToastStyle *)style {
+    if (!style) return;
+    instance.toastStyle = style;
 }
 
 - (void)configAlert:(AlertType)type width:(CGFloat)width inset:(UIEdgeInsets)inset{

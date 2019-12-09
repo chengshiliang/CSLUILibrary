@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLUIConfig : NSObject
 @property (nonatomic, readonly, copy) NSDictionary *labelConfig;
 @property (nonatomic, readonly, copy) NSDictionary *alertConfig;
-@property (nonatomic, strong) SLToastManager *toastManager;
-@property (nonatomic, strong) SLToastStyle *toastStyle;
+@property (nonatomic, strong, readonly) SLToastManager *toastManager;
+@property (nonatomic, strong, readonly) SLToastStyle *toastStyle;
 + (instancetype)share;
 - (void)configLabel:(LabelType)type font:(UIFont * _Nullable)fontSize color:(UIColor * _Nullable)color;
 /**
@@ -32,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
  * maxCount: 同时显示的最大数
  */
 - (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position maxCount:(NSInteger)maxCount;
+/**
+ 全局配置SLToast的style
+ * style: 样式
+ */
+- (void)configToastStyle:(SLToastStyle *)style;
 /**
  * 自定义字体和颜色，type应不包含 LabelType 范围内的数字
  */

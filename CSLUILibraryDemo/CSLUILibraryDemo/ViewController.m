@@ -56,6 +56,8 @@
             cell.textLabel.text = @"不规则的CollectionView";
         } else if (indexPath.row == 5) {
             cell.textLabel.text = @"自定义弹窗";
+        }  else if (indexPath.row == 6) {
+            cell.textLabel.text = @"自定义Toast";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -141,6 +143,8 @@
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
                 } else if (indexPath.row == 5) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
+                } else if (indexPath.row == 6) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
                 }
             } else if (indexPath.section == 2) {
                  if (indexPath.row == 0) {

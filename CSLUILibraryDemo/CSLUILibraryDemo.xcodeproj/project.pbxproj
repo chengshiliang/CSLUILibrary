@@ -29,6 +29,7 @@
 		15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */; };
 		15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D15962238627B1006DD86B /* NavTranslucentViewController.m */; };
 		15D1597623868793006DD86B /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D1597523868793006DD86B /* TabbarController.m */; };
+		15D53C27239E1EB800A10E0B /* ToastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C26239E1EB800A10E0B /* ToastController.m */; };
 		15DB4114238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4113238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m */; };
 		15DB411A238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DB4119238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m */; };
 		15EFE1532370FE7D00912334 /* 11.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE1522370FE7D00912334 /* 11.PNG */; };
@@ -83,6 +84,8 @@
 		15D15962238627B1006DD86B /* NavTranslucentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTranslucentViewController.m; sourceTree = "<group>"; };
 		15D1597423868793006DD86B /* TabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
 		15D1597523868793006DD86B /* TabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabbarController.m; sourceTree = "<group>"; };
+		15D53C25239E1EB800A10E0B /* ToastController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastController.h; sourceTree = "<group>"; };
+		15D53C26239E1EB800A10E0B /* ToastController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastController.m; sourceTree = "<group>"; };
 		15DB4112238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuiXingCoffeeHomeVC.h; sourceTree = "<group>"; };
 		15DB4113238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuiXingCoffeeHomeVC.m; sourceTree = "<group>"; };
 		15DB4118238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuiXingCoffeeHomeHeaderView.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				15FF8BB623751F8100B920B2 /* SearchViewController.m */,
 				157EF8FF2397ABBA00FF4C98 /* AlertController.h */,
 				157EF9002397ABBA00FF4C98 /* AlertController.m */,
+				15D53C25239E1EB800A10E0B /* ToastController.h */,
+				15D53C26239E1EB800A10E0B /* ToastController.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
+				15D53C27239E1EB800A10E0B /* ToastController.m in Sources */,
 				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
 				15D1597623868793006DD86B /* TabbarController.m in Sources */,

@@ -593,7 +593,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HIJ-qv-Jbf"/>
                                 </constraints>
-                                <state key="normal" title="常规弹窗"/>
+                                <state key="normal" title="弹窗"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2O-cA-mhN" customClass="SLButton">
                                 <rect key="frame" x="20" y="70" width="335" height="30"/>
@@ -626,10 +626,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Fo4-Ud-hQX" firstAttribute="top" secondItem="zW8-GT-4ln" secondAttribute="bottom" constant="20" id="11y-RH-FeY"/>
                             <constraint firstAttribute="trailing" secondItem="S4l-KK-8UP" secondAttribute="trailing" constant="20" id="6Sl-sZ-Nlr"/>
                             <constraint firstItem="S4l-KK-8UP" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="7s6-0d-tfB"/>
                             <constraint firstAttribute="trailing" secondItem="s2O-cA-mhN" secondAttribute="trailing" constant="20" id="AUq-6L-6aK"/>
-                            <constraint firstItem="Fo4-Ud-hQX" firstAttribute="top" secondItem="zW8-GT-4ln" secondAttribute="bottom" constant="20" id="JgD-c8-JWc"/>
                             <constraint firstItem="9fB-QZ-6hc" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="NmE-Nx-rW0"/>
                             <constraint firstItem="qxa-nZ-9kt" firstAttribute="leading" secondItem="BPr-bJ-jqT" secondAttribute="leading" constant="20" id="O8D-Ks-vnu"/>
                             <constraint firstAttribute="trailing" secondItem="9fB-QZ-6hc" secondAttribute="trailing" constant="20" id="VFT-gM-hM8"/>
@@ -1050,6 +1050,118 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlr-pW-ZtS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2852" y="1382"/>
+        </scene>
+        <!--Toast Controller-->
+        <scene sceneID="KRw-yn-oEk">
+            <objects>
+                <viewController storyboardIdentifier="toast" id="NFp-AS-Dwg" customClass="ToastController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ciO-bq-Clo"/>
+                        <viewControllerLayoutGuide type="bottom" id="S5y-yC-rcC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ll0-Mt-YDh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50R-Tj-qQe" customClass="SLButton">
+                                <rect key="frame" x="20" y="10" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Tqj-Qd-XF4"/>
+                                </constraints>
+                                <state key="normal" title="toast"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hea-Uh-aBq" customClass="SLButton">
+                                <rect key="frame" x="20" y="60" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wlO-KD-NC8"/>
+                                </constraints>
+                                <state key="normal" title="nothing"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJi-BO-7OP" customClass="SLButton">
+                                <rect key="frame" x="20" y="110" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ndv-wv-I5u"/>
+                                </constraints>
+                                <state key="normal" title="title"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmr-5t-IjC" customClass="SLButton">
+                                <rect key="frame" x="20" y="160" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="N0f-Ac-nvf"/>
+                                </constraints>
+                                <state key="normal" title="message"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-xh-u2Q" customClass="SLButton">
+                                <rect key="frame" x="20" y="210" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Icp-tf-oWs"/>
+                                </constraints>
+                                <state key="normal" title="image"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRu-Oz-fvt" customClass="SLButton">
+                                <rect key="frame" x="20" y="260" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hXl-RZ-ZaZ"/>
+                                </constraints>
+                                <state key="normal" title="title and message"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehM-um-XhF" customClass="SLButton">
+                                <rect key="frame" x="20" y="310" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="E9q-G6-9r0"/>
+                                </constraints>
+                                <state key="normal" title="title and image"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FtM-Qr-eug" customClass="SLButton">
+                                <rect key="frame" x="20" y="360" width="335" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jVi-Yb-soT"/>
+                                </constraints>
+                                <state key="normal" title="message and image"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NJi-BO-7OP" firstAttribute="top" secondItem="Hea-Uh-aBq" secondAttribute="bottom" constant="20" id="1bB-lE-p3g"/>
+                            <constraint firstItem="ehM-um-XhF" firstAttribute="top" secondItem="bRu-Oz-fvt" secondAttribute="bottom" constant="20" id="3Vu-VN-8Vy"/>
+                            <constraint firstItem="ehM-um-XhF" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="3qG-Jx-A4M"/>
+                            <constraint firstAttribute="trailing" secondItem="ACs-xh-u2Q" secondAttribute="trailing" constant="20" id="3uk-xa-2Qw"/>
+                            <constraint firstItem="Hea-Uh-aBq" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="6mD-49-jeM"/>
+                            <constraint firstItem="50R-Tj-qQe" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="6r7-X9-AgT"/>
+                            <constraint firstItem="ACs-xh-u2Q" firstAttribute="top" secondItem="fmr-5t-IjC" secondAttribute="bottom" constant="20" id="733-6o-5m1"/>
+                            <constraint firstItem="bRu-Oz-fvt" firstAttribute="top" secondItem="ACs-xh-u2Q" secondAttribute="bottom" constant="20" id="7nY-gD-Efg"/>
+                            <constraint firstItem="FtM-Qr-eug" firstAttribute="top" secondItem="ehM-um-XhF" secondAttribute="bottom" constant="20" id="8Bd-JC-brA"/>
+                            <constraint firstItem="fmr-5t-IjC" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="CZq-11-TP8"/>
+                            <constraint firstAttribute="trailing" secondItem="50R-Tj-qQe" secondAttribute="trailing" constant="20" id="Gsu-Cd-uZ4"/>
+                            <constraint firstAttribute="trailing" secondItem="Hea-Uh-aBq" secondAttribute="trailing" constant="20" id="JgF-K0-Fez"/>
+                            <constraint firstItem="Hea-Uh-aBq" firstAttribute="top" secondItem="50R-Tj-qQe" secondAttribute="bottom" constant="20" id="JsV-Sp-4pr"/>
+                            <constraint firstItem="NJi-BO-7OP" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="Med-QH-4KF"/>
+                            <constraint firstItem="50R-Tj-qQe" firstAttribute="top" secondItem="ciO-bq-Clo" secondAttribute="bottom" constant="10" id="MhB-b1-Hws"/>
+                            <constraint firstItem="ACs-xh-u2Q" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="QtM-iy-eZ1"/>
+                            <constraint firstAttribute="trailing" secondItem="fmr-5t-IjC" secondAttribute="trailing" constant="20" id="S9D-AY-LZW"/>
+                            <constraint firstAttribute="trailing" secondItem="FtM-Qr-eug" secondAttribute="trailing" constant="20" id="SYn-dK-Ew6"/>
+                            <constraint firstAttribute="trailing" secondItem="NJi-BO-7OP" secondAttribute="trailing" constant="20" id="V1y-9I-bmG"/>
+                            <constraint firstItem="bRu-Oz-fvt" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="Vgw-gs-q7a"/>
+                            <constraint firstAttribute="trailing" secondItem="bRu-Oz-fvt" secondAttribute="trailing" constant="20" id="exq-p8-f1c"/>
+                            <constraint firstItem="FtM-Qr-eug" firstAttribute="leading" secondItem="Ll0-Mt-YDh" secondAttribute="leading" constant="20" id="j9Y-dR-QPV"/>
+                            <constraint firstItem="fmr-5t-IjC" firstAttribute="top" secondItem="NJi-BO-7OP" secondAttribute="bottom" constant="20" id="ro7-8b-Rnj"/>
+                            <constraint firstAttribute="trailing" secondItem="ehM-um-XhF" secondAttribute="trailing" constant="20" id="xFn-0i-Qbe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="toast" destination="50R-Tj-qQe" id="6wC-oF-0Wk"/>
+                        <outlet property="toastMessageAndImage" destination="FtM-Qr-eug" id="XP8-l6-4LG"/>
+                        <outlet property="toastOnlyImage" destination="ACs-xh-u2Q" id="ggb-TP-AXf"/>
+                        <outlet property="toastOnlyMessage" destination="fmr-5t-IjC" id="QWF-gX-9ep"/>
+                        <outlet property="toastOnlyTitle" destination="NJi-BO-7OP" id="eB2-9d-eER"/>
+                        <outlet property="toastTitleAndImage" destination="ehM-um-XhF" id="RAT-Nb-ptY"/>
+                        <outlet property="toastTitleAndMessage" destination="bRu-Oz-fvt" id="zm6-US-smF"/>
+                        <outlet property="toastWithNothing" destination="Hea-Uh-aBq" id="vwI-r2-pJl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udd-Gz-WE0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="3422"/>
         </scene>
     </scenes>
 </document>
