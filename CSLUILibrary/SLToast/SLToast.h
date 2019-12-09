@@ -49,7 +49,7 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 @end
 
 #warning 图片要支持gif格式
-@interface SLToast : SLView
+@interface SLToast : NSObject
 + (instancetype)makeToast:(NSString *_Nullable)message;
 + (instancetype)makeToast:(NSString *_Nullable)message
                     title:(NSString *_Nullable)title;

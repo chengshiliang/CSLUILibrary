@@ -60,7 +60,10 @@
     [self.toastMessageAndImage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
         SLToastStyle *style = [SLUIConfig share].toastStyle;
         style.superContentView = (SLView *)self.view;
-        [SLToast makeToast:@"message" title:nil image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft style:style];
+        SLToast *toast = [SLToast makeToast:@"message" title:nil image:[UIImage imageNamed:@"3.jpg"] duration:.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft style:style];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [toast hideToast];
+        });
     }];
 }
 
