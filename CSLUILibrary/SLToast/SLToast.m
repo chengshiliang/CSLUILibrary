@@ -205,6 +205,7 @@ static int imageViewTag = 103;
     return self;
 }
 - (void)hideToast{
+
 }
 + (void)hideAllToasts{
 }
@@ -333,18 +334,18 @@ static int imageViewTag = 103;
                 break;
         }
     }
-    if (position == SLToastPositonTop) {
-        contentView.frame = CGRectMake(kScreenWidth/2.0-style.width/2.0, 0, style.width, startY);
-    } else if (position == SLToastPositonBottom) {
-        contentView.frame = CGRectMake(kScreenWidth/2.0-style.width/2.0, kScreenHeight-startY, style.width, startY);
-    } else {
-        contentView.frame = CGRectMake(kScreenWidth/2.0-style.width/2.0, kScreenHeight/2.0-startY/2.0, style.width, startY);
-    }
-    [contentView addCornerRadius:style.wraperViewRadius shadowColor:style.wraperViewShadowColor shadowOffset:style.wraperViewShadowOffset shadowOpacity:style.wraperViewShadowOpacity shadowRadius:style.wraperViewShadowRadius];
     SLView *wraperView = [[SLView alloc]initWithFrame:style.superContentView.bounds];
     wraperView.backgroundColor = style.backgroundColor;
     [style.superContentView addSubview:wraperView];
     [wraperView addSubview:contentView];
+    if (position == SLToastPositonTop) {
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, style.wraperViewSpace, style.width, startY);
+    } else if (position == SLToastPositonBottom) {
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, wraperView.sl_height-startY-style.wraperViewSpace, style.width, startY);
+    } else {
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, wraperView.sl_height/2.0-startY/2.0, style.width, startY);
+    }
+    [contentView addCornerRadius:style.wraperViewRadius shadowColor:style.wraperViewShadowColor shadowOffset:style.wraperViewShadowOffset shadowOpacity:style.wraperViewShadowOpacity shadowRadius:style.wraperViewShadowRadius];
     if (duration > 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [wraperView removeFromSuperview];

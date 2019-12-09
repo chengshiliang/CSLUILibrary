@@ -30,6 +30,7 @@
     style.width = kScreenWidth * 0.8;
     style.contentInsets = UIEdgeInsetsMake(20, 16, 20, 16);
     style.wraperView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    style.wraperViewSpace = 20.f;
     style.wraperViewRadius = 5.0f;
 //    style.wraperViewShadowRadius = 5.0f;
 //    style.wraperViewShadowColor = SLUIHexColor(0x000000);

@@ -29,6 +29,7 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 @property (assign, nonatomic) CGFloat width;// toast 的宽度
 @property (assign, nonatomic) UIEdgeInsets contentInsets;// toast 的内边距
 @property (strong, nonatomic) SLView *wraperView;// toast的内容视图
+@property (assign, nonatomic) CGFloat wraperViewSpace;// toast的内容视图到父容器的间距，SLToastPositonTop、SLToastPositonBottom对应的上、下两侧距离
 @property (assign, nonatomic) CGFloat wraperViewRadius;// toast的内容视图倒角
 @property (strong, nonatomic) UIColor *wraperViewShadowColor;// toast的内容视图的阴影颜色
 @property (assign, nonatomic) CGSize wraperViewShadowOffset;// toast的内容视图的阴影偏移量
