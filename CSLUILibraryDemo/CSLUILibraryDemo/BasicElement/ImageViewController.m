@@ -42,6 +42,7 @@
     [self.imageView5 addCorner:YES];
     [self.imageView6 sl_blurEffect];
     [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+    [self.imageView1 addLoadingWithFillColor:[UIColor blueColor] strokeColor:[UIColor redColor] loadingColor:[UIColor greenColor] lineWidth:5];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

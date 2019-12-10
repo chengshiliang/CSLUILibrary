@@ -28,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sl_blurEffect:(CGRect)rect;
 - (void)sl_blurEffect:(CGRect)rect style:(EffectStyle)style;
 
+- (void)addLoadingWithFillColor:(UIColor *_Nullable)fillColor
+                    strokeColor:(UIColor *_Nullable)strokeColor
+                   loadingColor:(UIColor *_Nullable)loadingColor
+                      lineWidth:(CGFloat)lineWidth;
 
 - (void)addCornerRadius:(CGFloat)cornerRadius
             shadowColor:(UIColor *)shadowColor

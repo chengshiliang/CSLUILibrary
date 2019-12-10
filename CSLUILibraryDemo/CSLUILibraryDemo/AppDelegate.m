@@ -22,14 +22,14 @@
     [[SLUIConfig share]configAlert:AlertSheet width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
     
     SLToastStyle *style = [SLUIConfig share].toastStyle;
-    style.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+    style.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
     style.titleLabel.textColor = SLUIHexColor(0xffffff);
-    style.titleLabel.font = SLUIBoldFont(24.0);
+    style.titleLabel.font = SLUIBoldFont(17.0);
     style.messageLabel.textColor = SLUIHexColor(0xffffff);
     style.messageLabel.font = SLUINormalFont(17.0);
     style.width = kScreenWidth * 0.8;
     style.contentInsets = UIEdgeInsetsMake(20, 16, 20, 16);
-    style.wraperView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+    style.wraperView.backgroundColor = SLUIHexAlphaColor(0x585858, 0.9);;
     style.wraperViewSpace = 20.f;
     style.wraperViewRadius = 5.0f;
 //    style.wraperViewShadowRadius = 5.0f;

@@ -6,6 +6,8 @@
 //
 
 #import "UIView+SLBase.h"
+#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/SLTimer.h>
 
 @implementation UIView (SLBase)
 - (CGFloat)sl_height
@@ -88,6 +90,46 @@
     [self addSubview:toolbar];
 }
 
+- (void)addLoadingWithFillColor:(UIColor *)fillColor
+                    strokeColor:(UIColor *)strokeColor
+                   loadingColor:(UIColor *)loadingColor
+                      lineWidth:(CGFloat)lineWidth{
+    if (self.frame.size.width <=0 || self.frame.size.height <= 0) return;
+    if (lineWidth <= 0) lineWidth = 2.0f;
+    if (!fillColor) fillColor = [UIColor clearColor];
+    if (!strokeColor) strokeColor = SLUIHexColor(0x666666);
+    CGFloat width = self.frame.size.width;
+    CGFloat height = self.frame.size.height;
+    [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+    [self.layer removeAllAnimations];
+    CGFloat radius = MIN(width/2.0, height/2.0) - lineWidth/2.0;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.frame = CGRectMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds), radius, radius);
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointZero radius:radius startAngle:0 endAngle:2*M_PI clockwise:YES];
+    shapeLayer.path = bezierPath.CGPath;
+    shapeLayer.fillColor = fillColor.CGColor;
+    shapeLayer.strokeColor = strokeColor.CGColor;
+    shapeLayer.lineWidth = lineWidth;
+    [self.layer addSublayer:shapeLayer];
+    
+    CAShapeLayer *loadingLayer = [CAShapeLayer layer];
+    loadingLayer.frame = CGRectMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds), radius, radius);
+    loadingLayer.backgroundColor = [UIColor yellowColor].CGColor;
+    UIBezierPath *loadingPath = [UIBezierPath bezierPathWithArcCenter:CGPointZero radius:radius startAngle:M_PI_4 endAngle:M_PI_4*3 clockwise:YES];
+    loadingLayer.path = loadingPath.CGPath;
+    loadingLayer.fillColor = [UIColor yellowColor].CGColor;
+    loadingLayer.strokeColor = loadingColor.CGColor;
+    loadingLayer.lineWidth = lineWidth;
+    [self.layer addSublayer:loadingLayer];
+    
+//    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    anima.toValue = [NSNumber numberWithFloat:-M_PI*2];
+//    anima.duration = 1.0f;
+//    anima.repeatCount = MAXFLOAT;
+//    anima.timingFunction = UIViewAnimationOptionCurveEaseInOut;
+//    [self.layer addAnimation:anima forKey:@"loadingAnimation"];
+}
+
 - (void)addCornerRadius:(CGFloat)cornerRadius
             shadowColor:(UIColor *)shadowColor
            shadowOffset:(CGSize)shadowOffset
@@ -122,7 +164,7 @@
         CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
     }
     UIBezierPath *bezierPath;
-    CGRect rect = CGRectMake(self.bounds.origin.x+borderWidth*1.0/2, self.bounds.origin.y+borderWidth*1.0/2, self.bounds.size.width+borderWidth, self.bounds.size.height+borderWidth);
+    CGRect rect = CGRectMake(self.bounds.origin.x+borderWidth*1.0/2, self.bounds.origin.y+borderWidth*1.0/2, self.bounds.size.width-borderWidth, self.bounds.size.height-borderWidth);
     if (cornerRadius > 0) {
         bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
     } else {

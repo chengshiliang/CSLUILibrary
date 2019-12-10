@@ -20,6 +20,7 @@
                                                searchResultBlock:^NSArray * _Nonnull(SLSearchController *searchController, NSString *searchText) {
                                                    return @[@[@(1)],@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
                                                }];
+    vc.searchBarDefaultValue = @"美女";
 //    vc.searchIcon = [UIImage imageNamed:@"cir3"];
 //    vc.leftMargin = 16.0f;
 //    vc.rightMargin = 16.0f;

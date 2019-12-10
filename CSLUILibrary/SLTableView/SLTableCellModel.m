@@ -35,6 +35,13 @@
     return _font;
 }
 
+- (CGFloat)width {
+    if (_width <= 0) {
+        return kScreenWidth;
+    }
+    return _width;
+}
+
 @end
 
 @implementation SLTableCellModel
@@ -77,13 +84,14 @@
         if ([NSString emptyString:model.title]) {
             label.frame = CGRectZero;
         } else {
-            CGSize titleSize = [model.title sizeWithFont:model.font size:CGSizeMake(kScreenWidth, MAXFLOAT)];
+            CGSize titleSize = [model.title sizeWithFont:model.font size:CGSizeMake(model.width, MAXFLOAT)];
             label.frame = CGRectMake(0, 0, titleSize.width, titleSize.height);
             label.text = model.title;
             label.font = model.font;
             label.textColor = model.color;
             label.textAlignment = NSTextAlignmentLeft;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.numberOfLines = 0;
         }
         [arrayM addObject:label];
     }
@@ -92,6 +100,10 @@
 
 - (float)spaceTitlesAtLeftItem {// cell左边文字间距 numberRowsAtRightItem 大于1的时候才调用
     return self.columnSpaceLeftItem > 0 ? self.columnSpaceLeftItem : 8.0f;
+}
+
+- (BOOL)middleViewAtLeft {
+    return self.isLeftForMiddleView;
 }
 
 - (UIView *)middleView {// 自定义cell中间部分的视图
@@ -137,13 +149,15 @@
         if ([NSString emptyString:model.title]) {
             label.frame = CGRectZero;
         } else {
-            CGSize titleSize = [model.title sizeWithFont:model.font size:CGSizeMake(kScreenWidth, MAXFLOAT)];
+            CGSize titleSize = [model.title sizeWithFont:model.font size:CGSizeMake(model.width, MAXFLOAT)];
+            NSLog(@"size %@ ~~~ %lf", NSStringFromCGSize(titleSize), model.width);
             label.frame = CGRectMake(0, 0, titleSize.width, titleSize.height);
             label.text = model.title;
             label.font = model.font;
             label.textColor = model.color;
             label.textAlignment = NSTextAlignmentRight;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.numberOfLines = 0;
         }
         [arrayM addObject:label];
     }

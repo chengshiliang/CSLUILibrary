@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (float)spaceTitlesAtLeftItem;// cell左边文字间距 numberRowsAtRightItem 大于1的时候才调用
 - (UIView *)leftView;// 自定义cell左边视图
 - (UIView *)middleView;// 自定义cell中间部分的视图
+- (BOOL)middleViewAtLeft;// 中间部分视图显示靠左还是靠右，返回yes，代表靠左，返回no靠右
 - (float)spaceBetweenMiddleItemAndLeftItem;// cell左边和中间部分视图的间距
 - (float)spaceBetweenMiddleItemAndRightItem;// cell左边和中间部分视图的间距
 - (UIImageView *)rightImage;// cell右边图片

@@ -84,5 +84,6 @@
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:name ofType:nil];
     NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
     UIImage *image = [UIImage sd_imageWithGIFData:imageData];// SDWebImage加载gif图片
+    return image;
 }
 @end

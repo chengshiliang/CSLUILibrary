@@ -8,6 +8,7 @@
 #import "SLView.h"
 #import <CSLUILibrary/SLTabbarView.h>
 #import <CSLUILibrary/SLTabbarButton.h>
+#import <CSLUILibrary/SLLabel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, AlertType){
@@ -47,8 +48,8 @@ AlertActionDestructive -- default SLUIHexColor(0xff0000)
 @property (nonatomic, weak) SLView *backView;
 @property (nonatomic, strong, readonly) NSArray<SLAlertAction *> *actionArray;
 @property (nonatomic, strong, readonly) NSArray<SLView *> *lineViewArray;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *messageLabel;
+@property (nonatomic, strong) SLLabel *titleLabel;
+@property (nonatomic, strong) SLLabel *messageLabel;
 @property (nonatomic, strong) SLView *titleLineView;// title的分割线
 
 - (void)addAlertWithType:(AlertType)type

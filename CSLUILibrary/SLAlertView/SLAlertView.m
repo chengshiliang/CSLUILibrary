@@ -11,7 +11,6 @@
 #import <CSLUILibrary/SLUIConfig.h>
 #import <CSLUILibrary/SLUIConst.h>
 #import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLImageView.h>
 #import <Masonry/Masonry.h>
 
@@ -343,7 +342,7 @@
     return [[self.actions arrayByAddingObjectsFromArray:self.cancelActions] copy];
 }
 
-- (UILabel *)titleLabel {
+- (SLLabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[SLLabel alloc]init];
         _titleLabel.numberOfLines = 0;
@@ -354,7 +353,7 @@
     return _titleLabel;
 }
 
-- (UILabel *)messageLabel {
+- (SLLabel *)messageLabel {
     if (!_messageLabel) {
         _messageLabel = [[SLLabel alloc]init];
         _messageLabel.numberOfLines = 0;

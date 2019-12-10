@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SLTableCellTitleModel : NSObject
+@property (nonatomic, assign) CGFloat width;// 文本宽度，默认为屏幕宽度
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) UIFont *font;// 默认system 14
 @property (nonatomic, strong) UIColor *color;// 默认 0x666666
@@ -32,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat columnSpaceRightItem;// cell右边文字之间的间距
 @property (nonatomic, assign) CGFloat rowSpaceLeftAndMiddleItem;// cell左边和中间之间的间距
 @property (nonatomic, assign) CGFloat rowSpaceMiddleAndRightItem;// cell右边和中间之间的间距
-
+@property (nonatomic, assign) BOOL isLeftForMiddleView;
 @property (nonatomic, assign) BOOL isLeftImageLocal;// 是否为本地图片地址
 @property (nonatomic, assign) BOOL isRightImageLocal;// 是否为本地图片地址
 @property (nonatomic, copy) NSString *leftImageUrl;

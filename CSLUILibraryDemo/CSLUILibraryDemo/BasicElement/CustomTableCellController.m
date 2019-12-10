@@ -25,9 +25,6 @@
     NSArray *labes = [super leftTitles];
     for (UILabel *label in labes) {
         label.backgroundColor = [UIColor redColor];
-        CGRect frame = label.frame;
-        frame.size.width = 85;
-        label.frame = frame;
     }
     return labes;
 }
@@ -35,7 +32,7 @@
 - (NSArray<UILabel *> *)rightTitles {
     NSArray *labes = [super rightTitles];
     for (UILabel *label in labes) {
-        label.textAlignment = NSTextAlignmentLeft;
+        label.textAlignment = NSTextAlignmentRight;
     }
     return labes;
 }
@@ -189,12 +186,13 @@
             cellModel.rightCustomViewSize = CGSizeMake(60, 60);
             model = cellModel;
         } else if (j == 6) {
-            rowModel.tableRowHeight = 80;
+            rowModel.tableRowHeight = 200;
             CustomTableCellModel *cellModel = [[CustomTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
                 SLTableCellTitleModel *model = [SLTableCellTitleModel new];
                 model.title = i==0 ? @"三行文字第一行" : (i==1 ? @"三行文字第二行" : @"三行文字第三行");
+                model.width = 80;
                 [arrayM addObject:model];
             }
             cellModel.leftTitleModels = arrayM.copy;
@@ -217,15 +215,17 @@
             cellModel.customRightView = rightCustomView;
             cellModel.leftCustomViewSize = CGSizeMake(60, 60);
             cellModel.rightCustomViewSize = CGSizeMake(60, 60);
+            cellModel.isLeftForMiddleView = YES;
             model = cellModel;
         } else if (j == 7) {
-            rowModel.tableRowHeight = 80;
+            rowModel.tableRowHeight = 200;
             CustomTableCellModel *cellModel = [[CustomTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
-               SLTableCellTitleModel *model = [SLTableCellTitleModel new];
-               model.title = i==0 ? @"三行文字第一行" : (i==1 ? @"三行文字第二行" : @"三行文字第三行");
-               [arrayM addObject:model];
+                SLTableCellTitleModel *model = [SLTableCellTitleModel new];
+                model.title = i==0 ? @"三行文字第一行" : (i==1 ? @"三行文字第二行" : @"三行文字第三行");
+                model.width = 80;
+                [arrayM addObject:model];
             }
             cellModel.leftTitleModels = arrayM.copy;
             cellModel.rightTitleModels = arrayM.copy;
@@ -235,6 +235,7 @@
             cellModel.isRightImageLocal = YES;
             cellModel.leftCustomViewSize = CGSizeMake(60, 60);
             cellModel.rightCustomViewSize = CGSizeMake(60, 60);
+            cellModel.isLeftForMiddleView = NO;
             model = cellModel;
         } else {
             model = [[SLModel alloc]init];

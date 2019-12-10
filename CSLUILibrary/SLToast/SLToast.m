@@ -24,7 +24,7 @@
 @implementation SLToastStyle
 - (UIColor *)backgroundColor {
     if (!_backgroundColor) {
-        _backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+        _backgroundColor = [UIColor colorWithWhite:1 alpha:1.0];
     }
     return _backgroundColor;
 }
@@ -42,7 +42,7 @@
     if (!_messageLabel) {
         _messageLabel = [[SLLabel alloc]init];
         _messageLabel.numberOfLines = 0;
-        _messageLabel.font = SLUINormalFont(14.0);
+        _messageLabel.font = SLUINormalFont(17.0);
         _messageLabel.textColor = SLUIHexColor(0xffffff);
         _messageLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -57,7 +57,7 @@
 - (SLView *)wraperView {
     if (!_wraperView) {
         _wraperView = [[SLView alloc]init];
-        _wraperView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+        _wraperView.backgroundColor = SLUIHexAlphaColor(0x585858, 0.9);
     }
     return _wraperView;
 }

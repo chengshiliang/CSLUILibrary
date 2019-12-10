@@ -101,7 +101,7 @@
     }
     leftViewWidth += leftTitleMaxWidth;
     UIView *middeleView = [model middleView];
-    if (middeleView) {
+    if (middeleView && [model middleViewAtLeft]) {
         if (leftViewWidth > 0) {
             leftViewWidth += [model spaceBetweenMiddleItemAndLeftItem];
         }
@@ -138,7 +138,6 @@
             make.width.mas_equalTo(rightSize.width);
         }];
         rightViewWidth += rightSize.width;
-        
     }
     NSArray *rightTitleArray = [model rightTitles];
     NSInteger rightTitleCount = rightTitleArray ? rightTitleArray.count : 0;
@@ -148,7 +147,7 @@
     if (rightTitleCount > 0) {
         CGFloat rightTitleHeight = rightTitleCount > 1 ? [model spaceTitlesAtRightItem]*(rightTitleCount - 1) : 0;
         CGFloat rightTitleMaxWidth = 0;
-        for (UILabel *titleLabel in leftTitleArray) {
+        for (UILabel *titleLabel in rightTitleArray) {
             rightTitleHeight += titleLabel.frame.size.height;
             rightTitleMaxWidth = ceil(MAX(rightTitleMaxWidth, titleLabel.frame.size.width));
         }
@@ -158,8 +157,9 @@
             make.right.mas_equalTo(tempView).offset(-rightViewWidth);
             make.centerY.mas_equalTo(tempView);
             make.height.mas_equalTo(rightTitleHeight);
-            make.left.mas_equalTo(tempView).offset(leftViewWidth);
+            make.width.mas_equalTo(rightTitleMaxWidth);
         }];
+        rightViewWidth += rightTitleMaxWidth;
         CGFloat originTitleLabelY = 0;
         for (int i = 0; i < rightTitleCount; i++) {
             UILabel *titleLabel = rightTitleArray[i];
@@ -172,6 +172,19 @@
             }];
             originTitleLabelY += titleLabel.frame.size.height + [model spaceTitlesAtRightItem];
         }
+    }
+    if (middeleView && ![model middleViewAtLeft]) {
+        if (rightViewWidth > 0) {
+            rightViewWidth += [model spaceBetweenMiddleItemAndRightItem];
+        }
+        [tempView addSubview:middeleView];
+        [middeleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(tempView).offset(-rightViewWidth);
+            make.centerY.mas_equalTo(tempView);
+            make.height.mas_equalTo(middeleView.frame.size.height);
+            make.width.mas_equalTo(middeleView.frame.size.width);
+        }];
+        rightViewWidth += middeleView.frame.size.width;
     }
 }
 

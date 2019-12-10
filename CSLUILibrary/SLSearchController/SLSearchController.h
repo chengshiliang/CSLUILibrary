@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *searchBarTextColor;// default black color
 @property (nonatomic, strong) UIColor *searchBarBackgroundColor;// default clear color
 @property (nonatomic, copy) NSString *searchBarPlaceHolder;// default 请输入想搜索的内容
+@property (nonatomic, copy) NSString *searchBarDefaultValue;// 输入框的默认添加的值
 @property (nonatomic, assign) CGFloat searchBarRadius;// default 5.0f
 @property (nonatomic, assign) CGFloat searchBarBorderWidth;// default 1.0f
 @property (nonatomic, strong) UIColor *searchBarBorderColor;// default 0xe0e0e0

@@ -131,6 +131,7 @@
     self.searchController.searchBar.textColor = self.searchBarTextColor;
     self.searchController.searchBar.font = self.searchBarTextFont;
     self.searchController.searchBar.placeholder = self.searchBarPlaceHolder;
+    self.searchController.searchBar.text = self.searchBarDefaultValue;
     self.searchController.searchBar.backgroundColor = self.searchBarBackgroundColor;
     self.searchController.searchBar.layer.cornerRadius = self.searchBarRadius;
     self.searchController.searchBar.layer.masksToBounds = YES;
