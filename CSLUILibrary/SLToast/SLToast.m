@@ -92,136 +92,181 @@ static int messageLabelTag = 102;
 static int imageViewTag = 103;
 
 @interface SLToast()
-@property (nonatomic, strong) SLView *wraperView;
+@property (nonatomic, strong) NSMutableArray *activeToasts;
+@property (nonatomic, strong) NSMutableArray *toastQueue;
 @end
 
 @implementation SLToast
-+ (instancetype)makeToast:(NSString *)message {
-    return [self makeToast:message
-                     title:@""
-                     image:nil
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title{
-    return [self makeToast:message
-                     title:title
-                     image:nil
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    image:(UIImage *)image {
-    return [self makeToast:message
-                     title:@""
-                     image:image
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image{
-    return [self makeToast:message
-                     title:title
-                     image:image
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image
-                 duration:(NSTimeInterval)duration{
-    return [self makeToast:message
-                     title:title
-                     image:image
-                  duration:duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position{
-    return [self makeToast:message
-                     title:title
-                     image:image
-                  duration:duration
-                  position:position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position
-            imagePosition:(SLToastImagePositon)imagePosition{
-    return [self makeToast:message
-                     title:title
-                     image:image
-                  duration:duration
-                  position:position
-             imagePosition:imagePosition
-                     style:[SLUIConfig share].toastStyle];
-}
-+ (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position
-            imagePosition:(SLToastImagePositon)imagePosition
-                    style:(SLToastStyle *)style{
-    return [[self alloc] makeToast:message
-                             title:title
-                             image:image
-                          duration:duration
-                          position:position
-                     imagePosition:imagePosition
-                             style:style];
-}
-- (instancetype)makeToast:(NSString *)message
-                    title:(NSString *)title
-                    image:(UIImage *)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position
-            imagePosition:(SLToastImagePositon)imagePosition
-                    style:(SLToastStyle *)style{
-    if (self == [super init]) {
-        [self getToastView:message
-                     title:title
-                     image:image
-                  duration:(NSTimeInterval)duration
-                  position:position
-             imagePosition:imagePosition
-                     style:style];
+
+- (NSMutableArray *)activeToasts {
+    if (!_activeToasts) {
+        _activeToasts = [NSMutableArray array];
     }
-    return self;
+    return _activeToasts;
+}
+
+- (NSMutableArray *)toastQueue {
+    if (!_toastQueue) {
+        _toastQueue = [NSMutableArray array];
+    }
+    return _toastQueue;
+}
+
+- (NSArray *)toasts {
+    return [self.toastQueue copy];
+}
+
+- (void)makeToast:(NSString *)message {
+    return [self makeToast:message
+                     title:@""
+                     image:nil
+                  duration:[SLUIConfig share].toastManager.duration
+                  position:[SLUIConfig share].toastManager.position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title{
+    return [self makeToast:message
+                     title:title
+                     image:nil
+                  duration:[SLUIConfig share].toastManager.duration
+                  position:[SLUIConfig share].toastManager.position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            image:(UIImage *)image {
+    return [self makeToast:message
+                     title:@""
+                     image:image
+                  duration:[SLUIConfig share].toastManager.duration
+                  position:[SLUIConfig share].toastManager.position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title
+            image:(UIImage *)image{
+    return [self makeToast:message
+                     title:title
+                     image:image
+                  duration:[SLUIConfig share].toastManager.duration
+                  position:[SLUIConfig share].toastManager.position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title
+            image:(UIImage *)image
+         duration:(NSTimeInterval)duration{
+    return [self makeToast:message
+                     title:title
+                     image:image
+                  duration:duration
+                  position:[SLUIConfig share].toastManager.position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title
+            image:(UIImage *)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position{
+    return [self makeToast:message
+                     title:title
+                     image:image
+                  duration:duration
+                  position:position
+             imagePosition:[SLUIConfig share].toastManager.imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title
+            image:(UIImage *)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position
+    imagePosition:(SLToastImagePositon)imagePosition{
+    return [self makeToast:message
+                     title:title
+                     image:image
+                  duration:duration
+                  position:position
+             imagePosition:imagePosition
+                     style:[SLUIConfig share].toastStyle];
+}
+- (void)makeToast:(NSString *)message
+            title:(NSString *)title
+            image:(UIImage *)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position
+    imagePosition:(SLToastImagePositon)imagePosition
+            style:(SLToastStyle *)style{
+    UIView *toastView = [self getToastView:message
+                                     title:title
+                                     image:image
+                                  position:position
+                             imagePosition:imagePosition
+                                     style:style];
+    [self showToast:toastView style:style duration:duration];
 }
 - (void)hideToast{
-    [self.wraperView removeFromSuperview];
+    if (self.activeToasts.count <= 0) return;
+    UIView *toastView = self.activeToasts[0];
+    [self hideToast:toastView];
 }
-+ (void)hideAllToasts{
+- (void)hideToast:(UIView *)view {
+    if (self.activeToasts.count > 0) {
+        if ([self.activeToasts containsObject:view]) {
+            [view removeFromSuperview];
+            [self.activeToasts removeObject:view];
+        } else {
+            if (self.toastQueue.count > 0 && [self.toastQueue containsObject:view]) {
+                [self.toastQueue removeObject:view];
+            }
+        }
+    } else {
+        if (self.toastQueue.count > 0 && [self.toastQueue containsObject:view]) {
+            [self.toastQueue removeObject:view];
+        }
+    }
 }
-+ (void)makeToastActivity:(SLToastPositon)position{
+- (void)hideAllToasts{
+    [self.toastQueue removeAllObjects];
+    for (UIView *toastView in self.activeToasts) {
+        [toastView removeFromSuperview];
+    }
+    [self.activeToasts removeAllObjects];
 }
-+ (void)hideToastActivity{
+- (void)makeToastActivity:(SLToastPositon)position{
+}
+- (void)hideToastActivity{
+}
+
+- (void)showToast:(UIView *)view style:(SLToastStyle *)style duration:(NSTimeInterval)duration{
+    if (!view) return;
+    if (self.activeToasts.count > 0) {
+        [self.toastQueue addObject:view];
+    } else {
+        [self.activeToasts addObject:view];
+        [style.superContentView addSubview:view];
+        if (duration > 0) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [view removeFromSuperview];
+                [self.activeToasts removeObject:view];
+                if (self.toastQueue.count > 0) {
+                    UIView *toastView = [self.toastQueue lastObject];
+                    [self.toastQueue removeLastObject];
+                    [self showToast:toastView style:style duration:duration];
+                }
+            });
+        }
+    }
 }
 
 - (UIView *)getToastView:(NSString *)message
                    title:(NSString *)title
                    image:(UIImage *)image
-                duration:(NSTimeInterval)duration
                 position:(SLToastPositon)position
            imagePosition:(SLToastImagePositon)imagePosition
                    style:(SLToastStyle *)style {
@@ -262,7 +307,7 @@ static int imageViewTag = 103;
         SLLabel *titleLabel = [UIView copyView:[SLUIConfig share].toastStyle.titleLabel];
         titleLabel.tag = titleLabelTag;
         CGSize titleSize = [title sizeWithFont:titleLabel.font size:CGSizeMake(endX-startX-space, MAXFLOAT)];
-        titleLabel.frame = CGRectMake(startX, startY, titleSize.width, titleSize.height);
+        titleLabel.frame = CGRectMake(startX, startY, endX-startX, titleSize.height);
         titleLabel.text = title;
         [contentView addSubview:titleLabel];
         startY+=titleSize.height;
@@ -277,7 +322,7 @@ static int imageViewTag = 103;
         CGFloat titleSpace = [NSString emptyString:title] ? 0 : style.titleSpace;
         startY += titleSpace;
         CGSize messageSize = [message sizeWithFont:messageLabel.font size:CGSizeMake(endX-startX-space, MAXFLOAT)];
-        messageLabel.frame = CGRectMake(startX, startY, messageSize.width, messageSize.height);
+        messageLabel.frame = CGRectMake(startX, startY, endX-startX, messageSize.height);
         messageLabel.text = message;
         [contentView addSubview:messageLabel];
         textWidth = MAX(messageSize.width, textWidth) ;
@@ -338,24 +383,18 @@ static int imageViewTag = 103;
                 break;
         }
     }
-    self.wraperView = [[SLView alloc]initWithFrame:style.superContentView.bounds];
-    self.wraperView.backgroundColor = style.backgroundColor;
-    [style.superContentView addSubview:self.wraperView];
-    [self.wraperView addSubview:contentView];
+    SLView *wraperView = [[SLView alloc]initWithFrame:style.superContentView.bounds];
+    wraperView.backgroundColor = style.backgroundColor;
+    [wraperView addSubview:contentView];
     if (position == SLToastPositonTop) {
-        contentView.frame = CGRectMake(self.wraperView.sl_width/2.0-style.width/2.0, style.wraperViewSpace, style.width, startY);
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, style.wraperViewSpace, style.width, startY);
     } else if (position == SLToastPositonBottom) {
-        contentView.frame = CGRectMake(self.wraperView.sl_width/2.0-style.width/2.0, self.wraperView.sl_height-startY-style.wraperViewSpace, style.width, startY);
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, wraperView.sl_height-startY-style.wraperViewSpace, style.width, startY);
     } else {
-        contentView.frame = CGRectMake(self.wraperView.sl_width/2.0-style.width/2.0, self.wraperView.sl_height/2.0-startY/2.0, style.width, startY);
+        contentView.frame = CGRectMake(wraperView.sl_width/2.0-style.width/2.0, wraperView.sl_height/2.0-startY/2.0, style.width, startY);
     }
     [contentView addCornerRadius:style.wraperViewRadius shadowColor:style.wraperViewShadowColor shadowOffset:style.wraperViewShadowOffset shadowOpacity:style.wraperViewShadowOpacity shadowRadius:style.wraperViewShadowRadius];
-    if (duration > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.wraperView removeFromSuperview];
-        });
-    }
-    return style.superContentView;
+    return wraperView;
 }
 
 - (void)adjustLabelFrame:(CGFloat)scale contentView:(UIView *)contentView style:(SLToastStyle *)style{

@@ -50,40 +50,42 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 
 #warning 图片要支持gif格式
 @interface SLToast : NSObject
-+ (instancetype)makeToast:(NSString *_Nullable)message;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    image:(UIImage *_Nullable)image;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title
-                    image:(UIImage *_Nullable)image;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title
-                    image:(UIImage *_Nullable)image
-                 duration:(NSTimeInterval)duration;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title
-                    image:(UIImage *_Nullable)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title
-                    image:(UIImage *_Nullable)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position
-            imagePosition:(SLToastImagePositon)imagePosition;
-+ (instancetype)makeToast:(NSString *_Nullable)message
-                    title:(NSString *_Nullable)title
-                    image:(UIImage *_Nullable)image
-                 duration:(NSTimeInterval)duration
-                 position:(SLToastPositon)position
-            imagePosition:(SLToastImagePositon)imagePosition
-                    style:(SLToastStyle *_Nullable)style;
-- (void)hideToast;
-+ (void)hideAllToasts;
-+ (void)makeToastActivity:(SLToastPositon)position;
-+ (void)hideToastActivity;
+@property (nonatomic, copy) NSArray *toasts;// 还未展示的toast
+- (void)makeToast:(NSString *_Nullable)message;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title;
+- (void)makeToast:(NSString *_Nullable)message
+            image:(UIImage *_Nullable)image;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title
+            image:(UIImage *_Nullable)image;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title
+            image:(UIImage *_Nullable)image
+         duration:(NSTimeInterval)duration;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title
+            image:(UIImage *_Nullable)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title
+            image:(UIImage *_Nullable)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position
+    imagePosition:(SLToastImagePositon)imagePosition;
+- (void)makeToast:(NSString *_Nullable)message
+            title:(NSString *_Nullable)title
+            image:(UIImage *_Nullable)image
+         duration:(NSTimeInterval)duration
+         position:(SLToastPositon)position
+    imagePosition:(SLToastImagePositon)imagePosition
+            style:(SLToastStyle *_Nullable)style;
+- (void)hideToast;// 移除展示中的toast
+- (void)hideToast:(UIView *)view;// 移除还没展示的指定toast
+- (void)hideAllToasts;// 移除未展示和已展示的所有toast
+- (void)makeToastActivity:(SLToastPositon)position;
+- (void)hideToastActivity;
 @end
 
 NS_ASSUME_NONNULL_END
