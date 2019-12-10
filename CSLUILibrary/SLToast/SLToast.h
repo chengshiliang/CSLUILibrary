@@ -48,10 +48,7 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 @end
 
 /*
- 图片要支持gif格式：
- NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"xxx" ofType:@"gif"];
- NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
- UIImage *image = [UIImage sd_animatedGIFWithData:imageData];// SDWebImage加载gif图片
+ 图片支持gif格式：
  */
 @interface SLToast : NSObject
 @property (nonatomic, copy) NSArray *toasts;// 还未展示的toast

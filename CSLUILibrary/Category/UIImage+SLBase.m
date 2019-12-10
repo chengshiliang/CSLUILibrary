@@ -7,6 +7,7 @@
 
 #import "UIImage+SLBase.h"
 #import <CSLUILibrary/NSString+Util.h>
+#import <SDWebImage/SDWebImage.h>
 
 @implementation UIImage (SLBase)
 + (UIImage *)decodeImage:(UIImage *)image toSize:(CGSize)size {
@@ -64,5 +65,24 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
++ (UIImage *)sl_imageWithGifName:(NSString *)name {
+    if ([NSString emptyString:name]) return nil;
+    NSArray *names = [name componentsSeparatedByString:@"."];
+    if (names && names.count > 2) return nil;
+    if (names && names.count > 1) {
+        NSString *typeName = [names lastObject];
+        if (![typeName isEqualToString:@"gif"]) {
+            return nil;
+        }
+    } else {
+        if (names) {
+            name = [name stringByAppendingString:@".gif"];
+        }
+    }
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:name ofType:nil];
+    NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+    UIImage *image = [UIImage sd_imageWithGIFData:imageData];// SDWebImage加载gif图片
 }
 @end
