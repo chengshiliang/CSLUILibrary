@@ -109,7 +109,7 @@
     self.height = contentInsets.top;
     self.contentWidth = self.width-contentInsets.left-contentInsets.right;
     if (![NSString emptyString:title]) {
-        SLLabel *titleLabel = [UIView copyView:self.titleLabel];
+        SLLabel *titleLabel = (SLLabel *)[UIView copyView:self.titleLabel];
         CGSize titleSize = [title sizeWithFont:self.titleLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
         titleLabel.frame = CGRectMake(self.originX, contentInsets.top, self.contentWidth, titleSize.height);
         titleLabel.text = title;
@@ -124,7 +124,7 @@
     }
     if (![NSString emptyString:message]) {
         self.height += 5;
-        SLLabel *messageLabel = [UIView copyView:self.messageLabel];
+        SLLabel *messageLabel = (SLLabel *)[UIView copyView:self.messageLabel];
         CGSize messageSize = [message sizeWithFont:messageLabel.font size:CGSizeMake(self.contentWidth, MAXFLOAT)];
         messageLabel.frame = CGRectMake(self.originX, self.height, self.contentWidth, messageSize.height);
         messageLabel.text = message;

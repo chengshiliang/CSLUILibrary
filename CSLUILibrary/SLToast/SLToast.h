@@ -45,10 +45,14 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 @property (nonatomic, assign) NSTimeInterval duration;// 默认两秒
 @property (nonatomic, assign) SLToastPositon position;// 默认居中
 @property (nonatomic, assign) SLToastImagePositon imagePosition;// 默认图片在左侧居中
-@property (nonatomic, assign) NSInteger maxCount;// 默认为1
 @end
 
-#warning 图片要支持gif格式
+/*
+ 图片要支持gif格式：
+ NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"xxx" ofType:@"gif"];
+ NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+ UIImage *image = [UIImage sd_animatedGIFWithData:imageData];// SDWebImage加载gif图片
+ */
 @interface SLToast : NSObject
 @property (nonatomic, copy) NSArray *toasts;// 还未展示的toast
 - (void)makeToast:(NSString *_Nullable)message;
@@ -84,8 +88,6 @@ typedef NS_ENUM (NSInteger, SLToastImagePositon) {
 - (void)hideToast;// 移除展示中的toast
 - (void)hideToast:(UIView *)view;// 移除还没展示的指定toast
 - (void)hideAllToasts;// 移除未展示和已展示的所有toast
-- (void)makeToastActivity:(SLToastPositon)position;
-- (void)hideToastActivity;
 @end
 
 NS_ASSUME_NONNULL_END

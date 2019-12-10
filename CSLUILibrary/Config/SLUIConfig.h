@@ -29,9 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
  全局配置SLToast
  * duration: toast时常
  * position: toast位置
- * maxCount: 同时显示的最大数
  */
-- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position maxCount:(NSInteger)maxCount;
+- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position;
 /**
  全局配置SLToast的style
  * style: 样式

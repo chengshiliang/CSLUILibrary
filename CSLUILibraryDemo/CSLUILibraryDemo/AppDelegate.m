@@ -22,7 +22,7 @@
     [[SLUIConfig share]configAlert:AlertSheet width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
     
     SLToastStyle *style = [SLUIConfig share].toastStyle;
-    style.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    style.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
     style.titleLabel.textColor = SLUIHexColor(0xffffff);
     style.titleLabel.font = SLUIBoldFont(24.0);
     style.messageLabel.textColor = SLUIHexColor(0xffffff);

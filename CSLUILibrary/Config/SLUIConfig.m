@@ -32,17 +32,12 @@ static SLUIConfig *instance;
     return instance;
 }
 
-- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position maxCount:(NSInteger)maxCount {
+- (void)configToastDuration:(NSTimeInterval)duration position:(SLToastPositon)position {
     if (duration > 0) {
         instance.toastManager.duration = duration;
     }
     if (position > 0) {
         instance.toastManager.position = position;
-    }
-    if (maxCount > 0) {
-        instance.toastManager.maxCount = maxCount;
-    } else {
-        instance.toastManager.maxCount = 10000;
     }
 }
 

@@ -19,24 +19,12 @@
     }
     return _duration;
 }
-- (NSInteger)maxCount {
-    if (_maxCount <= 0) {
-        return 10000;
-    }
-    return _maxCount;
-}
 @end
 
 @implementation SLToastStyle
-- (SLView *)superContentView {
-    if (!_superContentView) {
-        _superContentView = [UIApplication sharedApplication].keyWindow;
-    }
-    return _superContentView;
-}
 - (UIColor *)backgroundColor {
     if (!_backgroundColor) {
-        _backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+        _backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
     }
     return _backgroundColor;
 }
@@ -238,10 +226,6 @@ static int imageViewTag = 103;
     }
     [self.activeToasts removeAllObjects];
 }
-- (void)makeToastActivity:(SLToastPositon)position{
-}
-- (void)hideToastActivity{
-}
 
 - (void)showToast:(UIView *)view style:(SLToastStyle *)style duration:(NSTimeInterval)duration{
     if (!view) return;
@@ -249,7 +233,11 @@ static int imageViewTag = 103;
         [self.toastQueue addObject:view];
     } else {
         [self.activeToasts addObject:view];
-        [style.superContentView addSubview:view];
+        if (style.superContentView) {
+            [style.superContentView addSubview:view];
+        } else {
+            [[UIApplication sharedApplication].keyWindow addSubview:view];
+        }
         if (duration > 0) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [view removeFromSuperview];
@@ -277,7 +265,6 @@ static int imageViewTag = 103;
     CGFloat startX = contentInsets.left;
     CGFloat startY = contentInsets.top;
     CGFloat endX = style.width - contentInsets.right;
-    CGFloat endY = contentInsets.top;
     UIView *copyView = style.wraperView;
     UIView *contentView = [UIView copyView:copyView];
     CGSize imageSize = style.imageSize;
@@ -304,7 +291,7 @@ static int imageViewTag = 103;
         if (image && imagePosition == SLToastImagePositonTop) startY+=style.imageAndTitleSpace;
         CGFloat space = 0;
         if (image && imagePosition == SLToastImagePositonRight) space += imageSize.width+style.imageAndTitleSpace;
-        SLLabel *titleLabel = [UIView copyView:[SLUIConfig share].toastStyle.titleLabel];
+        SLLabel *titleLabel = (SLLabel *)[UIView copyView:[SLUIConfig share].toastStyle.titleLabel];
         titleLabel.tag = titleLabelTag;
         CGSize titleSize = [title sizeWithFont:titleLabel.font size:CGSizeMake(endX-startX-space, MAXFLOAT)];
         titleLabel.frame = CGRectMake(startX, startY, endX-startX, titleSize.height);
@@ -317,7 +304,7 @@ static int imageViewTag = 103;
     if (![NSString emptyString:message]) {
         CGFloat space = 0;
         if (image && imagePosition == SLToastImagePositonRight) space += imageSize.width+style.imageAndTitleSpace;
-        SLLabel *messageLabel = [UIView copyView:[SLUIConfig share].toastStyle.messageLabel];
+        SLLabel *messageLabel = (SLLabel *)[UIView copyView:[SLUIConfig share].toastStyle.messageLabel];
         messageLabel.tag = messageLabelTag;
         CGFloat titleSpace = [NSString emptyString:title] ? 0 : style.titleSpace;
         startY += titleSpace;
@@ -383,7 +370,13 @@ static int imageViewTag = 103;
                 break;
         }
     }
-    SLView *wraperView = [[SLView alloc]initWithFrame:style.superContentView.bounds];
+    CGRect frame;
+    if (style.superContentView) {
+        frame = style.superContentView.bounds;
+    } else {
+        frame = [UIApplication sharedApplication].keyWindow.bounds;
+    }
+    SLView *wraperView = [[SLView alloc]initWithFrame:frame];
     wraperView.backgroundColor = style.backgroundColor;
     [wraperView addSubview:contentView];
     if (position == SLToastPositonTop) {
