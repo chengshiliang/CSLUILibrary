@@ -31,7 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addLoadingWithFillColor:(UIColor *_Nullable)fillColor
                     strokeColor:(UIColor *_Nullable)strokeColor
                    loadingColor:(UIColor *_Nullable)loadingColor
-                      lineWidth:(CGFloat)lineWidth;
+                      lineWidth:(CGFloat)lineWidth
+                       duration:(CGFloat)duration
+                     startAngle:(CGFloat)startAngle;
 
 - (void)addCornerRadius:(CGFloat)cornerRadius
             shadowColor:(UIColor *)shadowColor
