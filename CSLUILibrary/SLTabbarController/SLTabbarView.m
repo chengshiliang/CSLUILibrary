@@ -20,7 +20,7 @@ static int buttonTag = 100;
 
 @implementation SLTabbarView
 
-- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock {
+- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void (^)(SLTabbarButton * button, NSInteger index))configTabbarButtonBlock {
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.buttons = buttons.copy;
     for (int i = 0; i < buttons.count; i++){
@@ -50,7 +50,7 @@ static int buttonTag = 100;
         } else {
             button.selected = NO;
         }
-        if (configTabbarButtonBlock) configTabbarButtonBlock(button);
+        if (configTabbarButtonBlock) configTabbarButtonBlock(button, i);
         [self addSubview:button];
     }
 }

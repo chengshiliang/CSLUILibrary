@@ -112,8 +112,7 @@
         strongSelf.layer.frame = CGRectMake(button.offsetXY, strongSelf.onlyText.frame.size.height-2, button.frame.size.width, 2);
     };
     
-    [self.onlyText initButtons:[NSArray arrayWithArray:arrayM1] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
-        NSInteger index = [arrayM1 indexOfObject:button];
+    [self.onlyText initButtons:[NSArray arrayWithArray:arrayM1] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         if (index == 0) {
             button.percent = 50;
         } else {
@@ -127,26 +126,26 @@
     self.layer.frame = CGRectMake(0, self.onlyText.frame.size.height-2, 0, 2);
     [self.onlyText.layer addSublayer:self.layer];
 
-    [self.onlyImage initButtons:[NSArray arrayWithArray:arrayM2] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.onlyImage initButtons:[NSArray arrayWithArray:arrayM2] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeOnlyImage;
     }];
 
-    [self.imageTop initButtons:[NSArray arrayWithArray:arrayM3] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageTop initButtons:[NSArray arrayWithArray:arrayM3] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeImageTop;
         button.imageTitleSpace = -10.f;
     }];
 
-    [self.imageBottom initButtons:[NSArray arrayWithArray:arrayM4] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageBottom initButtons:[NSArray arrayWithArray:arrayM4] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeImageBottom;
         button.imageTitleSpace = -10.f;
     }];
 
-    [self.imageLeft initButtons:[NSArray arrayWithArray:arrayM5] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageLeft initButtons:[NSArray arrayWithArray:arrayM5] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeImageLeft;
         button.imageTitleSpace = -20.f;
     }];
 
-    [self.imageRight initButtons:[NSArray arrayWithArray:arrayM6] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+    [self.imageRight initButtons:[NSArray arrayWithArray:arrayM6] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeImageRight;
         button.imageTitleSpace = -20.f;
     }];

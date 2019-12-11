@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger index;// 指定那个tabbar选中
 @property (nonatomic, assign) SLViewDirection direction;
 @property (nonatomic, assign) BOOL canRepeatClick;// 可重复点击, default no
-- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void(^)(SLTabbarButton *button))configTabbarButtonBlock;
+- (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void(^)(SLTabbarButton *button, NSInteger index))configTabbarButtonBlock;
 @end
 
 NS_ASSUME_NONNULL_END

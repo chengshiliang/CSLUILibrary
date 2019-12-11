@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  navFlags：是否使用内部的导航控制器，如果想要自定义，应该设置为false
  */
-- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^ _Nullable)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock;
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^ _Nullable)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton * button, NSInteger index))configTabbarButtonBlock;
 
 - (void)sl_setTbbarBackgroundColor:(UIColor *)color;
 @end

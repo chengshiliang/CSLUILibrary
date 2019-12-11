@@ -43,7 +43,7 @@
     self.tabBar.clipsToBounds = YES;
 }
 
-- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(nonnull void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock{
+- (void)initViewControllers:(NSArray<UIViewController *> *)viewControllers titles:(NSArray<NSString *> *)titles normalImages:(NSArray<UIImage *> *)normalImages selectImages:(NSArray<UIImage *> *)selectImages navFlags:(NSArray<NSNumber *> *)navFlags layoutTabbar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(nonnull void (^)(SLTabbarButton * button, NSInteger index))configTabbarButtonBlock{
     NSAssert(viewControllers.count == titles.count, @"vc length is not equals to title length");
     NSAssert(viewControllers.count == normalImages.count, @"vc length is not equals to normalImage length");
     NSAssert(viewControllers.count == selectImages.count, @"vc length is not equals to selectImage length");
@@ -74,7 +74,7 @@
     }
 }
 
-- (void)createTabBar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton * _Nonnull))configTabbarButtonBlock{
+- (void)createTabBar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton *button, NSInteger index))configTabbarButtonBlock{
     [self.mTabBar removeFromSuperview];
     float tabbarWidth  = self.tabBar.frame.size.width;
     float tabbarHeight = self.tabBar.frame.size.height;

@@ -62,8 +62,9 @@
         SLToastStyle *style = [SLUIConfig share].toastStyle;
         style.superContentView = (SLView *)self.view;
         style.imageSize = CGSizeMake(30, 30);
-        style.titleLabel.textAlignment = NSTextAlignmentCenter;
-        style.width = 200;
+        style.titleLabel.textAlignment = NSTextAlignmentLeft;
+        style.messageLabel.textAlignment = NSTextAlignmentLeft;
+        style.width = 150;
         [toast makeToast:@"message" title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft style:style];
     }];
 }

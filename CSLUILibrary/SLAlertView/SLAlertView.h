@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, AlertContentViewAlignmentType) {
 @interface SLAlertAction : NSObject
 @property (nonatomic, assign) AlertActionType actionType;
 @property (nonatomic, copy) void(^callback)(void);
+@property (nonatomic, copy) void(^constructActionBlock)(SLTabbarButton *button);
 @property (nonatomic, strong) SLTabbarButton *button;
 /**
 AlertActionCancel -- default  SLUIHexColor(0x007aff)
@@ -57,6 +58,7 @@ AlertActionDestructive -- default SLUIHexColor(0xff0000)
                  message:(NSString * _Nullable)message;
 - (void)addActionWithTitle:(NSString *)title
                       type:(AlertActionType)type
+           constructAction:(void(^)(SLTabbarButton *button))constructActionBlock
                   callback:(void(^)(void))callback;
 - (void)addCustomView:(UIView *)customView
             alignment:(AlertContentViewAlignmentType)alignmentType;

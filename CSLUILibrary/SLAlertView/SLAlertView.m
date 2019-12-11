@@ -134,6 +134,7 @@
 
 - (void)addActionWithTitle:(NSString *)title
                       type:(AlertActionType)type
+           constructAction:(void(^)(SLTabbarButton *button))constructActionBlock
                   callback:(void(^)(void))callback; {
     if ([NSString emptyString:title]) return;
     int actionHeight = self.type == AlertSheet ? ceil(44* kScreenWidth*1.0 / 320) : 44;
@@ -178,6 +179,7 @@
     tabbarBt.titleLabel.font = [action titleFont];
     action.button = tabbarBt;
     action.callback = [callback copy];
+    action.constructActionBlock = [constructActionBlock copy];
     [self.actions addObject:action];
     NSMutableArray *normalArray = [NSMutableArray array];
     NSMutableArray *cancelArray = [NSMutableArray array];
@@ -250,8 +252,14 @@
     for (SLAlertAction *action in self.actions) {
         [arrayM addObject:action.button];
     }
-    [self.buttonView initButtons:[NSArray arrayWithArray:arrayM] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
-        button.tabbarButtonType = SLButtonTypeOnlyTitle;
+    [self.buttonView initButtons:[NSArray arrayWithArray:arrayM] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
+        StrongSelf;
+        SLAlertAction *action = strongSelf.actions[index];
+        if (action.constructActionBlock) {
+            action.constructActionBlock(button);
+        } else {
+            button.tabbarButtonType = SLButtonTypeOnlyTitle;
+        }
     }];
     self.buttonView.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
         StrongSelf;
@@ -299,7 +307,7 @@
         for (SLAlertAction *action in self.cancelActions) {
             [arrayM addObject:action.button];
         }
-        [cancelButonView initButtons:[NSArray arrayWithArray:arrayM] configTabbarButton:^(SLTabbarButton * _Nonnull button) {
+        [cancelButonView initButtons:[NSArray arrayWithArray:arrayM] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
             button.tabbarButtonType = SLButtonTypeOnlyTitle;
         }];
         WeakSelf;

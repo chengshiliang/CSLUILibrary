@@ -48,7 +48,7 @@
     SLTabBarController *tabBarVC = [[SLTabBarController alloc] init];
     [tabBarVC initViewControllers:@[homeVC] titles:@[@"home"] normalImages:@[[UIImage imageNamed:@"tabBar_home_normal"]] selectImages:@[[UIImage imageNamed:@"tabBar_home_press"]] navFlags:@[@(true)] layoutTabbar:^(SLTabbarView * _Nonnull tabbarView) {
         
-    } configTabbarButton:^(SLTabbarButton * _Nonnull barButton) {
+    } configTabbarButton:^(SLTabbarButton * _Nonnull barButton,NSInteger index) {
         // 自定义选中文字颜色和未选中文字颜色,自定义SLTabbarButton 类的属性
         barButton.tabbarButtonType = SLButtonTypeOnlyImage;
     }];
