@@ -239,6 +239,8 @@
         page= floor((self.scrollView.contentOffset.y - scrollHeight/(self.imageDatas.count+2))/scrollHeight) + 1;
     }
     page --;
+    if (page < 0) page = self.imageDatas.count;
+    if (page > self.imageDatas.count - 1) page = 0;
     self.pageControl.currentPage = page;
 }
 

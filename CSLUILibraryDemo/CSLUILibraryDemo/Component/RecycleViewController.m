@@ -24,7 +24,7 @@
     self.scollView1.autoTime = 3.0f;
     self.scollView1.cellMargin = 100.f;
     self.scollView1.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.scollView1.titleDatas=@[@"cir0FWEFQWJFIOQWEJFIOQWEJFOIWQEJFIOEQJFIOJFEIOEWJFIOEJFIO",@"cir1",@"cir2",@"cir3"];
+    self.scollView1.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
     self.scollView1.showTitle = YES;
     self.scollView1.layer.masksToBounds=YES;
     self.scollView1.titleSpace = 15.0f;
