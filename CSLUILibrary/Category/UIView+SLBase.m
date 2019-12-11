@@ -100,14 +100,14 @@
     if (lineWidth <= 0) lineWidth = 1.0f;
     if (duration <= 5) duration = 5;
     if (!fillColor) fillColor = [UIColor clearColor];
-    if (!strokeColor) strokeColor = SLUIHexColor(0x666666);
-    if (!loadingColor) loadingColor = SLUIHexColor(0xe0e0e0);
+    if (!strokeColor) strokeColor = SLUIHexColor(0xe0e0e0);
+    if (!loadingColor) loadingColor = SLUIHexColor(0x398EEB);
     startAngle = startAngle * M_PI / 180.0;
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
     [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
     [self.layer removeAllAnimations];
-    CGFloat radius = MIN(width/2.0, height/2.0) - lineWidth/2.0;
+    CGFloat radius = MIN(width/2.0, height/2.0) - lineWidth;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.frame = CGRectMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds), radius, radius);
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:CGPointZero radius:radius startAngle:0 endAngle:2*M_PI clockwise:YES];
@@ -201,6 +201,16 @@
     }
     shaperLayer.path = bezierPath.CGPath;
     self.layer.mask = shaperLayer;
+}
+
++ (UIImage *)sl_renderViewToImage:(UIView *)view {
+    if (!view) return nil;
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 + (UIView *)copyView:(UIView *)view {

@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addCorner:(BOOL)corner;
 
 - (void)addCornerRadius:(CGFloat)cornerRadius;
+
++ (UIImage *)sl_renderViewToImage:(UIView *)view;
 // 拷贝一个view
 + (UIView *)copyView:(UIView *)view;
 @end
