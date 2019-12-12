@@ -9,7 +9,7 @@
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
 
-static NSString *const staticViewCellID = @"kSLCardViewCellID";
+static NSString *const cardViewCellID = @"kSLCardViewCellID";
 
 @interface SLCardCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
@@ -55,7 +55,7 @@ static NSString *const staticViewCellID = @"kSLCardViewCellID";
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
-            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:staticViewCellID];
+            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cardViewCellID];
         }
         isRegiste = YES;
     }
@@ -79,7 +79,7 @@ static NSString *const staticViewCellID = @"kSLCardViewCellID";
     if (self.delegate && [self.delegate respondsToSelector:@selector(collectionView:customCellForItemAtIndexPath:forView:)]) {
         return [self.delegate collectionView:collectionView customCellForItemAtIndexPath:indexPath forView:self];
     }
-    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:staticViewCellID forIndexPath:indexPath];
+    SLCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cardViewCellID forIndexPath:indexPath];
     return cell;
 }
 - (void)collectionView:(SLCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

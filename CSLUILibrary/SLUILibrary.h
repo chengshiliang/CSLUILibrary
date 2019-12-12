@@ -38,6 +38,8 @@
 #import <CSLUILibrary/SLNoRuleCollectionView.h>
 #import <CSLUILibrary/SLCustomCollectionView.h>
 #import <CSLUILibrary/SLCardCollectionView.h>
+#import <CSLUILibrary/SLRecycleCollectionLayout.h>
+#import <CSLUILibrary/SLRecycleCollectionView.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>

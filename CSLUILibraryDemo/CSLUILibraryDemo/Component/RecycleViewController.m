@@ -8,39 +8,60 @@
 
 #import "RecycleViewController.h"
 
-@interface RecycleViewController ()
-@property (weak, nonatomic) IBOutlet SLRecycleView *scollView1;
-@property (weak, nonatomic) IBOutlet SLRecycleView *scollView2;
+@interface RecycleViewModel : SLModel
+@property (nonatomic, copy) NSString *title;
+@end
+@implementation RecycleViewModel
+@end
+@interface RecycleViewController ()<SLCollectionViewProtocol>
+{
+    NSMutableArray *_colorAry;
+}
+@property (nonatomic, strong) NSMutableArray *arrayM;
+@property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView1;
+@property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView2;
 @end
 
 @implementation RecycleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _colorAry = [NSMutableArray array];
+    [_colorAry addObject:[UIColor blackColor]];
+    [_colorAry addObject:[UIColor blueColor]];
+    [_colorAry addObject:[UIColor redColor]];
+    [_colorAry addObject:[UIColor yellowColor]];
+    [_colorAry addObject:[UIColor orangeColor]];
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (int i = 0; i < 5; i ++) {
+        SLPupModel *pupModel = [SLPupModel new];
+        pupModel.width = kScreenWidth;
+        pupModel.height = kScreenWidth*100.0/375;
+        RecycleViewModel *model = [RecycleViewModel new];
+        model.title = [NSString stringWithFormat:@"第%d个", i];
+        pupModel.data = model;
+        [arrM addObject:pupModel];
+    }
+    self.arrayM = arrM;
     self.scollView1.backgroundColor = [UIColor redColor];
-    self.scollView1.autoScroll = NO;
-    self.scollView1.indicatorColor = [UIColor whiteColor];
-    self.scollView1.currentIndicatorColor = [UIColor redColor];
-    self.scollView1.autoTime = 3.0f;
-    self.scollView1.cellMargin = 100.f;
-    self.scollView1.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.scollView1.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.scollView1.showTitle = YES;
+    self.scollView1.loop = YES;
+    self.scollView1.dataSource = arrM.copy;
     self.scollView1.layer.masksToBounds=YES;
-    self.scollView1.titleSpace = 15.0f;
-    [self.scollView1 startLoading];
+    self.scollView1.delegate = self;
+    self.scollView1.interval = 1.0;
+    [self.scollView1 reloadData];
+}
 
-    self.scollView2.backgroundColor = [UIColor yellowColor];
-    self.scollView2.autoScroll = NO;
-    self.scollView2.indicatorColor = [UIColor whiteColor];
-    self.scollView2.currentIndicatorColor = [UIColor redColor];
-    self.scollView2.layer.masksToBounds=YES;
-    self.scollView2.autoTime = 3.0f;
-    self.scollView2.cellMargin = 10.f;
-    self.scollView2.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.scollView2.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.scollView2.verticalScroll=YES;
-    [self.scollView2 startLoading];
+static NSString *const cellId = @"kRecycleViewCellID";
+
+- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
+    [collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
+}
+
+- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
+    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
+    return cell;
 }
 
 @end
