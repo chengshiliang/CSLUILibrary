@@ -226,7 +226,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scollView1" destination="BRd-D4-ReT" id="XS4-wh-uqS"/>
+                        <outlet property="scollView1" destination="BRd-D4-ReT" id="gjY-la-T83"/>
                         <outlet property="scollView2" destination="ejn-b9-Opv" id="ciX-Es-hCa"/>
                     </connections>
                 </viewController>

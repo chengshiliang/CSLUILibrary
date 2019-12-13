@@ -15,8 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLRecycleCollectionView : SLView
-@property(assign,nonatomic) float columnMagrin;//列距离
-@property(assign,nonatomic) float rowMagrin;//行距离
+@property (nonatomic, assign, readonly) NSInteger currentPage;
+@property(assign,nonatomic) float minimumLineSpacing;
 @property(nonatomic,assign) UIEdgeInsets insets;// collectionView的内边距
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;

@@ -13,12 +13,11 @@
 
 static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
 
-@interface SLRecycleCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface SLRecycleCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate, UIScrollViewDelegate>
 {
-    BOOL isRegiste;
     BOOL needRefresh;
 }
-@property(strong,nonatomic)SLRecycleCollectionLayout *layout;
+@property (strong, nonatomic) SLRecycleCollectionLayout *layout;
 @property (nonatomic, strong) SLTimer * timer;
 @property (nonatomic, assign) NSInteger rightCount;
 @property (nonatomic, assign) NSInteger leftCount;
@@ -51,6 +50,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     self.manual = YES;
     self.hidePageControl = NO;
     self.layout=[[SLRecycleCollectionLayout alloc]init];
+    self.layout.minimumInteritemSpacing = 0;
     self.collectionView=[[SLCollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
@@ -66,15 +66,15 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (self.pageControlSize.width > 0 && self.pageControlSize.height > 0) {
         pageControlSize = self.pageControlSize;
     }
-    self.collectionView.frame = self.bounds;
-    self.pageControl.frame = CGRectMake((self.collectionView.sl_width-pageControlSize.width)/2,self.collectionView.sl_height-pageControlSize.height-self.bottomSpace, pageControlSize.width, pageControlSize.height);
+    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
+    self.pageControl.frame = CGRectMake((self.sl_width-pageControlSize.width)/2,self.sl_height-pageControlSize.height-self.bottomSpace-self.insets.bottom, pageControlSize.width, pageControlSize.height);
     if (needRefresh) {
         [self reloadData];
     }
 }
 
 - (void)reloadData {
-    if ([NSStringFromCGRect(self.collectionView.frame) isEqualToString:NSStringFromCGRect(CGRectZero)]) {
+    if (self.collectionView.sl_width <= 0 || self.collectionView.sl_height <= 0) {
         needRefresh = true;
         return;
     }
@@ -85,11 +85,9 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     }
     self.layout.scrollStyle = self.scrollStyle;
     self.layout.scrollDirection = self.scrollDirection;
-    self.layout.sectionInset = self.insets;
-    self.layout.minimumLineSpacing = self.rowMagrin;
-    self.layout.minimumInteritemSpacing = self.columnMagrin;
+    self.layout.minimumLineSpacing = self.minimumLineSpacing;
+    self.dataArray = self.dataSource;
     if (self.loop && self.dataSource.count > 0) {
-        CGSize contentSize;
         CGFloat width = 0;
         CGFloat height = 0;
         for (int i = 0; i<self.dataSource.count; i ++) {
@@ -101,16 +99,15 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
                 height += size.height;
             }
         }
-        contentSize = CGSizeMake(width, height);
-        if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && contentSize.width >= self.sl_width){
-            self.rightCount = [self.collectionView  indexPathForItemAtPoint:CGPointMake(self.sl_width - 1, 0)].row + 1 ;
+        if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && width >= self.collectionView.sl_width){
+            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.sl_width - 1, 0)].row + 1;
             if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(contentSize.width - self.sl_width + 1, 0)].row;
+                self.leftCount = self.dataSource.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(width - self.collectionView.sl_width + 1, 0)].row;
             }
-        }else if(self.scrollDirection == UICollectionViewScrollDirectionVertical && contentSize.height >= self.sl_height){
-            self.rightCount = [self.collectionView  indexPathForItemAtPoint:CGPointMake(0, self.sl_height - 1)].row + 1 ;
+        }else if(self.scrollDirection == UICollectionViewScrollDirectionVertical && height >=self.collectionView.sl_height){
+            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.sl_height - 1)].row + 1;
             if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.count - [self.collectionView  indexPathForItemAtPoint:CGPointMake(0, contentSize.height - self.sl_height + 1)].row;
+                self.leftCount = self.dataSource.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(0, height - self.collectionView.sl_height + 1)].row;
             }
         }
         NSArray * rightSubArray = [self.dataSource subarrayWithRange:NSMakeRange(0, self.rightCount)];
@@ -119,14 +116,6 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
             NSArray * leftSubArray = [self.dataSource subarrayWithRange:NSMakeRange(self.dataSource.count - self.leftCount, self.leftCount)];
             self.dataArray = [leftSubArray arrayByAddingObjectsFromArray:self.dataArray];
         }
-    }
-    if (!isRegiste) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
-            [self.delegate registerCell:self.collectionView forView:self];
-        } else {
-            [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:recycleViewCellID];
-        }
-        isRegiste = YES;
     }
     [self.collectionView reloadData];
     if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
@@ -170,7 +159,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (self.collectionView.contentSize.width <= 0) return;
     [self resetContentOffset];
     if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-        NSInteger currentMiddleIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.sl_width/2, 0)].row;
+        NSInteger currentMiddleIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
         NSIndexPath * nextIndexPath = [NSIndexPath indexPathForRow:(currentMiddleIndex + 1) inSection:0];
         [self.collectionView scrollToItemAtIndexPath:nextIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }else{
@@ -182,7 +171,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (self.collectionView.contentSize.height <= 0) return;
     [self resetContentOffset];
     if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-        NSInteger currentMiddleIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.contentOffset.y + self.sl_height/2)].row;
+        NSInteger currentMiddleIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
         NSIndexPath * nextIndexPath = [NSIndexPath indexPathForRow:(currentMiddleIndex + 1) inSection:0];
         [self.collectionView scrollToItemAtIndexPath:nextIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
     } else {
@@ -198,11 +187,10 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     }
     if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal){
         if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
-            NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.sl_width/2, 0)].row;
+            NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
             if (currentMiddleIndex >= self.dataSource.count + self.leftCount) {
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataSource.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             }else if (currentMiddleIndex < self.leftCount) {
-//                NSLog(@"hereeeee");
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count + currentMiddleIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             }
         } else {
@@ -212,7 +200,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
         }
     }else{
         if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
-            NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.contentOffset.y + self.sl_height/2)].row;
+            NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
             if (currentMiddleIndex >= self.dataSource.count + self.leftCount) {
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataSource.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
             }else if (currentMiddleIndex < self.leftCount) {
@@ -227,20 +215,19 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
 }
 
 - (void)startTime {
-    NSLog(@"startTime");
     [self invalidateTimer];
     if (self.interval <= 0 || !self.loop) return;
     WeakSelf;
-    self.timer = [SLTimer sl_timerWithTimeInterval:self.interval target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
+    self.timer = [SLTimer sl_timerWithTimeInterval:self.scrollStyle == SLRecycleCollectionViewStyleStep ? 1/60.0 : self.interval target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
         StrongSelf;
         if(strongSelf.scrollDirection == UICollectionViewScrollDirectionHorizontal){
-            if (strongSelf.collectionView.contentSize.width < strongSelf.sl_width) {
+            if (strongSelf.collectionView.contentSize.width < strongSelf.collectionView.sl_width) {
                 [strongSelf invalidateTimer];
                 return;
             }
             [strongSelf horizontalRollAnimation];
         }else{
-            if (strongSelf.collectionView.contentSize.height < strongSelf.sl_height) {
+            if (strongSelf.collectionView.contentSize.height < strongSelf.collectionView.sl_height) {
                 [strongSelf invalidateTimer];
                 return;
             }
@@ -272,9 +259,9 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (self.scrollStyle == SLRecycleCollectionViewStylePage){
         NSInteger currentIndex= 0;
         if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal){
-            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.sl_width/2, 0)].row;
+            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
         }else{
-            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0,self.collectionView.contentOffset.y + self.sl_height/2)].row;
+            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0,self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
         }
         NSInteger currentPage = [self indexOfSourceArray:currentIndex];
         self.currentPage = currentPage;
@@ -286,9 +273,9 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self getCurrentIndex];
     if (!self.loop) return;
-    if ((scrollView.contentOffset.x < 1 || scrollView.contentOffset.x > scrollView.contentSize.width - self.sl_width - 1) && self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+    if ((scrollView.contentOffset.x < 1 || scrollView.contentOffset.x > scrollView.contentSize.width - self.collectionView.sl_width - 1) && self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
         [self resetContentOffset];
-    }else if ((scrollView.contentOffset.y < 1 || scrollView.contentOffset.y > scrollView.contentSize.height - self.sl_height - 1) && self.scrollDirection == UICollectionViewScrollDirectionVertical){
+    }else if ((scrollView.contentOffset.y < 1 || scrollView.contentOffset.y > scrollView.contentSize.height - self.collectionView.sl_height - 1) && self.scrollDirection == UICollectionViewScrollDirectionVertical){
         [self resetContentOffset];
     }
 }
@@ -304,28 +291,22 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidEndDecelerating");
     if (!self.loop) return;
     [self resetContentOffset];
     [self startTime];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    NSLog(@"scrollViewDidEndScrollingAnimation");
     if (!self.loop) return;
     [self resetContentOffset];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSInteger i = [self indexOfSourceArray:indexPath.item];
     SLPupModel *model = self.dataSource[i];
-    if (self.scrollStyle == SLRecycleCollectionViewStyleStep) {
-        return CGSizeMake(model.width, model.height);
+    if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+        return CGSizeMake(model.width, self.collectionView.sl_height);
     } else {
-        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-            return CGSizeMake(model.width, self.sl_height);
-        } else {
-            return CGSizeMake(self.sl_width, model.height);
-        }
+        return CGSizeMake(self.collectionView.sl_width, model.height-self.insets.top-self.insets.bottom);
     }
 }
 -(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -339,8 +320,10 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     return cell;
 }
 - (void)collectionView:(SLCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger index = [self indexOfSourceArray:indexPath.item];
+    NSIndexPath *indexP = [NSIndexPath indexPathForItem:index inSection:indexPath.section];
     if (self.delegate && [self.delegate respondsToSelector:@selector(collectionView:customDidSelectItemAtIndexPath:forView:)]) {
-        [self.delegate collectionView:collectionView customDidSelectItemAtIndexPath:indexPath forView:self];
+        [self.delegate collectionView:collectionView customDidSelectItemAtIndexPath:indexP forView:self];
     }
 }
 

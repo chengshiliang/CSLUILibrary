@@ -33,25 +33,25 @@
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"UIImageView";
         } else if (indexPath.row == 2) {
-           cell.textLabel.text = @"自定义tabbar";
+           cell.textLabel.text = @"可扩展性的tabbar";
         } else if (indexPath.row == 3) {
             cell.textLabel.text = @"UIButton";
         } else if (indexPath.row == 4) {
             cell.textLabel.text = @"自定义cell";
         } else if (indexPath.row == 5) {
-            cell.textLabel.text = @"特色view";
+            cell.textLabel.text = @"view的倒角和阴影";
         } else {
             cell.textLabel.text = model.key;
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"RecycleView";
+            cell.textLabel.text = @"跑马灯";
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"PupView";
+            cell.textLabel.text = @"瀑布流";
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"SearchControler";
+            cell.textLabel.text = @"自定义搜索框";
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"CollectionView";
+            cell.textLabel.text = @"常见的collection视图";
         } else if (indexPath.row == 4) {
             cell.textLabel.text = @"不规则的CollectionView";
         } else if (indexPath.row == 5) {

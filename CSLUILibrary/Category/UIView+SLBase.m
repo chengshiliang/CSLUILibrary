@@ -126,9 +126,7 @@
     [self.layer addSublayer:loadingLayer];
     
     __block CGFloat progress = 0.0;
-    __weak typeof (loadingLayer)weakLayer = loadingLayer;
     [SLTimer sl_timerWithTimeInterval:duration/200.0 target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
-        __strong typeof (weakLayer)strongLayer = weakLayer;
         if (progress >= 1.0) progress = 0.0;
         else progress += 0.025;
         CGFloat angle = startAngle+progress*2*M_PI;

@@ -17,7 +17,6 @@
 {
     NSMutableArray *_colorAry;
 }
-@property (nonatomic, strong) NSMutableArray *arrayM;
 @property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView1;
 @property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView2;
 @end
@@ -35,31 +34,52 @@
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 5; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
-        pupModel.width = kScreenWidth;
+        pupModel.width = kScreenWidth-20;
+        RecycleViewModel *model = [RecycleViewModel new];
+        model.title = [NSString stringWithFormat:@"第%d个", i];
+        pupModel.data = model;
+        [arrM addObject:pupModel];
+    }
+    self.scollView1.loop = YES;
+    self.scollView1.dataSource = arrM.copy;
+    self.scollView1.delegate = self;
+    self.scollView1.minimumLineSpacing = 0;
+    self.scollView1.insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.scollView1.interval = 1.0;
+    [self.scollView1.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId1];
+    [self.scollView1 reloadData];
+    [arrM removeAllObjects];
+    for (int i = 0; i < 5; i ++) {
+        SLPupModel *pupModel = [SLPupModel new];
         pupModel.height = kScreenWidth*100.0/375;
         RecycleViewModel *model = [RecycleViewModel new];
         model.title = [NSString stringWithFormat:@"第%d个", i];
         pupModel.data = model;
         [arrM addObject:pupModel];
     }
-    self.arrayM = arrM;
-    self.scollView1.backgroundColor = [UIColor redColor];
-    self.scollView1.loop = YES;
-    self.scollView1.dataSource = arrM.copy;
-    self.scollView1.layer.masksToBounds=YES;
-    self.scollView1.delegate = self;
-    self.scollView1.interval = 1.0;
-    [self.scollView1 reloadData];
+    self.scollView2.loop = YES;
+    self.scollView2.dataSource = arrM.copy;
+    self.scollView2.delegate = self;
+    self.scollView2.manual = NO;
+    self.scollView2.interval = 3.0;// 在step的情况下等于speed
+    self.scollView2.minimumLineSpacing = 0;
+    self.scollView2.scrollStyle = SLRecycleCollectionViewStyleStep;
+    self.scollView2.hidePageControl = YES;
+    self.scollView2.scrollDirection = UICollectionViewScrollDirectionVertical;
+    [self.scollView2.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId2];
+    [self.scollView2 reloadData];
 }
 
-static NSString *const cellId = @"kRecycleViewCellID";
-
-- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    [collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
-}
+static NSString *const cellId1 = @"kRecycleViewCellID1";
+static NSString *const cellId2 = @"kRecycleViewCellID2";
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    if ([view isEqual:self.scollView1]) {
+        SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
+        cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
+        return cell;
+    }
+    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId2 forIndexPath:indexPath];
     cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
     return cell;
 }

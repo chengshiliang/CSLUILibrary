@@ -47,7 +47,6 @@
 #import <CSLUILibrary/SLButton.h>
 #import <CSLUILibrary/SLImageView.h>
 #import <CSLUILibrary/SLScrollView.h>
-#import <CSLUILibrary/SLRecycleView.h>
 #import <CSLUILibrary/SLAlertView.h>
 #import <CSLUILibrary/SLToast.h>
 

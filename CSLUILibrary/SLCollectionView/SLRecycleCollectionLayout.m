@@ -12,15 +12,10 @@
 @end
 
 @implementation SLRecycleCollectionLayout
-- (instancetype)init {
-    if (self == [super init]) {
-    }
-    return self;
-}
 - (void)prepareLayout {
     [super prepareLayout];
 }
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
     return [super layoutAttributesForElementsInRect:rect];
 }
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
