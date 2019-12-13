@@ -118,6 +118,11 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
             self.dataArray = [leftSubArray arrayByAddingObjectsFromArray:self.dataArray];
         }
     }
+    if(!self.manual){
+        for(UIGestureRecognizer *g in self.collectionView.gestureRecognizers){
+            [self.collectionView removeGestureRecognizer:g];
+        }
+    }
     [self.collectionView reloadData];
     if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
         [self.collectionView layoutIfNeeded];
@@ -132,11 +137,6 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
         if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataSource[self.startingPosition], self.startingPosition);
         if (!self.hidePageControl && self.dataSource.count >= 2) {
             self.pageControl = [[SLPageControl alloc] init];
-            if(!self.manual){
-                for(UIGestureRecognizer *g in self.collectionView.gestureRecognizers){
-                    [self.collectionView removeGestureRecognizer:g];
-                }
-            }
             if(self.indicatorImage){ // 自定义图片
                 self.pageControl.indicatorImage = self.indicatorImage;
                 if (self.currentIndicatorImage) {
@@ -289,6 +289,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (!self.loop) return;
     if (decelerate) return;
     [self resetContentOffset];
+    [self startTime];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

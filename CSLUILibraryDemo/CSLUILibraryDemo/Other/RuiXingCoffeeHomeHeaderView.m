@@ -15,6 +15,7 @@
 @interface RuiXingCoffeeHomeHeaderView()<SLCollectionViewProtocol>
 {
     NSArray *dataSource;
+    NSArray *dataSource1;
 }
 @end
 static NSString *const cellId = @"ruixingheaderrecycleview";
@@ -36,7 +37,7 @@ static NSString *const cellId = @"ruixingheaderrecycleview";
 - (void)initialize {
     self.recycleView = [[SLRecycleCollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*2.0/3)];
     NSMutableArray *arrM1 = [NSMutableArray array];
-    for (int i = 0; i < 5; i ++) {
+    for (int i = 0; i < 4; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         pupModel.width = kScreenWidth-20;
         RecycleViewModel *model = [RecycleViewModel new];
@@ -45,6 +46,7 @@ static NSString *const cellId = @"ruixingheaderrecycleview";
         pupModel.data = model;
         [arrM1 addObject:pupModel];
     }
+    dataSource1 = arrM1.copy;
     self.recycleView.loop = YES;
     self.recycleView.dataSource = arrM1.copy;
     self.recycleView.delegate = self;
@@ -143,7 +145,14 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
         return cell;
     }
     SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    
+    SLImageView *imageView = [[SLImageView alloc]initWithFrame:cell.bounds];
+    SLLabel *label = [[SLLabel alloc]initWithFrame:CGRectMake(0, cell.sl_height-40, cell.sl_width, 20)];
+    SLPupModel *model = dataSource1[indexPath.item%dataSource1.count];
+    RecycleViewModel *recycleModel = (RecycleViewModel *)model.data;
+    [imageView sl_setImage:[UIImage imageNamed:recycleModel.imageUrl]];
+    label.text = recycleModel.title;
+    [cell.contentView addSubview:imageView];
+    [cell.contentView addSubview:label];
     return cell;
 }
 @end

@@ -85,13 +85,13 @@ static NSString *const cellId1 = @"kPageableCollectionStaticCellID2";
         staticCollectionView.ajustFrame = YES;
         staticCollectionView.isRegiste = YES;
         currentId = indexPath.item;
-        NSString *cellId = [@"cellId" stringByAppendingFormat:[NSString stringWithFormat:@"%d", currentId]];
+        NSString *cellId = [NSString stringWithFormat:@"cellId%ld", (long)currentId];
         [staticCollectionView.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
         [cell.contentView addSubview:staticCollectionView];
         [staticCollectionView reloadData];
         return cell;
     } else if ([view isKindOfClass:[SLStaticCollectionView class]]) {
-        NSString *cellId = [@"cellId" stringByAppendingFormat:[NSString stringWithFormat:@"%d", currentId]];
+        NSString *cellId = [NSString stringWithFormat:@"cellId%ld", (long)currentId];
         SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
         if (self.cellConfig) return self.cellConfig(currentId, indexPath.item, cell);
         return cell;
