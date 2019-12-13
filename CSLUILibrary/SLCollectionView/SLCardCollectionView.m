@@ -12,9 +12,6 @@
 static NSString *const cardViewCellID = @"kSLCardViewCellID";
 
 @interface SLCardCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)SLCardCollectViewFlowLayout *layout;
 @end
 @implementation SLCardCollectionView
@@ -51,13 +48,13 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
     } else {
         self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
             [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cardViewCellID];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

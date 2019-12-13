@@ -55,8 +55,10 @@
         } else if (indexPath.row == 4) {
             cell.textLabel.text = @"不规则的CollectionView";
         } else if (indexPath.row == 5) {
+            cell.textLabel.text = @"分页的collectionview";
+        } else if (indexPath.row == 6) {
             cell.textLabel.text = @"自定义弹窗";
-        }  else if (indexPath.row == 6) {
+        } else if (indexPath.row == 7) {
             cell.textLabel.text = @"自定义Toast";
         } else {
             cell.textLabel.text = model.key;
@@ -142,8 +144,10 @@
                 } else if (indexPath.row == 4) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"norule"];
                 } else if (indexPath.row == 5) {
-                    vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"pageable"];
                 } else if (indexPath.row == 6) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
+                } else if (indexPath.row == 7) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
                 }
             } else if (indexPath.section == 2) {

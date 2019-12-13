@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RuiXingCoffeeHomeHeaderView : UICollectionReusableView
-@property (strong, nonatomic) SLRecycleView *recycleView;
+@property (strong, nonatomic) SLRecycleCollectionView *recycleView;
 @property (strong, nonatomic) SLNoRuleCollectionView *noRuleCollectionView;
 @end
 

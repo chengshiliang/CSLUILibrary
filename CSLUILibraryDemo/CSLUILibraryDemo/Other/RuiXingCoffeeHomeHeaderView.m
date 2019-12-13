@@ -10,12 +10,14 @@
 #import "StaticCollectionViewController.h"
 #import "StaticCollectionViewCell.h"
 #import <CSLCommonLibrary/NSNotificationCenter+Base.h>
+#import "RecycleViewController.h"
 
 @interface RuiXingCoffeeHomeHeaderView()<SLCollectionViewProtocol>
 {
     NSArray *dataSource;
 }
 @end
+static NSString *const cellId = @"ruixingheaderrecycleview";
 
 @implementation RuiXingCoffeeHomeHeaderView
 
@@ -32,11 +34,26 @@
 }
 
 - (void)initialize {
-    self.recycleView = [[SLRecycleView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*2.0/3)];
-    self.recycleView.imageDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
-    self.recycleView.titleDatas=@[@"cir0",@"cir1",@"cir2",@"cir3"];
+    self.recycleView = [[SLRecycleCollectionView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth*2.0/3)];
+    NSMutableArray *arrM1 = [NSMutableArray array];
+    for (int i = 0; i < 5; i ++) {
+        SLPupModel *pupModel = [SLPupModel new];
+        pupModel.width = kScreenWidth-20;
+        RecycleViewModel *model = [RecycleViewModel new];
+        model.title = [NSString stringWithFormat:@"第%d个", i];
+        model.imageUrl = [NSString stringWithFormat:@"cir%d", i];
+        pupModel.data = model;
+        [arrM1 addObject:pupModel];
+    }
+    self.recycleView.loop = YES;
+    self.recycleView.dataSource = arrM1.copy;
+    self.recycleView.delegate = self;
+    self.recycleView.minimumLineSpacing = 0;
+    self.recycleView.insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.recycleView.interval = 1.0;
+    [self.recycleView.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
     [self addSubview:self.recycleView];
-    [self.recycleView startLoading];
+    [self.recycleView reloadData];
     self.noRuleCollectionView = [[SLNoRuleCollectionView alloc]initWithFrame:CGRectMake(0, kScreenWidth*2.0/3, kScreenWidth, kScreenWidth*3.0/4)];
     [self addSubview:self.noRuleCollectionView];
     
@@ -124,55 +141,9 @@ static NSString *const cellId3 = @"kNoRuleCollectionViewCellID";
             cell.backgroundColor = [UIColor blueColor];
         }
         return cell;
-   }
-    return nil;
+    }
+    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    
+    return cell;
 }
-
-/**
- - (void)swizzAppearMethod:(NSObject *)target callback:(void(^)(__unsafe_unretained NSObject *appearObj))callback {
-     @synchronized (swizzledClasses()) {
-         NSMutableArray *callbackArrayM = objc_getAssociatedObject(target, ClassAppearAssociationKey);
-         if (!callbackArrayM) {
-             callbackArrayM = [NSMutableArray array];
-         }
-         [callbackArrayM addObject:[callback copy]];
-         objc_setAssociatedObject(target, ClassAppearAssociationKey, callbackArrayM.mutableCopy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-         Class classToSwizzle = target.class;
-         NSString *className = [NSStringFromClass(classToSwizzle) stringByAppendingString:@"Appear"];
-         if ([swizzledClasses() containsObject:className]) return;
-         SEL appearSelector = sel_registerName("viewDidAppear:");
-         __block void (*originalAppear)(__unsafe_unretained id, SEL) = NULL;
-         id newDisappear = ^(__unsafe_unretained NSObject *appearObj) {
-             NSMutableArray *realCallbackArray = objc_getAssociatedObject(appearObj, ClassAppearAssociationKey);
-             if (realCallbackArray) {
-                 for (void(^currentCallback)(__unsafe_unretained NSObject *appearObj) in realCallbackArray) {
-                     if (currentCallback) {
-                         currentCallback(appearObj);
-                     }
-                 }
-                 objc_setAssociatedObject(appearObj, ClassAppearAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-             }
-             if (originalAppear == NULL) {
-                 struct objc_super superInfo = {
-                     .receiver = appearObj,
-                     .super_class = class_getSuperclass(classToSwizzle)
-                 };
-                 
-                 void (*msgSend)(struct objc_super *, SEL) = (__typeof__(msgSend))objc_msgSendSuper;
-                 msgSend(&superInfo, appearSelector);
-             } else {
-                 originalAppear(appearObj, appearSelector);
-             }
-         };
-         
-         IMP newDisappearIMP = imp_implementationWithBlock(newDisappear);
-         Method appearMethod = class_getInstanceMethod(classToSwizzle, appearSelector);
-         if (!class_addMethod(classToSwizzle, appearSelector, newDisappearIMP, method_getTypeEncoding(appearMethod))) {
-             originalAppear = (__typeof__(originalAppear))method_getImplementation(appearMethod);
-             originalAppear = (__typeof__(originalAppear))method_setImplementation(appearMethod, newDisappearIMP);
-         }
-         [swizzledClasses() addObject:className];
-     }
- }
- */
 @end

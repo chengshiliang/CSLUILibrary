@@ -1163,5 +1163,40 @@
             </objects>
             <point key="canvasLocation" x="2110" y="3422"/>
         </scene>
+        <!--Pageable Collection Controller-->
+        <scene sceneID="MgK-MZ-OLk">
+            <objects>
+                <viewController storyboardIdentifier="pageable" id="3Ka-kr-ih3" customClass="PageableCollectionController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tpa-Le-XXG"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFP-1b-3Ou"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="41n-3f-CaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTM-Dv-vmJ" customClass="SLPageableCollectionView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YTM-Dv-vmJ" secondAttribute="height" multiplier="375:300" id="BQH-sc-nHV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YTM-Dv-vmJ" firstAttribute="leading" secondItem="41n-3f-CaJ" secondAttribute="leading" id="84U-Ad-lvS"/>
+                            <constraint firstAttribute="trailing" secondItem="YTM-Dv-vmJ" secondAttribute="trailing" id="IP1-wv-ffT"/>
+                            <constraint firstItem="YTM-Dv-vmJ" firstAttribute="top" secondItem="Tpa-Le-XXG" secondAttribute="bottom" id="xb7-tW-euC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="YTM-Dv-vmJ" id="1az-ET-eto"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdT-q6-YRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2109.5999999999999" y="4098.8005997001501"/>
+        </scene>
     </scenes>
 </document>

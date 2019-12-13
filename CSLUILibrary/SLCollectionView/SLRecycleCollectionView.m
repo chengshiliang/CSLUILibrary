@@ -87,6 +87,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     self.layout.scrollDirection = self.scrollDirection;
     self.layout.minimumLineSpacing = self.minimumLineSpacing;
     self.dataArray = self.dataSource;
+    if (self.scrollStyle == SLRecycleCollectionViewStyleStep) self.manual = NO;
     if (self.loop && self.dataSource.count > 0) {
         CGFloat width = 0;
         CGFloat height = 0;

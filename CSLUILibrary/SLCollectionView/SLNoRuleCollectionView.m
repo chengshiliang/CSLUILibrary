@@ -13,9 +13,6 @@
 static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
 
 @interface SLNoRuleCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)SLNoRuleCollectionViewLayout *layout;
 @end
 
@@ -59,13 +56,13 @@ static NSString *const noRuleViewCellID = @"kSLNoRuleViewCellID";
     self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource.copy;
     self.layout.ajustFrame = self.ajustFrame;
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
             [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:noRuleViewCellID];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

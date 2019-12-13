@@ -12,9 +12,6 @@
 static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
 
 @interface SLHorizontalCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)SLHorizontalCollectionViewLayout *layout;
 @end
 @implementation SLHorizontalCollectionView
@@ -48,13 +45,13 @@ static NSString *const pupViewCellID = @"kSLHorizontalViewCellID";
     self.layout.data = self.dataSource;
     self.layout.columnMagrin = self.columnMagrin;
     self.collectionView.bounces = self.bounces;
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
             [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

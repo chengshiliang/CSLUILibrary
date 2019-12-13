@@ -12,9 +12,6 @@
 static NSString *const staticViewCellID = @"kSLStaticViewCellID";
 
 @interface SLStaticCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)SLStaticCollectViewLayout *layout;
 @end
 @implementation SLStaticCollectionView
@@ -52,7 +49,7 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
     self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource.copy;
     self.layout.ajustFrame = self.ajustFrame;
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
@@ -64,7 +61,7 @@ static NSString *const staticViewCellID = @"kSLStaticViewCellID";
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerFooter:forView:)]) {
             [self.delegate registerFooter:self.collectionView forView:self];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

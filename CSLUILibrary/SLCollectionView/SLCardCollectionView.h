@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat itemMargin; // item 间距
 @property(nonatomic,assign)SLViewDirection direction; //滚动方向
 @property(nonatomic,copy) void(^scrollEndBlock)(NSInteger index); // 滚动结束，当前显示中间的cell序号
+@property(nonatomic,assign) BOOL isRegiste;// 如果在外面已经注册好，这里记得改为yes
 - (void)reloadData;// collectionview刷新
 @end
 

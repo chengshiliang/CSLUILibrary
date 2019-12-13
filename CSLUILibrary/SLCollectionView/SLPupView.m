@@ -12,9 +12,6 @@
 static NSString *const pupViewCellID = @"kSLPupViewCellID";
 
 @interface SLPupView ()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)SLCollectionViewLayout *layout;
 @end
 @implementation SLPupView
@@ -51,13 +48,13 @@ static NSString *const pupViewCellID = @"kSLPupViewCellID";
     self.layout.rowMagrin = self.rowMagrin;
     self.layout.columnMagrin = self.columnMagrin;
     self.layout.data = self.dataSource;
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
             [self.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:pupViewCellID];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

@@ -27,6 +27,7 @@
 		158C6C59236A96C700F80FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158C6C57236A96C700F80FA6 /* LaunchScreen.storyboard */; };
 		158C6C5C236A96C700F80FA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C5B236A96C700F80FA6 /* main.m */; };
 		15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */; };
+		15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */; };
 		15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D15962238627B1006DD86B /* NavTranslucentViewController.m */; };
 		15D1597623868793006DD86B /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D1597523868793006DD86B /* TabbarController.m */; };
 		15D53C27239E1EB800A10E0B /* ToastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C26239E1EB800A10E0B /* ToastController.m */; };
@@ -80,6 +81,8 @@
 		158C6C5B236A96C700F80FA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15B3C7DC237A8843009CAFFE /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		15BB8F2123A38B9800698AE4 /* PageableCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageableCollectionController.h; sourceTree = "<group>"; };
+		15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageableCollectionController.m; sourceTree = "<group>"; };
 		15D15961238627B1006DD86B /* NavTranslucentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTranslucentViewController.h; sourceTree = "<group>"; };
 		15D15962238627B1006DD86B /* NavTranslucentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTranslucentViewController.m; sourceTree = "<group>"; };
 		15D1597423868793006DD86B /* TabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				157EF9002397ABBA00FF4C98 /* AlertController.m */,
 				15D53C25239E1EB800A10E0B /* ToastController.h */,
 				15D53C26239E1EB800A10E0B /* ToastController.m */,
+				15BB8F2123A38B9800698AE4 /* PageableCollectionController.h */,
+				15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
 				15D1597623868793006DD86B /* TabbarController.m in Sources */,
+				15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */,
 				15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */,
 				153FDD422383CF3700EFE6FB /* BaseController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,

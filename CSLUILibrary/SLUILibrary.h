@@ -40,6 +40,7 @@
 #import <CSLUILibrary/SLCardCollectionView.h>
 #import <CSLUILibrary/SLRecycleCollectionLayout.h>
 #import <CSLUILibrary/SLRecycleCollectionView.h>
+#import <CSLUILibrary/SLPageableCollectionView.h>
 #import <CSLUILibrary/SLLabel.h>
 #import <CSLUILibrary/SLCoreText.h>
 #import <CSLUILibrary/SLView.h>

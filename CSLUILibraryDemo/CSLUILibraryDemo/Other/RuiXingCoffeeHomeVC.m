@@ -55,7 +55,7 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     
     RuiXingCoffeeHomeHeaderView *headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
     [headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
-    [headerView.recycleView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+    [headerView.recycleView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

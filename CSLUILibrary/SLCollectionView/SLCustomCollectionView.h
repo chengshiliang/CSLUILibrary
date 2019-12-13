@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign,nonatomic) float rowMagrin;//行距离
 @property(copy,nonatomic)NSArray<SLCustomCollectionModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
+@property(nonatomic,assign) BOOL isRegiste;// 如果在外面已经注册好，这里记得改为yes
 - (void)reloadData;// 静态collectionview刷新
 @end
 

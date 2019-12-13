@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(copy,nonatomic)NSArray<SLPupModel *> *dataSource;
 @property(weak,nonatomic)id<SLCollectionViewProtocol>delegate;
 @property(strong,nonatomic)SLCollectionView *collectionView;
+@property(nonatomic,assign) BOOL isRegiste;// 如果在外面已经注册好，这里记得改为yes
 - (void)reloadData;// 横向滚动collectionview刷新
 @end
 

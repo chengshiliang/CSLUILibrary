@@ -9,9 +9,6 @@
 #import <CSLUILibrary/SLPupModel.h>
 
 @interface SLCustomCollectionView()<UICollectionViewDataSource,UICollectionViewDelegate>
-{
-    BOOL isRegiste;
-}
 @property(strong,nonatomic)UICollectionViewFlowLayout *layout;
 @end
 
@@ -45,7 +42,7 @@ static NSString *const customCollectionViewCellID = @"";
     if (self.columns <= 0) return;
     self.layout.minimumLineSpacing = self.columnMagrin;
     self.layout.minimumInteritemSpacing = self.rowMagrin;
-    if (!isRegiste) {
+    if (!self.isRegiste) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerCell:forView:)]) {
             [self.delegate registerCell:self.collectionView forView:self];
         } else {
@@ -57,7 +54,7 @@ static NSString *const customCollectionViewCellID = @"";
         if (self.delegate && [self.delegate respondsToSelector:@selector(registerFooter:forView:)]) {
             [self.delegate registerFooter:self.collectionView forView:self];
         }
-        isRegiste = YES;
+        self.isRegiste = YES;
     }
     [self.collectionView reloadData];
 }

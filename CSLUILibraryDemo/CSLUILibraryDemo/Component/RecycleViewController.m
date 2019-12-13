@@ -8,9 +8,6 @@
 
 #import "RecycleViewController.h"
 
-@interface RecycleViewModel : SLModel
-@property (nonatomic, copy) NSString *title;
-@end
 @implementation RecycleViewModel
 @end
 @interface RecycleViewController ()<SLCollectionViewProtocol>
