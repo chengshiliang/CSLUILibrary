@@ -126,6 +126,14 @@
     self.layer.frame = CGRectMake(0, self.onlyText.frame.size.height-2, 0, 2);
     [self.onlyText.layer addSublayer:self.layer];
 
+    self.onlyImage.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
+        StrongSelf;
+        for (SLTabbarButton *btn in strongSelf.onlyImage.buttons) {
+            [btn addCornerRadius:5.0 borderWidth:1.0 borderColor:SLUIHexColor(0x000000) backGroundColor:SLUIHexColor(0xffffff)];
+        }
+        [button addCornerRadius:5.0 borderWidth:0 borderColor:nil backGroundColor:SLUIHexColor(0x00ff00)];
+    };
+    
     [self.onlyImage initButtons:[NSArray arrayWithArray:arrayM2] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
         button.tabbarButtonType = SLButtonTypeOnlyImage;
     }];
