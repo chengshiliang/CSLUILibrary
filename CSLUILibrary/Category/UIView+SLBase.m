@@ -150,8 +150,11 @@
 
 - (void)addCornerRadius:(CGFloat)cornerRadius
             borderWidth:(CGFloat)borderWidth
-            borderColor:(UIColor *)borderColor
-        backGroundColor:(UIColor *)backColor {
+            borderColor:(UIColor * _Nullable)borderColor
+        backGroundColor:(UIColor * _Nullable)backColor
+                offsetX:(CGFloat)offsetX
+                offsetY:(CGFloat)offsetY
+            cornersType:(UIRectCorner)corners {
     if (!backColor) {
         backColor = [UIColor clearColor];
     }
@@ -170,9 +173,9 @@
         CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
     }
     UIBezierPath *bezierPath;
-    CGRect rect = CGRectMake(self.bounds.origin.x+borderWidth*1.0/2, self.bounds.origin.y+borderWidth*1.0/2, self.bounds.size.width-borderWidth, self.bounds.size.height-borderWidth);
+    CGRect rect = rect = CGRectInset(self.bounds, offsetX, offsetY);
     if (cornerRadius > 0) {
-        bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:cornerRadius];
+        bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
     } else {
         bezierPath = [UIBezierPath bezierPathWithRect:rect];
     }
@@ -182,6 +185,19 @@
 
     self.layer.contents = (__bridge id)UIGraphicsGetImageFromCurrentImageContext().CGImage;
     UIGraphicsEndImageContext();
+}
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            borderWidth:(CGFloat)borderWidth
+            borderColor:(UIColor *)borderColor
+        backGroundColor:(UIColor *)backColor {
+    [self addCornerRadius:cornerRadius
+              borderWidth:borderWidth
+              borderColor:borderColor
+          backGroundColor:backColor
+                  offsetX:borderWidth/2.0
+                  offsetY:borderWidth/2.0
+              cornersType:UIRectCornerAllCorners];
 }
 
 - (void)addCorner:(BOOL)corner {

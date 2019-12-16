@@ -23,9 +23,9 @@
     [super viewWillLayoutSubviews];
     [self.button1 addCornerRadius:15.0f borderWidth:0.0 borderColor:[UIColor clearColor] backGroundColor:[UIColor redColor]];
     
-    [self.button2 addCornerRadius:15.0f borderWidth:2.0 borderColor:[UIColor yellowColor] backGroundColor:[UIColor redColor]];
+    [self.button2 addCornerRadius:15.0f borderWidth:2.0 borderColor:[UIColor redColor] backGroundColor:[UIColor clearColor]];
     
-    [self.button3 addCornerRadius:0.0f borderWidth:1.0 borderColor:[UIColor yellowColor] backGroundColor:[UIColor redColor]];
+    [self.button3 addCornerRadius:0.0f borderWidth:2.0 borderColor:[UIColor redColor] backGroundColor:[UIColor clearColor]];
     
     [self.button4 addCornerRadius:15.0f borderWidth:1.0 borderColor:[UIColor yellowColor] backGroundColor:[UIColor clearColor]];
     

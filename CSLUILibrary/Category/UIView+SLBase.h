@@ -41,13 +41,19 @@ NS_ASSUME_NONNULL_BEGIN
           shadowOpacity:(CGFloat)shadowOpacity
            shadowRadius:(CGFloat)shadowRadius;
 
-/**
- 给view增加倒角和边框,会覆盖原有的内容
- */
 - (void)addCornerRadius:(CGFloat)cornerRadius
             borderWidth:(CGFloat)borderWidth
             borderColor:(UIColor * _Nullable)borderColor
         backGroundColor:(UIColor * _Nullable)backColor;
+
+- (void)addCornerRadius:(CGFloat)cornerRadius
+            borderWidth:(CGFloat)borderWidth
+            borderColor:(UIColor * _Nullable)borderColor
+        backGroundColor:(UIColor * _Nullable)backColor
+                offsetX:(CGFloat)offsetX
+                offsetY:(CGFloat)offsetY
+            cornersType:(UIRectCorner)corners;
+
 /**
 给view增加倒角和边框,不会覆盖原有的内容
 */

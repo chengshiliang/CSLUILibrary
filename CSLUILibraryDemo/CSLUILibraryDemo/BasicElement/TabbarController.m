@@ -128,10 +128,34 @@
 
     self.onlyImage.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
         StrongSelf;
-        for (SLTabbarButton *btn in strongSelf.onlyImage.buttons) {
-            [btn addCornerRadius:5.0 borderWidth:1.0 borderColor:SLUIHexColor(0x000000) backGroundColor:SLUIHexColor(0xffffff)];
+        for (int i = 0; i < strongSelf.onlyImage.buttons.count; i ++) {
+            SLTabbarButton *btn = strongSelf.onlyImage.buttons[i];
+            if (i == 0) {
+                [btn addCornerRadius:5.0
+                         borderWidth:1.0
+                         borderColor:SLUIHexColor(0x000000)
+                     backGroundColor:index == i ? SLUIHexColor(0x00ff00) : nil
+                             offsetX:0
+                             offsetY:0
+                         cornersType:UIRectCornerTopLeft | UIRectCornerBottomLeft];
+            } else if (i == strongSelf.onlyImage.buttons.count - 1) {
+                [btn addCornerRadius:5.0
+                         borderWidth:1.0
+                         borderColor:SLUIHexColor(0x000000)
+                     backGroundColor:index == i ? SLUIHexColor(0x00ff00) :  nil
+                             offsetX:0
+                             offsetY:0
+                         cornersType:UIRectCornerTopRight | UIRectCornerBottomRight];
+            } else {
+                [btn addCornerRadius:0
+                         borderWidth:1.0
+                         borderColor:SLUIHexColor(0x000000)
+                     backGroundColor:index == i ? SLUIHexColor(0x00ff00) : nil
+                             offsetX:0
+                             offsetY:0
+                         cornersType:UIRectCornerAllCorners];
+            }
         }
-        [button addCornerRadius:5.0 borderWidth:0 borderColor:nil backGroundColor:SLUIHexColor(0x00ff00)];
     };
     
     [self.onlyImage initButtons:[NSArray arrayWithArray:arrayM2] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
