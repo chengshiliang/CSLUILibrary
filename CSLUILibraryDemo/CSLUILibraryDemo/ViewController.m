@@ -40,6 +40,8 @@
             cell.textLabel.text = @"自定义cell";
         } else if (indexPath.row == 5) {
             cell.textLabel.text = @"view的倒角和阴影";
+        } else if (indexPath.row == 6) {
+            cell.textLabel.text = @"通告栏";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -131,6 +133,8 @@
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"cell"];
                 } else if (indexPath.row == 5) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"custom"];
+                } else if (indexPath.row == 6) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"noticebar"];
                 }
             } else if (indexPath.section == 1) {
                 if (indexPath.row == 0) {

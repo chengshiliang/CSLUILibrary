@@ -1198,5 +1198,40 @@
             </objects>
             <point key="canvasLocation" x="2109.5999999999999" y="4098.8005997001501"/>
         </scene>
+        <!--Notice Bar Controller-->
+        <scene sceneID="1S7-fv-ycc">
+            <objects>
+                <viewController storyboardIdentifier="noticebar" id="Y8c-Gc-abw" customClass="NoticeBarController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uf7-Dw-gzh"/>
+                        <viewControllerLayoutGuide type="bottom" id="s8y-GF-ri3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K7E-3G-SA3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWN-fO-PI2" customClass="SLNoticeBar">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="yZk-Oz-UWF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oWN-fO-PI2" firstAttribute="leading" secondItem="K7E-3G-SA3" secondAttribute="leading" id="6D1-R3-RfJ"/>
+                            <constraint firstAttribute="trailing" secondItem="oWN-fO-PI2" secondAttribute="trailing" id="VD0-RV-h1C"/>
+                            <constraint firstItem="oWN-fO-PI2" firstAttribute="top" secondItem="Uf7-Dw-gzh" secondAttribute="bottom" id="YA9-Qw-xcu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noticeBar" destination="oWN-fO-PI2" id="X5K-oF-5LX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sbl-KT-3yL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1396" y="4098.8005997001501"/>
+        </scene>
     </scenes>
 </document>
