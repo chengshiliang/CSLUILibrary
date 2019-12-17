@@ -1233,5 +1233,40 @@
             </objects>
             <point key="canvasLocation" x="1396" y="4098.8005997001501"/>
         </scene>
+        <!--Progress View Controller-->
+        <scene sceneID="elz-IT-5U2">
+            <objects>
+                <viewController storyboardIdentifier="progress" id="Zhc-LL-T40" customClass="ProgressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4j4-k1-JGX"/>
+                        <viewControllerLayoutGuide type="bottom" id="u70-Y1-XXK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aeg-9Q-qtL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9M-Rp-oo8" customClass="SLProgressView">
+                                <rect key="frame" x="20" y="30" width="335" height="10"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="doT-Wl-jq4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="A9M-Rp-oo8" firstAttribute="top" secondItem="4j4-k1-JGX" secondAttribute="bottom" constant="30" id="MrZ-BS-ZOY"/>
+                            <constraint firstItem="A9M-Rp-oo8" firstAttribute="leading" secondItem="aeg-9Q-qtL" secondAttribute="leading" constant="20" id="fEu-kd-YP2"/>
+                            <constraint firstAttribute="trailing" secondItem="A9M-Rp-oo8" secondAttribute="trailing" constant="20" id="pPf-M4-4yT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressView" destination="A9M-Rp-oo8" id="ZRl-I0-bkc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FvJ-Hh-1Vp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1397.5999999999999" y="4779.7601199400306"/>
+        </scene>
     </scenes>
 </document>

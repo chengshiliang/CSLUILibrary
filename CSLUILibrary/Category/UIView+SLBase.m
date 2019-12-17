@@ -173,7 +173,7 @@
         CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
     }
     UIBezierPath *bezierPath;
-    CGRect rect = rect = CGRectInset(self.bounds, offsetX, offsetY);
+    CGRect rect = CGRectInset(self.bounds, offsetX, offsetY);
     if (cornerRadius > 0) {
         bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
     } else {

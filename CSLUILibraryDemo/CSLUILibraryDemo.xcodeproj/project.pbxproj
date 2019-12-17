@@ -40,6 +40,7 @@
 		15EFE18623717E7C00912334 /* cir0.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18223717E7C00912334 /* cir0.png */; };
 		15EFE18723717E7C00912334 /* cir1.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18323717E7C00912334 /* cir1.png */; };
 		15FA042723A72DE800DF6A41 /* NoticeBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA042623A72DE800DF6A41 /* NoticeBarController.m */; };
+		15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA042E23A8727000DF6A41 /* ProgressViewController.m */; };
 		15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FF8BB623751F8100B920B2 /* SearchViewController.m */; };
 		D85475017630C8A0F1E343DE /* libPods-CSLUILibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,8 @@
 		15EFE18323717E7C00912334 /* cir1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cir1.png; sourceTree = "<group>"; };
 		15FA042523A72DE800DF6A41 /* NoticeBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeBarController.h; sourceTree = "<group>"; };
 		15FA042623A72DE800DF6A41 /* NoticeBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeBarController.m; sourceTree = "<group>"; };
+		15FA042D23A8727000DF6A41 /* ProgressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
+		15FA042E23A8727000DF6A41 /* ProgressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		15FF8BB523751F8100B920B2 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		15FF8BB623751F8100B920B2 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +142,8 @@
 				150C57A423960D0100FC8DE2 /* CustomTableCellController.m */,
 				15FA042523A72DE800DF6A41 /* NoticeBarController.h */,
 				15FA042623A72DE800DF6A41 /* NoticeBarController.m */,
+				15FA042D23A8727000DF6A41 /* ProgressViewController.h */,
+				15FA042E23A8727000DF6A41 /* ProgressViewController.m */,
 			);
 			path = BasicElement;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				150C57A523960D0100FC8DE2 /* CustomTableCellController.m in Sources */,
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
+				15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */,
 				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15D53C27239E1EB800A10E0B /* ToastController.m in Sources */,
