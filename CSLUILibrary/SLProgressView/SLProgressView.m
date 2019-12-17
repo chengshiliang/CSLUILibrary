@@ -24,30 +24,34 @@
 }
 
 - (void)initialize {
+    self.backgroundColor = [UIColor clearColor];
     self.normalColor = SLUIHexColor(0xDDDEE2);
     self.trackerColor = SLUIHexColor(0x3297EF);
     self.corners = YES;
-    [self setProgress:0.5 animated:NO];
 }
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
-    progress = MIN(1.0, progress);
-    progress = MAX(0.0, progress);
-    if (animated && progress > 0) {
-        [UIView animateWithDuration:0.05 animations:^{
-            if (ABS(self.progress - progress) < 0.1) {
-                self.progress = progress;
+    @synchronized (self) {
+        progress = MIN(1.0, progress);
+        progress = MAX(0.0, progress);
+        if (animated && progress > 0) {
+            while (self.progress != progress) {
+                [UIView animateWithDuration:0.05 animations:^{
+                    if (ABS(self.progress - progress) < 0.1) {
+                        self.progress = progress;
+                    }
+                    if (self.progress > progress) {
+                        self.progress -= 0.1;
+                    } else if (self.progress < progress) {
+                        self.progress += 0.1;
+                    }
+                    [self setNeedsDisplay];
+                }];
             }
-            if (self.progress > progress) {
-                self.progress -= 0.1;
-            } else if (self.progress < progress) {
-                self.progress += 0.1;
-            }
+        } else {
+            self.progress = progress;
             [self setNeedsDisplay];
-        }];
-    } else {
-        self.progress = progress;
-        [self setNeedsDisplay];
+        }
     }
 }
 
@@ -71,7 +75,12 @@
     CGContextAddPath(context, bezierPath.CGPath);
     CGContextDrawPath(context, kCGPathFill);
     if (self.progress > 0) {
-        CGRect trackRect = CGRectMake(0, 0, rect.size.width * self.progress, rect.size.height);
+        CGRect trackRect;
+        if (self.isVertical) {
+            trackRect = CGRectMake(0, 0, rect.size.width, rect.size.height * self.progress);
+        } else {
+            trackRect = CGRectMake(0, 0, rect.size.width * self.progress, rect.size.height);
+        }
         if (self.radius > 0) {
             bezierPath = [UIBezierPath bezierPathWithRoundedRect:trackRect cornerRadius:self.radius];
         } else {

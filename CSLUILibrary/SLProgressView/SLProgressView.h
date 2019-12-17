@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat radius;
 @property (nonatomic, assign) BOOL corners;
 @property (nonatomic, assign, getter=currentProgress) CGFloat progress; // 0~1
+@property (nonatomic, assign, getter=isVertical) BOOL vertical;// 是否为纵向显示
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
 @end

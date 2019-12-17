@@ -150,7 +150,6 @@
             label.frame = CGRectZero;
         } else {
             CGSize titleSize = [model.title sizeWithFont:model.font size:CGSizeMake(model.width, MAXFLOAT)];
-            NSLog(@"size %@ ~~~ %lf", NSStringFromCGSize(titleSize), model.width);
             label.frame = CGRectMake(0, 0, titleSize.width, titleSize.height);
             label.text = model.title;
             label.font = model.font;

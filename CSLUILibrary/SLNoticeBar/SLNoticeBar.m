@@ -112,7 +112,4 @@
     [self removeFromSuperview];
 }
 
-- (void)dealloc {
-    NSLog(@"notice bar dealloc");
-}
 @end

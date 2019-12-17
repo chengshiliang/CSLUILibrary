@@ -11,18 +11,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self initialize];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-        [self initialize];
     }
     return self;
-}
-
-- (void)initialize {
-
 }
 
 @end

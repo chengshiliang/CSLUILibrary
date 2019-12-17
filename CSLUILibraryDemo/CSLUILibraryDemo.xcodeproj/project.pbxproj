@@ -41,6 +41,7 @@
 		15EFE18723717E7C00912334 /* cir1.png in Resources */ = {isa = PBXBuildFile; fileRef = 15EFE18323717E7C00912334 /* cir1.png */; };
 		15FA042723A72DE800DF6A41 /* NoticeBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA042623A72DE800DF6A41 /* NoticeBarController.m */; };
 		15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA042E23A8727000DF6A41 /* ProgressViewController.m */; };
+		15FA043723A87F9000DF6A41 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA043623A87F9000DF6A41 /* SliderViewController.m */; };
 		15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FF8BB623751F8100B920B2 /* SearchViewController.m */; };
 		D85475017630C8A0F1E343DE /* libPods-CSLUILibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */; };
 /* End PBXBuildFile section */
@@ -106,6 +107,8 @@
 		15FA042623A72DE800DF6A41 /* NoticeBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeBarController.m; sourceTree = "<group>"; };
 		15FA042D23A8727000DF6A41 /* ProgressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		15FA042E23A8727000DF6A41 /* ProgressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
+		15FA043523A87F9000DF6A41 /* SliderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SliderViewController.h; sourceTree = "<group>"; };
+		15FA043623A87F9000DF6A41 /* SliderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
 		15FF8BB523751F8100B920B2 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		15FF8BB623751F8100B920B2 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +147,8 @@
 				15FA042623A72DE800DF6A41 /* NoticeBarController.m */,
 				15FA042D23A8727000DF6A41 /* ProgressViewController.h */,
 				15FA042E23A8727000DF6A41 /* ProgressViewController.m */,
+				15FA043523A87F9000DF6A41 /* SliderViewController.h */,
+				15FA043623A87F9000DF6A41 /* SliderViewController.m */,
 			);
 			path = BasicElement;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				157EF9012397ABBA00FF4C98 /* AlertController.m in Sources */,
+				15FA043723A87F9000DF6A41 /* SliderViewController.m in Sources */,
 				150C579C2394ED8600FC8DE2 /* ButtonController.m in Sources */,
 				150C57A523960D0100FC8DE2 /* CustomTableCellController.m in Sources */,
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,

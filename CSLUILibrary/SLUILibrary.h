@@ -52,6 +52,8 @@
 #import <CSLUILibrary/SLToast.h>
 #import <CSLUILibrary/SLNoticeBar.h>
 #import <CSLUILibrary/SLProgressView.h>
+#import <CSLUILibrary/SLSliderView.h>
+#import <CSLUILibrary/SLDoubleSliderView.h>
 
 #import <CSLUILibrary/SLCustomCollectionModel.h>
 #import <CSLUILibrary/SLPupModel.h>

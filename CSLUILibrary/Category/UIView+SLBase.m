@@ -168,9 +168,6 @@
     if (borderWidth > 0) {
         CGContextSetLineWidth(context, borderWidth);
         CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
-    } else {
-        CGContextSetLineWidth(context, 0.0);
-        CGContextSetStrokeColorWithColor(context, [UIColor clearColor].CGColor);
     }
     UIBezierPath *bezierPath;
     CGRect rect = CGRectInset(self.bounds, offsetX, offsetY);

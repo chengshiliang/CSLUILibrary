@@ -44,6 +44,8 @@
             cell.textLabel.text = @"通告栏";
         } else if (indexPath.row == 7) {
             cell.textLabel.text = @"进度条";
+        } else if (indexPath.row == 8) {
+            cell.textLabel.text = @"滑动条";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -139,6 +141,8 @@
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"noticebar"];
                 } else if (indexPath.row == 7) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"progress"];
+                } else if (indexPath.row == 8) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"slider"];
                 }
             } else if (indexPath.section == 1) {
                 if (indexPath.row == 0) {
