@@ -11,6 +11,7 @@
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/NSString+Util.h>
 #import <CSLUILibrary/SLTabbarView.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @implementation SLPopoverAction
 + (instancetype)actionWithTitle:(NSString *)title handler:(void (^)(SLPopoverAction *action))handler{
@@ -62,6 +63,7 @@ float PopoverViewDegreesToRadians(float angle)
     [[UIApplication sharedApplication].keyWindow addSubview:self.backView];
     self.containerView = [[SLTabbarView alloc]init];
     self.containerView.direction = Vertical;
+    self.containerView.needLineView = YES;
     [self addSubview:self.containerView];
 }
 
@@ -118,6 +120,13 @@ float PopoverViewDegreesToRadians(float angle)
         return CGSizeMake(30, 30);
     }
     return _imageSize;
+}
+
+- (UIColor *)strokeColor {
+    if (!_strokeColor) {
+        _strokeColor = SLUIHexColor(0x999999);
+    }
+    return _strokeColor;
 }
 
 - (CGFloat)cornerRadius {
@@ -203,7 +212,7 @@ float PopoverViewDegreesToRadians(float angle)
     }
     
     self.frame = CGRectMake(currentX, currentY, currentW, currentH);
-    
+    self.backgroundColor = [UIColor redColor];
     NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:self.actions.count];
     for (SLPopoverAction *action in self.actions) {
         SLTabbarButton *button = [[SLTabbarButton alloc] init];
@@ -212,7 +221,7 @@ float PopoverViewDegreesToRadians(float angle)
         if (action.image) [button setImage:action.image forState:UIControlStateNormal];
         [arrayM addObject:button];
     }
-    
+    self.containerView.lineColor = self.strokeColor;
     WeakSelf;
     self.containerView.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
         StrongSelf;
@@ -228,6 +237,7 @@ float PopoverViewDegreesToRadians(float angle)
         button.imageSize = strongSelf.imageSize;
         button.imageTitleSpace = strongSelf.imageTitleSpace;
         button.titleLabel.font = strongSelf.titleFont;
+        button.titleLabel.textAlignment = NSTextAlignmentRight;
     }];
     
     CGPoint arrowPoint = CGPointMake(toPoint.x - CGRectGetMinX(self.frame), self.isUpward ? 0 : currentH);
@@ -241,6 +251,7 @@ float PopoverViewDegreesToRadians(float angle)
                       endAngle:PopoverViewDegreesToRadians(270)
                      clockwise:YES];
     if (self.isUpward) {
+        [maskPath addLineToPoint:CGPointMake(arrowPoint.x - self.arrowWH/2, self.arrowWH)];
         [maskPath addLineToPoint:arrowPoint];
         [maskPath addLineToPoint:CGPointMake(arrowPoint.x + self.arrowWH/2, self.arrowWH)];
     }
@@ -257,6 +268,7 @@ float PopoverViewDegreesToRadians(float angle)
                       endAngle:PopoverViewDegreesToRadians(90)
                      clockwise:YES];
     if (!self.isUpward) {
+        [maskPath addLineToPoint:CGPointMake(arrowPoint.x + self.arrowWH/2, currentH - self.arrowWH)];
         [maskPath addLineToPoint:arrowPoint];
         [maskPath addLineToPoint:CGPointMake(arrowPoint.x - self.arrowWH/2, currentH - self.arrowWH)];
     }
@@ -271,6 +283,13 @@ float PopoverViewDegreesToRadians(float angle)
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     self.layer.mask = maskLayer;
+    CAShapeLayer *borderLayer = [CAShapeLayer layer];
+    borderLayer.frame = self.bounds;
+    borderLayer.path = maskPath.CGPath;
+    borderLayer.lineWidth = 0.5;
+    borderLayer.fillColor = [UIColor clearColor].CGColor;
+    borderLayer.strokeColor = self.strokeColor.CGColor;
+    [self.layer addSublayer:borderLayer];
     
     self.backView.alpha = 0.f;
     [[UIApplication sharedApplication].keyWindow addSubview:self];

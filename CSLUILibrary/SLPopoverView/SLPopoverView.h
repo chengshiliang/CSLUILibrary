@@ -32,6 +32,7 @@
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) CGFloat cornerRadius;
+@property (nonatomic, strong) UIColor *strokeColor;
 @property (nonatomic, strong, readonly) UIView *backView;
 
 - (void)showToView:(UIView *)pointView withActions:(NSArray<SLPopoverAction *> *)actions;

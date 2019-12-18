@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger index;// 指定那个tabbar选中
 @property (nonatomic, assign) SLViewDirection direction;
 @property (nonatomic, assign) BOOL canRepeatClick;// 可重复点击, default no
+@property (nonatomic, assign) BOOL needLineView;// 是否显示线条
+@property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, assign) CGFloat lineMargin;
 - (void)initButtons:(NSArray<SLTabbarButton *> *)buttons configTabbarButton:(void(^)(SLTabbarButton *button, NSInteger index))configTabbarButtonBlock;
 @end
 
