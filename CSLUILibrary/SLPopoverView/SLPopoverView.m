@@ -31,7 +31,7 @@ float PopoverViewDegreesToRadians(float angle)
     return angle*M_PI/180.0;
 }
 
-@interface SLPopoverView () <UITableViewDelegate, UITableViewDataSource>
+@interface SLPopoverView ()
 
 @property (nonatomic, strong) SLView *backView;
 @property (nonatomic, strong) SLTabbarView *containerView;
@@ -51,7 +51,6 @@ float PopoverViewDegreesToRadians(float angle)
 }
 
 - (void)initialize {
-    self.isUpward = YES;
     self.backView = [[SLView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
     WeakSelf;
@@ -177,11 +176,16 @@ float PopoverViewDegreesToRadians(float angle)
 - (void)showToPoint:(CGPoint)toPoint withActions:(NSArray<SLPopoverAction *> *)actions {
     self.actions = [actions copy];
     self.isUpward = toPoint.y <= kScreenHeight - toPoint.y;
+    if (self.isUpward) {
+        toPoint.y += self.spaceVertical;
+    } else {
+        toPoint.y -= self.spaceVertical;
+    }
     [self showToPoint:toPoint];
 }
 
 - (void)showToPoint:(CGPoint)toPoint {
-    CGFloat arrowCornerRadius = 1.5f, arrowBottomCornerRadius = 0.f, minHorizontalEdgeLeft = self.spaceHorizontal + self.contentInset.left + self.arrowWH/2.0;
+    CGFloat minHorizontalEdgeLeft = self.spaceHorizontal + self.contentInset.left + self.arrowWH/2.0;
     if (toPoint.x < minHorizontalEdgeLeft) {
         toPoint.x = minHorizontalEdgeLeft;
     }
@@ -210,9 +214,8 @@ float PopoverViewDegreesToRadians(float angle)
     if (!self.isUpward) {
         currentY = toPoint.y - currentH;
     }
-    
     self.frame = CGRectMake(currentX, currentY, currentW, currentH);
-    self.backgroundColor = [UIColor redColor];
+    
     NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:self.actions.count];
     for (SLPopoverAction *action in self.actions) {
         SLTabbarButton *button = [[SLTabbarButton alloc] init];
@@ -306,7 +309,6 @@ float PopoverViewDegreesToRadians(float angle)
 
 - (CGFloat)calculateMaxWidth {
     CGFloat maxWidth = 0.f;
-    CGSize imageSize = CGSizeZero;
     for (SLPopoverAction *action in self.actions) {
         CGFloat contentWidth = self.contentInset.left + self.contentInset.right;
         if (action.image) {

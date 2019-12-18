@@ -56,7 +56,7 @@
     popoverView.imageTitleSpace = 20;
     UITouch *touch = [touches anyObject];
     
-    [popoverView showToPoint:[touch locationInView:self.view] withActions:[actions copy]];
+    [popoverView showToPoint:[touch locationInView:[UIApplication sharedApplication].keyWindow] withActions:[actions copy]];
 }
 
 
