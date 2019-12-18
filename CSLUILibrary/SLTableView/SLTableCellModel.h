@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *customLeftView;
 @property (nonatomic, strong) UIView *customRightView;
 @property (nonatomic, strong) UIView *customMiddleView;
+@property (nonatomic, assign) BOOL isHiddenForBottomLineView;
+@property (nonatomic, strong) UIView *customBottomLineView;
 @end
 
 

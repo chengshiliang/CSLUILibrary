@@ -51,6 +51,7 @@
     if (@available(iOS 11, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.delegate = self;
     self.dataSource = self;

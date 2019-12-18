@@ -66,6 +66,8 @@
             cell.textLabel.text = @"自定义弹窗";
         } else if (indexPath.row == 7) {
             cell.textLabel.text = @"自定义Toast";
+        } else if (indexPath.row == 8) {
+            cell.textLabel.text = @"自定义popover";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -161,6 +163,8 @@
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
                 } else if (indexPath.row == 7) {
                     vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
+                } else if (indexPath.row == 8) {
+                    vc = [storyboard instantiateViewControllerWithIdentifier:@"popover"];
                 }
             } else if (indexPath.section == 2) {
                  if (indexPath.row == 0) {

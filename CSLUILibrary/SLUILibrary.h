@@ -54,6 +54,7 @@
 #import <CSLUILibrary/SLProgressView.h>
 #import <CSLUILibrary/SLSliderView.h>
 #import <CSLUILibrary/SLDoubleSliderView.h>
+#import <CSLUILibrary/SLPopoverView.h>
 
 #import <CSLUILibrary/SLCustomCollectionModel.h>
 #import <CSLUILibrary/SLPupModel.h>

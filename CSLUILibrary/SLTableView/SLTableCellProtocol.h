@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<UILabel *> *)rightTitles;// cell右边标题集合
 - (float)spaceTitlesAtRightItem;// cell右边文字间距 numberRowsAtRightItem 大于1的时候才调用
 - (UIView *)rightView;// 自定义cell左边视图
+- (BOOL)bottomLineViewHidden;// 底部线条是否隐藏
+- (UIView *)bottomLineView;// 底部线条视图
 
 @end
 

@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CSLUILibrary/SLTableModel.h>
 #import <CSLUILibrary/SLTableCellProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN

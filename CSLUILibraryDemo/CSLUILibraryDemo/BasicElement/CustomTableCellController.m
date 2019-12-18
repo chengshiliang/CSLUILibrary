@@ -236,6 +236,7 @@
             cellModel.leftCustomViewSize = CGSizeMake(60, 60);
             cellModel.rightCustomViewSize = CGSizeMake(60, 60);
             cellModel.isLeftForMiddleView = NO;
+            cellModel.isHiddenForBottomLineView = YES;
             model = cellModel;
         } else {
             model = [[SLModel alloc]init];

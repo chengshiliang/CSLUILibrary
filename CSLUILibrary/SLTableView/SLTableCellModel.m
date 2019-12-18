@@ -167,4 +167,12 @@
     return self.columnSpaceRightItem > 0 ? self.columnSpaceRightItem : 8.0f;
 }
 
+- (BOOL)bottomLineViewHidden {
+    return self.isHiddenForBottomLineView;
+}
+
+- (UIView *)bottomLineView {
+    return self.customBottomLineView;
+}
+
 @end

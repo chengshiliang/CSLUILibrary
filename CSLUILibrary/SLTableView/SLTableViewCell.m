@@ -8,8 +8,10 @@
 #import "SLTableViewCell.h"
 #import <CSLUILibrary/SLImageView.h>
 #import <CSLUILibrary/SLLabel.h>
+#import <CSLUILibrary/SLView.h>
 #import <CSLUILibrary/SLTableCellModel.h>
 #import <Masonry/Masonry.h>
+#import <CSLUILibrary/SLUIConsts.h>
 
 @interface SLTableViewCell()
 
@@ -185,6 +187,20 @@
             make.width.mas_equalTo(middeleView.frame.size.width);
         }];
         rightViewWidth += middeleView.frame.size.width;
+    }
+    if (![model bottomLineViewHidden]) {
+        if (![model bottomLineView]) {
+            SLView *lineView = [[SLView alloc]init];
+            lineView.backgroundColor = SLUIHexColor(0xe0e0e0);
+            [self.contentView addSubview:lineView];
+            [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.mas_equalTo(tempView);
+                make.height.mas_equalTo(0.5);
+                make.bottom.mas_equalTo(tempView).offset(inset.bottom);
+            }];
+        } else {
+            [self.contentView addSubview:[model bottomLineView]];
+        }
     }
 }
 

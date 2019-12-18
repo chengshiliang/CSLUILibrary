@@ -28,6 +28,7 @@
 		158C6C5C236A96C700F80FA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C5B236A96C700F80FA6 /* main.m */; };
 		15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */; };
 		15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */; };
+		15C7793023AA164B00E1D305 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C7792F23AA164B00E1D305 /* PopoverController.m */; };
 		15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D15962238627B1006DD86B /* NavTranslucentViewController.m */; };
 		15D1597623868793006DD86B /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D1597523868793006DD86B /* TabbarController.m */; };
 		15D53C27239E1EB800A10E0B /* ToastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C26239E1EB800A10E0B /* ToastController.m */; };
@@ -86,6 +87,8 @@
 		15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		15BB8F2123A38B9800698AE4 /* PageableCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageableCollectionController.h; sourceTree = "<group>"; };
 		15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageableCollectionController.m; sourceTree = "<group>"; };
+		15C7792E23AA164B00E1D305 /* PopoverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PopoverController.h; path = CSLUILibraryDemo/Component/PopoverController.h; sourceTree = SOURCE_ROOT; };
+		15C7792F23AA164B00E1D305 /* PopoverController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PopoverController.m; path = CSLUILibraryDemo/Component/PopoverController.m; sourceTree = SOURCE_ROOT; };
 		15D15961238627B1006DD86B /* NavTranslucentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTranslucentViewController.h; sourceTree = "<group>"; };
 		15D15962238627B1006DD86B /* NavTranslucentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTranslucentViewController.m; sourceTree = "<group>"; };
 		15D1597423868793006DD86B /* TabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 		15EFE17C23717B6B00912334 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				15C7792E23AA164B00E1D305 /* PopoverController.h */,
+				15C7792F23AA164B00E1D305 /* PopoverController.m */,
 				15EFE17D23717B8100912334 /* RecycleViewController.h */,
 				15EFE17E23717B8100912334 /* RecycleViewController.m */,
 				1543E9782372739A00A8F9BA /* PupViewController.h */,
@@ -396,6 +401,7 @@
 				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15D53C27239E1EB800A10E0B /* ToastController.m in Sources */,
+				15C7793023AA164B00E1D305 /* PopoverController.m in Sources */,
 				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
 				15D1597623868793006DD86B /* TabbarController.m in Sources */,
