@@ -44,7 +44,7 @@
     self.scollView1.insets = UIEdgeInsetsMake(0, 10, 0, 10);
     self.scollView1.interval = 1.0;
     [self.scollView1.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId1];
-//    [self.scollView1 reloadData];
+    [self.scollView1 reloadData];
     [arrM removeAllObjects];
     for (int i = 0; i < 5; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
