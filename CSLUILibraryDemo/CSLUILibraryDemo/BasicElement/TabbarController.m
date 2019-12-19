@@ -109,7 +109,7 @@
     WeakSelf;
     self.onlyText.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
         StrongSelf;
-        strongSelf.layer.frame = CGRectMake(button.offsetXY, strongSelf.onlyText.frame.size.height-2, button.frame.size.width, 2);
+        strongSelf.layer.frame = CGRectMake(button.offsetXY, strongSelf.onlyText.sl_height-2, button.sl_width, 2);
     };
     
     [self.onlyText initButtons:[NSArray arrayWithArray:arrayM1] configTabbarButton:^(SLTabbarButton * _Nonnull button, NSInteger index) {
@@ -123,7 +123,7 @@
     
     self.layer = [CALayer layer];
     self.layer.backgroundColor = [UIColor redColor].CGColor;
-    self.layer.frame = CGRectMake(0, self.onlyText.frame.size.height-2, 0, 2);
+    self.layer.frame = CGRectMake(0, self.onlyText.sl_height-2, 0, 2);
     [self.onlyText.layer addSublayer:self.layer];
 
     self.onlyImage.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {

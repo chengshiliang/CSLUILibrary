@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat sl_y;
 @property (nonatomic, assign) CGFloat sl_x;
 
+@property (nonatomic, assign) CGFloat sl_maxX;
+
+@property (nonatomic, assign) CGFloat sl_maxY;
+
 // 设置图片的毛玻璃效果
 - (void)sl_blurEffect;
 - (void)sl_blurEffectWithSyle:(EffectStyle)style;

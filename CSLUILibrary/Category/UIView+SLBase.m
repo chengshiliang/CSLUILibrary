@@ -59,6 +59,22 @@
     self.frame = temp;
 }
 
+- (CGFloat)sl_maxX {
+    return [self sl_x]+[self sl_width];
+}
+
+- (void)setSl_maxX:(CGFloat)sl_maxX {
+    self.sl_x = sl_maxX-self.sl_width;
+}
+
+- (CGFloat)sl_maxY {
+    return [self sl_y]+[self sl_height];
+}
+
+- (void)setSl_maxY:(CGFloat)sl_maxY {
+    self.sl_y = sl_maxY-self.sl_height;
+}
+
 - (void)sl_blurEffect {
     [self sl_blurEffect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 }

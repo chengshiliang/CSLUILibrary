@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (Util)
 + (BOOL)emptyString:(NSString *)str;
 + (NSString *)blankString:(NSString *)str;
--(CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size;
--(CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width;
--(CGFloat)widthWithFont:(UIFont*)font height:(CGFloat)height;
+- (CGSize)sizeWithFont:(UIFont*)font size:(CGSize)size;
+- (CGFloat)heightWithFont:(UIFont*)font width:(CGFloat)width;
+- (CGFloat)widthWithFont:(UIFont*)font height:(CGFloat)height;
 - (NSUInteger)compareTo:(NSString*)comp;
 - (NSUInteger)compareToIgnoreCase:(NSString*) comp;
 - (bool)contains:(NSString*)substring;
@@ -29,6 +29,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray*)split:(NSString*)token;
 - (NSString*)replace:(NSString*) target withString:(NSString*)replacement;
 - (NSArray*)split:(NSString*)token limit:(NSUInteger)maxResults;
+
++ (NSString *)sl_md5String:(NSString *)string;
++ (BOOL)isMobileNumber:(NSString *)mobileNum;//手机号验证
+
++ (BOOL)isValidEmail:(NSString *)emailStr;//检查邮箱是否有效
+
++ (BOOL)isValidPassword:(NSString *)passwordStr;//检查密码格式是否正确
+
++ (BOOL)isContainsEmoji:(NSString *)string;//检查时候包含emoji
+
++ (NSString *)removeEmojiString:(NSString *)string;//去除emoji
 
 - (CGSize)sizeWithConstrainedToWidth:(float)width fromFont:(UIFont *)font1 lineSpace:(float)lineSpace;
 - (CGSize)sizeWithConstrainedToSize:(CGSize)size fromFont:(UIFont *)font1 lineSpace:(float)lineSpace;

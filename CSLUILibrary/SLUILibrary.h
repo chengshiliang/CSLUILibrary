@@ -13,6 +13,10 @@
 #import <CSLUILibrary/SLUIConfig.h>
 
 #import <CSLUILibrary/NSString+Util.h>
+#import <CSLUILibrary/UITextView+Util.h>
+#import <CSLUILibrary/UITextField+Util.h>
+#import <CSLUILibrary/NSDate+Util.h>
+#import <CSLUILibrary/NSData+Util.h>
 #import <CSLUILibrary/UIView+SLBase.h>
 #import <CSLUILibrary/UIViewController+SLBase.h>
 #import <CSLUILibrary/UIScrollView+SLBase.h>
