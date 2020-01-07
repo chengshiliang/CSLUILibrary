@@ -5,6 +5,7 @@ pod 'CSLCommonLibrary', '0.3.4'
 pod 'SDWebImage', '~> 5.0'
 pod 'Masonry'
 pod 'JSONModel'
+pod 'CSLNetwork', '~> 0.0.2'
 pod 'CSLUILibrary', :path => '../'
 end
 inhibit_all_warnings!

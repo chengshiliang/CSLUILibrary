@@ -76,6 +76,8 @@
             cell.textLabel.text = @"NavTranslucent";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"瑞幸咖啡首页";
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"文件下载demo";
         } else {
             cell.textLabel.text = model.key;
         }
@@ -171,6 +173,8 @@
                      vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
                  } else if (indexPath.row == 1) {
                      vc = [storyboard instantiateViewControllerWithIdentifier:@"ruixinhome"];
+                 } else if (indexPath.row == 2) {
+                     vc = [storyboard instantiateViewControllerWithIdentifier:@"filedownload"];
                  }
             }
             if (vc) {
