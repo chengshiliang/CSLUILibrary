@@ -11,7 +11,7 @@
 #import "YYFPSLabel.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, assign) UIBackgroundTaskIdentifier bgTask;
 @end
 
 @implementation AppDelegate
@@ -64,7 +64,15 @@
     return YES;
 }
 
-
+//在应用处于后台，且后台任务下载完成时回调
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler {
+    NSURLSession *session = [SLDownloadManager sharedManager].session;
+    NSLog(@"Rejoining session with identifier %@ %@", identifier, session);
+    if ([[SLDownloadManager sharedManager].sessionCompleteHandle objectForKey:identifier]) {
+       NSLog(@"Error: Got multiple handlers for a single session identifier.  This should not happen.\n");
+    }
+    [[SLDownloadManager sharedManager].sessionCompleteHandle setObject:completionHandler forKey:identifier];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -74,8 +82,25 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    self.bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        [application endBackgroundTask:self.bgTask];
+        self.bgTask = UIBackgroundTaskInvalid;
+    }];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:25.0 target:self selector:@selector(applyForMoreTime) userInfo:nil repeats:YES];
+    [timer fire];
 }
 
+-(void)applyForMoreTime {
+    //如果系统给的剩余时间小于60秒 就终止当前的后台任务，再重新初始化一个后台任务，重新让系统分配时间，这样一直循环下去，保持APP在后台一直处于active状态。
+    if ([UIApplication sharedApplication].backgroundTimeRemaining < 10) {
+        [[UIApplication sharedApplication] endBackgroundTask:self.bgTask];
+        self.bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+            [[UIApplication sharedApplication] endBackgroundTask:self.bgTask];
+            self.bgTask = UIBackgroundTaskInvalid;
+        }];
+    }
+}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.

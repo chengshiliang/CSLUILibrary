@@ -15,7 +15,7 @@
 #define Iphone9  [UIDevice currentDevice].systemVersion.doubleValue >= 9.0
 
 #define WeakSelf __weak typeof (self) weakSelf = self
-#define StrongSelf __strong typeof (weakSelf) strongSelf = weakSelf
+#define StrongSelf __strong typeof (self) strongSelf = weakSelf
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height

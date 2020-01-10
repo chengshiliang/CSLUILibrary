@@ -58,9 +58,9 @@
     [self.coreText addAttributeString:@"https://www.baidu.com" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)} click:^(NSString * _Nonnull string) {
         NSLog(@"STRING222%@",string);
     }];
-    __weak typeof (self)weakSelf = self;
+    WeakSelf;
     self.coreText.sizeChange = ^(double lineHeight, double lineWidth) {
-        __strong typeof (weakSelf)strongSelf = weakSelf;
+        StrongSelf;
         strongSelf.coreTextHeight.constant = lineHeight;
         strongSelf.coreTextWidth.constant = lineWidth;
     };

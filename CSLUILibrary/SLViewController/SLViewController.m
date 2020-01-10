@@ -85,7 +85,7 @@
     WeakSelf;
     __weak typeof (presentedController) weakPresentController = presentedController;
     [gesture on:self click:^(UIGestureRecognizer * _Nonnull ges) {
-        __strong typeof (weakPresentController) strongPresentController = weakPresentController;
+        __strong typeof (presentedController) strongPresentController = weakPresentController;
         CGPoint transitionPoint = [gesture translationInView:strongPresentController.view];
         StrongSelf;
         switch (gesture.state) {

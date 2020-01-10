@@ -27,13 +27,13 @@
     for (int i = 0; i < self.dataArray.count; i ++) {
         NSString *url = self.dataArray[i];
         __block int j = i;
-        [[SLDownloadManager sharedManager]download:url
+        [[SLDownloadManager sharedManager]download:[NSURL URLWithString:url]
                                              state:^(SLDownloadState state) {
-            NSLog(@"state %ld j %d", state, j);
+            NSLog(@"state %ld index %d", state, j);
         }
-                                          progress:^(NSInteger receivedSize, NSInteger expectedSize, CGFloat progress) {
+                                          progress:^(int64_t receivedSize, int64_t expectedSize, CGFloat progress) {
             StrongSelf;
-            NSLog(@"progress %.2lf j %d", receivedSize*1.0/expectedSize, j);
+            NSLog(@"progress %.2lf index %d", receivedSize*1.0/expectedSize, j);
             switch (j) {
                 case 0:
                     [strongSelf.progress1 setProgress:receivedSize*1.0/expectedSize animated:YES];
@@ -73,11 +73,7 @@
 }
 
 - (NSArray *)dataArray {
-    return @[@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4",
-    @"http://tb-video.bdstatic.com/tieba-smallvideo-transcode/3612804_e50cb68f52adb3c4c3f6135c0edcc7b0_3.mp4",
-    @"http://tb-video.bdstatic.com/tieba-smallvideo-transcode/20985849_722f981a5ce0fc6d2a5a4f40cb0327a5_3.mp4",
-    @"http://tb-video.bdstatic.com/tieba-smallvideo-transcode/27089192_abcedcf00b503195b7d09f2c91814ef2_3.mp4",
-             @"http://tb-video.bdstatic.com/videocp/16514218_b3883a9f1e041a181bda58804e0a5192.mp4"];
+    return @[@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4"];
 }
 
 @end

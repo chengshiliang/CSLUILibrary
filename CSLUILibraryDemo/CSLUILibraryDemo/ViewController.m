@@ -121,11 +121,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
     CSLDelegateProxy *delegateProxy = [[CSLDelegateProxy alloc]initWithDelegateProxy:@protocol(MyTableViewDelegate)];
-    __weak typeof (self)weakSelf = self;
+    WeakSelf;
     [delegateProxy addSelector:@selector(didSelect:indexPath:) callback:^(NSArray *params) {
         if (params && params.count == 2) {
             NSIndexPath *indexPath = params[1];
-            __strong typeof (weakSelf)strongSelf = weakSelf;
+            StrongSelf;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UIViewController *vc = nil;
             if (indexPath.section == 0) {
@@ -185,7 +185,7 @@
     self.tableView.tableDelegate = (id<MyTableViewDelegate>)delegateProxy;
     
     timer =  [SLTimer sl_timerWithTimeInterval:.5f target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
-        __strong typeof (weakSelf)strongSelf = weakSelf;
+        StrongSelf;
         [strongSelf updateData];
     }];
 }
