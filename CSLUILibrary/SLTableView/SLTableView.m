@@ -31,6 +31,11 @@
     return self;
 }
 
+- (void)setManager:(SLTableManager *)manager {
+    _manager = manager;
+    [manager bindToTableView:self];
+}
+
 // 当tableview的父view添加了手势之后，tablew是不会响应点击事件的。此时应该在tableview的父view上面的手势代理中实现该方法。
 // cancelsTouchesInView = NO;  //如果为YES，手势识别了，会取消touch事件
 //- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -48,25 +53,25 @@
     self.estimatedSectionHeaderHeight = 0;
     self.estimatedSectionFooterHeight = 0;
     self.estimatedRowHeight = 0;
+    self.rowHeight = UITableViewAutomaticDimension;
     if (@available(iOS 11, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    self.delegate = self;
-    self.dataSource = self;
-    WeakSelf;
-    __block NSTimeInterval timeInterVal = [[NSDate date] timeIntervalSince1970];
-    self.observer =  CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-        NSTimeInterval currentTimeInterVal = [[NSDate date] timeIntervalSince1970];
-        if (currentTimeInterVal - timeInterVal < 0.2) {
-            return ;
-        }
-        timeInterVal = currentTimeInterVal;
-        StrongSelf;
-        CFStringRef model = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
-        NSString *modeString = (__bridge NSString *)model;
-        CFRelease(model);
+    
+//    WeakSelf;
+//    __block NSTimeInterval timeInterVal = [[NSDate date] timeIntervalSince1970];
+//    self.observer =  CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopBeforeWaiting, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+//        NSTimeInterval currentTimeInterVal = [[NSDate date] timeIntervalSince1970];
+//        if (currentTimeInterVal - timeInterVal < 0.2) {
+//            return ;
+//        }
+//        timeInterVal = currentTimeInterVal;
+//        StrongSelf;
+//        CFStringRef model = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
+//        NSString *modeString = (__bridge NSString *)model;
+//        CFRelease(model);
 //            NSArray <SLTableModel *>*subArr = @[];
 //            NSMutableArray <SLTableModel *>*tableDatas = strongSelf.tableDataSource.mutableCopy;
 //            if (tableDatas.count > 0) {
@@ -104,70 +109,29 @@
 //                }];
 //            }
 //        else
-        if ([modeString isEqualToString:@"UITrackingRunLoopMode"]) {
-            [strongSelf.lock lock];
-            [strongSelf.indexPaths removeAllObjects];
-            NSArray *visibleCells = [strongSelf visibleCells];
-            for (SLTableViewCell *cell in visibleCells) {
-                NSIndexPath *indexPath = [strongSelf indexPathForCell:cell];
-                SLTableModel *tableModel = strongSelf.tableDataSource[indexPath.section];
-                SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
-                if (fabs(rowModel.tableRowHeight - cell.frame.size.height) > 0.1) {
-                    [strongSelf.indexPaths addObject:indexPath];
-                }
-            }
-            if (strongSelf.indexPaths.count > 0) {
-                [SLUtil runInMain:^{
-                    [strongSelf beginUpdates];
-                    [strongSelf reloadRowsAtIndexPaths:strongSelf.indexPaths withRowAnimation:UITableViewRowAnimationFade];
-                    [strongSelf endUpdates];
-                }];
-            }
-            [strongSelf.lock unlock];
-        }
-    });
-    CFRunLoopAddObserver(CFRunLoopGetCurrent(), self.observer, kCFRunLoopCommonModes);
-}
-
-- (void)dealloc {
-    CFRunLoopRemoveObserver(CFRunLoopGetMain(), self.observer, kCFRunLoopCommonModes);
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.tableDataSource.count;
-}
-
-- (NSInteger)tableView:(SLTableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    SLTableModel *tableModel = self.tableDataSource[section];
-    return tableModel.rowDataSource.count;
-}
-
-- (CGFloat)tableView:(SLTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SLTableModel *tableModel = self.tableDataSource[indexPath.section];
-    SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
-    return rowModel.tableRowHeight;
-}
-- (CGFloat)tableView:(SLTableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    SLTableModel *tableModel = self.tableDataSource[section];
-    return tableModel.tableHeaderHeight;
-}
-- (CGFloat)tableView:(SLTableView *)tableView heightForFooterInSection:(NSInteger)section {
-    SLTableModel *tableModel = self.tableDataSource[section];
-    return tableModel.tableFooterHeight;
-}
-
-- (SLTableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString * TableViewCellId = [NSString stringWithFormat:@"%@CellID", NSStringFromClass(self.class)];
-    SLTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellId];
-    if (cell == nil){
-        cell = [[SLTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:TableViewCellId];
-    }
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//        if ([modeString isEqualToString:@"UITrackingRunLoopMode"]) {
+//            [strongSelf.lock lock];
+//            [strongSelf.indexPaths removeAllObjects];
+//            NSArray *visibleCells = [strongSelf visibleCells];
+//            for (SLTableViewCell *cell in visibleCells) {
+//                NSIndexPath *indexPath = [strongSelf indexPathForCell:cell];
+//                SLTableModel *tableModel = strongSelf.tableDataSource[indexPath.section];
+//                SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
+//                if (fabs(rowModel.tableRowHeight - cell.frame.size.height) > 0.1) {
+//                    [strongSelf.indexPaths addObject:indexPath];
+//                }
+//            }
+//            if (strongSelf.indexPaths.count > 0) {
+//                [SLUtil runInMain:^{
+//                    [strongSelf beginUpdates];
+//                    [strongSelf reloadRowsAtIndexPaths:strongSelf.indexPaths withRowAnimation:UITableViewRowAnimationFade];
+//                    [strongSelf endUpdates];
+//                }];
+//            }
+//            [strongSelf.lock unlock];
+//        }
+//    });
+//    CFRunLoopAddObserver(CFRunLoopGetCurrent(), self.observer, kCFRunLoopCommonModes);
 }
 
 @end
