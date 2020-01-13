@@ -6,6 +6,7 @@
 //
 
 #import "SLTableModel.h"
+#import <CSLUILibrary/SLUIConsts.h>
 
 @implementation SLTableRowModel
 - (instancetype)init {
@@ -20,9 +21,9 @@
 }
 
 - (CellForRow)cellForRowBlock{
-    __weak typeof(self) weakSelf = self;
+    WeakSelf;
     return ^UITableViewCell *(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        StrongSelf;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:strongSelf.reuseIdentifier];
         if (cell) {
         }else{
@@ -47,37 +48,17 @@
 @end
 
 @implementation SLTableSectionModel
-
-- (CGFloat)heightForHeader{
-    return 0.0001;
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.heightForHeader = 0.0001;
+        self.estimatedHeightForHeader = 0.0001;
+        self.heightForFooter = 0.0001;
+        self.estimatedHeightForFooter = 0.0001;
+    }
+    return self;
 }
-
-- (CGFloat)estimatedHeightForHeader{
-    return 0.0001;
-}
-
-//Footer
-- (CGFloat)heightForFooter{
-    return 0.0001;
-}
-
-- (CGFloat)estimatedHeightForFooter{
-    return 0.0001;
-}
-
 @end
 
 @implementation SLTableModel
-- (float)tableHeaderHeight {
-    if (_tableHeaderHeight == 0) {
-        return 0.0001;
-    }
-    return _tableHeaderHeight;
-}
-- (float)tableFooterHeight {
-    if (_tableFooterHeight == 0) {
-        return 0.0001;
-    }
-    return _tableFooterHeight;
-}
 @end

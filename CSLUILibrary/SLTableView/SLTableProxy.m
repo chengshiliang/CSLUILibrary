@@ -30,6 +30,8 @@
     if (rowModel) {
         if ([cell respondsToSelector:@selector(renderWithRowModel:)]) {
             [cell performSelector:@selector(renderWithRowModel:) withObject:rowModel];
+        } else {
+            !_tableManager.displayCell?:_tableManager.displayCell(tableView,cell,indexPath,rowModel);
         }
     }
 }
@@ -87,5 +89,10 @@
         [arrayM addObject:sec.sectionIndexTitle];
     }
     return arrayM.copy;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    !self.tableManager.selectTableView?:self.tableManager.selectTableView(tableView,indexPath);
 }
 @end

@@ -8,6 +8,10 @@
 
 #import "CustomTableCellController.h"
 
+@implementation CustomTableRowModel
+
+@end
+
 @implementation CustomTableCellModel
 
 - (UIEdgeInsets)contentInset {
@@ -61,25 +65,6 @@
 
 @implementation CustomTableView
 
-- (NSString *)tableView:(SLTableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"";
-}
-
-- (void)tableView:(SLTableView *)tableView willDisplayCell:(SLTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    SLTableModel *tableModel = tableView.tableDataSource[indexPath.section];
-    SLRowTableModel *rowModel = tableModel.rowDataSource[indexPath.row];
-    SLTableCellModel *model = (SLTableCellModel *)rowModel.tableRowData;
-//    if (indexPath.section == 0 && indexPath.row == 2) {
-//        cell.accessoryView = nil;
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    } else {
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 40)];
-//        cell.accessoryView = view;
-//    }
-    cell.model = model;
-}
-
 @end
 
 @interface CustomTableCellController ()<UITableViewDelegate>
@@ -90,12 +75,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray<SLTableModel *> *array = [NSMutableArray array];
-    SLTableModel *tableModel1 = [[SLTableModel alloc]init];
-    NSMutableArray<SLRowTableModel *> *subArray = [NSMutableArray array];
+    NSMutableArray<SLTableSectionModel *> *array = [NSMutableArray array];
+    SLTableSectionModel *tableModel1 = [[SLTableSectionModel alloc]init];
+    NSMutableArray<CustomTableRowModel *> *subArray = [NSMutableArray array];
     for (int j = 0; j < 10; j ++) {
-        SLRowTableModel *rowModel = [[SLRowTableModel alloc]init];
-        rowModel.tableRowHeight = 50;
+        CustomTableRowModel *rowModel = [[CustomTableRowModel alloc]init];
+        rowModel.rowHeight = 50;
+        rowModel.estimatedHeight = 50;
         id model;
         if (j == 0) {
             SLTableCellModel *cellModel = [[SLTableCellModel alloc]init];
@@ -109,7 +95,8 @@
             cellModel.rightTitleModels = arrayM.copy;
             model = cellModel;
         } else if (j == 1) {
-            rowModel.tableRowHeight = 60;
+            rowModel.rowHeight = 60;
+            rowModel.estimatedHeight = 60;
             SLTableCellModel *cellModel = [[SLTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<2; i++) {
@@ -121,7 +108,8 @@
             cellModel.rightTitleModels = arrayM.copy;
             model = cellModel;
         } else if (j == 2) {
-            rowModel.tableRowHeight = 80;
+            rowModel.rowHeight = 80;
+            rowModel.estimatedHeight = 80;
             SLTableCellModel *cellModel = [[SLTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
@@ -150,7 +138,8 @@
             cellModel.rightCustomViewSize = CGSizeMake(20, 20);
             model = cellModel;
         } else if (j == 4) {
-            rowModel.tableRowHeight = 60;
+            rowModel.rowHeight = 60;
+            rowModel.estimatedHeight = 60;
             SLTableCellModel *cellModel = [[SLTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<2; i++) {
@@ -168,7 +157,8 @@
             cellModel.rightCustomViewSize = CGSizeMake(40, 40);
             model = cellModel;
         } else if (j == 5) {
-            rowModel.tableRowHeight = 80;
+            rowModel.rowHeight = 80;
+            rowModel.estimatedHeight = 80;
             SLTableCellModel *cellModel = [[SLTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
@@ -185,8 +175,10 @@
             cellModel.leftCustomViewSize = CGSizeMake(60, 60);
             cellModel.rightCustomViewSize = CGSizeMake(60, 60);
             model = cellModel;
-        } else if (j == 6) {
-            rowModel.tableRowHeight = 200;
+        }
+        else if (j == 6) {
+            rowModel.rowHeight = 200;
+            rowModel.estimatedHeight = 200;
             CustomTableCellModel *cellModel = [[CustomTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
@@ -218,7 +210,8 @@
             cellModel.isLeftForMiddleView = YES;
             model = cellModel;
         } else if (j == 7) {
-            rowModel.tableRowHeight = 200;
+            rowModel.rowHeight = 200;
+            rowModel.estimatedHeight = 200;
             CustomTableCellModel *cellModel = [[CustomTableCellModel alloc]init];
             NSMutableArray *arrayM = [NSMutableArray array];
             for (int i = 0; i<3; i++) {
@@ -238,18 +231,37 @@
             cellModel.isLeftForMiddleView = NO;
             cellModel.isHiddenForBottomLineView = YES;
             model = cellModel;
-        } else {
+        }
+        else {
+            rowModel.rowHeight = 200;
+            rowModel.estimatedHeight = 200;
             model = [[SLModel alloc]init];
         }
-        
+        rowModel.reuseIdentifier = @"CustomTableCell";
+        rowModel.registerName = @"SLTableViewCell";
         rowModel.tableRowData = model;
         [subArray addObject:rowModel];
     }
-    tableModel1.rowDataSource = subArray.copy;
+    tableModel1.rows = subArray.copy;
     [array addObject:tableModel1];
-    self.tableView.tableDataSource = array.copy;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView reloadData];
+    self.tableView.manager = [[SLTableManager alloc]initWithSections:array.copy delegateHandler:nil];
+    [self.tableView.manager reloadData];
+    self.tableView.manager.displayCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath,id<SLTableRowProtocol>  _Nonnull rowModel) {
+        if ([cell isKindOfClass:[SLTableViewCell class]]) {
+            SLTableViewCell *tableCell = (SLTableViewCell *)cell;
+            CustomTableRowModel *rowData = (CustomTableRowModel *)rowModel;
+            SLTableCellModel *cellModel = rowData.tableRowData;
+            if (indexPath.section == 0 && indexPath.row == 2) {
+                cell.accessoryView = nil;
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 40)];
+                cell.accessoryView = view;
+            }
+            tableCell.model = cellModel;
+        }
+    };
 }
 
 @end

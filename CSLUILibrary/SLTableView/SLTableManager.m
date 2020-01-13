@@ -19,7 +19,11 @@
         //保存数据源
         _sections = sections.mutableCopy;
         //设置代理
-        _delegateHandler = handler;
+        if (!handler) {
+            _delegateHandler = [[SLTableProxy alloc]init];
+        } else {
+            _delegateHandler = handler;
+        }
         _delegateHandler.tableManager = self;
     }
     return self;
@@ -31,8 +35,9 @@
     self.tableView = tableView;
 }
 
-- (void)preLoadCellWithRowModel:(id<SLTableRowProtocol>)row {
+- (void)preLoadCellWithRowModel:(id<SLTableRowProtocol>)row{
     NSAssert([NSThread isMainThread], @"当前线程不是主线程");
+    NSAssert(self.tableView != nil, @"tableView is nil");
     switch (row.type) {
         case SLTableRowTypeCode:
         {
@@ -48,7 +53,7 @@
         default:
             break;
     }
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
     [self.lock lock];
     self.preloadPool[row.reuseIdentifier] = cell;
     [self.lock unlock];

@@ -8,15 +8,11 @@
 
 #import "BaseController.h"
 
-@class MyTableView;
-@protocol MyTableViewDelegate <NSObject>
-- (void)didSelect:(MyTableView *)tableView indexPath:(NSIndexPath *)indexpath;
+@interface MyTableRowModel: SLTableRowModel
+@property (nonatomic, copy) NSString *title;
 @end
-@interface MyTableView : SLTableView
-@property (nonatomic, strong) id<MyTableViewDelegate> tableDelegate;
-@end
-@interface MyTableModel: SLModel
-@property (nonatomic, copy) NSString *key;
+@interface MyTableSectionModel : SLTableSectionModel
+@property (nonatomic, copy) NSString *title;
 @end
 @interface ViewController : BaseController
 

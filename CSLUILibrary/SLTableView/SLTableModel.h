@@ -43,11 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SLTableModel <NSObject>
 @end
 @interface SLTableModel : SLModel
-@property (nonatomic, assign) float tableHeaderHeight;
-@property (nonatomic, assign) float tableFooterHeight;
-@property (nonatomic, copy) NSArray<SLTableRowModel *> *rowDataSource;
-@property (nonatomic, strong) id<Optional> tableHeaderData;
-@property (nonatomic, strong) id<Optional> tableFooterData;
 @end
 
 NS_ASSUME_NONNULL_END

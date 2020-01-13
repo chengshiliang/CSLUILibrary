@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CSLUILibrary/SLTableCellProtocol.h>
+#import <CSLUILibrary/SLTableModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SLTableCellModel  <NSObject>
 @end
 
-@interface SLTableCellModel : NSObject<SLTableCellProtocol>
+@interface SLTableCellModel : SLTableRowModel<SLTableCellProtocol>
 @property (nonatomic, assign) UIEdgeInsets contentEdgeInset;
 @property (nonatomic, assign) CGSize leftCustomViewSize;// cell左边视图大小（包括图片和自定义view）
 @property (nonatomic, assign) CGFloat rowSpaceLeftItem;// cell左边文字和图片（自定义视图）间距
