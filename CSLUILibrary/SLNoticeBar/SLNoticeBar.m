@@ -13,8 +13,10 @@
 #import <CSLCommonLibrary/SLTimer.h>
 
 @interface SLNoticeBar()
+{
+    SLTimer *_timer;
+}
 @property (nonatomic, assign) CGFloat currentX;
-@property (nonatomic, strong) UIView *targetView;
 @property (nonatomic, strong) UITextField *textField;
 @end
 
@@ -43,15 +45,12 @@
     self.textField.clearButtonMode = UITextFieldViewModeNever;
     self.textField.backgroundColor = [UIColor clearColor];
     self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [self addSubview:self.textField];
-}
-
-- (void)addToTargeView:(UIView *)view content:(NSString *)content {
-    self.targetView = view;
-    self.textField.text = content;
 }
 
 - (void)show {
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addSubview:self.textField];
+    self.textField.text = self.content;
     CGFloat startX = 0;
     if (self.contentInset.left > 0) {
         SLView *leftView = [[SLView alloc]initWithFrame:CGRectMake(0, 0, self.contentInset.left, self.sl_height)];
@@ -81,6 +80,12 @@
         self.rightView.backgroundColor = self.backColor ? self.backColor : SLUIHexColor(0xFDFCEB);
         endX = self.rightView.sl_x;
     }
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+    self.currentX = 0;
+    self.textField.transform = CGAffineTransformMakeTranslation(self.currentX, 0);
     if ([NSString emptyString:self.textField.text]) {
         self.textField.frame = CGRectZero;
     } else {
@@ -91,8 +96,7 @@
         if (self.loop && size.width > endX-startX) {
             WeakSelf;
             self.speed = MAX(1.0, self.speed);
-            self.currentX = 0;
-            [SLTimer sl_timerWithTimeInterval:self.speed/60 target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
+            _timer = [SLTimer sl_timerWithTimeInterval:self.speed/60.0 target:self userInfo:nil repeats:YES mode:NSRunLoopCommonModes callback:^(NSArray * _Nonnull array) {
                 StrongSelf;
                 if (strongSelf.textField.sl_width - strongSelf.currentX < endX-startX) {
                     strongSelf.currentX = 0;
@@ -103,13 +107,15 @@
             }];
         }
     }
+    self.clipsToBounds = YES;
     self.backgroundColor = self.backColor ? self.backColor : SLUIHexColor(0xFDFCEB);
-    if (self.targetView) [self.targetView addSubview:self];
-    else [[UIApplication sharedApplication].keyWindow addSubview:self];
 }
 
 - (void)hide {
-    [self removeFromSuperview];
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 
 @end

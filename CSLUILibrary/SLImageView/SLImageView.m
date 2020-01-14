@@ -35,7 +35,7 @@
 }
 
 - (void)sl_setImage:(UIImage *)image {
-    [self sl_setImage:image compressionQuality:0.5];
+    [self setImage:image];
 }
 
 - (void)sl_setImage:(UIImage *)image compressionQuality:(CGFloat)compressionQuality{

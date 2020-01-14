@@ -16,15 +16,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.noticeBar addToTargeView:self.view content:@"开始轮播 dsfoijsfdkqwejiofc ndjcnwocnvefiodnviowedcmoksdnvojqewncov fdncjodnvcowenfcioenfiowencioefnefefqewjfhuweidsncklwdnc 结束轮播"];
+    self.noticeBar.content = @"开始轮播 dsfoijsfdkqwejiofc ndjcnwocnvefiodnviowedcmoksdnvojqewncov fdncjodnvcowenfcioenfiowencioefnefefqewjfhuweidsncklwdnc 结束轮播";
     self.noticeBar.leftImage = [UIImage imageNamed:@"3.jpg"];
     SLView *view = [[SLView alloc]initWithFrame:CGRectMake(0, 0, 40, self.noticeBar.sl_height)];
     self.noticeBar.rightView = view;
     [self.noticeBar show];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.noticeBar hide];
 }
 
 @end

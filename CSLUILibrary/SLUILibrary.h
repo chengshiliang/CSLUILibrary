@@ -69,6 +69,5 @@
 #import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>
-#import <CSLUILibrary/SLTableCellModel.h>
 
 #endif /* Header_h */

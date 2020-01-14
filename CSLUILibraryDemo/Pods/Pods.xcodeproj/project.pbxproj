@@ -91,7 +91,6 @@
 		368012F93C5AA154242804685C672454 /* UIImage+SLBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B75D49121C7CE95CD52D5282CEEE7 /* UIImage+SLBase.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		36EA205AECF660C7EAFD64BC7A127DBC /* SLImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A2BE6F50C85EE545EE1B70AA8FB6819 /* SLImageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		37210F88CF2EAEC6F339F50453BCBDC3 /* CSLBaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B477EC6732B222147CF2D2897774455 /* CSLBaseObject.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		382E6BDCBB31C1588609A0A28C81996F /* SLTableCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 680FFEE5B61BD52DD5360FD8863B9E05 /* SLTableCellModel.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		388FED0E693E62E2A021D791622D923A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F61742D7854579F18CED86BBAA0031 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		38FAB4399DDCE0349297E41BDCA9B3BD /* NSData+ImageContentType.h in Headers */ = {isa = PBXBuildFile; fileRef = ED088AB2CC0C9EDA9476BD1061F6023D /* NSData+ImageContentType.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		39F411312D7FA06780042495063DD0EA /* SLTableDispatch.m in Sources */ = {isa = PBXBuildFile; fileRef = E689F00373AC47DA4D338474C910ED72 /* SLTableDispatch.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -205,7 +204,6 @@
 		7A9DAC9ED5946D6F96171C5A5F6E7181 /* SLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AAEEC6261630F259B18AB5CFB32183 /* SLButton.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7AED2C42FF5C193B82A8D65F74031D97 /* UINavigationController+DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 574A6137D196DCC75F182B9D69F96FAD /* UINavigationController+DelegateProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7B6A002E6D110FE3626AA7A8D6738E57 /* SDImageIOAnimatedCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B246669DD43B369B2EE96EB7DCB046 /* SDImageIOAnimatedCoder.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7BB711E215FFD83D44C1C001DD54D4A3 /* SLTableCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B104E70BECB58C20836ED3B83F070A9 /* SLTableCellModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7C52079D39D2B8BF566231ADC1CA7B8E /* SLStaticCollectViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 70FFD875AE217733E022C6ED6F1D4C1E /* SLStaticCollectViewLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7F653EB57B41AAD55412C783113C172E /* SLNoRuleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF29C3B309A91FE6B6856F602FE8FDD3 /* SLNoRuleCollectionView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7F962A20ECF638582E65C48F7A6A67D3 /* SDAnimatedImageRep.h in Headers */ = {isa = PBXBuildFile; fileRef = BBFE23A23CCEC94CD1BC04531B656335 /* SDAnimatedImageRep.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -383,7 +381,6 @@
 		E02FF11A15A7B8242A6E7E033BC19A10 /* SLTableSectionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4457C2859B91318F076089A7AC81D311 /* SLTableSectionProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E09800ABAEAECD3A85862DDB008F0396 /* SLBatchRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 342C2B37B6F9D2B1A5B8828124D89C59 /* SLBatchRequestManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E09A6C3ACD4530D6A73804DB0686065B /* SDImageCodersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 39562153B22BEF8B418A852D01D4562E /* SDImageCodersManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E272962B23D6A69E9DCCACAE5BF5B227 /* SLTableCellProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E050A6F49C25E5563160A0318E992B40 /* SLTableCellProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E39254D78C17655865F2A038B075A70A /* SLSliderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 809A9A8DDCF88E5FC8E8646704C6A315 /* SLSliderView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E3979DFD80BE842EEA0ADADEB1F9BB65 /* SLNetworkCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 47D7DC8258D87A36181A70141C2F7A16 /* SLNetworkCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E3D57DFCE21ECC4B277AAFB86B2E65D8 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F3C676D4641EF52514AB7336117B4D /* UIButton+WebCache.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -575,11 +572,11 @@
 		1C61F34D998E5855A81DC34C17EDC8F1 /* SLSearchBarIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = SLSearchBarIcon.png; path = CSLUILibrary/Resources/SLSearchBarIcon.png; sourceTree = "<group>"; };
 		1DD31DCE5C48FB79EDC8EA7FF9AA23CE /* UIScrollView+SLBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SLBase.m"; sourceTree = "<group>"; };
 		1EAF7382CB53DFD5B637C5B0315BEA03 /* SLDownloadManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLDownloadManager.h; path = CSLNetwork/Download/SLDownloadManager.h; sourceTree = "<group>"; };
-		1FFED36A657123030ABB700256D73F15 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMasonry.a; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFED36A657123030ABB700256D73F15 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		209F01958DC19B0E60E5C9BCBFE98B83 /* SLCoreText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLCoreText.h; sourceTree = "<group>"; };
 		212653AF5238EC1C357B31DACD334560 /* SDImageGraphics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageGraphics.m; path = SDWebImage/Core/SDImageGraphics.m; sourceTree = "<group>"; };
-		239E8BE9F66F567C942A2A6E91D67F02 /* libCSLNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCSLNetwork.a; path = libCSLNetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		23B8DE7830C99D58494D44AECB010E28 /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CSLUILibraryDemo.a"; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		239E8BE9F66F567C942A2A6E91D67F02 /* libCSLNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSLNetwork.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		23B8DE7830C99D58494D44AECB010E28 /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23EE41B22FE503A65220DD53650D2AAD /* UICollectionReusableView+DelegateProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UICollectionReusableView+DelegateProxy.m"; path = "CSLCommonLibrary/UICollectionReusableView+DelegateProxy.m"; sourceTree = "<group>"; };
 		24AD59A3CB4924E5A7FA567FEAFDF430 /* UITextView+DelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+DelegateProxy.h"; path = "CSLCommonLibrary/UITextView+DelegateProxy.h"; sourceTree = "<group>"; };
 		252F9FC4967986F9DB2AE605A7F2B8B8 /* UIImage+ForceDecode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ForceDecode.h"; path = "SDWebImage/Core/UIImage+ForceDecode.h"; sourceTree = "<group>"; };
@@ -593,7 +590,6 @@
 		28A433C8116CDF770F38C86782E11B65 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
 		28F4EC6F2EB5310B932461B32B915D8C /* SDImageCodersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCodersManager.m; path = SDWebImage/Core/SDImageCodersManager.m; sourceTree = "<group>"; };
 		2A6ECF9F6D62F81A43A85E3F8C1CEF38 /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
-		2B104E70BECB58C20836ED3B83F070A9 /* SLTableCellModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLTableCellModel.h; sourceTree = "<group>"; };
 		2B74076DFBADAB90AE6F5393B1D0F59E /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		2BF8085D3144A19CA6BE2B0610A6494F /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		2C65F75EAD73051B10944B256B554BC2 /* SDDisplayLink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDDisplayLink.m; path = SDWebImage/Private/SDDisplayLink.m; sourceTree = "<group>"; };
@@ -701,7 +697,7 @@
 		5F67EE9B8C52EA3EC53BF2A164EABF38 /* NSObject+Base.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Base.m"; path = "CSLCommonLibrary/NSObject+Base.m"; sourceTree = "<group>"; };
 		5F6FB32397701D9CAA5F0DB0329CE797 /* SDImageAssetManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageAssetManager.m; path = SDWebImage/Private/SDImageAssetManager.m; sourceTree = "<group>"; };
 		5FAD8A06931F17B2711E14C41CA09679 /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
-		602CC814B3080BBEDA6A8A93386F103E /* libCSLUILibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCSLUILibrary.a; path = libCSLUILibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		602CC814B3080BBEDA6A8A93386F103E /* libCSLUILibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSLUILibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		62168D1E3F7FC05F8D64335F5A0645B6 /* SLNoRuleCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLNoRuleCollectionView.h; sourceTree = "<group>"; };
 		635C2F312C1C5EB3C2DD343B006AC076 /* SDImageLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageLoader.h; path = SDWebImage/Core/SDImageLoader.h; sourceTree = "<group>"; };
 		63B373C9C2ED58F7BF5E98E9DA14F741 /* SLPopoverView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLPopoverView.m; sourceTree = "<group>"; };
@@ -711,7 +707,6 @@
 		66358AF95E74AAD9FF03E096E7EAE231 /* SLStaticCollectViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLStaticCollectViewLayout.m; sourceTree = "<group>"; };
 		66EE39900271FE9BCE80C6CAC24F9B4F /* JSONKeyMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONKeyMapper.h; path = JSONModel/JSONModelTransformations/JSONKeyMapper.h; sourceTree = "<group>"; };
 		67C73BD81AD3F928A79E3CF85DD9A297 /* SLViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLViewController.h; sourceTree = "<group>"; };
-		680FFEE5B61BD52DD5360FD8863B9E05 /* SLTableCellModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLTableCellModel.m; sourceTree = "<group>"; };
 		681EDA5D92C4FF6BCD2696586F31D4F7 /* JSONHTTPClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONHTTPClient.m; path = JSONModel/JSONModelNetworking/JSONHTTPClient.m; sourceTree = "<group>"; };
 		68D872408DC74159CAC6502BDDEAFD28 /* SDWebImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-prefix.pch"; sourceTree = "<group>"; };
 		6A2BE6F50C85EE545EE1B70AA8FB6819 /* SLImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLImageView.h; sourceTree = "<group>"; };
@@ -799,7 +794,7 @@
 		99200542FEFFC2E58A2709A5A6AAF625 /* SDAnimatedImagePlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImagePlayer.m; path = SDWebImage/Core/SDAnimatedImagePlayer.m; sourceTree = "<group>"; };
 		9C9AF82EAB9D01F312A352F0D606A6BA /* SLUILibrary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLUILibrary.h; path = CSLUILibrary/SLUILibrary.h; sourceTree = "<group>"; };
 		9CB8E92D0015FD5C6332B7460620E3BF /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DBD5FBE005E3DB8F6DEE1CB3ABCEFE0 /* SLHorizontalCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLHorizontalCollectionView.m; sourceTree = "<group>"; };
 		9DC80CD48232F332F4C3CE430282839B /* TimerProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TimerProxy.h; path = CSLCommonLibrary/TimerProxy.h; sourceTree = "<group>"; };
 		9EA07F27630571487EF023BB6B10E5C3 /* SLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLRequestSerialization.h; path = CSLNetwork/DataRequest/SLRequestSerialization.h; sourceTree = "<group>"; };
@@ -815,7 +810,7 @@
 		A40E2CFF357658195A14022AC02D0B7E /* SLPageControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLPageControl.m; sourceTree = "<group>"; };
 		A439EE5097133724D5B6BE73C93AB2EF /* SLHorizontalCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLHorizontalCollectionViewLayout.m; sourceTree = "<group>"; };
 		A4CCA95B0A5166D9390FEDA002F435BA /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		A4FA15D44DF6BAC7550EDEED10862AA3 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4FA15D44DF6BAC7550EDEED10862AA3 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5AF01871C909437E52998635EA6B58A /* JSONValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONValueTransformer.m; path = JSONModel/JSONModelTransformations/JSONValueTransformer.m; sourceTree = "<group>"; };
 		A5F5E372958DB53C7C29F51F77D44D15 /* SDAssociatedObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAssociatedObject.m; path = SDWebImage/Private/SDAssociatedObject.m; sourceTree = "<group>"; };
 		A7DB2AE3B78B35D612C29EA0B367C821 /* SLNetworkTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLNetworkTool.m; path = CSLNetwork/DataRequest/SLNetworkTool.m; sourceTree = "<group>"; };
@@ -839,8 +834,8 @@
 		AF16F4C263543DDD02466E06DF784AC3 /* UIGestureRecognizer+Action.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIGestureRecognizer+Action.h"; path = "CSLCommonLibrary/UIGestureRecognizer+Action.h"; sourceTree = "<group>"; };
 		AF691FC0A935F39AB4E34502AD9DDFD7 /* Pods-CSLUILibraryDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CSLUILibraryDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 		AF9E4AD109FE42F7CF3F64D2BFF1DAC9 /* SLCollectionViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLCollectionViewProtocol.h; sourceTree = "<group>"; };
-		B014F7BD7DF6228519F215976A5DD507 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		B0B214D775196BA7CA8E17E53048A493 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B014F7BD7DF6228519F215976A5DD507 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B0B214D775196BA7CA8E17E53048A493 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C841C59B5DCC975697FFCE7B46A1C5 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/Core/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		B21571DC5130AED1C92E51727BECF9FA /* UIControl+Events.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+Events.m"; path = "CSLCommonLibrary/UIControl+Events.m"; sourceTree = "<group>"; };
 		B2E9B5075C2A727EF6D3DD90D7AFB54C /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
@@ -860,7 +855,7 @@
 		B9E21C960F317CC7AD85BA6FF6B6A7EF /* SLTableProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLTableProxy.h; sourceTree = "<group>"; };
 		BA507EC8188A41F8731AA8817220978D /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		BA94C3D18741767C4ACD8297B07E81AF /* UITextView+DelegateProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+DelegateProxy.m"; path = "CSLCommonLibrary/UITextView+DelegateProxy.m"; sourceTree = "<group>"; };
-		BAACA1BF7AB3DD28402C4F9A7C2FD104 /* libJSONModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJSONModel.a; path = libJSONModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAACA1BF7AB3DD28402C4F9A7C2FD104 /* libJSONModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2D5B39184D23E403CB2E8A4F9984A1 /* UIImage+GIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+GIF.m"; path = "SDWebImage/Core/UIImage+GIF.m"; sourceTree = "<group>"; };
 		BBD5D6E848F8F375D607DFDBC8EDD73F /* SLSearchResultController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLSearchResultController.h; sourceTree = "<group>"; };
 		BBFE23A23CCEC94CD1BC04531B656335 /* SDAnimatedImageRep.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageRep.h; path = SDWebImage/Core/SDAnimatedImageRep.h; sourceTree = "<group>"; };
@@ -876,7 +871,7 @@
 		C2D98663BADF9D5081A860CDC4089310 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		C30667B3F06FA46ACEB88C95BF6BCF70 /* SDWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageManager.h; path = SDWebImage/Core/SDWebImageManager.h; sourceTree = "<group>"; };
 		C3437FFA2F88A82CC762B464878BEA04 /* SDDiskCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDDiskCache.m; path = SDWebImage/Core/SDDiskCache.m; sourceTree = "<group>"; };
-		C386D2A70A3251F95C9467ACB0500B5C /* libCSLCommonLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCSLCommonLibrary.a; path = libCSLCommonLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C386D2A70A3251F95C9467ACB0500B5C /* libCSLCommonLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSLCommonLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AA2A72A8A9FE3E68A3129C6BC023E /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/Core/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
 		C3F1F14A6B8B91A4C54CFA6AB4CBCA5F /* SLTableModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLTableModel.m; sourceTree = "<group>"; };
 		C4006CE623E110BE4F06BD3EBE3DE3CA /* SLNetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SLNetworkManager.h; path = CSLNetwork/DataRequest/SLNetworkManager.h; sourceTree = "<group>"; };
@@ -912,7 +907,7 @@
 		D59318885E60482C3687C0A2F834995F /* SLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLRequestSerialization.m; path = CSLNetwork/DataRequest/SLRequestSerialization.m; sourceTree = "<group>"; };
 		D5A103FC468848E44DF6C4D02684BBD5 /* NSData+Util.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSData+Util.m"; sourceTree = "<group>"; };
 		D77D8C65BADD48DEF01C70C71DA9CAC4 /* JSONModel+networking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "JSONModel+networking.h"; path = "JSONModel/JSONModelNetworking/JSONModel+networking.h"; sourceTree = "<group>"; };
-		D79C48CF65419E56E4EFB7984786B47B /* CSLUILibrary.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CSLUILibrary.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D79C48CF65419E56E4EFB7984786B47B /* CSLUILibrary.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CSLUILibrary.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D7A8F8DED7B0AAAA05183F129F5C030A /* JSONModelLib.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONModelLib.h; path = JSONModel/JSONModelLib.h; sourceTree = "<group>"; };
 		D8B5AAEEE5F7E75A46B9AA5CC34B5598 /* SLSearchResultController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLSearchResultController.m; sourceTree = "<group>"; };
 		DB650FDB563E77B937FE0A6271DB082F /* SDImageTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageTransformer.m; path = SDWebImage/Core/SDImageTransformer.m; sourceTree = "<group>"; };
@@ -923,7 +918,6 @@
 		DE8C3AAFC809048FEC77258189DACF26 /* SLNetworkManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SLNetworkManager.m; path = CSLNetwork/DataRequest/SLNetworkManager.m; sourceTree = "<group>"; };
 		DF29C3B309A91FE6B6856F602FE8FDD3 /* SLNoRuleCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLNoRuleCollectionView.m; sourceTree = "<group>"; };
 		DFFC4CABE70C79DCDBB6809BC5DFDDE7 /* SDWebImageIndicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageIndicator.m; path = SDWebImage/Core/SDWebImageIndicator.m; sourceTree = "<group>"; };
-		E050A6F49C25E5563160A0318E992B40 /* SLTableCellProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLTableCellProtocol.h; sourceTree = "<group>"; };
 		E0CA59EEA8B99DC3B88D228CC69DE759 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/Core/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		E1811DFAC9360A693465147A36D6CFF7 /* SDImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/Core/SDImageCache.m; sourceTree = "<group>"; };
 		E2B9BF991FC7653EEE6CCF69CEF4E1F9 /* SDImageGIFCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageGIFCoder.m; path = SDWebImage/Core/SDImageGIFCoder.m; sourceTree = "<group>"; };
@@ -940,7 +934,7 @@
 		EAC2879188503A76043DF39A17A49D77 /* SLSearchContentController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLSearchContentController.h; sourceTree = "<group>"; };
 		EB15A3FA4BFAE71088AE7C090BE351C6 /* SLPageableCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SLPageableCollectionView.m; sourceTree = "<group>"; };
 		EB3DA1AE69D9484A227B3916C92EDA92 /* NSData+Util.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSData+Util.h"; sourceTree = "<group>"; };
-		EB7CB43ABE1410E938B57B1D48662921 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		EB7CB43ABE1410E938B57B1D48662921 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		EC7226769895E93F548436F65D86104B /* SLToast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SLToast.h; sourceTree = "<group>"; };
 		ED088AB2CC0C9EDA9476BD1061F6023D /* NSData+ImageContentType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "SDWebImage/Core/NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		ED18415B7467F6EACAF5E676B2D8D589 /* SDAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImage.m; path = SDWebImage/Core/SDAnimatedImage.m; sourceTree = "<group>"; };
@@ -1278,9 +1272,6 @@
 		5404D4866794599EFD7490B922F556FB /* SLTableView */ = {
 			isa = PBXGroup;
 			children = (
-				2B104E70BECB58C20836ED3B83F070A9 /* SLTableCellModel.h */,
-				680FFEE5B61BD52DD5360FD8863B9E05 /* SLTableCellModel.m */,
-				E050A6F49C25E5563160A0318E992B40 /* SLTableCellProtocol.h */,
 				DD90D902FA6A6BA716C5C881FE01AE02 /* SLTableDispatch.h */,
 				E689F00373AC47DA4D338474C910ED72 /* SLTableDispatch.m */,
 				5E19A36EFB2927A5C126C109289C1DAD /* SLTableManager.h */,
@@ -1331,7 +1322,6 @@
 				BD95BD4D7F5D59A848DB119879B98ED3 /* ViewController+MASAdditions.m */,
 				318A7BBAA66F6127A7A639758A75CAEC /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -1574,7 +1564,6 @@
 				E77B49B97C7338C3762E110054B9DBE9 /* UIViewController+DelegateProxy.m */,
 				ACDCBC85564C4E6639841E9257A969F4 /* Support Files */,
 			);
-			name = CSLCommonLibrary;
 			path = CSLCommonLibrary;
 			sourceTree = "<group>";
 		};
@@ -1600,7 +1589,6 @@
 				A5AF01871C909437E52998635EA6B58A /* JSONValueTransformer.m */,
 				D20CF517E318AA6CC8C33AC5E3DB9724 /* Support Files */,
 			);
-			name = JSONModel;
 			path = JSONModel;
 			sourceTree = "<group>";
 		};
@@ -1731,7 +1719,6 @@
 				5C62F48F2E7978A8A2964B656D80AAE4 /* Core */,
 				2428AD09A9B346E091F290CE8F682154 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1765,7 +1752,6 @@
 				5FBFC64D2F9A01193834157EF3B639F8 /* Support Files */,
 				2CF0C937B1628EFB1199E6AA8F7B1025 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1926,7 +1912,6 @@
 				AA2EE89081D11BE09B5E31F2B7F5A825 /* SLUploadFile.m */,
 				B9D23627A18285BACC2C3E533EE4E1A8 /* Support Files */,
 			);
-			name = CSLNetwork;
 			path = CSLNetwork;
 			sourceTree = "<group>";
 		};
@@ -2080,8 +2065,6 @@
 				17C61E85C5A7C302CBF56A553AC6ECE9 /* SLTabbarButton.h in Headers */,
 				FCEA6B391451D57BA328C0C9044A0481 /* SLTabBarController.h in Headers */,
 				557987D5720BA817FB26A047DA18CC79 /* SLTabbarView.h in Headers */,
-				7BB711E215FFD83D44C1C001DD54D4A3 /* SLTableCellModel.h in Headers */,
-				E272962B23D6A69E9DCCACAE5BF5B227 /* SLTableCellProtocol.h in Headers */,
 				2D58D452DE7AF5265377D7B0C6E4263C /* SLTableDispatch.h in Headers */,
 				BBA7488CFDAB321E423B2AEF948D92B5 /* SLTableManager.h in Headers */,
 				D4C4E0778FE9CC3875A37ADB891FD8E3 /* SLTableModel.h in Headers */,
@@ -2632,7 +2615,6 @@
 				C0E876F75904EAA19BE732BBDDE64562 /* SLTabbarButton.m in Sources */,
 				4AC298D79161F2D8193CF19EE2A041C2 /* SLTabBarController.m in Sources */,
 				50C61CCC91B7B79BEF2A519FBA1737F3 /* SLTabbarView.m in Sources */,
-				382E6BDCBB31C1588609A0A28C81996F /* SLTableCellModel.m in Sources */,
 				39F411312D7FA06780042495063DD0EA /* SLTableDispatch.m in Sources */,
 				2EC71F2F74A293533D00D448014C5980 /* SLTableManager.m in Sources */,
 				C9190052DC589B015D4DABA9170EDF56 /* SLTableModel.m in Sources */,
