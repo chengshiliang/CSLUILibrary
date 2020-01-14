@@ -9,6 +9,12 @@
 #import <CSLUILibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
+@interface SLProgressView()
+@property (nonatomic, strong) UIImageView *normalImageView;
+@property (nonatomic, strong) UIImageView *trackImageView;
+@property (nonatomic, strong) UIView *trackView;
+@end
+
 @implementation SLProgressView
 
 - (void)awakeFromNib {
@@ -28,6 +34,18 @@
     self.normalColor = SLUIHexColor(0xDDDEE2);
     self.trackerColor = SLUIHexColor(0x3297EF);
     self.corners = YES;
+    
+    self.normalImageView = [[UIImageView alloc]init];
+    [self addSubview:self.normalImageView];
+    self.normalImageView.hidden = YES;
+    
+    self.trackView = [[UIView alloc]init];
+    [self addSubview:self.trackView];
+    self.trackView.hidden = YES;
+    
+    self.trackImageView = [[UIImageView alloc]init];
+    [self.trackView addSubview:self.trackImageView];
+    self.trackImageView.hidden = YES;
 }
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
@@ -45,35 +63,33 @@
                     } else if (self.progress < progress) {
                         self.progress += 0.1;
                     }
-                    [self setNeedsDisplay];
+                    [self setNeedsLayout];
                 }];
             }
         } else {
             self.progress = progress;
-            [self setNeedsDisplay];
+            [self setNeedsLayout];
         }
     }
 }
 
-- (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    if (self.normalImage) {
-        CGContextSetFillColorWithColor(context, [[UIColor colorWithPatternImage:self.normalImage] CGColor]);
-    } else if (self.normalColor) {
-        CGContextSetFillColorWithColor(context, self.normalColor.CGColor);
-    }
-    UIBezierPath *bezierPath;
+- (void)layoutSubviews {
+    CGRect rect = self.frame;
     if (self.corners) {
         self.radius = MIN(rect.size.width, rect.size.height) / 2.0;
     }
-    if (self.radius > 0) {
-        bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.radius];
-    } else {
-        bezierPath = [UIBezierPath bezierPathWithRect:rect];
+    self.normalImageView.hidden = YES;
+    if (!self.normalImage && self.normalColor) {
+        [self addCornerRadius:self.radius borderWidth:0 borderColor:nil backGroundColor:self.normalColor];
+    } else if (self.normalImage) {
+        [self addCornerRadius:self.radius borderWidth:0 borderColor:nil backGroundColor:nil];
+        [self.normalImageView addCornerRadius:self.radius];
+        self.normalImageView.hidden = NO;
+        self.normalImageView.frame = self.bounds;
+        self.normalImageView.image = [self.normalImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
     }
-    
-    CGContextAddPath(context, bezierPath.CGPath);
-    CGContextDrawPath(context, kCGPathFill);
+    self.trackImageView.hidden = YES;
+    self.trackView.hidden = self.progress <= 0;
     if (self.progress > 0) {
         CGRect trackRect;
         if (self.isVertical) {
@@ -81,18 +97,16 @@
         } else {
             trackRect = CGRectMake(0, 0, rect.size.width * self.progress, rect.size.height);
         }
-        if (self.radius > 0) {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:trackRect cornerRadius:self.radius];
-        } else {
-            bezierPath = [UIBezierPath bezierPathWithRect:trackRect];
+        self.trackView.frame = trackRect;
+        if (!self.trackerImage && self.trackerColor) {
+            [self.trackView addCornerRadius:self.radius borderWidth:0 borderColor:nil backGroundColor:self.trackerColor];
+        } else if (self.trackerImage) {
+            [self.trackView addCornerRadius:self.radius borderWidth:0 borderColor:nil backGroundColor:nil];
+            [self.trackImageView addCornerRadius:self.radius];
+            self.trackImageView.hidden = NO;
+            self.trackImageView.frame = trackRect;
+            self.trackImageView.image = [self.trackerImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
         }
-        if (self.trackerImage) {
-            CGContextSetFillColorWithColor(context, [[UIColor colorWithPatternImage:self.trackerImage] CGColor]);
-        } else if (self.trackerColor) {
-            CGContextSetFillColorWithColor(context, self.trackerColor.CGColor);
-        }
-        CGContextAddPath(context, bezierPath.CGPath);
-        CGContextDrawPath(context, kCGPathFill);
     }
 }
 @end

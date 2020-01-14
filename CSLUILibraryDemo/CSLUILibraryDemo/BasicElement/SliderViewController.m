@@ -19,9 +19,13 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.sliderView.progressView.trackerImage = [UIImage imageNamed:@"3.jpg"];
+    self.sliderView.progressView.normalImage = [UIImage imageNamed:@"cir0.png"];
     self.sliderView.progressChange = ^(CGFloat progress) {
         NSLog(@"%.2lf",progress);
     };
+    self.verticalSliderView.progressView.trackerImage = [UIImage imageNamed:@"3.jpg"];
+    self.verticalSliderView.progressView.normalImage = [UIImage imageNamed:@"cir0.png"];
     self.verticalSliderView.vertical = YES;
     self.verticalSliderView.progressChange = ^(CGFloat progress) {
         NSLog(@"%.2lf",progress);
@@ -37,15 +41,19 @@
     self.doubleSliderView.progressChange = ^(CGFloat startProgress, CGFloat endProgress) {
         NSLog(@"%.2lf~~~~~~%.2lf",startProgress, endProgress);
     };
-//    self.sliderView.progressHeight = 20;
-//    self.sliderView.slideSize = CGSizeMake(50, 50);
+//    self.doubleSliderView.progressWH = 20;
+//    self.doubleSliderView.slideSize = CGSizeMake(50, 50);
+//    for (UIView *subView in self.doubleSliderView.slideViewArray) {
+//        SLImageView *imageView = [[SLImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+//        [imageView sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+//        [subView addSubview:imageView];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [subView addCornerRadius:25 borderWidth:5.0 borderColor:[UIColor redColor] backGroundColor:[UIColor whiteColor]];
+//        });
+//        [imageView addCorner:YES];
+//    }
     
-//    SLImageView *imageView = [[SLImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-//    [imageView sl_setImage:[UIImage imageNamed:@"3.jpg"]];
-//    SLView *view = [[SLView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-//    [view addSubview:imageView];
-//    [view addCornerRadius:25 borderWidth:5.0 borderColor:[UIColor redColor] backGroundColor:[UIColor whiteColor]];
-//    [self.sliderView.slideView addSubview:view];
+    [self.doubleSliderView setStartProgress:0.4 endProgress:0.8 animated:YES];
 }
 
 @end

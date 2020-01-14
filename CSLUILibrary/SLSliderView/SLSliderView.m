@@ -39,14 +39,9 @@
     self.progressWH = 10;
     self.progressView = [[SLProgressView alloc]init];
     [self addSubview:self.progressView];
-    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).offset(self.slideSize.width/2.0);
-        make.centerY.mas_equalTo(self);
-        make.height.mas_equalTo(self.progressWH);
-        make.right.mas_equalTo(self).offset(-self.slideSize.width/2.0);
-    }];
     
     self.slideView = [[UIView alloc]init];
+    [self addSubview:self.slideView];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]init];
     WeakSelf;
@@ -76,96 +71,32 @@
     }];
     
     [self addGestureRecognizer:panGesture];
-    
 }
 
-- (void)setSlideView:(UIView *)slideView {
-    _slideView = slideView;
-    [self addSubview:self.slideView];
-    [self.slideView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).offset(0);
-        make.centerY.mas_equalTo(self);
-        make.height.mas_equalTo(self.slideSize.height);
-        make.width.mas_equalTo(self.slideSize.width);
-    }];
-}
-
-- (void)setSlideSize:(CGSize)slideSize {
-    _slideSize = slideSize;
-    [self.slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(slideSize.height);
-        make.width.mas_equalTo(slideSize.width);
-    }];
+- (void)layoutSubviews {
+    CGRect rect = self.frame;
     if (self.isVertical) {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self).offset(slideSize.height/2.0);
-            make.bottom.mas_equalTo(self).offset(-slideSize.height/2.0);
-        }];
+        self.progressView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.progressWH/2.0, self.slideSize.height/2.0, self.progressWH, CGRectGetHeight(rect)-self.slideSize.height);
+        self.slideView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.slideSize.width/2.0, self.progress*self.progressView.sl_height, self.slideSize.width, self.slideSize.height);
     } else {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(slideSize.width/2.0);
-            make.right.mas_equalTo(self).offset(-slideSize.width/2.0);
-        }];
+        self.progressView.frame = CGRectMake(self.slideSize.width/2.0 , CGRectGetMidY(self.bounds)-self.progressWH/2.0, CGRectGetWidth(rect)-self.slideSize.width, self.progressWH);
+        self.slideView.frame = CGRectMake(self.progress*self.progressView.sl_width, CGRectGetMidY(self.bounds)-self.slideSize.height/2.0, self.slideSize.width, self.slideSize.height);
     }
-}
-
-- (void)setProgressWH:(CGFloat)progressWH {
-    _progressWH = progressWH;
-    if (self.isVertical) {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(progressWH);
-        }];
-    } else {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(progressWH);
-        }];
-    }
-}
-
-- (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
-    [self.progressView setProgress:progress animated:animated];
-    if (self.isVertical) {
-        [self.slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self).offset(progress*self.progressView.sl_height);
-        }];
-    } else {
-        [self.slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(progress*self.progressView.sl_width);
-        }];
-    }
-    if (self.progressChange) self.progressChange(progress);
 }
 
 - (void)setVertical:(BOOL)vertical {
     _vertical = vertical;
     self.progressView.vertical = vertical;
-    if (vertical) {
-        [self.progressView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self);
-            make.width.mas_equalTo(self.progressWH);
-            make.top.mas_equalTo(self).offset(self.slideSize.height/2.0);
-            make.bottom.mas_equalTo(self).offset(-self.slideSize.height/2.0);
-        }];
-        [self.slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self).offset(0);
-            make.centerX.mas_equalTo(self);
-            make.height.mas_equalTo(self.slideSize.height);
-            make.width.mas_equalTo(self.slideSize.width);
-        }];
-    } else {
-        [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(self.slideSize.width/2.0);
-            make.centerY.mas_equalTo(self);
-            make.height.mas_equalTo(self.progressWH);
-            make.right.mas_equalTo(self).offset(-self.slideSize.width/2.0);
-        }];
-        [self.slideView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(0);
-            make.centerY.mas_equalTo(self);
-            make.height.mas_equalTo(self.slideSize.height);
-            make.width.mas_equalTo(self.slideSize.width);
-        }];
-    }
+}
+
+- (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
+    NSLog(@"progress111 %lf",progress);
+    progress = MIN(1, MAX(0, progress));
+    NSLog(@"progress222 %lf",progress);
+    self.progress = progress;
+    [self setNeedsLayout];
+    [self.progressView setProgress:progress animated:animated];
+    if (self.progressChange) self.progressChange(progress);
 }
 
 - (void)drawRect:(CGRect)rect {

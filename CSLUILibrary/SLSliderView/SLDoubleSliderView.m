@@ -22,11 +22,11 @@
 @end
 
 @interface SLDoubleSliderView()
-{
-    BOOL layout;
-}
 @property (nonatomic, strong) SLView *progressView;
 @property (nonatomic, strong) NSMutableArray<SLDoubleSliderModel *> *slideModels;
+@property (nonatomic, strong) UIImageView *normalImageView;
+@property (nonatomic, strong) UIImageView *trackImageView;
+@property (nonatomic, strong) UIView *trackView;
 @end
 
 @implementation SLDoubleSliderView
@@ -44,9 +44,13 @@
 }
 
 - (void)initialize {
+    self.clipsToBounds = YES;
     self.normalColor = SLUIHexColor(0xDDDEE2);
     self.trackerColor = SLUIHexColor(0x3297EF);
     self.progressCorner = YES;
+    self.slideSize = CGSizeMake(30, 30);
+    self.backgroundColor = [UIColor clearColor];
+    self.progressWH = 10;
     self.slideModels = [NSMutableArray arrayWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         SLDoubleSliderModel *model = [[SLDoubleSliderModel alloc]init];
@@ -61,33 +65,27 @@
     }
     SLDoubleSliderModel *startModel = self.slideModels[0];
     SLDoubleSliderModel *endModel = self.slideModels[1];
-    self.slideSize = CGSizeMake(30, 30);
-    self.backgroundColor = [UIColor clearColor];
-    self.progressWH = 10;
+    
     self.progressView = [[SLView alloc]init];
     [self addSubview:self.progressView];
-    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).offset(self.slideSize.width/2.0);
-        make.centerY.mas_equalTo(self);
-        make.height.mas_equalTo(self.progressWH);
-        make.right.mas_equalTo(self).offset(-self.slideSize.width/2.0);
-    }];
+    
+    self.normalImageView = [[UIImageView alloc]init];
+    [self addSubview:self.normalImageView];
+    self.normalImageView.hidden = YES;
+    
+    self.trackView = [[UIView alloc]init];
+    [self addSubview:self.trackView];
+    self.trackView.hidden = YES;
+    
+    self.trackImageView = [[UIImageView alloc]init];
+    [self addSubview:self.trackImageView];
+    self.trackImageView.hidden = YES;
     
     for (int i = 0; i < self.slideModels.count; i ++) {
         SLDoubleSliderModel *model = self.slideModels[i];
         UIView *view = model.slideView;
         view.backgroundColor = [UIColor clearColor];
         [self addSubview:view];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (i == 0) {
-                make.left.mas_equalTo(self).offset(0);
-            } else {
-                make.right.mas_equalTo(self).offset(0);
-            }
-            make.centerY.mas_equalTo(self);
-            make.height.mas_equalTo(self.slideSize.height);
-            make.width.mas_equalTo(self.slideSize.width);
-        }];
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]init];
         WeakSelf;
         [panGesture on:self click:^(UIGestureRecognizer *gesture) {
@@ -99,21 +97,12 @@
                 CGFloat progress = model.progress;
                 if (strongSelf.isVertical) {
                     slideXY += point.y;
-                    if (i == 0) {
-                        progress = slideXY * 1.0/ strongSelf.progressView.sl_height;
-                    } else {
-                        progress = 1.0 + slideXY * 1.0/ strongSelf.progressView.sl_height;
-                    }
+                    progress = slideXY * 1.0/ strongSelf.progressView.sl_height;
                 } else {
                     slideXY += point.x;
-                    if (i == 0) {
-                        progress = slideXY * 1.0/ strongSelf.progressView.sl_width;
-                    } else {
-                        progress = 1.0 + slideXY * 1.0/ strongSelf.progressView.sl_width;
-                    }
+                    progress = slideXY * 1.0/ strongSelf.progressView.sl_width;
                 }
-                progress = MIN(1.0, progress);
-                progress = MAX(0.0, progress);
+                progress = MIN(1.0, MAX(0.0, progress));
                 model.slideXY = slideXY;
                 model.progress = progress;
                 [strongSelf setStartProgress:startModel.progress endProgress:endModel.progress animated:YES];
@@ -123,7 +112,6 @@
         
         [view addGestureRecognizer:panGesture];
     }
-    [self setStartProgress:startModel.progress endProgress:endModel.progress animated:NO];
 }
 
 - (NSArray<UIView *> *)slideViewArray {
@@ -135,65 +123,16 @@
     return [arraM copy];
 }
 
-- (void)setSlideSize:(CGSize)slideSize {
-    _slideSize = slideSize;
-    for (UIView *slideView in self.slideViewArray) {
-        [slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(slideSize.height);
-            make.width.mas_equalTo(slideSize.width);
-        }];
-    }
-    if (self.isVertical) {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self).offset(slideSize.height/2.0);
-            make.bottom.mas_equalTo(self).offset(-slideSize.height/2.0);
-        }];
-    } else {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self).offset(slideSize.width/2.0);
-            make.right.mas_equalTo(self).offset(-slideSize.width/2.0);
-        }];
-    }
-}
-
-- (void)setProgressWH:(CGFloat)progressWH {
-    _progressWH = progressWH;
-    if (self.isVertical) {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(progressWH);
-        }];
-    } else {
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(progressWH);
-        }];
-    }
-}
-
 - (void)setStartProgress:(CGFloat)startProgress endProgress:(CGFloat)endProgress animated:(BOOL)animated {
-    if (self.isVertical) {
-        for (int i = 0; i < self.slideViewArray.count; i ++) {
-            UIView *slideView = self.slideViewArray[i];
-            [slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-                if (i == 0) {
-                    make.top.mas_equalTo(self).offset(startProgress*self.progressView.sl_height);
-                } else {
-                    make.bottom.mas_equalTo(self).offset(-(1-endProgress)*self.progressView.sl_height);
-                }
-            }];
-        }
-    } else {
-        for (int i = 0; i < self.slideViewArray.count; i ++) {
-            UIView *slideView = self.slideViewArray[i];
-            [slideView mas_updateConstraints:^(MASConstraintMaker *make) {
-                if (i == 0) {
-                    make.left.mas_equalTo(self).offset(startProgress*self.progressView.sl_width);
-                } else {
-                    make.right.mas_equalTo(self).offset(-(1-endProgress)*self.progressView.sl_width);
-                }
-            }];
+    [self setNeedsLayout];
+    for (int i = 0; i < self.slideModels.count; i ++) {
+        SLDoubleSliderModel *model = self.slideModels[i];
+        if (i == 0) {
+            model.progress = MIN(1.0, MAX(0.0, startProgress));
+        } else {
+            model.progress = MIN(1.0, MAX(0.0, endProgress));
         }
     }
-    [self setNeedsDisplay];
     if (self.progressChange) {
         if (startProgress > endProgress) {
             self.progressChange(endProgress, startProgress);
@@ -203,76 +142,32 @@
     }
 }
 
-- (void)setVertical:(BOOL)vertical {
-    _vertical = vertical;
-    if (vertical) {
-        [self.progressView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(self);
-            make.width.mas_equalTo(self.progressWH);
-            make.top.mas_equalTo(self).offset(self.slideSize.height/2.0);
-            make.bottom.mas_equalTo(self).offset(-self.slideSize.height/2.0);
-        }];
-        for (int i = 0; i < self.slideViewArray.count; i ++) {
-            UIView *slideView = self.slideViewArray[i];
-            [slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                if (i == 0) {
-                    make.top.mas_equalTo(self).offset(0);
-                } else {
-                    make.bottom.mas_equalTo(self).offset(0);
-                }
-                make.centerX.mas_equalTo(self);
-                make.height.mas_equalTo(self.slideSize.height);
-                make.width.mas_equalTo(self.slideSize.width);
-            }];
-        }
+- (void)layoutSubviews {
+    CGRect rect = self.frame;
+    if (self.vertical) {
+        self.progressView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.progressWH/2.0, self.slideSize.height/2.0, self.progressWH, CGRectGetHeight(rect)-self.slideSize.height);
     } else {
-        [self.progressView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(self);
-            make.height.mas_equalTo(self.progressWH);
-            make.left.mas_equalTo(self).offset(self.slideSize.width/2.0);
-            make.right.mas_equalTo(self).offset(-self.slideSize.width/2.0);
-        }];
-        for (int i = 0; i < self.slideViewArray.count; i ++) {
-            UIView *slideView = self.slideViewArray[i];
-            [slideView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                if (i == 0) {
-                    make.left.mas_equalTo(self).offset(0);
-                } else {
-                    make.right.mas_equalTo(self).offset(0);
-                }
-                make.centerY.mas_equalTo(self);
-                make.height.mas_equalTo(self.slideSize.height);
-                make.width.mas_equalTo(self.slideSize.width);
-            }];
-        }
-    }
-}
-
-- (void)drawRect:(CGRect)rect {
-    if (!layout) {
-        layout = YES;
-        for (UIView *slideView in self.slideViewArray) {
-            [slideView addCornerRadius:MIN(self.slideSize.width/2.0, self.slideSize.height/2.0) borderWidth:3.0 borderColor:SLUIHexColor(0x3297EF) backGroundColor:SLUIHexColor(0xFFFFFF)];
-        }
-    }
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    if (self.normalImage) {
-        CGContextSetFillColorWithColor(context, [[UIColor colorWithPatternImage:self.normalImage] CGColor]);
-    } else if (self.normalColor) {
-        CGContextSetFillColorWithColor(context, self.normalColor.CGColor);
-    }
-    UIBezierPath *bezierPath;
-    if (self.progressCorner) {
-        self.progressRadius = MIN(self.progressView.sl_width, self.progressView.sl_height) / 2.0;
-    }
-    if (self.progressRadius > 0) {
-        bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.progressView.frame cornerRadius:self.progressRadius];
-    } else {
-        bezierPath = [UIBezierPath bezierPathWithRect:self.progressView.frame];
+        self.progressView.frame = CGRectMake(self.slideSize.width/2.0, CGRectGetMidY(self.bounds)-self.progressWH/2.0, CGRectGetWidth(rect)-self.slideSize.width, self.progressWH);
     }
     
-    CGContextAddPath(context, bezierPath.CGPath);
-    CGContextDrawPath(context, kCGPathFill);
+    if (self.progressCorner) {
+        self.progressRadius = MIN(rect.size.width, rect.size.height) / 2.0;
+    }
+    self.normalImageView.hidden = YES;
+    if (!self.normalImage && self.normalColor) {
+        [self.progressView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:self.normalColor];
+    } else if (self.normalImage) {
+        [self.progressView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:nil];
+        [self.normalImageView addCornerRadius:self.progressRadius];
+        self.normalImageView.hidden = NO;
+        if (self.vertical) {
+            self.normalImageView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.progressWH/2.0, self.slideSize.height/2.0, self.progressWH, CGRectGetHeight(rect)-self.slideSize.height);
+        } else {
+            self.normalImageView.frame = CGRectMake(self.slideSize.width/2.0, CGRectGetMidY(self.bounds)-self.progressWH/2.0, CGRectGetWidth(rect)-self.slideSize.width, self.progressWH);
+        }
+        self.normalImageView.image = [self.normalImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
+    }
+    self.trackImageView.hidden = YES;
     CGFloat startProgress = 1.0;
     CGFloat endProgress = 0;
     for (SLDoubleSliderModel *model in self.slideModels) {
@@ -283,25 +178,47 @@
             endProgress = [model progress];
         }
     }
-    if (endProgress > 0) {
+    if (self.vertical) {
+        for (int i = 0; i < self.slideModels.count; i ++) {
+            SLDoubleSliderModel *model = self.slideModels[i];
+            model.slideXY = model.progress * self.progressView.sl_height;
+            UIView *slideView = model.slideView;
+            slideView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.slideSize.width/2.0, model.progress*self.progressView.sl_height, self.slideSize.width, self.slideSize.height);
+        }
+    } else {
+        for (int i = 0; i < self.slideModels.count; i ++) {
+            SLDoubleSliderModel *model = self.slideModels[i];
+            model.slideXY = model.progress * self.progressView.sl_width;
+            UIView *slideView = model.slideView;
+            slideView.frame = CGRectMake(model.progress*self.progressView.sl_width, CGRectGetMidY(self.bounds)-self.slideSize.height/2.0, self.slideSize.width, self.slideSize.height);
+        }
+    }
+    self.trackView.hidden = endProgress < 0;
+    if (startProgress >= 0) {
         CGRect trackRect;
         if (self.isVertical) {
             trackRect = CGRectMake(self.progressView.sl_x, self.progressView.sl_height * startProgress + self.progressView.sl_y, self.progressView.sl_width, self.progressView.sl_height * (endProgress-startProgress));
         } else {
             trackRect = CGRectMake(self.progressView.sl_width * startProgress+self.progressView.sl_x, self.progressView.sl_y, self.progressView.sl_width * (endProgress-startProgress), self.progressView.sl_height);
         }
-        if (self.progressRadius > 0) {
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:trackRect cornerRadius:self.progressRadius];
-        } else {
-            bezierPath = [UIBezierPath bezierPathWithRect:trackRect];
+        self.trackView.frame = trackRect;
+        if (!self.trackerImage && self.trackerColor) {
+            [self.trackView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:self.trackerColor];
+        } else if (self.trackerImage) {
+            [self.trackView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:nil];
+            [self.trackImageView addCornerRadius:self.progressRadius];
+            self.trackImageView.hidden = NO;
+            self.trackImageView.frame = trackRect;
+            self.trackImageView.image = [self.trackerImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
         }
-        if (self.trackerImage) {
-            CGContextSetFillColorWithColor(context, [[UIColor colorWithPatternImage:self.trackerImage] CGColor]);
-        } else if (self.trackerColor) {
-            CGContextSetFillColorWithColor(context, self.trackerColor.CGColor);
-        }
-        CGContextAddPath(context, bezierPath.CGPath);
-        CGContextDrawPath(context, kCGPathFill);
+    }
+}
+
+- (void)drawRect:(CGRect)rect {
+    for (int i = 0; i < self.slideModels.count; i ++) {
+        SLDoubleSliderModel *model = self.slideModels[i];
+        UIView *slideView = model.slideView;
+        [slideView addCornerRadius:MIN(self.slideSize.width/2.0, self.slideSize.height/2.0) borderWidth:3.0 borderColor:SLUIHexColor(0x3297EF) backGroundColor:SLUIHexColor(0xFFFFFF)];
     }
 }
 
