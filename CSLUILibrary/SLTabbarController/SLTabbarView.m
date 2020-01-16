@@ -147,7 +147,7 @@ static int buttonTag = 100;
             lineView.frame = CGRectMake(x+w-0.5, self.lineMargin, 0.5, self.sl_height-2*self.lineMargin);
         }
     }
-    if (self.clickSLTabbarIndex) self.clickSLTabbarIndex(self.selectBarButton ,self.selectBarButton.tag - buttonTag);
+    if (self.clickSLTabbarIndex && !self.canRepeatClick) self.clickSLTabbarIndex(self.selectBarButton ,self.selectBarButton.tag - buttonTag);
 }
 
 @end
