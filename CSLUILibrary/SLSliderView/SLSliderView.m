@@ -79,15 +79,17 @@
     if (self.isVertical) {
         self.progressView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.progressWH/2.0, self.slideSize.height/2.0, self.progressWH, CGRectGetHeight(rect)-self.slideSize.height);
         self.slideView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.slideSize.width/2.0, self.progress*self.progressView.sl_height, self.slideSize.width, self.slideSize.height);
+        self.slideXY = MIN(self.maxValue, MAX(self.minValue, self.progress))*self.progressView.sl_height;
     } else {
         self.progressView.frame = CGRectMake(self.slideSize.width/2.0 , CGRectGetMidY(self.bounds)-self.progressWH/2.0, CGRectGetWidth(rect)-self.slideSize.width, self.progressWH);
         self.slideView.frame = CGRectMake(self.progress*self.progressView.sl_width, CGRectGetMidY(self.bounds)-self.slideSize.height/2.0, self.slideSize.width, self.slideSize.height);
+        self.slideXY = MIN(self.maxValue, MAX(self.minValue, self.progress))*self.progressView.sl_width;
     }
 }
 
 - (void)setMinValue:(CGFloat)minValue {
     _minValue = MIN(1, MAX(0, minValue));
-    [self setProgress:_minValue animated:NO];
+    [self setProgress:MAX(_minValue, self.progress) animated:NO];
 }
 
 - (void)setMaxValue:(CGFloat)maxValue {

@@ -63,6 +63,8 @@
         model.slideView = [[UIView alloc]init];
         [self.slideModels addObject:model];
     }
+    self.maxValue = 1.0;
+    self.minValue = 0;
     SLDoubleSliderModel *startModel = self.slideModels[0];
     SLDoubleSliderModel *endModel = self.slideModels[1];
     
@@ -97,15 +99,19 @@
                 CGFloat progress = model.progress;
                 if (strongSelf.isVertical) {
                     slideXY += point.y;
+                    slideXY = MIN(slideXY, strongSelf.maxValue*strongSelf.progressView.sl_height);
+                    slideXY = MAX(slideXY, strongSelf.minValue*strongSelf.progressView.sl_height);
                     progress = slideXY * 1.0/ strongSelf.progressView.sl_height;
                 } else {
                     slideXY += point.x;
+                    slideXY = MIN(slideXY, strongSelf.maxValue*strongSelf.progressView.sl_width);
+                    slideXY = MAX(slideXY, strongSelf.minValue*strongSelf.progressView.sl_width);
                     progress = slideXY * 1.0/ strongSelf.progressView.sl_width;
                 }
                 progress = MIN(1.0, MAX(0.0, progress));
                 model.slideXY = slideXY;
                 model.progress = progress;
-                [strongSelf setStartProgress:startModel.progress endProgress:endModel.progress animated:YES];
+                [strongSelf setStartProgress:startModel.progress endProgress:endModel.progress];
                 [pan setTranslation:CGPointZero inView:strongSelf.progressView];
             }
         }];
@@ -123,14 +129,26 @@
     return [arraM copy];
 }
 
-- (void)setStartProgress:(CGFloat)startProgress endProgress:(CGFloat)endProgress animated:(BOOL)animated {
+- (void)setMinValue:(CGFloat)minValue {
+    _minValue = MIN(1, MAX(0, minValue));
+    SLDoubleSliderModel *model = self.slideModels[0];
+    [self setStartProgress:MAX(_minValue, model.progress) endProgress:_maxValue];
+}
+
+- (void)setMaxValue:(CGFloat)maxValue {
+    _maxValue = MIN(1, MAX(0, maxValue));
+    SLDoubleSliderModel *model = self.slideModels[1];
+    [self setStartProgress:_minValue endProgress:MIN(_maxValue, model.progress)];
+}
+
+- (void)setStartProgress:(CGFloat)startProgress endProgress:(CGFloat)endProgress {
     [self setNeedsLayout];
     for (int i = 0; i < self.slideModels.count; i ++) {
         SLDoubleSliderModel *model = self.slideModels[i];
         if (i == 0) {
-            model.progress = MIN(1.0, MAX(0.0, startProgress));
+            model.progress = MIN(self.maxValue, MAX(self.minValue, startProgress));
         } else {
-            model.progress = MIN(1.0, MAX(0.0, endProgress));
+            model.progress = MIN(self.maxValue, MAX(self.minValue, endProgress));
         }
     }
     if (self.progressChange) {

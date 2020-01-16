@@ -23,6 +23,7 @@
     self.sliderView.progressView.normalImage = [UIImage imageNamed:@"cir0.png"];
     self.sliderView.minValue = 0.2;
     self.sliderView.maxValue = 0.8;
+    [self.sliderView setProgress:0.1 animated:YES];
     self.sliderView.progressChange = ^(CGFloat progress) {
         NSLog(@"%.2lf",progress);
     };
@@ -40,6 +41,9 @@
     };
     self.doubleSliderView.normalImage = [UIImage imageNamed:@"cir0.png"];
     self.doubleSliderView.trackerImage = [UIImage imageNamed:@"3.jpg"];
+    [self.doubleSliderView setStartProgress:0.1 endProgress:0.8];
+    self.doubleSliderView.minValue = 0.2;
+    self.doubleSliderView.maxValue = 0.8;
     self.doubleSliderView.progressChange = ^(CGFloat startProgress, CGFloat endProgress) {
         NSLog(@"%.2lf~~~~~~%.2lf",startProgress, endProgress);
     };
@@ -55,7 +59,7 @@
 //        [imageView addCorner:YES];
 //    }
     
-    [self.doubleSliderView setStartProgress:0.4 endProgress:0.8 animated:YES];
+    
 }
 
 @end
