@@ -38,7 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *indicatorColor;
 @property (nonatomic, assign) CGFloat bottomSpace;// indicator距离底部距离，默认15.0
 @property (assign, nonatomic) CGSize pageControlSize; // pagecontrol大小
-- (void)reloadData;// 瀑布流刷新
+- (void)reloadData;
+- (NSInteger)indexOfSourceArray:(NSInteger)row;
 @end
 
 NS_ASSUME_NONNULL_END

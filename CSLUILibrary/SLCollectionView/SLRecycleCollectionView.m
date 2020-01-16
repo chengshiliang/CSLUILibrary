@@ -62,12 +62,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
 }
 
 - (void)layoutSubviews {
-    CGSize pageControlSize = CGSizeMake(100, 15);
-    if (self.pageControlSize.width > 0 && self.pageControlSize.height > 0) {
-        pageControlSize = self.pageControlSize;
-    }
-    self.collectionView.frame = CGRectMake(self.bounds.origin.x+self.insets.left, self.bounds.origin.y+self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
-    self.pageControl.frame = CGRectMake((self.sl_width-pageControlSize.width)/2,self.sl_height-pageControlSize.height-self.bottomSpace-self.insets.bottom, pageControlSize.width, pageControlSize.height);
+    self.collectionView.frame = CGRectMake(self.insets.left, self.insets.top, self.bounds.size.width-self.insets.left-self.insets.right, self.bounds.size.height-self.insets.top-self.insets.bottom);
     if (needRefresh) {
         [self reloadData];
     }
@@ -137,6 +132,11 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
         if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataSource[self.startingPosition], self.startingPosition);
         if (!self.hidePageControl && self.dataSource.count >= 2) {
             self.pageControl = [[SLPageControl alloc] init];
+            CGSize pageControlSize = CGSizeMake(100, 15);
+            if (self.pageControlSize.width > 0 && self.pageControlSize.height > 0) {
+                pageControlSize = self.pageControlSize;
+            }
+            self.pageControl.frame = CGRectMake((self.sl_width-pageControlSize.width)/2.0,self.sl_height-pageControlSize.height-self.bottomSpace-self.insets.bottom, pageControlSize.width, pageControlSize.height);
             if(self.indicatorImage){ // 自定义图片
                 self.pageControl.indicatorImage = self.indicatorImage;
                 if (self.currentIndicatorImage) {
@@ -308,7 +308,7 @@ static NSString *const recycleViewCellID = @"kSLRecycleViewCellID";
     if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
         return CGSizeMake(model.width, self.collectionView.sl_height);
     } else {
-        return CGSizeMake(self.collectionView.sl_width, model.height-self.insets.top-self.insets.bottom);
+        return CGSizeMake(self.collectionView.sl_width, model.height);
     }
 }
 -(NSInteger)collectionView:(SLCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

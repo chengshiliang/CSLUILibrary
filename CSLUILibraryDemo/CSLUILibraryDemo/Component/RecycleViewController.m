@@ -73,11 +73,11 @@ static NSString *const cellId2 = @"kRecycleViewCellID2";
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
     if ([view isEqual:self.scollView1]) {
         SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
+        cell.backgroundColor = [_colorAry objectAtIndex:[self.scollView1 indexOfSourceArray:indexPath.item]];
         return cell;
     }
     SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId2 forIndexPath:indexPath];
-    cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
+    cell.backgroundColor = [_colorAry objectAtIndex:[self.scollView1 indexOfSourceArray:indexPath.item]];
     return cell;
 }
 

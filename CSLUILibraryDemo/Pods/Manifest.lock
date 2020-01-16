@@ -15,9 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - CSLCommonLibrary (0.3.5)
-  - CSLNetwork (0.0.4):
+  - CSLNetwork (0.0.5):
     - AFNetworking
-  - CSLUILibrary (0.1.1):
+  - CSLUILibrary (0.1.2):
     - CSLCommonLibrary
     - JSONModel
     - Masonry
@@ -30,7 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - CSLCommonLibrary (= 0.3.5)
-  - CSLNetwork (~> 0.0.4)
+  - CSLNetwork (~> 0.0.5)
   - CSLUILibrary (from `../`)
   - JSONModel
   - Masonry
@@ -52,12 +52,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CSLCommonLibrary: 211c0facaa0e80f4c941772b5b80df62cbca8a9a
-  CSLNetwork: 105d72d7b299fe08d9fa3fd4c42b067207153bec
-  CSLUILibrary: 0e0f36a206ee93ae8389bbd8353cab409ab0ec51
+  CSLNetwork: b4972fe3eac7a60588850bdd33159be300c6d4bb
+  CSLUILibrary: f5e87d7dd499fa45b41e122a9e9d4de195423cb6
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
 
-PODFILE CHECKSUM: d67921ef065757b44a47869db6366a8429971182
+PODFILE CHECKSUM: 361a3e762e0f02dd50a57a66c0597bfca9c17b19
 
 COCOAPODS: 1.8.4

@@ -225,6 +225,7 @@ float PopoverViewDegreesToRadians(float angle)
         [arrayM addObject:button];
     }
     self.containerView.lineColor = self.strokeColor;
+    self.containerView.canRepeatClick = YES;
     WeakSelf;
     self.containerView.clickSLTabbarIndex = ^(SLTabbarButton * _Nonnull button, NSInteger index) {
         StrongSelf;
