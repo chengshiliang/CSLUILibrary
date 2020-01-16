@@ -11,7 +11,7 @@
 #import <CSLUILibrary/SLTableViewCell.h>
 #import <CSLUILibrary/SLUIConsts.h>
 
-@interface SLTableView()<UITableViewDelegate, UITableViewDataSource>
+@interface SLTableView()
 @property (assign, nonatomic) CFRunLoopObserverRef observer;
 @property (strong, nonatomic) NSMutableArray *indexPaths;
 @property (nonatomic, strong) NSLock *lock;
