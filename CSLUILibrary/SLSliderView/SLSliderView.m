@@ -33,7 +33,8 @@
 
 - (void)initialize {
     self.slideXY = 0.0;
-    [self setProgress:0 animated:YES];
+    self.minValue = 0.0;
+    self.maxValue = 1.0;
     self.slideSize = CGSizeMake(30, 30);
     self.backgroundColor = [UIColor clearColor];
     self.progressWH = 10;
@@ -52,12 +53,12 @@
             CGPoint point = [pan translationInView:strongSelf.progressView];
             if (strongSelf.isVertical) {
                 strongSelf.slideXY += point.y;
-                strongSelf.slideXY = MIN(strongSelf.slideXY, strongSelf.progressView.sl_height);
-                strongSelf.slideXY = MAX(strongSelf.slideXY, 0);
+                strongSelf.slideXY = MIN(strongSelf.slideXY, strongSelf.maxValue*strongSelf.progressView.sl_height);
+                strongSelf.slideXY = MAX(strongSelf.slideXY, strongSelf.minValue*strongSelf.progressView.sl_height);
             } else {
                 strongSelf.slideXY += point.x;
-                strongSelf.slideXY = MIN(strongSelf.slideXY, strongSelf.progressView.sl_width);
-                strongSelf.slideXY = MAX(strongSelf.slideXY, 0);
+                strongSelf.slideXY = MIN(strongSelf.slideXY, strongSelf.maxValue*strongSelf.progressView.sl_width);
+                strongSelf.slideXY = MAX(strongSelf.slideXY, strongSelf.minValue*strongSelf.progressView.sl_width);
             }
             CGFloat progress;
             if (strongSelf.isVertical) {
@@ -84,15 +85,22 @@
     }
 }
 
+- (void)setMinValue:(CGFloat)minValue {
+    _minValue = MIN(1, MAX(0, minValue));
+    [self setProgress:_minValue animated:NO];
+}
+
+- (void)setMaxValue:(CGFloat)maxValue {
+    _maxValue = MIN(1, MAX(0, maxValue));
+}
+
 - (void)setVertical:(BOOL)vertical {
     _vertical = vertical;
     self.progressView.vertical = vertical;
 }
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated {
-    NSLog(@"progress111 %lf",progress);
-    progress = MIN(1, MAX(0, progress));
-    NSLog(@"progress222 %lf",progress);
+    progress = MIN(self.maxValue, MAX(self.minValue, progress));
     self.progress = progress;
     [self setNeedsLayout];
     [self.progressView setProgress:progress animated:animated];

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *slideView;// 滑动的自定义视图。
 @property (nonatomic, copy) void(^progressChange)(CGFloat progress);
 @property (nonatomic, assign, getter=isVertical) BOOL vertical;// 是否为纵向显示
+@property (nonatomic, assign) CGFloat minValue;// 最小值，默认为0
+@property (nonatomic, assign) CGFloat maxValue;// 最大值，默认为1
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
 @end
 

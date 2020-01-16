@@ -21,6 +21,8 @@
     [super viewDidLoad];
     self.sliderView.progressView.trackerImage = [UIImage imageNamed:@"3.jpg"];
     self.sliderView.progressView.normalImage = [UIImage imageNamed:@"cir0.png"];
+    self.sliderView.minValue = 0.2;
+    self.sliderView.maxValue = 0.8;
     self.sliderView.progressChange = ^(CGFloat progress) {
         NSLog(@"%.2lf",progress);
     };
