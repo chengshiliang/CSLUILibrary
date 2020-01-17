@@ -60,45 +60,39 @@ static NSString *const cellId = @"ruixingheaderrecycleview";
     [self addSubview:self.noRuleCollectionView];
     
     NSMutableArray *arrM = [NSMutableArray array];
-    for (int i = 0; i < 6; i ++) {
+    for (int i = 0; i < 5; i ++) {
         SLPupModel *pupModel = [SLPupModel new];
         CGFloat width = 0;
         CGFloat height = 0;
         switch (i) {
             case 0:
             {
-                width = kScreenWidth*0.5;
+                width = (kScreenWidth-40)*0.67;
                 height = kScreenWidth*0.5;
             }
                 break;
             case 1:
             {
-                width = kScreenWidth*0.5;
-                height = kScreenWidth*0.25;
+                width = (kScreenWidth-40)*0.33;
+                height = kScreenWidth*0.5;
             }
                 break;
             case 2:
             {
-                width = kScreenWidth*0.25;
-                height = kScreenWidth*0.25;
+                width = (kScreenWidth-40)*0.33;
+                height = kScreenWidth*0.5;
             }
                 break;
             case 3:
             {
-                width = kScreenWidth*0.25;
-                height = kScreenWidth*0.25;
+                width = (kScreenWidth-40)*0.33;
+                height = kScreenWidth*0.5;
             }
                 break;
             case 4:
             {
-                width = kScreenWidth*0.75;
-                height = kScreenWidth*0.25;
-            }
-                break;
-            case 5:
-            {
-                width = kScreenWidth*0.25;
-                height = kScreenWidth*0.25;
+                width = (kScreenWidth-40)*0.33;
+                height = kScreenWidth*0.5;
             }
                 break;
             default:
@@ -114,7 +108,7 @@ static NSString *const cellId = @"ruixingheaderrecycleview";
     dataSource = arrM.copy;
     self.noRuleCollectionView.dataSource = arrM.copy;
     self.noRuleCollectionView.delegate = self;
-    self.noRuleCollectionView.columns = 4;
+    self.noRuleCollectionView.columns = 3;
     self.noRuleCollectionView.columnMagrin = 5.0f;
     self.noRuleCollectionView.rowMagrin = 5.0f;
     self.noRuleCollectionView.insets = UIEdgeInsetsMake(20, 20, 20, 20);

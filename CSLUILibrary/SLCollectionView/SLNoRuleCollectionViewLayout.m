@@ -34,6 +34,8 @@ static CGFloat minYLarge = 1.5;
 //系统在开始计算每一个cell之前调用,做一些初始化工作
 - (void)prepareLayout {
     if (self.columns == 0) return;
+    self.xlarge = MAX(minXLarge, self.xlarge);
+    self.ylarge = MAX(minYLarge, self.ylarge);
     [self.columnsY removeAllObjects];
     [self.layoutAttributeArray removeAllObjects];
     for(int i=0;i<self.columns;i++){
@@ -80,11 +82,8 @@ static CGFloat minYLarge = 1.5;
         }
     }
     
-    float cellY=[self.columnsY[minYIndex] floatValue];
+    float cellY=minYCollumn;
     float cellX=(cellWidth+self.columnMagrin)*minYIndex;
-    
-    self.xlarge = MAX(minXLarge, self.xlarge);
-    self.ylarge = MAX(minYLarge, self.ylarge);
     
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     SLPupModel *model = self.data[indexPath.item];
