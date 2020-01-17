@@ -35,13 +35,15 @@
 }
 
 - (void)sl_setImage:(UIImage *)image {
-    [self setImage:image];
+    [self sl_setImage:image compressionQuality:0.5];
 }
 
 - (void)sl_setImage:(UIImage *)image compressionQuality:(CGFloat)compressionQuality{
     if (!image) return;
     NSData *jpgImageData = UIImageJPEGRepresentation(image, compressionQuality);
-    [self sl_scaleImage:[UIImage imageWithData:jpgImageData]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.image = [UIImage imageWithData:jpgImageData];
+    });
 }
 
 - (void)sl_scaleImage:(UIImage *)image {

@@ -41,8 +41,8 @@
         self.titleForFooter = @"";
         self.heightForHeader = 30.0;
         self.estimatedHeightForHeader = 30.0;
-        self.heightForFooter = 0.0001;
-        self.estimatedHeightForFooter = 0.0001;
+        self.heightForFooter = 0;
+        self.estimatedHeightForFooter = 0;
         self.sectionIndexTitle = @"";
         self.viewForHeader = ^UIView * _Nullable(UITableView * _Nullable tableView, NSInteger section) {
             return nil;

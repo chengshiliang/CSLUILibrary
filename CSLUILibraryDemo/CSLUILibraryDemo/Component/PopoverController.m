@@ -59,5 +59,14 @@
     [popoverView showToPoint:[touch locationInView:[UIApplication sharedApplication].keyWindow] withActions:[actions copy]];
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    for (UIView *subView in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([subView isKindOfClass:[SLPopoverView class]]) {
+            SLPopoverView *view = (SLPopoverView *)subView;
+            [view hide];
+            break;
+        }
+    }
+}
 @end

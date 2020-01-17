@@ -51,10 +51,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.heightForHeader = 0.0001;
-        self.estimatedHeightForHeader = 0.0001;
-        self.heightForFooter = 0.0001;
-        self.estimatedHeightForFooter = 0.0001;
+        self.heightForHeader = 0;
+        self.estimatedHeightForHeader = 0;
+        self.heightForFooter = 0;
+        self.estimatedHeightForFooter = 0;
     }
     return self;
 }
