@@ -64,10 +64,13 @@
 #import <CSLUILibrary/SLSliderView.h>
 #import <CSLUILibrary/SLDoubleSliderView.h>
 #import <CSLUILibrary/SLPopoverView.h>
+#import <CSLUILibrary/SLDropDownView.h>
+#import <CSLUILibrary/SLCollectBaseView.h>
 
 #import <CSLUILibrary/SLCustomCollectionModel.h>
 #import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>
+#import <CSLUILibrary/SLCollectModel.h>
 
 #endif /* Header_h */

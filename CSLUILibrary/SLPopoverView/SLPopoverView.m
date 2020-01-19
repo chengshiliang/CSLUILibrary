@@ -140,21 +140,13 @@ float PopoverViewDegreesToRadians(float angle)
     self.containerView.frame = CGRectMake(self.contentInset.left, self.isUpward ? self.arrowWH+self.contentInset.top : self.contentInset.top, CGRectGetWidth(self.bounds)-self.contentInset.left-self.contentInset.right, CGRectGetHeight(self.bounds) - self.arrowWH-self.contentInset.top-self.contentInset.bottom);
 }
 
-- (void)setHideAfterTouch:(BOOL)hideAfterTouch {
-    _hideAfterTouch = hideAfterTouch;
-    self.backView.userInteractionEnabled = hideAfterTouch;
-}
-
 - (void)hide {
     [UIView animateWithDuration:0.25f animations:^{
-        self.containerView.alpha = 0.f;
-        self.alpha = 0.f;
-        self.backView.alpha = 0.f;
-        self.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-    } completion:^(BOOL finished) {
         [self.containerView removeFromSuperview];
         [self removeFromSuperview];
         [self.backView removeFromSuperview];
+    } completion:^(BOOL finished) {
+        
     }];
 }
 
@@ -201,8 +193,6 @@ float PopoverViewDegreesToRadians(float angle)
         currentH = 20.0;
     }
     currentH += self.arrowWH;
-//    CGFloat maxHeight = self.isUpward ? (kScreenHeight - toPoint.y - self.spaceVertical) : (toPoint.y - CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) - self.spaceVertical);
-//    currentH = MIN(currentH, maxHeight);
     
     CGFloat currentX = toPoint.x - currentW/2.0, currentY = toPoint.y;
     if (toPoint.x <= currentW/2 + self.spaceHorizontal) {

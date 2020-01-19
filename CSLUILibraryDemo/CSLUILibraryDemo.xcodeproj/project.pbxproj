@@ -20,6 +20,7 @@
 		1550CC34236AD749002CB249 /* LabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1550CC33236AD749002CB249 /* LabelController.m */; };
 		15596B5B236C29480073C0CB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15596B5A236C29480073C0CB /* ImageViewController.m */; };
 		15596B5D236C2E200073C0CB /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15596B5C236C2E200073C0CB /* 3.jpg */; };
+		156C10C923D190B400D89056 /* DropDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C10C823D190B400D89056 /* DropDownController.m */; };
 		1571726623C4238B0064678B /* FileDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1571726523C4238B0064678B /* FileDownloadController.m */; };
 		157EF9012397ABBA00FF4C98 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157EF9002397ABBA00FF4C98 /* AlertController.m */; };
 		158C6C4E236A96C600F80FA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C4D236A96C600F80FA6 /* AppDelegate.m */; };
@@ -74,6 +75,8 @@
 		15596B59236C29480073C0CB /* ImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		15596B5A236C29480073C0CB /* ImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		15596B5C236C2E200073C0CB /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		156C10C723D190B400D89056 /* DropDownController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropDownController.h; sourceTree = "<group>"; };
+		156C10C823D190B400D89056 /* DropDownController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropDownController.m; sourceTree = "<group>"; };
 		1571726423C4238B0064678B /* FileDownloadController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDownloadController.h; sourceTree = "<group>"; };
 		1571726523C4238B0064678B /* FileDownloadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDownloadController.m; sourceTree = "<group>"; };
 		157EF8FF2397ABBA00FF4C98 /* AlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				15D53C26239E1EB800A10E0B /* ToastController.m */,
 				15BB8F2123A38B9800698AE4 /* PageableCollectionController.h */,
 				15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */,
+				156C10C723D190B400D89056 /* DropDownController.h */,
+				156C10C823D190B400D89056 /* DropDownController.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */,
 				15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */,
 				153FDD422383CF3700EFE6FB /* BaseController.m in Sources */,
+				156C10C923D190B400D89056 /* DropDownController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
 				1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */,
 				1545EBDB238D2F9700157D71 /* CustomViewController.m in Sources */,

@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *_Nullable)handler;
 
-- (void)preLoadCellWithRowModel:(id<SLTableRowProtocol>)row;
-
 - (void)bindToTableView:(UITableView *)tableView;
 
 - (id<SLTableRowProtocol>)rowAtIndexPath:(NSIndexPath *)indexPath;

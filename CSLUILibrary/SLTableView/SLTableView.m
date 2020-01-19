@@ -6,16 +6,6 @@
 //
 
 #import "SLTableView.h"
-#import <CoreFoundation/CoreFoundation.h>
-#import <CSLUILibrary/SLUtil.h>
-#import <CSLUILibrary/SLTableViewCell.h>
-#import <CSLUILibrary/SLUIConsts.h>
-
-@interface SLTableView()
-@property (assign, nonatomic) CFRunLoopObserverRef observer;
-@property (strong, nonatomic) NSMutableArray *indexPaths;
-@property (nonatomic, strong) NSLock *lock;
-@end
 
 @implementation SLTableView
 
@@ -48,8 +38,6 @@
 //}
 
 - (void)initial {
-    self.indexPaths = [NSMutableArray array];
-    self.lock = [[NSLock alloc]init];
     self.estimatedSectionHeaderHeight = 0;
     self.estimatedSectionFooterHeight = 0;
     self.estimatedRowHeight = 0;

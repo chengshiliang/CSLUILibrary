@@ -7,11 +7,6 @@
 
 #import "SLTableManager.h"
 
-@interface SLTableManager()
-@property (nonatomic, strong) NSRecursiveLock *lock;
-@property (nonatomic, strong) NSMutableDictionary<NSString *, UITableViewCell *> *preloadPool;
-@end
-
 @implementation SLTableManager
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{
     self = [super init];
@@ -33,30 +28,6 @@
     tableView.delegate = self.delegateHandler;
     tableView.dataSource = self.delegateHandler;
     self.tableView = tableView;
-}
-
-- (void)preLoadCellWithRowModel:(id<SLTableRowProtocol>)row{
-    NSAssert([NSThread isMainThread], @"当前线程不是主线程");
-    NSAssert(self.tableView != nil, @"tableView is nil");
-    switch (row.type) {
-        case SLTableRowTypeCode:
-        {
-           [self.tableView registerClass:NSClassFromString(row.registerName) forCellReuseIdentifier:row.reuseIdentifier];
-        }
-            break;
-        case SLTableRowTypeXib:
-        {
-            UINib *nib = [UINib nibWithNibName:row.registerName bundle:nil];
-            [self.tableView registerNib:nib forCellReuseIdentifier:row.reuseIdentifier];
-        }
-            break;
-        default:
-            break;
-    }
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
-    [self.lock lock];
-    self.preloadPool[row.reuseIdentifier] = cell;
-    [self.lock unlock];
 }
 
 - (id<SLTableRowProtocol>)rowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,21 +73,4 @@
     }
 }
 
-- (NSRecursiveLock *)lock{
-    if (!_lock) {
-        _lock = [[NSRecursiveLock alloc] init];
-    }
-    return _lock;
-}
-
-- (NSMutableDictionary<NSString *, UITableViewCell *> *)preloadPool{
-    if (!_preloadPool) {
-        _preloadPool = [NSMutableDictionary dictionaryWithCapacity:0];
-    }
-    return _preloadPool;
-}
-
-- (void)dealloc {
-    [self.preloadPool removeAllObjects];
-}
 @end

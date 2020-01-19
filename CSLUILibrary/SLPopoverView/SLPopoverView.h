@@ -27,7 +27,6 @@
 @property (nonatomic, assign) UIEdgeInsets contentInset; // 内容内边距
 @property (nonatomic, assign) CGFloat itemHeight; // 每一行高度
 @property (nonatomic, assign) CGFloat imageTitleSpace;// 图片和文字之间的间距
-@property (nonatomic, assign) BOOL hideAfterTouch;
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, assign) CGSize imageSize;

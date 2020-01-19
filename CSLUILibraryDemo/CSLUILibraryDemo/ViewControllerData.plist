@@ -86,6 +86,10 @@
                 <key>title</key>
                 <string>自定义popover</string>
             </dict>
+            <dict>
+                <key>title</key>
+                <string>dropDown</string>
+            </dict>
         </array>
     </dict>
     <dict>

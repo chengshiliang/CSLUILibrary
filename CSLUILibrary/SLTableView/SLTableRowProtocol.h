@@ -8,12 +8,13 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class SLTableView;
 typedef NS_ENUM(NSUInteger, SLTableRowType) {
     SLTableRowTypeXib,
     SLTableRowTypeCode
 };
 
-typedef UITableViewCell *_Nonnull(^CellForRow)(UITableView *_Nonnull tableView, NSIndexPath *_Nonnull indexPath);
+typedef UITableViewCell *_Nonnull(^CellForRow)(SLTableView *_Nonnull tableView, NSIndexPath *_Nonnull indexPath);
 
 @protocol SLTableRowProtocol <NSObject>
 @property (nonatomic, strong) NSString *reuseIdentifier;

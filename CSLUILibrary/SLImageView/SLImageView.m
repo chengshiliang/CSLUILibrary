@@ -41,8 +41,9 @@
 - (void)sl_setImage:(UIImage *)image compressionQuality:(CGFloat)compressionQuality{
     if (!image) return;
     NSData *jpgImageData = UIImageJPEGRepresentation(image, compressionQuality);
+    UIImage *result = [UIImage imageWithData:jpgImageData];
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.image = [UIImage imageWithData:jpgImageData];
+        self.image = result;
     });
 }
 

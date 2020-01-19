@@ -22,7 +22,7 @@
 #import "CustomTableCellController.h"
 #import "AlertController.h"
 
-@implementation MyTableRowModel: SLTableRowModel
+@implementation MyTableRowModel
 - (instancetype)init {
     if (self == [super init]) {
         self.reuseIdentifier = @"MyTableRowCell";
@@ -34,7 +34,7 @@
     return self;
 }
 @end
-@implementation MyTableSectionModel : SLTableSectionModel
+@implementation MyTableSectionModel
 - (instancetype)init {
     if (self == [super init]) {
         self.titleForHeader = @"";
@@ -87,7 +87,6 @@
         [arrayM addObject:secModel];
     }
     self.tableView.manager = [[SLTableManager alloc]initWithSections:arrayM.copy delegateHandler:nil];
-    [self.tableView.manager preLoadCellWithRowModel:[[MyTableRowModel alloc]init]];
     [self.tableView.manager reloadData];
     WeakSelf;
     self.tableView.manager.displayCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
@@ -139,6 +138,8 @@
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
             } else if (indexPath.row == 8) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"popover"];
+            } else if (indexPath.row == 9) {
+                vc = [storyboard instantiateViewControllerWithIdentifier:@"dropdown"];
             }
         } else if (indexPath.section == 2) {
              if (indexPath.row == 0) {
