@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StaticCollectionViewCell : SLCollectionViewCell
+@interface StaticCollectionViewCell : SLCollectionViewCell<SLCollectRowRenderProtocol>
 @property (nonatomic, copy) NSString *title;
 @end
 

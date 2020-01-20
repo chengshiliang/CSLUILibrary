@@ -27,29 +27,6 @@
     return self.collectManager.sections.count;
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    id<SLCollectRowProtocol> row = [self.collectManager rowAtIndexPath:indexPath];
-    return CGSizeMake(row.rowWidth, row.rowHeight);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsZero;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    id<SLCollectSectionProtocol> sec = self.collectManager.sections[section];
-    return CGSizeMake(sec.widthForHeader, sec.heightForHeader);
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    id<SLCollectSectionProtocol> sec = self.collectManager.sections[section];
-    return CGSizeMake(sec.widthForFooter, sec.heightForFooter);
-}
-
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     id<SLCollectSectionProtocol> sec = self.collectManager.sections[indexPath.section];
     if (kind == UICollectionElementKindSectionHeader) {
@@ -73,10 +50,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    !self.collectManager.selectCollectView?:self.collectManager.selectCollectView(collectionView, indexPath);
+    id<SLCollectRowProtocol> rowModel = [self.collectManager rowAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if (rowModel) {
+        !self.collectManager.selectCollectView?:self.collectManager.selectCollectView(collectionView, cell, indexPath, rowModel);
+    }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath API_AVAILABLE(ios(8.0)) {
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     id<SLCollectRowProtocol> rowModel = [self.collectManager rowAtIndexPath:indexPath];
     if (rowModel) {
         if ([cell respondsToSelector:@selector(renderWithRowModel:)]) {

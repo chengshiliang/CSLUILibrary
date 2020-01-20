@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLCollectManager;
-@interface SLCollectProxy : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface SLCollectProxy : NSObject<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, weak) SLCollectManager *collectManager;
 @end
 

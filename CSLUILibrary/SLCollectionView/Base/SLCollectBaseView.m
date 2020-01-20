@@ -7,11 +7,16 @@
 
 #import "SLCollectBaseView.h"
 #import <CSLUILibrary/SLCollectManager.h>
+#import <CSLUILibrary/SLUIConsts.h>
 
 @implementation SLCollectBaseView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self == [super initWithFrame:frame collectionViewLayout:[UICollectionViewFlowLayout new]]) {
+    return [self initWithFrame:frame collectionViewLayout:[UICollectionViewFlowLayout new]];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
+    if (self == [super initWithFrame:frame collectionViewLayout:layout]) {
         [self initial];
     }
     return self;
@@ -27,6 +32,7 @@
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    self.backgroundColor = SLUIHexColor(0xffffff);
 }
 
 @end

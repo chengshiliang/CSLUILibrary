@@ -1,1 +1,1 @@
-../../../../../CSLUILibrary/SLCollectionView/SLCardCollectionView.h
+../../../../../CSLUILibrary/SLCollectionView/CardCollect/SLCardCollectionView.h

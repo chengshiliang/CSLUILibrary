@@ -8,7 +8,7 @@
 
 #import "NoRuleCollectionViewController.h"
 #import "StaticCollectionViewCell.h"
-#import "StaticCollectionViewController.h"
+#import "MyCardCollectSectionModel.h"
 
 @interface NoRuleCollectionViewController ()<SLCollectionViewProtocol>
 {

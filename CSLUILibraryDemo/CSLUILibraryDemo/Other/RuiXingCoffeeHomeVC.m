@@ -7,7 +7,7 @@
 //
 
 #import "RuiXingCoffeeHomeVC.h"
-#import "StaticCollectionViewController.h"
+#import "MyCardCollectSectionModel.h"
 #import "StaticCollectionViewCell.h"
 #import "RuiXingCoffeeHomeHeaderView.h"
 

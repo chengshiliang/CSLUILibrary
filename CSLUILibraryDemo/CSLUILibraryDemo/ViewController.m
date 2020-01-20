@@ -95,7 +95,7 @@
             cell.textLabel.text = rowData.title;
         }
     };
-    self.tableView.manager.selectTableView = ^(UITableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
+    self.tableView.manager.selectTableView = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
         StrongSelf;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *vc = nil;

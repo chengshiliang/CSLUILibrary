@@ -29,6 +29,7 @@
 #import <CSLUILibrary/SLTableDispatch.h>
 
 #import <CSLUILibrary/SLTableRowRenderProtocol.h>
+#import <CSLUILibrary/SLCollectRowRenderProtocol.h>
 
 #import <CSLUILibrary/SLTabBarController.h>
 #import <CSLUILibrary/SLSearchController.h>

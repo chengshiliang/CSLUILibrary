@@ -93,6 +93,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    !self.tableManager.selectTableView?:self.tableManager.selectTableView(tableView,indexPath);
+    id<SLTableRowProtocol> rowModel = [_tableManager rowAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (rowModel) {
+        !self.tableManager.selectTableView?:self.tableManager.selectTableView(tableView, cell, indexPath, rowModel);
+    }
+    
 }
 @end

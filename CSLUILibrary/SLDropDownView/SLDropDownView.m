@@ -13,6 +13,7 @@
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
+#import <CSLUILibrary/SLCollectFlowlayoutProxy.h>
 #import <CSLUILibrary/SLTableManager.h>
 
 @interface SLDropDownView ()
@@ -85,7 +86,7 @@
     [self.containerView addSubview:self];
     if (self.type == SLDropDownViewDisplayCollect && self.collectDatas && self.collectDatas.count > 0) {
         SLCollectBaseView *collectionView = [[SLCollectBaseView alloc]initWithFrame:CGRectMake(0, 0, targetView.sl_width, targetView.sl_height-toPoint.y)];
-        collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:nil];
+        collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:[SLCollectFlowlayoutProxy new]];
         collectionView.manager.displayCell = self.displayCollectCell;
         [self addSubview:collectionView];
         [collectionView reloadData];

@@ -7,6 +7,7 @@
 //
 
 #import "StaticCollectionViewCell.h"
+#import "MyCardCollectSectionModel.h"
 
 @interface StaticCollectionViewCell()
 @property (nonatomic, weak) IBOutlet SLLabel *titleLabel;
@@ -34,6 +35,15 @@
     _title = title;
     self.titleLabel.text = title;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+}
+
+- (void)renderWithRowModel:(id<SLCollectRowProtocol>)row {
+    if ([row isKindOfClass:[StaticCollectionModel class]]) {
+        StaticCollectionModel *model = (StaticCollectionModel*)row;
+        self.title = model.str;
+    } else {
+        self.title = @"";
+    }
 }
 
 @end

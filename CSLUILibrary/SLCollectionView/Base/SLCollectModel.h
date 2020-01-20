@@ -40,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *sectionIndexTitle;
 
+@property (nonatomic, assign) CGFloat minimumLineSpacing;
+@property (nonatomic, assign) CGFloat minimumInteritemSpacing;
+@property (nonatomic, assign) UIEdgeInsets insetForSection;
+
 @property (nonatomic, copy) HeaderFooterCollect viewForHeader;
 @property (nonatomic, copy) HeaderFooterCollect viewForFooter;
 @end

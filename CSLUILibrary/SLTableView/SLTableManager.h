@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<id<SLTableSectionProtocol>> *sections;
 @property (nonatomic, strong) SLTableProxy *delegateHandler;
-@property (nonatomic, copy) void(^selectTableView)(UITableView *tableView, NSIndexPath *indexPath);
+@property (nonatomic, copy) void(^selectTableView)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
 @property (nonatomic, copy) void(^displayCell)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
 
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *_Nullable)handler;

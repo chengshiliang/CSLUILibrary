@@ -9,9 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SLModel;
 @interface SLCardCollectViewFlowLayout : UICollectionViewFlowLayout
-@property(copy,nonatomic) NSArray<SLModel *> *data;
+@property(copy,nonatomic) NSArray *data;
 @end
 
 NS_ASSUME_NONNULL_END

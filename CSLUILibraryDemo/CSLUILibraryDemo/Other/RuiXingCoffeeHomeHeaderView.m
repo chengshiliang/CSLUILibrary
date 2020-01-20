@@ -7,7 +7,7 @@
 //
 
 #import "RuiXingCoffeeHomeHeaderView.h"
-#import "StaticCollectionViewController.h"
+#import "MyCardCollectSectionModel.h"
 #import "StaticCollectionViewCell.h"
 #import <CSLCommonLibrary/NSNotificationCenter+Base.h>
 #import "RecycleViewController.h"

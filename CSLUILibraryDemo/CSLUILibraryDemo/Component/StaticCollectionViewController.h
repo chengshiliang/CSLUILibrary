@@ -10,10 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StaticCollectionModel : SLModel
-@property (nonatomic, copy) NSString *str;
-@end
-
 @interface StaticCollectionViewController : SLViewController
 
 @end

@@ -22,6 +22,10 @@ typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *_Nullable co
 @property (nonatomic, assign) CGFloat heightForFooter;
 @property (nonatomic, assign) CGFloat widthForFooter;
 
+@property (nonatomic, assign) CGFloat minimumLineSpacing;
+@property (nonatomic, assign) CGFloat minimumInteritemSpacing;
+@property (nonatomic, assign) UIEdgeInsets insetForSection;
+
 @property (nonatomic, strong) NSString *sectionIndexTitle;
 
 @property (nonatomic, copy) HeaderFooterCollect viewForHeader;

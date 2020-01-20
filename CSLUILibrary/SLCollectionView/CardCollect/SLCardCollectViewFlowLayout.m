@@ -6,8 +6,7 @@
 //
 
 #import "SLCardCollectViewFlowLayout.h"
-#import <CSLUILibrary/SLModel.h>
-#import <CSLUILibrary/SLUIConst.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @interface SLCardCollectViewFlowLayout()
 {
@@ -24,7 +23,7 @@
 
 -(void)prepareLayout{
     [super prepareLayout];
-    self.itemSize = CGSizeMake(self.collectionView.frame.size.width - self.sectionInset.left - self.sectionInset.right, self.collectionView.frame.size.height - self.sectionInset.top - self.sectionInset.bottom);
+    self.itemSize = CGSizeMake(self.collectionView.sl_width - self.sectionInset.left - self.sectionInset.right, self.collectionView.sl_height - self.sectionInset.top - self.sectionInset.bottom);
 }
 
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -34,9 +33,9 @@
     //屏幕中心点对应于collectionView中content位置
     CGFloat centerXY = 0;
     if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-        centerXY = self.collectionView.frame.size.width / 2 + self.collectionView.contentOffset.x;
+        centerXY = self.collectionView.sl_width / 2 + self.collectionView.contentOffset.x;
     } else {
-        centerXY = self.collectionView.frame.size.height / 2 + self.collectionView.contentOffset.y;
+        centerXY = self.collectionView.sl_height / 2 + self.collectionView.contentOffset.y;
     }
     //cell中的item一个个取出来进行更改
     for (UICollectionViewLayoutAttributes *atts in attsArray) {
@@ -50,9 +49,9 @@
         CGFloat scale = 1;
         CGFloat count = self.data.count > 0 ? self.data.count > 0 : 1;
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-            scale = 1 - (space/self.collectionView.frame.size.width/count);
+            scale = 1 - (space/self.collectionView.sl_width/count);
         } else {
-            scale = 1 - (space/self.collectionView.frame.size.height/count);
+            scale = 1 - (space/self.collectionView.sl_height/count);
         }
         atts.transform = CGAffineTransformMakeScale(scale, scale);
     }
@@ -81,9 +80,9 @@
     //视图中心点相对于collectionView的content起始点的位置
     CGFloat centerXY = 0;
     if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-        centerXY = self.collectionView.frame.size.width / 2 + proposedContentOffset.x;
+        centerXY = self.collectionView.sl_width / 2 + proposedContentOffset.x;
     } else {
-        centerXY = self.collectionView.frame.size.height / 2 + proposedContentOffset.y;
+        centerXY = self.collectionView.sl_height / 2 + proposedContentOffset.y;
     }
     CGFloat minSpace = MAXFLOAT;
     for (UICollectionViewLayoutAttributes *attrs in attsArray) {
