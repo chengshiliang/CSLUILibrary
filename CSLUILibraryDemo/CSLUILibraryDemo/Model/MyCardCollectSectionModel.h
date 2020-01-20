@@ -34,4 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *str;
 @end
 
+@interface MyNoRuleCollectSectionModel : SLCollectSectionModel
+
+@end
+
+@interface MyNoRuleCollectRowModel : SLCollectRowModel
+@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, copy) NSString *str;
+@end
+
 NS_ASSUME_NONNULL_END

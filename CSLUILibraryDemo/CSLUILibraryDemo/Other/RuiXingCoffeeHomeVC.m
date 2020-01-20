@@ -54,7 +54,7 @@ static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
     [self.collectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
     
     RuiXingCoffeeHomeHeaderView *headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
-    [headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+//    [headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
     [headerView.recycleView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
 }
 

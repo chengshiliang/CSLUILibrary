@@ -107,11 +107,7 @@ static NSString *const cellId = @"ruixingheaderrecycleview";
     }
     dataSource = arrM.copy;
     self.noRuleCollectionView.dataSource = arrM.copy;
-    self.noRuleCollectionView.delegate = self;
     self.noRuleCollectionView.columns = 3;
-    self.noRuleCollectionView.columnMagrin = 5.0f;
-    self.noRuleCollectionView.rowMagrin = 5.0f;
-    self.noRuleCollectionView.insets = UIEdgeInsetsMake(20, 20, 20, 20);
     [self.noRuleCollectionView reloadData];
 }
 
