@@ -6,20 +6,20 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class SLCollectionView;
+#import <UIKit/UIKit.h>
+@class SLCollectionBaseView;
 @class SLView;
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLCollectionViewProtocol <NSObject>
 @required
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
+- (UICollectionViewCell *)collectionView:(SLCollectionBaseView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
 @optional
-- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view;
-- (void)registerHeader:(SLCollectionView *)collectionView forView:(SLView *)view;
-- (void)registerFooter:(SLCollectionView *)collectionView forView:(SLView *)view;
-- (void)collectionView:(SLCollectionView *)collectionView customDidSelectItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
-- (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+- (void)registerCell:(SLCollectionBaseView *)collectionView forView:(SLView *)view;
+- (void)registerHeader:(SLCollectionBaseView *)collectionView forView:(SLView *)view;
+- (void)registerFooter:(SLCollectionBaseView *)collectionView forView:(SLView *)view;
+- (void)collectionView:(SLCollectionBaseView *)collectionView customDidSelectItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view;
+- (UICollectionReusableView *)sl_collectionView:(SLCollectionBaseView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
 @end
 
 NS_ASSUME_NONNULL_END

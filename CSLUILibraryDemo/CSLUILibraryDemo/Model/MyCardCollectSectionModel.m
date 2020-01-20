@@ -73,3 +73,21 @@
     self.type = SLCollectRowTypeXib;
 }
 @end
+@implementation MyRecycleSectionModel
+- (UIEdgeInsets)insetForSection {
+    return UIEdgeInsetsMake(20, 10, 20, 10);
+}
+//- (CGFloat)minimumLineSpacing {
+//    return 5;
+//}
+//- (CGFloat)minimumInteritemSpacing {
+//    return 5;
+//}
+@end
+@implementation MyRecycleRowModel
+- (void)setStr:(NSString *)str {
+    _str = str;
+    self.registerName = @"StaticCollectionViewCell";
+    self.type = SLCollectRowTypeXib;
+}
+@end

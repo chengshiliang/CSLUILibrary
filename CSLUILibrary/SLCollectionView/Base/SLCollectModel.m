@@ -59,6 +59,22 @@
 @end
 
 @implementation SLCollectSectionModel
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    id<SLCollectSectionProtocol>model = [[[self class]allocWithZone:zone]init];
+    model.titleForHeader = self.titleForHeader.copy;
+    model.heightForHeader = self.heightForHeader;
+    model.widthForHeader = self.widthForHeader;
+    model.heightForFooter = self.heightForFooter;
+    model.widthForFooter = self.widthForFooter;
+    model.sectionIndexTitle = self.sectionIndexTitle.copy;
+    model.minimumLineSpacing = self.minimumLineSpacing;
+    model.minimumInteritemSpacing = self.minimumInteritemSpacing;
+    model.insetForSection = self.insetForSection;
+    model.viewForHeader = [self.viewForHeader copyWithZone:zone];
+    model.viewForFooter = [self.viewForFooter copyWithZone:zone];
+    model.rows = [self.rows mutableCopyWithZone:zone];
+    return model;
+}
 @end
 
 @implementation SLCollectModel

@@ -9,10 +9,7 @@
 #import "BaseController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@interface RecycleViewModel : SLModel
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *imageUrl;
-@end
+
 @interface RecycleViewController : BaseController
 
 @end

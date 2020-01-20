@@ -48,6 +48,10 @@
         MyNoRuleCollectRowModel *model = (MyNoRuleCollectRowModel*)row;
         self.title = model.str;
         self.backgroundColor = model.color;
+    } else if ([row isKindOfClass:[MyRecycleRowModel class]]) {
+        MyRecycleRowModel *model = (MyRecycleRowModel*)row;
+        self.title = model.str;
+        self.backgroundColor = model.color;
     } else {
         self.title = @"";
         self.backgroundColor = [UIColor yellowColor];

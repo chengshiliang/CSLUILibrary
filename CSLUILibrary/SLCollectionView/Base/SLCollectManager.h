@@ -18,7 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SLCollectProxy *delegateHandler;
 @property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
 @property (nonatomic, copy) void(^displayCell)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
-@property (nonatomic, copy) void(^scrollCallback)(SLCollectBaseView *collectView);
+@property (nonatomic, copy) void(^scrollViewDidEndDeceleratingCallback)(SLCollectBaseView *collectView);
+@property (nonatomic, copy) void(^scrollViewDidScrollCallback)(SLCollectBaseView *collectView);
+@property (nonatomic, copy) void(^scrollViewWillBeginDraggingCallback)(SLCollectBaseView *collectView);
+@property (nonatomic, copy) void(^scrollViewDidEndDraggingCallback)(SLCollectBaseView *collectView, BOOL decelerate);
+@property (nonatomic, copy) void(^scrollViewDidEndScrollingAnimationCallback)(SLCollectBaseView *collectView);
 - (id)initWithSections:(NSArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *_Nullable)handler;
 
 - (void)bindToCollectView:(SLCollectBaseView *)collectView;

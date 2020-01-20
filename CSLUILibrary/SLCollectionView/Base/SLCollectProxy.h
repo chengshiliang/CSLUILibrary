@@ -19,5 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLCollectScrollProxy : SLCollectProxy<UIScrollViewDelegate>
 
 @end
+@interface SLCollectRecycleProxy : SLCollectScrollProxy<UICollectionViewDelegateFlowLayout>
 
+@end
 NS_ASSUME_NONNULL_END

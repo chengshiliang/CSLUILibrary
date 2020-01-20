@@ -54,7 +54,7 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
     }
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectScrollProxy new]];
     WeakSelf;
-    self.collectionView.manager.scrollCallback = ^(SLCollectBaseView * _Nonnull collectView) {
+    self.collectionView.manager.scrollViewDidEndDeceleratingCallback = ^(SLCollectBaseView * _Nonnull collectView) {
         StrongSelf;
         NSInteger index = 0;
         if (strongSelf.direction == Vertical) {

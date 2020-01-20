@@ -44,29 +44,29 @@
     self.collectionView.rowMagrin = 5.0f;
     self.collectionView.insets = UIEdgeInsetsMake(20, 10, 20, 10);
     WeakSelf;
-    self.collectionView.cellConfig = ^SLCollectionViewCell * _Nonnull(NSInteger section, NSInteger row, SLCollectionViewCell * _Nonnull cell) {
-        StrongSelf;
-        SLLabel *label = [[SLLabel alloc]init];
-        NSArray *sectionArray = strongSelf.dataSource[section];
-        SLPupModel *pupModel = sectionArray[row];
-        PageableModel *model = (PageableModel *)pupModel.data;
-        if (![NSString emptyString:model.title]) {
-            CGSize size = [model.title sizeWithFont:label.font size:CGSizeMake(cell.sl_width, cell.sl_height)];
-            label.frame = CGRectMake(cell.sl_width/2.0-size.width/2.0, cell.sl_height/2.0-size.height/2.0, size.width, size.height);
-        } else {
-            label.frame = CGRectZero;
-        }
-        label.text = model.title;
-        [cell.contentView addSubview:label];
-        if (section == 0) {
-            cell.contentView.backgroundColor = [UIColor redColor];
-            label.backgroundColor = [UIColor blueColor];
-        } else {
-            cell.contentView.backgroundColor = [UIColor yellowColor];
-            label.backgroundColor = [UIColor blueColor];
-        }
-        return cell;
-    };
+//    self.collectionView.cellConfig = ^SLCollectionViewCell * _Nonnull(NSInteger section, NSInteger row, SLCollectionViewCell * _Nonnull cell) {
+//        StrongSelf;
+//        SLLabel *label = [[SLLabel alloc]init];
+//        NSArray *sectionArray = strongSelf.dataSource[section];
+//        SLPupModel *pupModel = sectionArray[row];
+//        PageableModel *model = (PageableModel *)pupModel.data;
+//        if (![NSString emptyString:model.title]) {
+//            CGSize size = [model.title sizeWithFont:label.font size:CGSizeMake(cell.sl_width, cell.sl_height)];
+//            label.frame = CGRectMake(cell.sl_width/2.0-size.width/2.0, cell.sl_height/2.0-size.height/2.0, size.width, size.height);
+//        } else {
+//            label.frame = CGRectZero;
+//        }
+//        label.text = model.title;
+//        [cell.contentView addSubview:label];
+//        if (section == 0) {
+//            cell.contentView.backgroundColor = [UIColor redColor];
+//            label.backgroundColor = [UIColor blueColor];
+//        } else {
+//            cell.contentView.backgroundColor = [UIColor yellowColor];
+//            label.backgroundColor = [UIColor blueColor];
+//        }
+//        return cell;
+//    };
     [self.collectionView reload];
 }
 

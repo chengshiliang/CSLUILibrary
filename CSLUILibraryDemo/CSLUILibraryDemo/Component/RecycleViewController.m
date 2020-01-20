@@ -7,13 +7,9 @@
 //
 
 #import "RecycleViewController.h"
+#import "MyCardCollectSectionModel.h"
 
-@implementation RecycleViewModel
-@end
-@interface RecycleViewController ()<SLCollectionViewProtocol>
-{
-    NSMutableArray *_colorAry;
-}
+@interface RecycleViewController ()
 @property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView1;
 @property (weak, nonatomic) IBOutlet SLRecycleCollectionView *scollView2;
 @end
@@ -22,63 +18,59 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _colorAry = [NSMutableArray array];
+    NSMutableArray *_colorAry = [NSMutableArray array];
     [_colorAry addObject:[UIColor blackColor]];
     [_colorAry addObject:[UIColor blueColor]];
     [_colorAry addObject:[UIColor redColor]];
     [_colorAry addObject:[UIColor yellowColor]];
     [_colorAry addObject:[UIColor orangeColor]];
+    MyRecycleSectionModel *secModel = [MyRecycleSectionModel new];
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 5; i ++) {
-        SLPupModel *pupModel = [SLPupModel new];
-        pupModel.width = kScreenWidth-20;
-        RecycleViewModel *model = [RecycleViewModel new];
-        model.title = [NSString stringWithFormat:@"第%d个", i];
-        pupModel.data = model;
-        [arrM addObject:pupModel];
+        MyRecycleRowModel *model = [MyRecycleRowModel new];
+        model.rowWidth = kScreenWidth-20;
+        model.rowHeight = 50;
+        model.str = [NSString stringWithFormat:@"第%d个", i];
+        model.color = _colorAry[i%_colorAry.count];
+        [arrM addObject:model];
     }
+    secModel.rows = arrM.copy;
     self.scollView1.loop = YES;
-    self.scollView1.dataSource = arrM.copy;
-    self.scollView1.delegate = self;
-    self.scollView1.minimumLineSpacing = 0;
-    self.scollView1.insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.scollView1.dataSource = secModel;
+    self.scollView2.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.scollView1.interval = 1.0;
-    [self.scollView1.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId1];
+    self.scollView1.scrollToIndexBlock = ^(id<SLCollectRowProtocol>  _Nonnull model, NSInteger index) {
+        NSLog(@"index %d", index);
+    };
+    WeakSelf;
+    self.scollView1.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
+        StrongSelf;
+        NSLog(@"click %d", [strongSelf.scollView1 indexOfSourceArray:indexPath.item]);
+    };
     [self.scollView1 reloadData];
-    [arrM removeAllObjects];
+    MyRecycleSectionModel *secModel1 = [MyRecycleSectionModel new];
+    NSMutableArray *arrM1 = [NSMutableArray array];
     for (int i = 0; i < 5; i ++) {
-        SLPupModel *pupModel = [SLPupModel new];
-        pupModel.height = kScreenWidth*100.0/375;
-        RecycleViewModel *model = [RecycleViewModel new];
-        model.title = [NSString stringWithFormat:@"第%d个", i];
-        pupModel.data = model;
-        [arrM addObject:pupModel];
+        MyRecycleRowModel *model = [MyRecycleRowModel new];
+        model.rowWidth = kScreenWidth-20;
+        model.rowHeight = 80;
+        model.str = [NSString stringWithFormat:@"第%d个", i];
+        model.color = _colorAry[i%_colorAry.count];
+        [arrM1 addObject:model];
     }
+    secModel1.rows = arrM1.copy;
     self.scollView2.loop = YES;
-    self.scollView2.dataSource = arrM.copy;
-    self.scollView2.delegate = self;
+    self.scollView2.dataSource = secModel1;
     self.scollView2.manual = NO;
     self.scollView2.interval = 3.0;// 在step的情况下等于speed
-    self.scollView2.minimumLineSpacing = 0;
     self.scollView2.scrollStyle = SLRecycleCollectionViewStyleStep;
     self.scollView2.hidePageControl = YES;
     self.scollView2.scrollDirection = UICollectionViewScrollDirectionVertical;
-    [self.scollView2.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId2];
+    self.scollView2.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
+        StrongSelf;
+        NSLog(@"click222 %d", [strongSelf.scollView1 indexOfSourceArray:indexPath.item]);
+    };
     [self.scollView2 reloadData];
-}
-
-static NSString *const cellId1 = @"kRecycleViewCellID1";
-static NSString *const cellId2 = @"kRecycleViewCellID2";
-
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    if ([view isEqual:self.scollView1]) {
-        SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        cell.backgroundColor = [_colorAry objectAtIndex:[self.scollView1 indexOfSourceArray:indexPath.item]];
-        return cell;
-    }
-    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId2 forIndexPath:indexPath];
-    cell.backgroundColor = [_colorAry objectAtIndex:[self.scollView1 indexOfSourceArray:indexPath.item]];
-    return cell;
 }
 
 @end
