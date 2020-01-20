@@ -75,20 +75,20 @@ static NSString *const cellId1 = @"kPageableCollectionStaticCellID2";
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
     if ([view isEqual:self.recycleView]) {
         SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PageableRecycleCellID forIndexPath:indexPath];
-        SLStaticCollectionView *staticCollectionView = [[SLStaticCollectionView alloc]initWithFrame:CGRectMake(self.insets.left, self.insets.top, self.recycleView.sl_width-self.insets.left-self.insets.right, self.recycleView.sl_height-self.insets.top-self.insets.bottom)];
-        NSArray<SLPupModel *> *modelArray = self.dataSource[indexPath.item];
-        staticCollectionView.dataSource = modelArray;
-        staticCollectionView.delegate = self;
-        staticCollectionView.columns = self.columns;
-        staticCollectionView.columnMagrin = self.columnMagrin;
-        staticCollectionView.rowMagrin = self.rowMagrin;
-        staticCollectionView.ajustFrame = YES;
-        staticCollectionView.isRegiste = YES;
-        currentId = indexPath.item;
-        NSString *cellId = [NSString stringWithFormat:@"cellId%ld", (long)currentId];
-        [staticCollectionView.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
-        [cell.contentView addSubview:staticCollectionView];
-        [staticCollectionView reloadData];
+//        SLStaticCollectionView *staticCollectionView = [[SLStaticCollectionView alloc]initWithFrame:CGRectMake(self.insets.left, self.insets.top, self.recycleView.sl_width-self.insets.left-self.insets.right, self.recycleView.sl_height-self.insets.top-self.insets.bottom)];
+//        NSArray<SLPupModel *> *modelArray = self.dataSource[indexPath.item];
+//        staticCollectionView.dataSource = modelArray;
+//        staticCollectionView.delegate = self;
+//        staticCollectionView.columns = self.columns;
+//        staticCollectionView.columnMagrin = self.columnMagrin;
+//        staticCollectionView.rowMagrin = self.rowMagrin;
+//        staticCollectionView.ajustFrame = YES;
+//        staticCollectionView.isRegiste = YES;
+//        currentId = indexPath.item;
+//        NSString *cellId = [NSString stringWithFormat:@"cellId%ld", (long)currentId];
+//        [staticCollectionView.collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
+//        [cell.contentView addSubview:staticCollectionView];
+//        [staticCollectionView reloadData];
         return cell;
     } else if ([view isKindOfClass:[SLStaticCollectionView class]]) {
         NSString *cellId = [NSString stringWithFormat:@"cellId%ld", (long)currentId];

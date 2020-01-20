@@ -6,15 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CSLUILibrary/SLCollectRowProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class SLPupModel;
 @interface SLStaticCollectViewLayout : UICollectionViewLayout
 @property(assign,nonatomic) int columns;//列数 默认1列
-@property(copy,nonatomic) NSArray<SLPupModel *> *data;
+@property(copy,nonatomic) NSArray<id<SLCollectRowProtocol>> *data;
 @property(assign,nonatomic) float columnMagrin;//列距离
 @property(assign,nonatomic) float rowMagrin;//行距离
-@property(assign,nonatomic) BOOL ajustFrame;// 根据collectionview 的frame调整 item大小。默认为yes
 @end
 
 NS_ASSUME_NONNULL_END

@@ -23,22 +23,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MyStaticCollectSectionModel *sectionModel2 = [[MyStaticCollectSectionModel alloc]init];
     NSMutableArray *arrM2 = [NSMutableArray array];
     for (int i = 0; i < 6; i ++) {
-        SLPupModel *pupModel = [SLPupModel new];
-        pupModel.width = 200;
-        pupModel.height = 300;
-        StaticCollectionModel *model = [StaticCollectionModel new];
+        MyStaticCollectRowModel *model = [MyStaticCollectRowModel new];
         model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
-        pupModel.data = model;
-        [arrM2 addObject:pupModel];
+        [arrM2 addObject:model];
     }
-    dataSource = arrM2.copy;
-    self.staticCollectionView.dataSource = arrM2.copy;
-    self.staticCollectionView.delegate = self;
+    sectionModel2.rows = arrM2.copy;
+    self.staticCollectionView.dataSource = sectionModel2;
     self.staticCollectionView.columns = 4;
-    self.staticCollectionView.columnMagrin = 5.0f;
-    self.staticCollectionView.rowMagrin = 5.0f;
+    self.staticCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
+        NSLog(@"index %d", indexPath.row);
+    };
     [self.staticCollectionView reloadData];
     
     self.horizontalCollectionView.dataSource = arrM2.copy;
@@ -60,26 +57,16 @@
     [self.cardCollectionView reloadData];
 }
 
-static NSString *const cellId1 = @"kStaticCollectionViewCellID";
 static NSString *const cellId2 = @"kHorizontalCollectionViewCellID";
-static NSString *const cellId3 = @"kCardCollectionViewCellID";
 
 - (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    if ([view isKindOfClass:[SLStaticCollectionView class]]) {
-        [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId1];
-    } else if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
+    if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
         [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId2];
     }
 }
 
 - (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    if ([view isKindOfClass:[SLStaticCollectionView class]]) {
-        StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        SLPupModel *pupModel = dataSource[indexPath.row];
-        StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
-        cell.title = model.str;
-        return cell;
-    } else if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
+    if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
         StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId2 forIndexPath:indexPath];
         SLPupModel *pupModel = dataSource[indexPath.row];
         StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;

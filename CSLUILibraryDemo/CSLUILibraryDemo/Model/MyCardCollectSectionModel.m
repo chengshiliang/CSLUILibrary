@@ -40,3 +40,21 @@
     return self;
 }
 @end
+@implementation MyStaticCollectSectionModel
+- (UIEdgeInsets)insetForSection {
+    return UIEdgeInsetsMake(20, 10, 20, 10);
+}
+- (CGFloat)minimumLineSpacing {
+    return 5;
+}
+- (CGFloat)minimumInteritemSpacing {
+    return 5;
+}
+@end
+@implementation MyStaticCollectRowModel
+- (void)setStr:(NSString *)str {
+    _str = str;
+    self.registerName = @"StaticCollectionViewCell";
+    self.type = SLCollectRowTypeXib;
+}
+@end

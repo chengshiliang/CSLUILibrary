@@ -1,1 +1,1 @@
-../../../../../CSLUILibrary/SLCollectionView/SLStaticCollectViewLayout.h
+../../../../../CSLUILibrary/SLCollectionView/StaticCollect/SLStaticCollectViewLayout.h

@@ -6,7 +6,6 @@
 //
 
 #import "SLCollectionViewLayout.h"
-#import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLUIConst.h>
 
 @interface SLCollectionViewLayout()

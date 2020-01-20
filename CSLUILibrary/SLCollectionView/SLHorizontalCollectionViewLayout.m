@@ -24,8 +24,8 @@
 
 //系统在开始计算每一个cell之前调用,做一些初始化工作
 - (void)prepareLayout {
-    if (self.data.count == 0) return;
     [self.layoutAttributeArray removeAllObjects];
+    if (self.data.count == 0) return;
     currentX = 0.f;
     NSInteger num=[self.collectionView numberOfItemsInSection:0];
     for(int i=0;i<num;i++){
@@ -40,16 +40,16 @@
 }
 //计算某一个cell的frame
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-    SLPupModel *model = self.data[indexPath.row];
-    float cellX=currentX;
-    float cellWidth = model.width * 1.0 * self.collectionView.bounds.size.height / model.height;
-    if (indexPath.row == self.data.count - 1) {
-        currentX += cellWidth;
-    } else {
-        currentX += cellWidth+self.columnMagrin;
-    }
+//    SLPupModel *model = self.data[indexPath.row];
+//    float cellX=currentX;
+//    float cellWidth = model.width * 1.0 * self.collectionView.bounds.size.height / model.height;
+//    if (indexPath.row == self.data.count - 1) {
+//        currentX += cellWidth;
+//    } else {
+//        currentX += cellWidth+self.columnMagrin;
+//    }
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    attr.frame=CGRectMake(cellX,0, cellWidth, self.collectionView.bounds.size.height);
+//    attr.frame=CGRectMake(cellX,0, cellWidth, self.collectionView.bounds.size.height);
     return attr;
 }
 //得到所有布局好后的cell实际大小

@@ -41,6 +41,9 @@
     if ([row isKindOfClass:[StaticCollectionModel class]]) {
         StaticCollectionModel *model = (StaticCollectionModel*)row;
         self.title = model.str;
+    } else if ([row isKindOfClass:[MyStaticCollectRowModel class]]) {
+        MyStaticCollectRowModel *model = (MyStaticCollectRowModel*)row;
+        self.title = model.str;
     } else {
         self.title = @"";
     }
