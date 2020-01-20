@@ -13,4 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) SLCollectManager *collectManager;
 @end
 
+@interface SLCollectFlowlayoutProxy : SLCollectProxy<UICollectionViewDelegateFlowLayout>
+
+@end
+@interface SLCollectScrollProxy : SLCollectProxy<UIScrollViewDelegate>
+
+@end
+
 NS_ASSUME_NONNULL_END
