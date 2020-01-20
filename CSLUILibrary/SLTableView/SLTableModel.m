@@ -8,6 +8,7 @@
 #import "SLTableModel.h"
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLTableView.h>
+#import <CSLUILibrary/SLTableManager.h>
 
 @implementation SLTableRowModel
 - (instancetype)init {

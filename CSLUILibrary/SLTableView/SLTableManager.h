@@ -7,10 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CSLUILibrary/SLTableSectionProtocol.h>
-#import <CSLUILibrary/SLTableProxy.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SLTableProxy;
 @interface SLTableManager : NSObject
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<id<SLTableSectionProtocol>> *sections;

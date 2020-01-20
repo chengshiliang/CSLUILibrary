@@ -6,6 +6,7 @@
 //
 
 #import "SLTableView.h"
+#import <CSLUILibrary/SLTableManager.h>
 
 @implementation SLTableView
 

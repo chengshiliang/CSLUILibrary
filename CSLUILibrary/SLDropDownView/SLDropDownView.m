@@ -13,6 +13,7 @@
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
+#import <CSLUILibrary/SLTableManager.h>
 
 @interface SLDropDownView ()
 @property (nonatomic, copy) void(^completeBlock)(void);

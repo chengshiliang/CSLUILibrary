@@ -6,6 +6,7 @@
 //
 
 #import "SLTableManager.h"
+#import <CSLUILibrary/SLTableProxy.h>
 
 @implementation SLTableManager
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{

@@ -6,10 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CSLUILibrary/SLTableManager.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SLTableManager;
 @interface SLTableView : UITableView
 @property (nonatomic, strong) SLTableManager *manager;
 @end
