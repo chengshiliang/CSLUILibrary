@@ -6,6 +6,7 @@
 //
 
 #import "SLCollectBaseView.h"
+#import <CSLUILibrary/SLCollectManager.h>
 
 @implementation SLCollectBaseView
 

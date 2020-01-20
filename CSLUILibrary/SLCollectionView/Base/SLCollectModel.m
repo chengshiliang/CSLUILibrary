@@ -9,6 +9,7 @@
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/NSString+Util.h>
+#import <CSLUILibrary/SLCollectManager.h>
 
 @implementation SLCollectRowModel
 - (instancetype)init {
@@ -27,17 +28,18 @@
     WeakSelf;
     return ^UICollectionViewCell *(SLCollectBaseView * _Nonnull collectView, NSIndexPath * _Nonnull indexPath) {
         StrongSelf;
+        SLCollectManager *manager = collectView.manager;
         switch (strongSelf.type) {
             case SLCollectRowTypeCode:{
                 if ([NSString emptyString:strongSelf.reuseIdentifier]) break;
-                if (!collectView.manager.cellClasses[strongSelf.reuseIdentifier] && NSClassFromString(strongSelf.registerName)) {
+                if (manager && !collectView.manager.cellClasses[strongSelf.reuseIdentifier] && NSClassFromString(strongSelf.registerName)) {
                     [collectView registerClass:NSClassFromString(strongSelf.registerName) forCellWithReuseIdentifier:strongSelf.reuseIdentifier];
                     collectView.manager.cellClasses[strongSelf.reuseIdentifier] = NSClassFromString(strongSelf.registerName);
                 }
             }
                 break;
             case SLCollectRowTypeXib:{
-                if (!collectView.manager.cellClasses[strongSelf.reuseIdentifier]) {
+                if (manager && !collectView.manager.cellClasses[strongSelf.reuseIdentifier]) {
                     UINib *nib = [UINib nibWithNibName:strongSelf.registerName bundle:nil];
                     if (nib) {
                         [collectView registerNib:nib forCellWithReuseIdentifier:strongSelf.reuseIdentifier];

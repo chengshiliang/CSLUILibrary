@@ -9,6 +9,7 @@
 #import <CSLUILibrary/SLCollectRowProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class SLCollectBaseView;
 typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *_Nullable collectView, NSInteger section);
 
 @protocol SLCollectSectionProtocol <NSObject>

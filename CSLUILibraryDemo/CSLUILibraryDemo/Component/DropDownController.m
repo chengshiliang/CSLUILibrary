@@ -15,8 +15,8 @@
 - (instancetype)init {
     if (self == [super init]) {
         self.reuseIdentifier = @"MyCollectRowCell";
-        self.rowHeight = 200;
-        self.rowWidth = 200;
+        self.rowHeight = 40;
+        self.rowWidth = 100;
         self.type = SLTableRowTypeCode;
         self.registerName = @"UICollectionViewCell";
     }

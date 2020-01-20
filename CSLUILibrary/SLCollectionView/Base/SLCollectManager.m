@@ -7,6 +7,7 @@
 
 #import "SLCollectManager.h"
 #import <CSLUILibrary/SLCollectBaseView.h>
+#import <CSLUILibrary/SLCollectProxy.h>
 
 @implementation SLCollectManager
 - (id)initWithSections:(NSArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *)handler{

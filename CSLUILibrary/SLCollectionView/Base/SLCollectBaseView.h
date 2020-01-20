@@ -6,10 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CSLUILibrary/SLCollectManager.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SLCollectManager;
 @interface SLCollectBaseView : UICollectionView
 @property (nonatomic, strong) SLCollectManager *manager;
 @end

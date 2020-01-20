@@ -12,6 +12,7 @@
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
+#import <CSLUILibrary/SLCollectManager.h>
 
 @interface SLDropDownView ()
 @property (nonatomic, copy) void(^completeBlock)(void);
@@ -84,11 +85,7 @@
     if (self.type == SLDropDownViewDisplayCollect && self.collectDatas && self.collectDatas.count > 0) {
         SLCollectBaseView *collectionView = [[SLCollectBaseView alloc]initWithFrame:CGRectMake(0, 0, targetView.sl_width, targetView.sl_height-toPoint.y)];
         collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:nil];
-        WeakSelf;
-        collectionView.manager.displayCell = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-            StrongSelf;
-            !strongSelf.displayCollectCell?:strongSelf.displayCollectCell(collectionView,cell,indexPath,rowModel);
-        };
+        collectionView.manager.displayCell = self.displayCollectCell;
         [self addSubview:collectionView];
         [collectionView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -101,11 +98,7 @@
     } else if (self.type == SLDropDownViewDisplayTable && self.tableDatas && self.tableDatas.count > 0) {
         SLTableView *tableView = [[SLTableView alloc]initWithFrame:CGRectMake(0, 0, targetView.sl_width, targetView.sl_height-toPoint.y) style:UITableViewStylePlain];
         tableView.manager = [[SLTableManager alloc]initWithSections:self.tableDatas.copy delegateHandler:nil];
-        WeakSelf;
-        tableView.manager.displayCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
-            StrongSelf;
-            !strongSelf.displayTableCell?:strongSelf.displayTableCell(tableView,cell,indexPath,rowModel);
-        };
+        tableView.manager.displayCell = self.displayTableCell;
         [self addSubview:tableView];
         [tableView.manager reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{

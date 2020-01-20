@@ -7,10 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CSLUILibrary/SLCollectSectionProtocol.h>
-#import <CSLUILibrary/SLCollectProxy.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SLCollectProxy;
 @interface SLCollectManager : NSObject
 @property (nonatomic, weak) SLCollectBaseView *collectView;
 @property (nonatomic, strong) NSMutableDictionary<Class,NSString *> *cellClasses;
