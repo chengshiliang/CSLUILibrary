@@ -6,6 +6,7 @@
 //
 
 #import "SLHorizontalCollectionViewLayout.h"
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @interface SLHorizontalCollectionViewLayout()
 {
@@ -40,20 +41,20 @@
 }
 //计算某一个cell的frame
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    SLPupModel *model = self.data[indexPath.row];
-//    float cellX=currentX;
-//    float cellWidth = model.width * 1.0 * self.collectionView.bounds.size.height / model.height;
-//    if (indexPath.row == self.data.count - 1) {
-//        currentX += cellWidth;
-//    } else {
-//        currentX += cellWidth+self.columnMagrin;
-//    }
+    id<SLCollectRowProtocol>model = self.data[indexPath.row];
+    float cellX=currentX;
+    float cellWidth = model.rowWidth * 1.0 * self.collectionView.sl_height / model.rowHeight;
+    if (indexPath.row == self.data.count - 1) {
+        currentX += cellWidth;
+    } else {
+        currentX += cellWidth+self.columnMagrin;
+    }
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-//    attr.frame=CGRectMake(cellX,0, cellWidth, self.collectionView.bounds.size.height);
+    attr.frame=CGRectMake(cellX,0, cellWidth, self.collectionView.sl_height);
     return attr;
 }
 //得到所有布局好后的cell实际大小
 -(CGSize)collectionViewContentSize {
-    return CGSizeMake(currentX, self.collectionView.bounds.size.height);
+    return CGSizeMake(currentX, self.collectionView.sl_height);
 }
 @end

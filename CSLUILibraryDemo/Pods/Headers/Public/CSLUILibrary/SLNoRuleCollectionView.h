@@ -1,1 +1,1 @@
-../../../../../CSLUILibrary/SLCollectionView/SLNoRuleCollectionView.h
+../../../../../CSLUILibrary/SLCollectionView/NoRuleCollect/SLNoRuleCollectionView.h

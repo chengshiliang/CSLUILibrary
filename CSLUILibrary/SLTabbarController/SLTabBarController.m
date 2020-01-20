@@ -10,6 +10,7 @@
 #import <CSLUILibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLTabbarView.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @interface SLTabBarController ()
 {
@@ -70,14 +71,14 @@
     [super viewWillLayoutSubviews];
     if (!isLayout) {
         isLayout = YES;
-        self.mTabBar.frame = CGRectMake(0, 0, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
+        self.mTabBar.frame = CGRectMake(0, 0, self.tabBar.sl_width, self.tabBar.sl_height);
     }
 }
 
 - (void)createTabBar:(void(^)(SLTabbarView *tabbar))layoutTabbarBlock configTabbarButton:(void (^)(SLTabbarButton *button, NSInteger index))configTabbarButtonBlock{
     [self.mTabBar removeFromSuperview];
-    float tabbarWidth  = self.tabBar.frame.size.width;
-    float tabbarHeight = self.tabBar.frame.size.height;
+    float tabbarWidth  = self.tabBar.sl_width;
+    float tabbarHeight = self.tabBar.sl_height;
     SLTabbarView *tabbarView = [[SLTabbarView alloc] initWithFrame:CGRectMake(0, 0, tabbarWidth, tabbarHeight)];
     tabbarView.backgroundColor = SLUIHexColor(0xffffff);
     [self.tabBar insertSubview:tabbarView atIndex:0];

@@ -41,9 +41,6 @@
 }
 @end
 @implementation MyStaticCollectSectionModel
-- (UIEdgeInsets)insetForSection {
-    return UIEdgeInsetsMake(20, 10, 20, 10);
-}
 - (CGFloat)minimumLineSpacing {
     return 5;
 }

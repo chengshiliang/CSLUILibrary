@@ -8,6 +8,7 @@
 #import "SLNavPushTransitionAnimation.h"
 #import <CSLCommonLibrary/NSObject+NavAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @implementation SLNavPushTransitionAnimation
 - (instancetype)init {
@@ -32,9 +33,9 @@
             UIView *containerView = [transitionContext containerView];
             [containerView addSubview:toView];
             
-            toView.frame = CGRectMake(toView.frame.size.width, 0, kScreenWidth, kScreenHeight);
+            toView.frame = CGRectMake(toView.sl_width, 0, kScreenWidth, kScreenHeight);
             [UIView animateWithDuration:transitionDuration animations:^{
-                toView.frame = CGRectMake(0, 0, toView.frame.size.width, toView.frame.size.height);
+                toView.frame = CGRectMake(0, 0, toView.sl_width, toView.sl_height);
             } completion:^(BOOL finished) {
                 // 务必 compelte Context
                 [transitionContext completeTransition:YES];

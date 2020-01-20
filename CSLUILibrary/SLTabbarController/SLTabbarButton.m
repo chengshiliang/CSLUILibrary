@@ -6,6 +6,7 @@
 //
 
 #import "SLTabbarButton.h"
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @interface SLTabbarButton()
 {
@@ -125,11 +126,11 @@
 - (void)layoutSubviews {
     UIImage *image = self.currentImage;
     if (!image) {
-        _titleReact = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        _titleReact = CGRectMake(0, 0, self.sl_width, self.sl_height);
     } else {
         if (self.imageSize.width <= 0 && self.imageSize.height <= 0) {
-            self.imageSize = CGSizeMake(image.size.width > self.frame.size.width ? self.frame.size.width : image.size.width,
-                                        image.size.width > self.frame.size.height ? self.frame.size.height : image.size.height);
+            self.imageSize = CGSizeMake(image.size.width > self.sl_width ? self.sl_width : image.size.width,
+                                        image.size.width > self.sl_height ? self.sl_height : image.size.height);
         }
     }
     [super layoutSubviews];

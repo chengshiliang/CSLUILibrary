@@ -8,6 +8,8 @@
 #import "SLNavTransitionAnimation.h"
 #import <CSLCommonLibrary/NSObject+NavAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/UIView+SLBase.h>
+
 @interface SLNavTransitionAnimation()
 @end
 
@@ -35,7 +37,7 @@
             [containerView insertSubview:toView belowSubview:fromView];
             
             [UIView animateWithDuration:transitionDuration animations:^{
-                fromView.frame =  CGRectMake(fromView.frame.size.width, fromView.frame.origin.y, fromView.frame.size.width, fromView.frame.size.height);
+                fromView.frame =  CGRectMake(fromView.sl_width, fromView.sl_y, fromView.sl_width, fromView.sl_height);
             } completion:^(BOOL finished) {
                 // 务必 compelte Context
                 [transitionContext completeTransition:!transitionContext.transitionWasCancelled];

@@ -38,9 +38,20 @@
     };
     [self.staticCollectionView reloadData];
     
-    self.horizontalCollectionView.dataSource = arrM2.copy;
-    self.horizontalCollectionView.delegate = self;
-    self.horizontalCollectionView.columnMagrin = 5.0f;
+    MyStaticCollectSectionModel *sectionModel3 = [[MyStaticCollectSectionModel alloc]init];
+    NSMutableArray *arrM = [NSMutableArray array];
+    for (int i = 0; i < 6; i ++) {
+        MyStaticCollectRowModel *model = [MyStaticCollectRowModel new];
+        model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
+        model.rowWidth = 100;
+        model.rowHeight = 50;
+        [arrM addObject:model];
+    }
+    sectionModel3.rows = arrM.copy;
+    self.horizontalCollectionView.dataSource = sectionModel3;
+    self.horizontalCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
+        NSLog(@"index %d", indexPath.row);
+    };
     [self.horizontalCollectionView reloadData];
     
     MyCardCollectSectionModel *sectionModel = [[MyCardCollectSectionModel alloc]init];
@@ -57,22 +68,4 @@
     [self.cardCollectionView reloadData];
 }
 
-static NSString *const cellId2 = @"kHorizontalCollectionViewCellID";
-
-- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
-        [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId2];
-    }
-}
-
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    if ([view isKindOfClass:[SLHorizontalCollectionView class]]) {
-        StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId2 forIndexPath:indexPath];
-        SLPupModel *pupModel = dataSource[indexPath.row];
-        StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
-        cell.title = model.str;
-        return cell;
-    }
-    return nil;
-}
 @end

@@ -11,6 +11,7 @@
 #import <CSLUILibrary/SLNavTransitionAnimation.h>
 #import <CSLUILibrary/SLNavPushTransitionAnimation.h>
 #import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUILibrary/UIView+SLBase.h>
 
 @interface SLNavigationController ()
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *percentAnimation;
@@ -94,7 +95,7 @@
     for (UIView *view in self.navigationBar.subviews) {
         if ([view isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
             for (UIView *subView in view.subviews) {
-                if ([subView isKindOfClass:[UIImageView class]] && subView.frame.size.height <= 1) {// 这里遍历出导航条的黑线
+                if ([subView isKindOfClass:[UIImageView class]] && subView.sl_height <= 1) {// 这里遍历出导航条的黑线
                     subView.hidden = YES;
                     break;
                 }

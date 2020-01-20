@@ -1,1 +1,1 @@
-../../../../../CSLUILibrary/SLCollectionView/SLHorizontalCollectionView.h
+../../../../../CSLUILibrary/SLCollectionView/HorizonCollect/SLHorizontalCollectionView.h

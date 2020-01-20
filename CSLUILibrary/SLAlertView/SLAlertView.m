@@ -119,7 +119,7 @@
         self.titleLineView.hidden = ![self titleLineShow];
         self.titleLineView.frame = CGRectMake(0, self.height, self.width, 0.5);
         [self addSubview:self.titleLineView];
-        self.height += self.titleLineView.frame.size.height;
+        self.height += self.titleLineView.sl_height;
     }
     if (![NSString emptyString:message]) {
         self.height += 5;
@@ -128,7 +128,7 @@
         messageLabel.frame = CGRectMake(self.originX, self.height, self.contentWidth, messageSize.height);
         messageLabel.text = message;
         [self addSubview:messageLabel];
-        self.height += messageLabel.frame.size.height;
+        self.height += messageLabel.sl_height;
     }
 }
 
@@ -165,11 +165,11 @@
     [self.lineViews addObject:lineView];
     for (int i = 0; i < self.lineViews.count; i ++) {
         SLView *view = self.lineViews[i];
-        view.frame = CGRectMake(0, CGRectGetMinY(self.buttonView.frame)+actionHeight*i, self.buttonView.frame.size.width, 0.5);
+        view.frame = CGRectMake(0, CGRectGetMinY(self.buttonView.frame)+actionHeight*i, self.buttonView.sl_width, 0.5);
     }
     if (self.actions.count == 1 && self.type == AlertView) {
         SLView *view = self.lineViews[1];
-        view.frame = CGRectMake(CGRectGetMidX(self.buttonView.frame), CGRectGetMinY(self.buttonView.frame), 0.5, self.buttonView.frame.size.height);
+        view.frame = CGRectMake(CGRectGetMidX(self.buttonView.frame), CGRectGetMinY(self.buttonView.frame), 0.5, self.buttonView.sl_height);
     }
     SLAlertAction *action = [[SLAlertAction alloc]init];
     action.actionType = type;
@@ -223,15 +223,15 @@
     if (self.actions.count > 0) {
         for (int i = 0; i < self.lineViews.count; i ++) {
             SLView *view = self.lineViews[i];
-            view.sl_y = view.sl_y + customView.frame.origin.y + customView.frame.size.height;
+            view.sl_y = view.sl_y + customView.sl_y + customView.sl_height;
         }
-        self.buttonView.sl_y = self.buttonView.sl_y + customView.frame.origin.y + customView.frame.size.height;
+        self.buttonView.sl_y = self.buttonView.sl_y + customView.sl_y + customView.sl_height;
         [self layoutButtons];
-        self.height -= self.buttonView.frame.size.height;
+        self.height -= self.buttonView.sl_height;
     }
-    CGFloat viewRealWidth = customView.frame.size.width > self.contentWidth ? self.contentWidth : customView.frame.size.width;
-    CGFloat viewRealHeight = customView.frame.size.height * viewRealWidth * 1.0/ customView.frame.size.width;
-    self.height += customView.frame.origin.y;
+    CGFloat viewRealWidth = customView.sl_width> self.contentWidth ? self.contentWidth : customView.sl_width;
+    CGFloat viewRealHeight = customView.sl_height * viewRealWidth * 1.0/ customView.sl_width;
+    self.height += customView.sl_y;
     if (alignmentType == AlertContentViewAlignmentLeft) {
         customView.frame = CGRectMake(self.originX, self.height, viewRealWidth, viewRealHeight);
     } else if (alignmentType == AlertContentViewAlignmentRight) {
@@ -239,10 +239,10 @@
     } else {
         customView.frame = CGRectMake(self.width*1.0/2-viewRealWidth*1.0/2, self.height, viewRealWidth, viewRealHeight);
     }
-    self.height += customView.frame.size.height;
+    self.height += customView.sl_height;
     [self addSubview:customView];
     if (self.actions.count > 0) {
-        self.height += self.buttonView.frame.size.height;
+        self.height += self.buttonView.sl_height;
     }
 }
 

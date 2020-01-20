@@ -11,7 +11,7 @@
 #import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
-#import <CSLUILibrary/SLCollectScrollProxy.h>
+#import <CSLUILibrary/SLCollectProxy.h>
 
 static NSString *const cardViewCellID = @"kSLCardViewCellID";
 
