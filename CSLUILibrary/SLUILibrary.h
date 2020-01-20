@@ -42,7 +42,6 @@
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLTableViewCell.h>
 #import <CSLUILibrary/SLCollectionViewCell.h>
-#import <CSLUILibrary/SLCollectionView.h>
 #import <CSLUILibrary/SLHorizontalCollectionView.h>
 #import <CSLUILibrary/SLStaticCollectionView.h>
 #import <CSLUILibrary/SLNoRuleCollectionView.h>

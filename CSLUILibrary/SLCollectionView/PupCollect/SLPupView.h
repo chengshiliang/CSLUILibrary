@@ -1,0 +1,20 @@
+//
+//  SLPupView.h
+//  CSLUILibrary
+//  瀑布流
+//  Created by SZDT00135 on 2019/11/6.
+//
+
+#import <CSLUILibrary/SLView.h>
+#import <CSLUILibrary/SLCollectSectionProtocol.h>
+
+NS_ASSUME_NONNULL_BEGIN
+@class SLCollectBaseView;
+@interface SLPupView : SLView
+@property(assign,nonatomic) int columns;//列数 默认3列
+@property (strong,nonatomic) id<SLCollectSectionProtocol> dataSource;
+@property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
+- (void)reloadData;
+@end
+
+NS_ASSUME_NONNULL_END

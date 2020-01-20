@@ -61,8 +61,8 @@
     float cellY=[self.columnsY[minYIndex] floatValue];
     float cellX=(cellWidth+self.columnMagrin)*minYIndex;
     NSInteger index = indexPath.item;
-    SLPupModel *model = self.data[index];
-    float cellH = model.height*1.0*cellWidth/model.width;// 行高
+    id<SLCollectRowProtocol>model = self.data[index];
+    float cellH = model.rowHeight*1.0*cellWidth/model.rowWidth;// 行高
     self.columnsY[minYIndex] = @(cellY+self.rowMagrin+cellH);
     UICollectionViewLayoutAttributes *attr=[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attr.frame=CGRectMake(cellX,cellY, cellWidth, cellH);

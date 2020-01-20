@@ -7,17 +7,16 @@
 //
 
 #import "PupViewController.h"
+#import "MyPupCollectionViewCell.h"
+#import "MyCardCollectSectionModel.h"
 
-@interface PupViewController()<SLCollectionViewProtocol>
-{
-    NSMutableArray *_colorAry;
-}
+@interface PupViewController()
 @property (weak, nonatomic) IBOutlet SLPupView *pupView;
 @end
 @implementation PupViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _colorAry = [NSMutableArray array];
+    NSMutableArray *_colorAry = [NSMutableArray array];
     [_colorAry addObject:[UIColor whiteColor]];
     [_colorAry addObject:[UIColor blackColor]];
     [_colorAry addObject:[UIColor blueColor]];
@@ -25,30 +24,21 @@
     [_colorAry addObject:[UIColor yellowColor]];
     [_colorAry addObject:[UIColor orangeColor]];
     [_colorAry addObject:[UIColor purpleColor]];
+    MyPupCollectSectionModel *sectionModel = [[MyPupCollectSectionModel alloc]init];
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 30; i ++) {
-        SLPupModel *model = [SLPupModel new];
-        model.width = 300;
-        model.height = 50*(i+1);
+        MyPupCollectRowModel *model = [MyPupCollectRowModel new];
+        model.rowWidth = 300;
+        model.rowHeight = 50*(i+1);
+        model.color = _colorAry[i%_colorAry.count];
         [arrM addObject:model];
     }
-    self.pupView.dataSource = arrM.copy;
-    self.pupView.delegate = self;
+    sectionModel.rows = arrM.copy;
+    self.pupView.dataSource = sectionModel;
     self.pupView.columns = 4;
-    self.pupView.columnMagrin = 5.0f;
-    self.pupView.rowMagrin = 5.0f;
+    self.pupView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
+        NSLog(@"click %d", indexPath.row);
+    };
     [self.pupView reloadData];
-}
-
-static NSString *const cellId = @"kPupViewCellID";
-
-- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    [collectionView registerClass:[SLCollectionViewCell class] forCellWithReuseIdentifier:cellId];
-}
-
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    SLCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    cell.backgroundColor = [_colorAry objectAtIndex:indexPath.row%_colorAry.count];
-    return cell;
 }
 @end

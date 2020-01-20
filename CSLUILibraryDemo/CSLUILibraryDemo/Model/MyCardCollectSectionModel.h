@@ -14,8 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface MyPupCollectSectionModel : SLCollectSectionModel
+
+@end
+
 @interface StaticCollectionModel : SLCollectRowModel
 @property (nonatomic, copy) NSString *str;
+@end
+
+@interface MyPupCollectRowModel : SLCollectRowModel
+@property (nonatomic, strong) UIColor *color;
 @end
 
 NS_ASSUME_NONNULL_END

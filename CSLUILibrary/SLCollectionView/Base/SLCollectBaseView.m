@@ -31,6 +31,7 @@
     if (@available(iOS 11, *)) {
         self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
+    self.bounces = YES;
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.backgroundColor = SLUIHexColor(0xffffff);
 }

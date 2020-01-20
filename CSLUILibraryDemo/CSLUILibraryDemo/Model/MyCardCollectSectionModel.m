@@ -13,10 +13,30 @@
     return UIEdgeInsetsMake(kScreenWidth * 0.3, kScreenWidth * 0.2, kScreenWidth * 0.3, kScreenWidth * 0.2);
 }
 @end
+@implementation MyPupCollectSectionModel
+- (UIEdgeInsets)insetForSection {
+    return UIEdgeInsetsMake(20, 10, 20, 10);
+}
+- (CGFloat)minimumLineSpacing {
+    return 5;
+}
+- (CGFloat)minimumInteritemSpacing {
+    return 5;
+}
+@end
 @implementation StaticCollectionModel
 - (void)setStr:(NSString *)str {
     _str = str;
     self.registerName = @"StaticCollectionViewCell";
     self.type = SLCollectRowTypeXib;
+}
+@end
+@implementation MyPupCollectRowModel
+- (instancetype)init {
+    if (self == [super init]) {
+        self.registerName = @"MyPupCollectionViewCell";
+        self.type = SLCollectRowTypeCode;
+    }
+    return self;
 }
 @end

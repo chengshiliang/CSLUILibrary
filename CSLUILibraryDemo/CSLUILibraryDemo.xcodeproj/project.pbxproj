@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */; };
-		1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */; };
-		1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */; };
 		150C579C2394ED8600FC8DE2 /* ButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150C579B2394ED8600FC8DE2 /* ButtonController.m */; };
 		150C57A523960D0100FC8DE2 /* CustomTableCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150C57A423960D0100FC8DE2 /* CustomTableCellController.m */; };
 		1511A7A523CC4B2800CC97B2 /* ViewControllerData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1511A7A423CC4B2800CC97B2 /* ViewControllerData.plist */; };
@@ -18,6 +16,9 @@
 		1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */; };
 		1545EBDB238D2F9700157D71 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1545EBDA238D2F9700157D71 /* CustomViewController.m */; };
 		1546FF9123D5531700E211E2 /* MyCardCollectSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546FF9023D5531700E211E2 /* MyCardCollectSectionModel.m */; };
+		1546FFAB23D57D5A00E211E2 /* StaticCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546FFA923D57D5A00E211E2 /* StaticCollectionViewCell.m */; };
+		1546FFAC23D57D5A00E211E2 /* StaticCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1546FFAA23D57D5A00E211E2 /* StaticCollectionViewCell.xib */; };
+		1546FFAF23D57DA400E211E2 /* MyPupCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1546FFAE23D57DA400E211E2 /* MyPupCollectionViewCell.m */; };
 		1550CC34236AD749002CB249 /* LabelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1550CC33236AD749002CB249 /* LabelController.m */; };
 		15596B5B236C29480073C0CB /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15596B5A236C29480073C0CB /* ImageViewController.m */; };
 		15596B5D236C2E200073C0CB /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15596B5C236C2E200073C0CB /* 3.jpg */; };
@@ -54,9 +55,6 @@
 /* Begin PBXFileReference section */
 		1502C2EA238BBCD900C93443 /* StaticCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewController.h; sourceTree = "<group>"; };
 		1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewController.m; sourceTree = "<group>"; };
-		1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewCell.h; sourceTree = "<group>"; };
-		1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewCell.m; sourceTree = "<group>"; };
-		1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticCollectionViewCell.xib; sourceTree = "<group>"; };
 		150C579A2394ED8600FC8DE2 /* ButtonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonController.h; sourceTree = "<group>"; };
 		150C579B2394ED8600FC8DE2 /* ButtonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonController.m; sourceTree = "<group>"; };
 		150C57A323960D0100FC8DE2 /* CustomTableCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellController.h; sourceTree = "<group>"; };
@@ -72,6 +70,11 @@
 		1545EBDA238D2F9700157D71 /* CustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		1546FF8F23D5531700E211E2 /* MyCardCollectSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCardCollectSectionModel.h; sourceTree = "<group>"; };
 		1546FF9023D5531700E211E2 /* MyCardCollectSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCardCollectSectionModel.m; sourceTree = "<group>"; };
+		1546FFA823D57D5A00E211E2 /* StaticCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticCollectionViewCell.h; sourceTree = "<group>"; };
+		1546FFA923D57D5A00E211E2 /* StaticCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticCollectionViewCell.m; sourceTree = "<group>"; };
+		1546FFAA23D57D5A00E211E2 /* StaticCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StaticCollectionViewCell.xib; sourceTree = "<group>"; };
+		1546FFAD23D57DA400E211E2 /* MyPupCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPupCollectionViewCell.h; sourceTree = "<group>"; };
+		1546FFAE23D57DA400E211E2 /* MyPupCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPupCollectionViewCell.m; sourceTree = "<group>"; };
 		1550CC32236AD749002CB249 /* LabelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelController.h; sourceTree = "<group>"; };
 		1550CC33236AD749002CB249 /* LabelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelController.m; sourceTree = "<group>"; };
 		15596B58236C28700073C0CB /* CSLUILibraryPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLUILibraryPrefixHeader.pch; sourceTree = "<group>"; };
@@ -151,6 +154,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1546FFA723D57D5A00E211E2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1546FFA823D57D5A00E211E2 /* StaticCollectionViewCell.h */,
+				1546FFA923D57D5A00E211E2 /* StaticCollectionViewCell.m */,
+				1546FFAD23D57DA400E211E2 /* MyPupCollectionViewCell.h */,
+				1546FFAE23D57DA400E211E2 /* MyPupCollectionViewCell.m */,
+				1546FFAA23D57D5A00E211E2 /* StaticCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		1550CC31236AD724002CB249 /* BasicElement */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +218,7 @@
 				158C6C4D236A96C600F80FA6 /* AppDelegate.m */,
 				158C6C4F236A96C600F80FA6 /* ViewController.h */,
 				158C6C50236A96C600F80FA6 /* ViewController.m */,
+				1546FFA723D57D5A00E211E2 /* Cell */,
 				1546FF8E23D552EB00E211E2 /* Model */,
 				15D159602386279B006DD86B /* Other */,
 				15EFE17C23717B6B00912334 /* Component */,
@@ -262,9 +278,6 @@
 				1502C2EB238BBCD900C93443 /* StaticCollectionViewController.m */,
 				1545EBD2238D147600157D71 /* NoRuleCollectionViewController.h */,
 				1545EBD3238D147600157D71 /* NoRuleCollectionViewController.m */,
-				1502C2ED238BBFA300C93443 /* StaticCollectionViewCell.h */,
-				1502C2EE238BBFA300C93443 /* StaticCollectionViewCell.m */,
-				1502C2EF238BBFA300C93443 /* StaticCollectionViewCell.xib */,
 				15FF8BB523751F8100B920B2 /* SearchViewController.h */,
 				15FF8BB623751F8100B920B2 /* SearchViewController.m */,
 				157EF8FF2397ABBA00FF4C98 /* AlertController.h */,
@@ -363,8 +376,8 @@
 				1511A7A523CC4B2800CC97B2 /* ViewControllerData.plist in Resources */,
 				158C6C56236A96C700F80FA6 /* Assets.xcassets in Resources */,
 				15EFE18523717E7C00912334 /* cir2.png in Resources */,
+				1546FFAC23D57D5A00E211E2 /* StaticCollectionViewCell.xib in Resources */,
 				158C6C54236A96C600F80FA6 /* Main.storyboard in Resources */,
-				1502C2F1238BBFA300C93443 /* StaticCollectionViewCell.xib in Resources */,
 				15596B5D236C2E200073C0CB /* 3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +441,7 @@
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */,
 				1502C2EC238BBCD900C93443 /* StaticCollectionViewController.m in Sources */,
+				1546FFAF23D57DA400E211E2 /* MyPupCollectionViewCell.m in Sources */,
 				1543E97A2372739A00A8F9BA /* PupViewController.m in Sources */,
 				15D53C27239E1EB800A10E0B /* ToastController.m in Sources */,
 				15C7793023AA164B00E1D305 /* PopoverController.m in Sources */,
@@ -440,11 +454,11 @@
 				153FDD422383CF3700EFE6FB /* BaseController.m in Sources */,
 				156C10C923D190B400D89056 /* DropDownController.m in Sources */,
 				15EFE17F23717B8100912334 /* RecycleViewController.m in Sources */,
+				1546FFAB23D57D5A00E211E2 /* StaticCollectionViewCell.m in Sources */,
 				1545EBD4238D147600157D71 /* NoRuleCollectionViewController.m in Sources */,
 				1545EBDB238D2F9700157D71 /* CustomViewController.m in Sources */,
 				158C6C5C236A96C700F80FA6 /* main.m in Sources */,
 				15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */,
-				1502C2F0238BBFA300C93443 /* StaticCollectionViewCell.m in Sources */,
 				15DB411A238E281000DE1F5C /* RuiXingCoffeeHomeHeaderView.m in Sources */,
 				158C6C4E236A96C600F80FA6 /* AppDelegate.m in Sources */,
 				15DB4114238E0E5200DE1F5C /* RuiXingCoffeeHomeVC.m in Sources */,
