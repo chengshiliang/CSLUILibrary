@@ -15,6 +15,9 @@
 #import <CSLUILibrary/SLCollectProxy.h>
 
 @interface SLRecycleCollectionView()
+{
+    BOOL needRefresh;
+}
 @property (strong, nonatomic) SLRecycleCollectionLayout *layout;
 @property (strong, nonatomic) SLCollectBaseView *collectionView;
 @property (nonatomic, strong) SLTimer * timer;
@@ -49,7 +52,6 @@
     self.manual = YES;
     self.hidePageControl = NO;
     self.layout=[[SLRecycleCollectionLayout alloc]init];
-    self.layout.minimumInteritemSpacing = 0;
     self.collectionView=[[SLCollectBaseView alloc]initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.collectionView.decelerationRate = 0;
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -58,52 +60,25 @@
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = CGRectMake(self.dataSource.insetForSection.left, self.dataSource.insetForSection.top, self.sl_width-self.dataSource.insetForSection.left-self.dataSource.insetForSection.right, self.sl_height-self.dataSource.insetForSection.top-self.dataSource.insetForSection.bottom);
+    self.collectionView.frame = self.bounds;
+    if (needRefresh) {
+        [self reloadData];
+    }
 }
 
 - (void)reloadData {
+    if (self.collectionView.sl_width <= 0 || self.collectionView.sl_height <= 0) {
+        needRefresh = true;
+        return;
+    }
+    needRefresh = false;
     if (self.pageControl) {
         [self.pageControl removeFromSuperview];
         self.pageControl = nil;
     }
     self.layout.scrollStyle = self.scrollStyle;
     self.layout.scrollDirection = self.scrollDirection;
-    self.layout.minimumLineSpacing = self.dataSource.minimumLineSpacing;
     self.dataArray = [self.dataSource mutableCopyWithZone:NULL];
-    [self layoutIfNeeded];
-    if (self.scrollStyle == SLRecycleCollectionViewStyleStep) self.manual = NO;
-    if (self.loop && self.dataSource.rows.count > 0) {
-        CGFloat width = 0;
-        CGFloat height = 0;
-        for (int i = 0; i<self.dataSource.rows.count; i ++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-            id<SLCollectRowProtocol>model = self.dataSource.rows[i];
-            if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-                model.rowHeight = self.collectionView.sl_height;
-                width += model.rowWidth;
-            } else {
-                model.rowWidth = self.collectionView.sl_width;
-                height += model.rowHeight;
-            }
-        }
-        if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && width >= self.collectionView.sl_width){
-            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.sl_width - 1, 0)].row + 1;
-            if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(width - self.collectionView.sl_width + 1, 0)].row;
-            }
-        }else if(self.scrollDirection == UICollectionViewScrollDirectionVertical && height >=self.collectionView.sl_height){
-            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.sl_height - 1)].row + 1;
-            if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(0, height - self.collectionView.sl_height + 1)].row;
-            }
-        }
-        NSArray * rightSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(0, self.rightCount)];
-        self.dataArray.rows = [self.dataArray.rows arrayByAddingObjectsFromArray:rightSubArray];
-        if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-            NSArray * leftSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(self.dataSource.rows.count - self.leftCount, self.leftCount)];
-            self.dataArray.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataArray.rows];
-        }
-    }
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataArray] delegateHandler:[SLCollectRecycleProxy new]];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     WeakSelf;
@@ -127,14 +102,48 @@
         StrongSelf;
         [strongSelf scrollViewDidEndScrollingAnimation:collectView];
     };
+    if (self.scrollStyle == SLRecycleCollectionViewStyleStep) self.manual = NO;
+    if (self.loop && self.dataSource.rows.count > 0) {
+        CGFloat width = 0;
+        CGFloat height = 0;
+        for (int i = 0; i<self.dataArray.rows.count; i ++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            id<SLCollectRowProtocol>model = self.dataArray.rows[i];
+            if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+                model.rowHeight = self.collectionView.sl_height;
+                width += model.rowWidth;
+            } else {
+                model.rowWidth = self.collectionView.sl_width;
+                height += model.rowHeight;
+            }
+        }
+        if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && width >= self.collectionView.sl_width){
+            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.sl_width - 1, 0)].row + 1;
+            if (self.scrollStyle == SLRecycleCollectionViewStylePage){
+                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(width - self.collectionView.sl_width + 1, 0)].row;
+            }
+        }else if(self.scrollDirection == UICollectionViewScrollDirectionVertical && height >=self.collectionView.sl_height){
+            CGPoint p = [self convertPoint:CGPointMake(0, self.collectionView.sl_height - 1) toView:self.collectionView];
+            self.rightCount = [self.collectionView indexPathForItemAtPoint:p].row + 1;
+            if (self.scrollStyle == SLRecycleCollectionViewStylePage){
+                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(0, height - self.collectionView.sl_height + 1)].row;
+            }
+        }
+        NSArray * rightSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(0, self.rightCount)];
+        self.dataArray.rows = [self.dataArray.rows arrayByAddingObjectsFromArray:rightSubArray];
+        if (self.scrollStyle == SLRecycleCollectionViewStylePage){
+            NSArray * leftSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(self.dataSource.rows.count - self.leftCount, self.leftCount)];
+            self.dataArray.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataArray.rows];
+        }
+    }
+    [self.collectionView.manager setSections:@[self.dataArray]];
+    [self.collectionView.manager reloadData];
     if(!self.manual){
         for(UIGestureRecognizer *g in self.collectionView.gestureRecognizers){
             [self.collectionView removeGestureRecognizer:g];
         }
     }
-    [self.collectionView reloadData];
     if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
-        [self.collectionView layoutIfNeeded];
         if (self.startingPosition >= self.dataSource.rows.count || self.startingPosition < 0) {
             self.startingPosition = 0;
         }
