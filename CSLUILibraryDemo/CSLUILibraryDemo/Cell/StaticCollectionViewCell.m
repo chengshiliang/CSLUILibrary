@@ -41,9 +41,11 @@
     if ([row isKindOfClass:[StaticCollectionModel class]]) {
         StaticCollectionModel *model = (StaticCollectionModel*)row;
         self.title = model.str;
+        self.backgroundColor = [UIColor yellowColor];
     } else if ([row isKindOfClass:[MyStaticCollectRowModel class]]) {
         MyStaticCollectRowModel *model = (MyStaticCollectRowModel*)row;
         self.title = model.str;
+        self.backgroundColor = [UIColor yellowColor];
     } else if ([row isKindOfClass:[MyNoRuleCollectRowModel class]]) {
         MyNoRuleCollectRowModel *model = (MyNoRuleCollectRowModel*)row;
         self.title = model.str;

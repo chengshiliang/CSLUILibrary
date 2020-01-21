@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic)id<SLCollectSectionProtocol>dataSource;
 @property (nonatomic,copy) void(^scrollToIndexBlock)(id<SLCollectRowProtocol>model, NSInteger index);
 @property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
+@property (nonatomic, copy) void(^displayCollectCell)(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel);
 @property (nonatomic, assign) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign) SLRecycleCollectionViewStyle scrollStyle;
 /**

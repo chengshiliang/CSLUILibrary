@@ -81,6 +81,7 @@
     self.dataArray = [self.dataSource mutableCopyWithZone:NULL];
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataArray] delegateHandler:[SLCollectRecycleProxy new]];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
+    self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
     self.collectionView.manager.scrollViewDidScrollCallback = ^(SLCollectBaseView * _Nonnull collectView) {
         StrongSelf;
