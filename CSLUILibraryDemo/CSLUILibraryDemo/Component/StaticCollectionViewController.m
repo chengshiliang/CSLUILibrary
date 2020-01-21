@@ -10,10 +10,7 @@
 #import "StaticCollectionViewCell.h"
 #import "MyCardCollectSectionModel.h"
 
-@interface StaticCollectionViewController ()<SLCollectionViewProtocol>
-{
-    NSArray *dataSource;
-}
+@interface StaticCollectionViewController ()
 @property (nonatomic, weak) IBOutlet SLStaticCollectionView *staticCollectionView;
 @property (nonatomic, weak) IBOutlet SLHorizontalCollectionView *horizontalCollectionView;
 @property (nonatomic, weak) IBOutlet SLCardCollectionView *cardCollectionView;
@@ -32,7 +29,7 @@
     }
     sectionModel2.rows = arrM2.copy;
     self.staticCollectionView.dataSource = sectionModel2;
-    self.staticCollectionView.columns = 4;
+    self.staticCollectionView.columns = 3;
     self.staticCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
         NSLog(@"index %d", indexPath.row);
     };

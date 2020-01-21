@@ -29,7 +29,7 @@
         NSMutableArray<MyStaticCollectRowModel *> *arrM2 = [NSMutableArray array];
         for (int j = 0; j < 12; j ++) {
             MyStaticCollectRowModel *model = [MyStaticCollectRowModel new];
-            model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
+            model.str = [NSString stringWithFormat:@"COUNT%@", @(j)];
             [arrM2 addObject:model];
         }
         secSubModel.rows = [arrM2 mutableCopy];

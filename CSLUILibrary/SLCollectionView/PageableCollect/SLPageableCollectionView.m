@@ -45,7 +45,6 @@
     BOOL needRefresh;
 }
 @property (nonatomic, strong) SLRecycleCollectionView *recycleView;
-@property (nonatomic, assign) NSInteger currentId;
 @end
 
 @implementation SLPageableCollectionView
@@ -74,7 +73,6 @@
 }
 - (void)layoutSubviews {
     self.recycleView.frame = self.bounds;
-    self.recycleView.bottomSpace = self.dataSource.insetForSection.bottom + self.bottomSpace;
     if (needRefresh) {
         [self reload];
     }
@@ -113,17 +111,19 @@
     }
     self.recycleView.currentIndicatorColor = self.currentIndicatorColor;
     self.recycleView.scrollToIndexBlock = [self.scrollToIndexBlock copy];
+    self.recycleView.bottomSpace = self.bottomSpace;
     WeakSelf;
     self.recycleView.displayCollectCell = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
         StrongSelf;
         if ([cell isKindOfClass:[SLPageableCollectionCell class]] && [rowModel isKindOfClass:[SLPageableCollectRowModel class]]) {
             SLPageableCollectionCell *pageableCell = (SLPageableCollectionCell *)cell;
             SLPageableCollectRowModel *model = (SLPageableCollectRowModel *)rowModel;
-            pageableCell.staticCollectView.frame = CGRectMake(strongSelf.dataSource.insetForSection.left, strongSelf.dataSource.insetForSection.top, CGRectGetWidth(strongSelf.bounds)-strongSelf.dataSource.insetForSection.left-strongSelf.dataSource.insetForSection.right, CGRectGetHeight(strongSelf.bounds)-strongSelf.dataSource.insetForSection.top-strongSelf.dataSource.insetForSection.bottom);
-            pageableCell.staticCollectView.dataSource = model.rowModel;
+            id<SLCollectSectionProtocol> secModel = model.rowModel;
+            pageableCell.staticCollectView.frame = cell.bounds;
+            pageableCell.staticCollectView.dataSource = secModel;
             pageableCell.staticCollectView.columns = strongSelf.columns;
+            pageableCell.staticCollectView.displayCollectCell = [strongSelf.displaySubCollectCell copy];
             pageableCell.staticCollectView.selectCollectView = [strongSelf.selectSubCollectView copy];
-            strongSelf.currentId = indexPath.item;
             [pageableCell.staticCollectView reloadData];
         }
     };

@@ -62,7 +62,6 @@
 
 - (void)layoutSubviews {
     self.collectionView.frame = CGRectMake(self.collectInsets.left, self.collectInsets.top, CGRectGetWidth(self.bounds)-self.collectInsets.left-self.collectInsets.right, CGRectGetHeight(self.bounds)-self.collectInsets.top-self.collectInsets.bottom);
-    NSLog(@"%@", NSStringFromCGRect(self.collectionView.frame));
     if (needRefresh) {
         [self reloadData];
     }
@@ -108,22 +107,22 @@
         [strongSelf scrollViewDidEndScrollingAnimation:collectView];
     };
     if (self.scrollStyle == SLRecycleCollectionViewStyleStep) self.manual = NO;
-    if (self.loop && self.dataSource.rows.count > 0) {
-        CGFloat width = 0;
-        CGFloat height = 0;
-        for (int i = 0; i<self.dataSource.rows.count; i ++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-            id<SLCollectRowProtocol>model = self.dataSource.rows[i];
-            if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-                model.rowHeight = self.collectionView.sl_height;
-                model.rowWidth = MIN(model.rowWidth, self.collectionView.sl_width);
-                width += model.rowWidth;
-            } else {
-                model.rowWidth = self.collectionView.sl_width;
-                model.rowHeight = MIN(model.rowHeight, self.collectionView.sl_height);
-                height += model.rowHeight;
-            }
+    CGFloat width = 0;
+    CGFloat height = 0;
+    for (int i = 0; i<self.dataSource.rows.count; i ++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        id<SLCollectRowProtocol>model = self.dataSource.rows[i];
+        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+            model.rowHeight = self.collectionView.sl_height;
+            model.rowWidth = MIN(model.rowWidth, self.collectionView.sl_width);
+            width += model.rowWidth;
+        } else {
+            model.rowWidth = self.collectionView.sl_width;
+            model.rowHeight = MIN(model.rowHeight, self.collectionView.sl_height);
+            height += model.rowHeight;
         }
+    }
+    if (self.loop && self.dataSource.rows.count > 0) {
         if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && width >= self.collectionView.sl_width){
             self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.sl_width - 1, 0)].row + 1;
             if (self.scrollStyle == SLRecycleCollectionViewStylePage){
@@ -286,22 +285,25 @@
 }
 
 - (void)getCurrentIndex{
-    if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-        NSInteger currentIndex= 0;
-        if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal){
-            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
-        }else{
-            currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0,self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
-        }
-        NSInteger currentPage = [self indexOfSourceArray:currentIndex];
-        self.currentPage = currentPage;
-        self.pageControl.currentPage = currentPage;
-        if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataArray[currentPage], currentPage);
+    if (self.scrollStyle != SLRecycleCollectionViewStylePage) return;
+    NSInteger currentIndex= 0;
+    if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal){
+        currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
+    }else{
+        currentIndex= [self.collectionView indexPathForItemAtPoint:CGPointMake(0,self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
     }
+    NSInteger currentPage = [self indexOfSourceArray:currentIndex];
+    if (currentPage == self.currentPage) return;
+    self.currentPage = currentPage;
+    self.pageControl.currentPage = currentPage;
+    if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataArray[currentPage], currentPage);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (!self.loop) return;
+    if (!self.loop) {
+        [self getCurrentIndex];
+        return;
+    }
     if ((scrollView.contentOffset.x < 1 || scrollView.contentOffset.x > scrollView.contentSize.width - self.collectionView.sl_width - 1) && self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
         [self resetContentOffset];
     }else if ((scrollView.contentOffset.y < 1 || scrollView.contentOffset.y > scrollView.contentSize.height - self.collectionView.sl_height - 1) && self.scrollDirection == UICollectionViewScrollDirectionVertical){
@@ -327,8 +329,8 @@
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    [self getCurrentIndex];
     if (!self.loop) return;
+    [self getCurrentIndex];
     [self resetContentOffset];
 }
 @end
