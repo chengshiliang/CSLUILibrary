@@ -55,7 +55,7 @@
     } else if ([row isKindOfClass:[MyRecycleRowModel class]]) {
         MyRecycleRowModel *model = (MyRecycleRowModel*)row;
         self.title = model.str;
-        self.imageView.image = [UIImage imageNamed:model.imageUrl];
+        [self.imageView sl_setImage:[UIImage imageNamed:model.imageUrl]];
         self.backgroundColor = model.color;
     } else {
         self.title = @"";

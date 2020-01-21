@@ -1195,19 +1195,7 @@
                     <view key="view" contentMode="scaleToFill" id="DY1-iu-V0q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdJ-pX-nE1" customClass="SLCollectBaseView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="WdJ-pX-nE1" firstAttribute="leading" secondItem="DY1-iu-V0q" secondAttribute="leading" id="76Y-yM-M3G"/>
-                            <constraint firstAttribute="trailing" secondItem="WdJ-pX-nE1" secondAttribute="trailing" id="W73-eU-tQm"/>
-                            <constraint firstItem="D9x-Mj-ebz" firstAttribute="top" secondItem="WdJ-pX-nE1" secondAttribute="bottom" id="YZO-3Q-67i"/>
-                            <constraint firstItem="WdJ-pX-nE1" firstAttribute="top" secondItem="dVO-5q-Bzf" secondAttribute="bottom" id="lgW-kc-A4Q"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlr-pW-ZtS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
