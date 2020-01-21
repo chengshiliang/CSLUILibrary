@@ -25,7 +25,7 @@
 
 - (CellForRow)cellForRowBlock{
     WeakSelf;
-    return ^UITableViewCell *(SLTableView * _Nonnull tableView, NSIndexPath * _Nonnull indexPath) {
+    return ^UITableViewCell *(SLTableView * tableView, NSIndexPath * _Nonnull indexPath) {
         StrongSelf;
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:strongSelf.reuseIdentifier];
         if (cell) {
@@ -63,7 +63,7 @@
 }
 - (HeaderFooter)viewForHeader{
     WeakSelf;
-    return ^UIView * _Nullable(UITableView *_Nullable tableView, NSInteger section) {
+    return ^UIView * _Nullable(SLTableView *tableView, NSInteger section) {
         StrongSelf;
         if ([NSString emptyString:strongSelf.headerReuseIdentifier]) return nil;
         UIView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:strongSelf.headerReuseIdentifier];
@@ -89,7 +89,7 @@
 }
 - (HeaderFooter)viewForFooter{
     WeakSelf;
-    return ^UIView * _Nullable(UITableView *_Nullable tableView, NSInteger section) {
+    return ^UIView * _Nullable(SLTableView *tableView, NSInteger section) {
         StrongSelf;
         if ([NSString emptyString:strongSelf.footerReuseIdentifier]) return nil;
         UIView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:strongSelf.footerReuseIdentifier];

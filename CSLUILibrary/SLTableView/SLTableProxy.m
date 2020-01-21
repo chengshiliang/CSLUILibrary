@@ -9,23 +9,24 @@
 #import <CSLUILibrary/SLTableManager.h>
 #import <CSLUILibrary/SLTableRowRenderProtocol.h>
 #import <CSLUILibrary/NSString+Util.h>
+#import <CSLUILibrary/SLTableView.h>
 
 @implementation SLTableProxy
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(SLTableView *)tableView{
    return _tableManager.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(SLTableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _tableManager.sections[section].rows.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(SLTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     id<SLTableRowProtocol> row = [_tableManager rowAtIndexPath:indexPath];
     UITableViewCell *cell = row.cellForRowBlock(tableView, indexPath);
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(SLTableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     id<SLTableRowProtocol> rowModel = [_tableManager rowAtIndexPath:indexPath];
     if (rowModel) {
         if ([cell respondsToSelector:@selector(renderWithRowModel:)]) {
@@ -36,7 +37,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(nonnull UIView *)view forSection:(NSInteger)section {
+- (void)tableView:(SLTableView *)tableView willDisplayHeaderView:(nonnull UIView *)view forSection:(NSInteger)section {
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
     if(sec) {
         if ([view respondsToSelector:@selector(renderHeaderWithSectionModel:)]) {
@@ -47,7 +48,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+- (void)tableView:(SLTableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
     if(sec) {
         if ([view respondsToSelector:@selector(renderFooterWithSectionModel:)]) {
@@ -58,53 +59,53 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(SLTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [_tableManager rowAtIndexPath:indexPath].rowHeight;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(SLTableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [_tableManager rowAtIndexPath:indexPath].estimatedHeight;
 }
 
 #pragma mark -- Header
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(SLTableView *)tableView titleForHeaderInSection:(NSInteger)section{
      return _tableManager.sections[section].titleForHeader;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(SLTableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return _tableManager.sections[section].heightForHeader;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(SLTableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
     return _tableManager.sections[section].estimatedHeightForHeader;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(SLTableView *)tableView viewForHeaderInSection:(NSInteger)section{
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
     return sec.viewForHeader ? sec.viewForHeader(tableView, section) : nil;
 }
 
 #pragma mark -- Footer
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+- (NSString *)tableView:(SLTableView *)tableView titleForFooterInSection:(NSInteger)section{
     return _tableManager.sections[section].titleForFooter;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(SLTableView *)tableView heightForFooterInSection:(NSInteger)section{
     return _tableManager.sections[section].heightForFooter;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(SLTableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section{
     return _tableManager.sections[section].estimatedHeightForFooter;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+- (UIView *)tableView:(SLTableView *)tableView viewForFooterInSection:(NSInteger)section{
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
     return sec.viewForFooter ? sec.viewForFooter(tableView, section) : nil;
 }
 
-- (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+- (NSArray<NSString *> *)sectionIndexTitlesForTableView:(SLTableView *)tableView {
     NSMutableArray *arrayM = [NSMutableArray array];
     for (id<SLTableSectionProtocol> sec in _tableManager.sections) {
         if ([NSString emptyString:sec.sectionIndexTitle]) continue;
@@ -113,7 +114,7 @@
     return arrayM.copy;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(SLTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     id<SLTableRowProtocol> rowModel = [_tableManager rowAtIndexPath:indexPath];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

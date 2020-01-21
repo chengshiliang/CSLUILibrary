@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, SLDropDownViewDisplayType) {
 @property (nonatomic, assign) SLDropDownViewDisplayType type;
 @property (nonatomic, copy) NSArray <id<SLCollectSectionProtocol>>* collectDatas;// collectionView展示数据源
 @property (nonatomic, copy) NSArray <id<SLTableSectionProtocol>> *tableDatas;// table展示数据源
-@property (nonatomic, copy) void(^displayTableCell)(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel);
+@property (nonatomic, copy) void(^displayTableCell)(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel);
 @property (nonatomic, copy) void(^displayCollectCell)(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel);
 
 - (void)showToView:(UIView *)pointView targetView:(UIView *)targetView completeBlock:(void(^)(void))completeBlock;

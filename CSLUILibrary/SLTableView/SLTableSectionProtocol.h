@@ -9,7 +9,7 @@
 #import <CSLUILibrary/SLTableRowProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef UIView * _Nullable(^HeaderFooter)(UITableView *tableView, NSInteger section);
+typedef UIView * _Nullable(^HeaderFooter)(SLTableView *tableView, NSInteger section);
 
 @protocol SLTableSectionProtocol <NSObject>
 @property (nonatomic, strong) NSMutableArray<id<SLTableRowProtocol>> *rows;

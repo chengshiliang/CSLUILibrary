@@ -11,17 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 @class SLTableProxy;
 @interface SLTableManager : NSObject
-@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) SLTableView *tableView;
 @property (nonatomic, strong) NSMutableArray<id<SLTableSectionProtocol>> *sections;
 @property (nonatomic, strong) SLTableProxy *delegateHandler;
-@property (nonatomic, copy) void(^selectTableView)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
-@property (nonatomic, copy) void(^displayCell)(UITableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
-@property (nonatomic, copy) void(^displayHeader)(UITableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
-@property (nonatomic, copy) void(^displayFooter)(UITableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
+@property (nonatomic, copy) void(^selectTableView)(SLTableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
+@property (nonatomic, copy) void(^displayCell)(SLTableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
+@property (nonatomic, copy) void(^displayHeader)(SLTableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
+@property (nonatomic, copy) void(^displayFooter)(SLTableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
 
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *_Nullable)handler;
 
-- (void)bindToTableView:(UITableView *)tableView;
+- (void)bindToTableView:(SLTableView *)tableView;
 
 - (id<SLTableRowProtocol>)rowAtIndexPath:(NSIndexPath *)indexPath;
 

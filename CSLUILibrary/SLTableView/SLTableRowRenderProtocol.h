@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLTableRowRenderProtocol <NSObject>
-- (void)renderWithRowModel:(id<SLTableRowProtocol>)row;
 @optional
+- (void)renderWithRowModel:(id<SLTableRowProtocol>)row;
 - (void)renderHeaderWithSectionModel:(id<SLTableSectionProtocol>)sec;
 - (void)renderFooterWithSectionModel:(id<SLTableSectionProtocol>)sec;
 @end

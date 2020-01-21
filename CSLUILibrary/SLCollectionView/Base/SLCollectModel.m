@@ -71,10 +71,9 @@
 }
 - (HeaderFooterCollect)viewForHeader{
     WeakSelf;
-    return ^UIView * _Nullable(SLCollectBaseView *collectView, NSIndexPath *indexPath) {
+    return ^UICollectionReusableView * _Nullable(SLCollectBaseView *collectView, NSIndexPath *indexPath) {
         StrongSelf;
         if ([NSString emptyString:strongSelf.headerReuseIdentifier]) return nil;
-        UIView *view = [collectView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:strongSelf.headerReuseIdentifier forIndexPath:indexPath];
         SLCollectManager *manager = collectView.manager;
         switch (strongSelf.headerType) {
             case SLCollectTypeCode:{
@@ -96,15 +95,15 @@
             default:
                 break;
         }
+        UICollectionReusableView *view = [collectView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:strongSelf.headerReuseIdentifier forIndexPath:indexPath];
         return view;
     };
 }
 - (HeaderFooterCollect)viewForFooter{
     WeakSelf;
-    return ^UIView * _Nullable(SLCollectBaseView *_Nullable collectView, NSIndexPath *indexPath) {
+    return ^UICollectionReusableView * _Nullable(SLCollectBaseView *_Nullable collectView, NSIndexPath *indexPath) {
         StrongSelf;
         if ([NSString emptyString:strongSelf.footerReuseIdentifier]) return nil;
-        UIView *view = [collectView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:strongSelf.footerReuseIdentifier forIndexPath:indexPath];
         SLCollectManager *manager = collectView.manager;
         switch (strongSelf.footerType) {
             case SLCollectTypeCode:{
@@ -126,6 +125,7 @@
             default:
                 break;
         }
+        UICollectionReusableView *view = [collectView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:strongSelf.footerReuseIdentifier forIndexPath:indexPath];
         return view;
     };
 }

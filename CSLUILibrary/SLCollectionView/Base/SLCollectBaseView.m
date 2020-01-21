@@ -11,6 +11,11 @@
 
 @implementation SLCollectBaseView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initial];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame collectionViewLayout:[UICollectionViewFlowLayout new]];
 }

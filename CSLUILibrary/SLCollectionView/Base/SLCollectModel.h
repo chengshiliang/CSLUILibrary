@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLCollectSectionModel : SLModel<SLCollectSectionProtocol>
 @property (nonatomic, strong) NSMutableArray<id<SLCollectRowProtocol>> *rows;
 
-@property (nonatomic, copy) NSString *titleForHeader;
 @property (nonatomic, assign) CGFloat heightForHeader;
 @property (nonatomic, assign) CGFloat widthForHeader;
 

@@ -104,7 +104,7 @@
         self.recycleView.currentIndicatorColor = self.currentIndicatorColor;
     }
     if (self.indicatorColor) {
-        self.recycleView.currentIndicatorImage = self.indicatorColor;
+        self.recycleView.indicatorColor = self.indicatorColor;
     }
     if (self.pageControlSize.width > 0 && self.pageControlSize.height > 0) {
         self.recycleView.pageControlSize = self.pageControlSize;

@@ -7,6 +7,7 @@
 
 #import "SLTableManager.h"
 #import <CSLUILibrary/SLTableProxy.h>
+#import <CSLUILibrary/SLTableView.h>
 
 @implementation SLTableManager
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{
@@ -25,7 +26,7 @@
     return self;
 }
 
-- (void)bindToTableView:(UITableView *)tableView{
+- (void)bindToTableView:(SLTableView *)tableView{
     tableView.delegate = self.delegateHandler;
     tableView.dataSource = self.delegateHandler;
     self.tableView = tableView;

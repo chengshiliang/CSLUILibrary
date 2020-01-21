@@ -24,7 +24,6 @@
 @property (nonatomic, assign) NSInteger rightCount;
 @property (nonatomic, assign) NSInteger leftCount;
 @property (nonatomic, assign) NSInteger currentPage;
-@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, copy) NSArray *dataArray;
 @property (nonatomic, strong) SLPageControl *pageControl;
 @property (nonatomic, assign) UIEdgeInsets collectInsets;
@@ -110,7 +109,6 @@
     CGFloat width = 0;
     CGFloat height = 0;
     for (int i = 0; i<self.dataSource.rows.count; i ++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         id<SLCollectRowProtocol>model = self.dataSource.rows[i];
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
             model.rowHeight = self.collectionView.sl_height;
@@ -135,10 +133,10 @@
             }
         }
         NSArray * rightSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(0, self.rightCount)];
-        self.dataSource.rows = [self.dataSource.rows arrayByAddingObjectsFromArray:rightSubArray];
+        self.dataSource.rows = [self.dataSource.rows arrayByAddingObjectsFromArray:rightSubArray].mutableCopy;
         if (self.scrollStyle == SLRecycleCollectionViewStylePage){
             NSArray * leftSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(self.dataSource.rows.count - self.leftCount, self.leftCount)];
-            self.dataSource.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataSource.rows];
+            self.dataSource.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataSource.rows].mutableCopy;
         }
     }
     [self.collectionView.manager setSections:@[self.dataSource]];

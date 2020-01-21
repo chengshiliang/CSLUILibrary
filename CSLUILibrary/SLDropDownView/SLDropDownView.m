@@ -89,7 +89,7 @@
         collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:[SLCollectFlowlayoutProxy new]];
         collectionView.manager.displayCell = self.displayCollectCell;
         [self addSubview:collectionView];
-        [collectionView reloadData];
+        [collectionView.manager reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [collectionView layoutIfNeeded];
             collectionView.scrollEnabled = collectionView.contentSize.height > collectionView.sl_height;

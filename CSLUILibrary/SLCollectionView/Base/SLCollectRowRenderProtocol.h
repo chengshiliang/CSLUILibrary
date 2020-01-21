@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLCollectRowRenderProtocol <NSObject>
-- (void)renderWithRowModel:(id<SLCollectRowProtocol>)row;
 @optional
+- (void)renderWithRowModel:(id<SLCollectRowProtocol>)row;
 - (void)renderHeaderWithSectionModel:(id<SLCollectSectionProtocol>)sec;
 - (void)renderFooterWithSectionModel:(id<SLCollectSectionProtocol>)sec;
 @end
