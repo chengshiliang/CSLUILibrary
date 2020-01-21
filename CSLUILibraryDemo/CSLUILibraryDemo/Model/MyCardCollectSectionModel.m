@@ -28,14 +28,14 @@
 - (void)setStr:(NSString *)str {
     _str = str;
     self.registerName = @"StaticCollectionViewCell";
-    self.type = SLCollectRowTypeXib;
+    self.type = SLCollectTypeXib;
 }
 @end
 @implementation MyPupCollectRowModel
 - (instancetype)init {
     if (self == [super init]) {
         self.registerName = @"MyPupCollectionViewCell";
-        self.type = SLCollectRowTypeCode;
+        self.type = SLCollectTypeCode;
     }
     return self;
 }
@@ -55,13 +55,10 @@
 - (void)setStr:(NSString *)str {
     _str = str;
     self.registerName = @"StaticCollectionViewCell";
-    self.type = SLCollectRowTypeXib;
+    self.type = SLCollectTypeXib;
 }
 @end
 @implementation MyNoRuleCollectSectionModel
-- (UIEdgeInsets)insetForSection {
-    return UIEdgeInsetsMake(40, 20, 40, 20);
-}
 - (CGFloat)minimumLineSpacing {
     return 5;
 }
@@ -73,7 +70,7 @@
 - (void)setStr:(NSString *)str {
     _str = str;
     self.registerName = @"StaticCollectionViewCell";
-    self.type = SLCollectRowTypeXib;
+    self.type = SLCollectTypeXib;
 }
 @end
 @implementation MyRecycleSectionModel
@@ -88,6 +85,65 @@
 - (void)setStr:(NSString *)str {
     _str = str;
     self.registerName = @"StaticCollectionViewCell";
-    self.type = SLCollectRowTypeXib;
+    self.type = SLCollectTypeXib;
 }
+@end
+@implementation MyTableRowModel
+- (instancetype)init {
+    if (self == [super init]) {
+        self.reuseIdentifier = @"MyTableRowCell";
+        self.rowHeight = 44.0;
+        self.estimatedHeight = 44.0;
+        self.type = SLTableTypeCode;
+        self.registerName = @"UITableViewCell";
+    }
+    return self;
+}
+@end
+@implementation MyTableSectionModel
+- (instancetype)init {
+    if (self == [super init]) {
+        self.titleForHeader = @"";
+        self.titleForFooter = @"";
+        self.heightForHeader = 30.0;
+        self.estimatedHeightForHeader = 30.0;
+        self.heightForFooter = 0;
+        self.estimatedHeightForFooter = 0;
+        self.sectionIndexTitle = @"";
+        self.viewForHeader = ^UIView * _Nullable(UITableView * _Nullable tableView, NSInteger section) {
+            return nil;
+        };
+        self.viewForFooter = ^UIView * _Nullable(UITableView * _Nullable tableView, NSInteger section) {
+            return nil;
+        };
+    }
+    return self;
+}
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    self.titleForHeader = title;
+}
+@end
+@implementation MyCollectRowModel
+- (instancetype)init {
+    if (self == [super init]) {
+        self.reuseIdentifier = @"MyCollectRowCell";
+        self.rowHeight = 40;
+        self.rowWidth = 100;
+        self.type = SLTableTypeCode;
+        self.registerName = @"UICollectionViewCell";
+    }
+    return self;
+}
+@end
+@implementation RuixingCoffeeSectionModel
+- (CGFloat)minimumLineSpacing {
+    return 5;
+}
+- (CGFloat)minimumInteritemSpacing {
+    return 5;
+}
+@end
+@implementation RuixingCoffeeRowModel
+
 @end

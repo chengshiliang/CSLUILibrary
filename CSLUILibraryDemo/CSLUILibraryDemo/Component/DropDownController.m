@@ -7,22 +7,8 @@
 //
 
 #import "DropDownController.h"
-#import "StaticCollectionViewController.h"
-#import "StaticCollectionViewCell.h"
-#import "ViewController.h"
+#import "MyCardCollectSectionModel.h"
 
-@implementation MyCollectRowModel
-- (instancetype)init {
-    if (self == [super init]) {
-        self.reuseIdentifier = @"MyCollectRowCell";
-        self.rowHeight = 40;
-        self.rowWidth = 100;
-        self.type = SLTableRowTypeCode;
-        self.registerName = @"UICollectionViewCell";
-    }
-    return self;
-}
-@end
 @interface DropDownController ()
 {
     BOOL show;
@@ -62,7 +48,7 @@
                     [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                     UILabel *lablt = [[UILabel alloc]initWithFrame:cell.bounds];
                     lablt.text = rowData.title;
-                    lablt.textColor = [UIColor whiteColor];
+                    lablt.textColor = [UIColor redColor];
                     [cell addSubview:lablt];
                 }
             };

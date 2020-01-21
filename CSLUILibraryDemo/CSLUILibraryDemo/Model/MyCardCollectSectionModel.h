@@ -47,6 +47,23 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface MyRecycleRowModel : SLCollectRowModel
 @property (nonatomic, copy) NSString *str;
+@property (nonatomic, copy) NSString *imageUrl;
 @property (nonatomic, strong) UIColor *color;
+@end
+@interface MyTableRowModel: SLTableRowModel
+@property (nonatomic, copy) NSString *title;
+@end
+@interface MyTableSectionModel : SLTableSectionModel
+@property (nonatomic, copy) NSString *title;
+@end
+@interface MyCollectRowModel: SLCollectRowModel
+@property (nonatomic, copy) NSString *title;
+@end
+@interface RuixingCoffeeSectionModel : SLCollectSectionModel
+@property (nonatomic, strong) MyRecycleSectionModel *recycleModel;
+@property (nonatomic, strong) MyNoRuleCollectSectionModel *noRuleModel;
+@end
+@interface RuixingCoffeeRowModel : SLCollectRowModel
+
 @end
 NS_ASSUME_NONNULL_END

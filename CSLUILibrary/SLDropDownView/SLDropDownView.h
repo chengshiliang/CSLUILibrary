@@ -6,9 +6,8 @@
 //
 
 #import "SLView.h"
-#import <CSLUILibrary/SLPupModel.h>
-#import <CSLUILibrary/SLCollectModel.h>
-#import <CSLUILibrary/SLTableModel.h>
+#import <CSLUILibrary/SLCollectSectionProtocol.h>
+#import <CSLUILibrary/SLTableSectionProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, SLDropDownViewDisplayType) {

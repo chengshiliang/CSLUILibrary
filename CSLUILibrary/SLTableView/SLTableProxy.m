@@ -36,6 +36,28 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(nonnull UIView *)view forSection:(NSInteger)section {
+    id<SLTableSectionProtocol> sec = _tableManager.sections[section];
+    if(sec) {
+        if ([view respondsToSelector:@selector(renderHeaderWithSectionModel:)]) {
+            [view performSelector:@selector(renderHeaderWithSectionModel:) withObject:sec];
+        } else {
+            !_tableManager.displayHeader?:_tableManager.displayHeader(tableView,view,section,sec);
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+    id<SLTableSectionProtocol> sec = _tableManager.sections[section];
+    if(sec) {
+        if ([view respondsToSelector:@selector(renderFooterWithSectionModel:)]) {
+            [view performSelector:@selector(renderFooterWithSectionModel:) withObject:sec];
+        } else {
+            !_tableManager.displayFooter?:_tableManager.displayFooter(tableView,view,section,sec);
+        }
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [_tableManager rowAtIndexPath:indexPath].rowHeight;
 }
@@ -60,7 +82,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
-    return (sec.viewForHeader ? sec.viewForHeader(tableView, section) : nil);
+    return sec.viewForHeader ? sec.viewForHeader(tableView, section) : nil;
 }
 
 #pragma mark -- Footer
@@ -79,7 +101,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     id<SLTableSectionProtocol> sec = _tableManager.sections[section];
-    return (sec.viewForFooter ? sec.viewForFooter(tableView, section) : nil);
+    return sec.viewForFooter ? sec.viewForFooter(tableView, section) : nil;
 }
 
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {

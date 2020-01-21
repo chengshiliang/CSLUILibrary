@@ -7,7 +7,6 @@
 //
 
 #import "StaticCollectionViewController.h"
-#import "StaticCollectionViewCell.h"
 #import "MyCardCollectSectionModel.h"
 
 @interface StaticCollectionViewController ()

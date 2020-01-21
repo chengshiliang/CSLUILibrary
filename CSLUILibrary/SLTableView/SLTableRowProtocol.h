@@ -9,23 +9,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLTableView;
-typedef NS_ENUM(NSUInteger, SLTableRowType) {
-    SLTableRowTypeXib,
-    SLTableRowTypeCode
+typedef NS_ENUM(NSUInteger, SLTableType) {
+    SLTableTypeXib,
+    SLTableTypeCode
 };
 
 typedef UITableViewCell *_Nonnull(^CellForRow)(SLTableView *_Nonnull tableView, NSIndexPath *_Nonnull indexPath);
 
 @protocol SLTableRowProtocol <NSObject>
-@property (nonatomic, strong) NSString *reuseIdentifier;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, assign) CGFloat estimatedHeight;
 
-@property (nonatomic, assign) SLTableRowType type;
-
+@property (nonatomic, assign) SLTableType type;
 ///XIB Name or Class Name
-@property (nonatomic, strong) NSString *registerName;
+@property (nonatomic, copy) NSString *registerName;
 
 @property (nonatomic, copy) CellForRow cellForRowBlock;
 @end

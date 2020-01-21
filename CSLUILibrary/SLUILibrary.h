@@ -27,6 +27,8 @@
 #import <CSLUILibrary/SLTableManager.h>
 #import <CSLUILibrary/SLTableProxy.h>
 #import <CSLUILibrary/SLTableDispatch.h>
+#import <CSLUILibrary/SLCollectManager.h>
+#import <CSLUILibrary/SLCollectProxy.h>
 
 #import <CSLUILibrary/SLTableRowRenderProtocol.h>
 #import <CSLUILibrary/SLCollectRowRenderProtocol.h>
@@ -41,11 +43,9 @@
 #import <CSLUILibrary/SLPupView.h>
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLTableViewCell.h>
-#import <CSLUILibrary/SLCollectionViewCell.h>
 #import <CSLUILibrary/SLHorizontalCollectionView.h>
 #import <CSLUILibrary/SLStaticCollectionView.h>
 #import <CSLUILibrary/SLNoRuleCollectionView.h>
-#import <CSLUILibrary/SLCustomCollectionView.h>
 #import <CSLUILibrary/SLCardCollectionView.h>
 #import <CSLUILibrary/SLRecycleCollectionLayout.h>
 #import <CSLUILibrary/SLRecycleCollectionView.h>
@@ -67,8 +67,6 @@
 #import <CSLUILibrary/SLDropDownView.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 
-#import <CSLUILibrary/SLCustomCollectionModel.h>
-#import <CSLUILibrary/SLPupModel.h>
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>
 #import <CSLUILibrary/SLCollectModel.h>

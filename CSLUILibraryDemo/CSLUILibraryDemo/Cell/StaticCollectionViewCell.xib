@@ -16,6 +16,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="278" height="209"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WCX-O5-yL3" customClass="SLImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="278" height="209"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="175-FU-21K" customClass="SLLabel">
                         <rect key="frame" x="0.0" y="0.0" width="278" height="209"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -27,11 +30,16 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="175-FU-21K" secondAttribute="bottom" id="Hrg-SO-gNI"/>
                 <constraint firstAttribute="trailing" secondItem="175-FU-21K" secondAttribute="trailing" id="TyE-Mw-JC2"/>
+                <constraint firstItem="WCX-O5-yL3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y43-4K-1ob"/>
+                <constraint firstAttribute="trailing" secondItem="WCX-O5-yL3" secondAttribute="trailing" id="aDf-cc-2ds"/>
                 <constraint firstItem="175-FU-21K" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aRV-F2-ov3"/>
                 <constraint firstItem="175-FU-21K" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ax3-2b-Dm5"/>
+                <constraint firstItem="WCX-O5-yL3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hAq-iN-Ndd"/>
+                <constraint firstAttribute="bottom" secondItem="WCX-O5-yL3" secondAttribute="bottom" id="ucN-12-uPB"/>
             </constraints>
             <size key="customSize" width="278" height="209"/>
             <connections>
+                <outlet property="imageView" destination="WCX-O5-yL3" id="dzb-gp-buV"/>
                 <outlet property="titleLabel" destination="175-FU-21K" id="4fD-rx-Pq3"/>
             </connections>
             <point key="canvasLocation" x="121.73913043478262" y="68.638392857142847"/>

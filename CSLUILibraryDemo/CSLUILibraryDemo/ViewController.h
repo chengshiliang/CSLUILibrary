@@ -8,12 +8,6 @@
 
 #import "BaseController.h"
 
-@interface MyTableRowModel: SLTableRowModel
-@property (nonatomic, copy) NSString *title;
-@end
-@interface MyTableSectionModel : SLTableSectionModel
-@property (nonatomic, copy) NSString *title;
-@end
 @interface ViewController : BaseController
 
 

@@ -13,15 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SLCollectRowModel : SLModel<SLCollectRowProtocol>
-@property (nonatomic, strong) NSString *reuseIdentifier;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, assign) CGFloat rowWidth;
 
-@property (nonatomic, assign) SLCollectRowType type;
+@property (nonatomic, assign) SLCollectType type;
 
 ///XIB Name or Class Name
-@property (nonatomic, strong) NSString *registerName;
+@property (nonatomic, copy) NSString *registerName;
 
 @property (nonatomic, copy) CollectCellForRow cellForRowBlock;
 @end
@@ -31,14 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLCollectSectionModel : SLModel<SLCollectSectionProtocol>
 @property (nonatomic, strong) NSMutableArray<id<SLCollectRowProtocol>> *rows;
 
-@property (nonatomic, strong) NSString *titleForHeader;
+@property (nonatomic, copy) NSString *titleForHeader;
 @property (nonatomic, assign) CGFloat heightForHeader;
 @property (nonatomic, assign) CGFloat widthForHeader;
 
 @property (nonatomic, assign) CGFloat heightForFooter;
 @property (nonatomic, assign) CGFloat widthForFooter;
 
-@property (nonatomic, strong) NSString *sectionIndexTitle;
+@property (nonatomic, copy) NSString *sectionIndexTitle;
 
 @property (nonatomic, assign) CGFloat minimumLineSpacing;
 @property (nonatomic, assign) CGFloat minimumInteritemSpacing;
@@ -46,6 +46,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) HeaderFooterCollect viewForHeader;
 @property (nonatomic, copy) HeaderFooterCollect viewForFooter;
+
+@property (nonatomic, copy) NSString *headerReuseIdentifier;
+@property (nonatomic, assign) SLCollectType headerType;
+@property (nonatomic, copy) NSString *headerRegisterName;
+
+@property (nonatomic, copy) NSString *footerReuseIdentifier;
+@property (nonatomic, assign) SLCollectType footerType;
+@property (nonatomic, copy) NSString *footerRegisterName;
 @end
 
 @protocol SLCollectModel <NSObject>

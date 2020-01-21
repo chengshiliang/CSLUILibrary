@@ -6,12 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CSLUILibrary/SLCollectRowProtocol.h>
+#import <CSLUILibrary/SLCollectSectionProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLCollectRowRenderProtocol <NSObject>
 - (void)renderWithRowModel:(id<SLCollectRowProtocol>)row;
+@optional
+- (void)renderHeaderWithSectionModel:(id<SLCollectSectionProtocol>)sec;
+- (void)renderFooterWithSectionModel:(id<SLCollectSectionProtocol>)sec;
 @end
 
 NS_ASSUME_NONNULL_END

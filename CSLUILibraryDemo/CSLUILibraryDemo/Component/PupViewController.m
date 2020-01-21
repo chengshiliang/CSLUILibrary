@@ -7,7 +7,6 @@
 //
 
 #import "PupViewController.h"
-#import "MyPupCollectionViewCell.h"
 #import "MyCardCollectSectionModel.h"
 
 @interface PupViewController()

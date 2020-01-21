@@ -10,6 +10,7 @@
 #import "MyCardCollectSectionModel.h"
 
 @interface StaticCollectionViewCell()
+@property (weak, nonatomic) IBOutlet SLImageView *imageView;
 @property (nonatomic, weak) IBOutlet SLLabel *titleLabel;
 @end
 
@@ -38,6 +39,7 @@
 }
 
 - (void)renderWithRowModel:(id<SLCollectRowProtocol>)row {
+    self.imageView.image = nil;
     if ([row isKindOfClass:[StaticCollectionModel class]]) {
         StaticCollectionModel *model = (StaticCollectionModel*)row;
         self.title = model.str;
@@ -53,6 +55,7 @@
     } else if ([row isKindOfClass:[MyRecycleRowModel class]]) {
         MyRecycleRowModel *model = (MyRecycleRowModel*)row;
         self.title = model.str;
+        self.imageView.image = [UIImage imageNamed:model.imageUrl];
         self.backgroundColor = model.color;
     } else {
         self.title = @"";

@@ -6,12 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CSLUILibrary/SLTableRowProtocol.h>
+#import <CSLUILibrary/SLTableSectionProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLTableRowRenderProtocol <NSObject>
 - (void)renderWithRowModel:(id<SLTableRowProtocol>)row;
+@optional
+- (void)renderHeaderWithSectionModel:(id<SLTableSectionProtocol>)sec;
+- (void)renderFooterWithSectionModel:(id<SLTableSectionProtocol>)sec;
 @end
 
 NS_ASSUME_NONNULL_END

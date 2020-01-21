@@ -8,88 +8,129 @@
 
 #import "RuiXingCoffeeHomeVC.h"
 #import "MyCardCollectSectionModel.h"
-#import "StaticCollectionViewCell.h"
 #import "RuiXingCoffeeHomeHeaderView.h"
 
-@interface RuiXingCoffeeHomeVC ()<SLCollectionViewProtocol>
-{
-    CGFloat recycleViewH;
-    CGFloat noRuleCollectionViewH;
-}
-@property (nonatomic, strong) IBOutlet SLCustomCollectionView *collectionView;
-@property (nonatomic, strong) RuiXingCoffeeHomeHeaderView *headerView;
-@property (nonatomic, copy) NSArray *dataSource;
+@interface RuiXingCoffeeHomeVC ()
+@property (nonatomic, strong) SLCollectBaseView *collectionView;
 @end
 
 @implementation RuiXingCoffeeHomeVC
 
-static NSString * const ruixingHomeHeaderID = @"ruixingHomeHeaderID";
-static NSString * const ruixingHomeFooterID = @"ruixingHomeFooterID";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *arrM = [NSMutableArray array];
-    NSMutableArray *arrM1 = [NSMutableArray array];
-    SLCustomCollectionModel *staticModel = [SLCustomCollectionModel new];
-    staticModel.headerWidth = kScreenWidth;
-    staticModel.headerHeigth = kScreenWidth*(2.0/3+3.0/4);
+    RuixingCoffeeSectionModel *secModel = [RuixingCoffeeSectionModel new];
+//    secModel.heightForHeader = kScreenWidth*(2.0/3+3.0/4);
+//    secModel.widthForHeader = kScreenWidth;
+//    secModel.insetForSection = UIEdgeInsetsMake(40, 20, 40, 20);
+//    secModel.headerRegisterName = @"RuiXingCoffeeHomeHeaderView";
+//    secModel.headerReuseIdentifier = @"RuixingCoffeeSection";
+    
+//    MyRecycleSectionModel *secRecycleModel = [MyRecycleSectionModel new];
+//    secModel.insetForSection = UIEdgeInsetsMake(40, 20, 40, 20);
+//    NSMutableArray *arrM = [NSMutableArray array];
+//    for (int i = 0; i < 5; i ++) {
+//        MyRecycleRowModel *model = [MyRecycleRowModel new];
+//        model.rowWidth = kScreenWidth-20;
+//        model.rowHeight = 50;
+//        model.str = [NSString stringWithFormat:@"第%d个", i];
+//        model.imageUrl = [NSString stringWithFormat:@"cir%d", i];
+//        [arrM addObject:model];
+//    }
+//    secRecycleModel.rows = arrM.copy;
+//    secModel.recycleModel = secRecycleModel;
+    
+//    MyNoRuleCollectSectionModel *secNoRuleModel = [[MyNoRuleCollectSectionModel alloc]init];
+//    NSMutableArray *arrM1 = [NSMutableArray array];
+//    for (int i = 0; i < 6; i ++) {
+//        MyNoRuleCollectRowModel *rowModel = [MyNoRuleCollectRowModel new];
+//        CGFloat width = 0;
+//        CGFloat height = 0;
+//        switch (i) {
+//            case 0:
+//            {
+//                width = kScreenWidth*0.5;
+//                height = kScreenWidth*0.5;
+//            }
+//                break;
+//            case 1:
+//            {
+//                width = kScreenWidth*0.5;
+//                height = kScreenWidth*0.25;
+//            }
+//                break;
+//            case 2:
+//            {
+//                width = kScreenWidth*0.25;
+//                height = kScreenWidth*0.25;
+//            }
+//                break;
+//            case 3:
+//            {
+//                width = kScreenWidth*0.25;
+//                height = kScreenWidth*0.25;
+//            }
+//                break;
+//            case 4:
+//            {
+//                width = kScreenWidth*0.75;
+//                height = kScreenWidth*0.25;
+//            }
+//                break;
+//            case 5:
+//            {
+//                width = kScreenWidth*0.25;
+//                height = kScreenWidth*0.25;
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//        rowModel.rowWidth = width;
+//        rowModel.rowHeight = height;
+//        rowModel.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
+//        if (i%3==0) {
+//            rowModel.color = [UIColor redColor];
+//        } else if (i%3==1) {
+//            rowModel.color = [UIColor greenColor];
+//        } else if (i%3==2) {
+//            rowModel.color = [UIColor blueColor];
+//        }
+//        [arrM1 addObject:rowModel];
+//    }
+//    secNoRuleModel.rows = arrM1;
+//    secModel.noRuleModel = secNoRuleModel;
+    
+    NSMutableArray<id<SLCollectRowProtocol>> *arrayM = [NSMutableArray array];
     for (int i = 0; i < 6; i ++) {
-        SLPupModel *pupModel = [SLPupModel new];
-        pupModel.width = 200;
-        pupModel.height = 200;
         StaticCollectionModel *model = [StaticCollectionModel new];
         model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
-        pupModel.data = model;
-        [arrM1 addObject:pupModel];
+        model.rowWidth = 30;
+        model.rowHeight = 30;
+        [arrayM addObject:model];
     }
-    staticModel.datas = arrM1.copy;
-    [arrM addObject:staticModel];
-    self.dataSource = arrM.copy;
-    self.collectionView.dataSource = arrM.copy;
-    self.collectionView.delegate = self;
-    self.collectionView.columns = 2;
-    self.collectionView.columnMagrin = 5.0f;
-    self.collectionView.rowMagrin = 5.0f;
-    [self.collectionView reloadData];
-    [self.collectionView.collectionView registerClass:[RuiXingCoffeeHomeHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID];
-    
-    RuiXingCoffeeHomeHeaderView *headerView = [[RuiXingCoffeeHomeHeaderView alloc]init];
-//    [headerView.noRuleCollectionView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
-//    [headerView.recycleView.collectionView.panGestureRecognizer requireGestureRecognizerToFail:self.collectionView.collectionView.panGestureRecognizer];
+    secModel.rows = arrayM;
+    self.collectionView = [[SLCollectBaseView alloc]initWithFrame:self.view.bounds];
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[secModel] delegateHandler:[SLCollectFlowlayoutProxy new]];
+    self.collectionView.manager.displayHeader = ^(SLCollectBaseView * _Nonnull collectView, UIView * _Nonnull view, NSInteger section, id<SLCollectSectionProtocol>  _Nonnull secModel) {
+        if ([view isKindOfClass:[RuiXingCoffeeHomeHeaderView class]] && section == 0 && [secModel isKindOfClass:[RuixingCoffeeSectionModel class]]) {
+            RuiXingCoffeeHomeHeaderView *headerView = (RuiXingCoffeeHomeHeaderView *)view;
+            RuixingCoffeeSectionModel *model = (RuixingCoffeeSectionModel *)secModel;
+            headerView.recycleView.dataSource = model.recycleModel;
+            [headerView.recycleView reloadData];
+            headerView.noRuleCollectionView.dataSource = model.noRuleModel;
+            [headerView.noRuleCollectionView reloadData];
+        }
+    };
+    [self.collectionView.manager reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self sl_hiddenNavbar];
-}
-
--(BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-static NSString *const cellId1 = @"kcollectionViewCellID";
-
-- (void)registerCell:(SLCollectionView *)collectionView forView:(SLView *)view {
-    if ([view isKindOfClass:[SLCustomCollectionView class]]) {
-        [collectionView registerNib:[UINib nibWithNibName:@"StaticCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellId1];
-    }
-}
-
-- (UICollectionReusableView *)sl_collectionView:(SLCollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    RuiXingCoffeeHomeHeaderView *view = (RuiXingCoffeeHomeHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ruixingHomeHeaderID forIndexPath:indexPath];
-    return view;
-}
-
-- (SLCollectionViewCell *)collectionView:(SLCollectionView *)collectionView customCellForItemAtIndexPath:(NSIndexPath *)indexPath forView:(SLView *)view {
-    if ([view isKindOfClass:[SLCustomCollectionView class]]) {
-        StaticCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
-        SLCustomCollectionModel *staticModel = self.dataSource[indexPath.section];
-        SLPupModel *pupModel = staticModel.datas[indexPath.item];
-        StaticCollectionModel *model = (StaticCollectionModel *)pupModel.data;
-        cell.title = model.str;
-        return cell;
-    }
-    return nil;
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self sl_hiddenNavbar];
+//}
+//
+//-(BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
 
 @end

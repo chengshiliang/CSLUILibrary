@@ -22,42 +22,8 @@
 #import "CustomTableCellController.h"
 #import "AlertController.h"
 
-@implementation MyTableRowModel
-- (instancetype)init {
-    if (self == [super init]) {
-        self.reuseIdentifier = @"MyTableRowCell";
-        self.rowHeight = 44.0;
-        self.estimatedHeight = 44.0;
-        self.type = SLTableRowTypeCode;
-        self.registerName = @"UITableViewCell";
-    }
-    return self;
-}
-@end
-@implementation MyTableSectionModel
-- (instancetype)init {
-    if (self == [super init]) {
-        self.titleForHeader = @"";
-        self.titleForFooter = @"";
-        self.heightForHeader = 30.0;
-        self.estimatedHeightForHeader = 30.0;
-        self.heightForFooter = 0;
-        self.estimatedHeightForFooter = 0;
-        self.sectionIndexTitle = @"";
-        self.viewForHeader = ^UIView * _Nullable(UITableView * _Nullable tableView, NSInteger section) {
-            return nil;
-        };
-        self.viewForFooter = ^UIView * _Nullable(UITableView * _Nullable tableView, NSInteger section) {
-            return nil;
-        };
-    }
-    return self;
-}
-- (void)setTitle:(NSString *)title {
-    _title = title;
-    self.titleForHeader = title;
-}
-@end
+#import "MyCardCollectSectionModel.h"
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet SLTableView *tableView;
 @end

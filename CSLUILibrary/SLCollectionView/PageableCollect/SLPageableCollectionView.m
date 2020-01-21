@@ -24,7 +24,7 @@
 - (instancetype)init {
     if (self == [super init]) {
         self.registerName = @"SLPageableCollectionCell";
-        self.type = SLCollectRowTypeCode;
+        self.type = SLCollectTypeCode;
     }
     return self;
 }

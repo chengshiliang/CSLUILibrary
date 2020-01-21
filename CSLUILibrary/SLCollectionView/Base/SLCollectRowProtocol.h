@@ -9,23 +9,23 @@
 
 @class SLCollectBaseView;
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSUInteger, SLCollectRowType) {
-    SLCollectRowTypeXib,
-    SLCollectRowTypeCode
+typedef NS_ENUM(NSUInteger, SLCollectType) {
+    SLCollectTypeXib,
+    SLCollectTypeCode
 };
 
 typedef UICollectionViewCell *_Nonnull(^CollectCellForRow)(SLCollectBaseView *_Nonnull collectionView, NSIndexPath *_Nonnull indexPath);
 
 @protocol SLCollectRowProtocol <NSObject>
-@property (nonatomic, strong) NSString *reuseIdentifier;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, assign) CGFloat rowWidth;
 
-@property (nonatomic, assign) SLCollectRowType type;
+@property (nonatomic, assign) SLCollectType type;
 
 ///XIB Name or Class Name
-@property (nonatomic, strong) NSString *registerName;
+@property (nonatomic, copy) NSString *registerName;
 
 @property (nonatomic, copy) CollectCellForRow cellForRowBlock;
 @end

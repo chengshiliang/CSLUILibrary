@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLCollectBaseView;
-typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *_Nullable collectView, NSInteger section);
+typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *collectView, NSIndexPath *indexPath);
 
 @protocol SLCollectSectionProtocol <NSObject>
 @property (nonatomic, strong) NSMutableArray<id<SLCollectRowProtocol>> *rows;
 
-@property (nonatomic, strong) NSString *titleForHeader;
+@property (nonatomic, copy) NSString *titleForHeader;
 @property (nonatomic, assign) CGFloat heightForHeader;
 @property (nonatomic, assign) CGFloat widthForHeader;
 
@@ -26,10 +26,18 @@ typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *_Nullable co
 @property (nonatomic, assign) CGFloat minimumInteritemSpacing;
 @property (nonatomic, assign) UIEdgeInsets insetForSection;
 
-@property (nonatomic, strong) NSString *sectionIndexTitle;
+@property (nonatomic, copy) NSString *sectionIndexTitle;
 
 @property (nonatomic, copy) HeaderFooterCollect viewForHeader;
 @property (nonatomic, copy) HeaderFooterCollect viewForFooter;
+
+@property (nonatomic, copy) NSString *headerReuseIdentifier;
+@property (nonatomic, assign) SLCollectType headerType;
+@property (nonatomic, copy) NSString *headerRegisterName;
+
+@property (nonatomic, copy) NSString *footerReuseIdentifier;
+@property (nonatomic, assign) SLCollectType footerType;
+@property (nonatomic, copy) NSString *footerRegisterName;
 @end
 
 NS_ASSUME_NONNULL_END

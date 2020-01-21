@@ -91,10 +91,9 @@
         [self addSubview:collectionView];
         [collectionView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [collectionView setNeedsLayout];
             [collectionView layoutIfNeeded];
             collectionView.scrollEnabled = collectionView.contentSize.height > collectionView.sl_height;
-            self.frame = CGRectMake(0, 0, targetView.sl_width,  targetView.sl_height-toPoint.y);
+            self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(targetView.sl_height-toPoint.y, collectionView.contentSize.height));
             collectionView.sl_height = MIN(collectionView.contentSize.height, collectionView.sl_height);
         });
     } else if (self.type == SLDropDownViewDisplayTable && self.tableDatas && self.tableDatas.count > 0) {
@@ -104,7 +103,6 @@
         [self addSubview:tableView];
         [tableView.manager reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [tableView setNeedsLayout];
             [tableView layoutIfNeeded];
             tableView.scrollEnabled = tableView.contentSize.height > tableView.sl_height;
             self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(tableView.contentSize.height, targetView.sl_height-toPoint.y));

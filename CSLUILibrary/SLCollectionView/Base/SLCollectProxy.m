@@ -30,9 +30,9 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     id<SLCollectSectionProtocol> sec = self.collectManager.sections[indexPath.section];
     if (kind == UICollectionElementKindSectionHeader) {
-        return (sec.viewForHeader ? sec.viewForHeader(collectionView, indexPath.section) : nil);
+        return (sec.viewForHeader ? sec.viewForHeader(collectionView, indexPath) : nil);
     } else {
-        return (sec.viewForFooter ? sec.viewForFooter(collectionView, indexPath.section) : nil);
+        return (sec.viewForFooter ? sec.viewForFooter(collectionView, indexPath) : nil);
     }
 }
 - (nullable NSArray<NSString *> *)indexTitlesForCollectionView:(UICollectionView *)collectionView {
@@ -64,6 +64,27 @@
             [cell performSelector:@selector(renderWithRowModel:) withObject:rowModel];
         } else {
             !self.collectManager.displayCell?:self.collectManager.displayCell(collectionView,cell,indexPath,rowModel);
+        }
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    id<SLCollectSectionProtocol> sec = self.collectManager.sections[indexPath.section];
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        if (sec) {
+            if ([view respondsToSelector:@selector(renderHeaderWithSectionModel:)]) {
+                [view performSelector:@selector(renderHeaderWithSectionModel:) withObject:sec];
+            } else {
+                !self.collectManager.displayHeader?:self.collectManager.displayHeader(collectionView,view,indexPath.section,sec);
+            }
+        }
+    } else {
+        if (sec) {
+            if ([view respondsToSelector:@selector(renderFooterWithSectionModel:)]) {
+                [view performSelector:@selector(renderFooterWithSectionModel:) withObject:sec];
+            } else {
+                !self.collectManager.displayFooter?:self.collectManager.displayFooter(collectionView,view,indexPath.section,sec);
+            }
         }
     }
 }

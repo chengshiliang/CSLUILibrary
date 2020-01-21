@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SLTableRowModel : SLModel<SLTableRowProtocol>
-@property (nonatomic, strong) NSString *reuseIdentifier;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, assign) CGFloat estimatedHeight;
-@property (nonatomic, assign) SLTableRowType type;
-@property (nonatomic, strong) NSString *registerName;
+@property (nonatomic, assign) SLTableType type;
+@property (nonatomic, copy) NSString *registerName;
 @property (nonatomic, copy) CellForRow cellForRowBlock;
 @end
 
@@ -26,18 +26,26 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLTableSectionModel : SLModel<SLTableSectionProtocol>
 @property (nonatomic, strong) NSMutableArray<id<SLTableRowProtocol>> *rows;
 
-@property (nonatomic, strong) NSString *titleForHeader;
+@property (nonatomic, copy) NSString *titleForHeader;
 @property (nonatomic, assign) CGFloat heightForHeader;
 @property (nonatomic, assign) CGFloat estimatedHeightForHeader;
 
-@property (nonatomic, strong) NSString *titleForFooter;
+@property (nonatomic, copy) NSString *titleForFooter;
 @property (nonatomic, assign) CGFloat heightForFooter;
 @property (nonatomic, assign) CGFloat estimatedHeightForFooter;
 
-@property (nonatomic, strong) NSString *sectionIndexTitle;
+@property (nonatomic, copy) NSString *sectionIndexTitle;
 
 @property (nonatomic, copy) HeaderFooter viewForHeader;
 @property (nonatomic, copy) HeaderFooter viewForFooter;
+
+@property (nonatomic, copy) NSString *headerReuseIdentifier;
+@property (nonatomic, assign) SLTableType headerType;
+@property (nonatomic, copy) NSString *headerRegisterName;
+
+@property (nonatomic, copy) NSString *footerReuseIdentifier;
+@property (nonatomic, assign) SLTableType footerType;
+@property (nonatomic, copy) NSString *footerRegisterName;
 @end
 
 @protocol SLTableModel <NSObject>
