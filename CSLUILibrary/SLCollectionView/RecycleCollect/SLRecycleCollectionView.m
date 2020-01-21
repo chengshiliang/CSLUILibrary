@@ -25,8 +25,9 @@
 @property (nonatomic, assign) NSInteger leftCount;
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) id<SLCollectSectionProtocol>dataArray;
+@property (nonatomic, copy) NSArray *dataArray;
 @property (nonatomic, strong) SLPageControl *pageControl;
+@property (nonatomic, assign) UIEdgeInsets collectInsets;
 @end
 
 @implementation SLRecycleCollectionView
@@ -60,13 +61,15 @@
 }
 
 - (void)layoutSubviews {
-    self.collectionView.frame = self.bounds;
+    self.collectionView.frame = CGRectMake(self.collectInsets.left, self.collectInsets.top, CGRectGetWidth(self.bounds)-self.collectInsets.left-self.collectInsets.right, CGRectGetHeight(self.bounds)-self.collectInsets.top-self.collectInsets.bottom);
+    NSLog(@"%@", NSStringFromCGRect(self.collectionView.frame));
     if (needRefresh) {
         [self reloadData];
     }
 }
 
 - (void)reloadData {
+    self.collectInsets = self.dataSource.insetForSection;
     if (self.collectionView.sl_width <= 0 || self.collectionView.sl_height <= 0) {
         needRefresh = true;
         return;
@@ -78,8 +81,9 @@
     }
     self.layout.scrollStyle = self.scrollStyle;
     self.layout.scrollDirection = self.scrollDirection;
-    self.dataArray = [self.dataSource mutableCopyWithZone:NULL];
-    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataArray] delegateHandler:[SLCollectRecycleProxy new]];
+    self.dataArray = [self.dataSource.rows copy];
+    self.dataSource.insetForSection = UIEdgeInsetsZero;
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectRecycleProxy new]];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
@@ -107,37 +111,38 @@
     if (self.loop && self.dataSource.rows.count > 0) {
         CGFloat width = 0;
         CGFloat height = 0;
-        for (int i = 0; i<self.dataArray.rows.count; i ++) {
+        for (int i = 0; i<self.dataSource.rows.count; i ++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-            id<SLCollectRowProtocol>model = self.dataArray.rows[i];
+            id<SLCollectRowProtocol>model = self.dataSource.rows[i];
             if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
                 model.rowHeight = self.collectionView.sl_height;
+                model.rowWidth = MIN(model.rowWidth, self.collectionView.sl_width);
                 width += model.rowWidth;
             } else {
                 model.rowWidth = self.collectionView.sl_width;
+                model.rowHeight = MIN(model.rowHeight, self.collectionView.sl_height);
                 height += model.rowHeight;
             }
         }
         if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal && width >= self.collectionView.sl_width){
             self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.sl_width - 1, 0)].row + 1;
             if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(width - self.collectionView.sl_width + 1, 0)].row;
+                self.leftCount = self.dataArray.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(width - self.collectionView.sl_width + 1, 0)].row;
             }
         }else if(self.scrollDirection == UICollectionViewScrollDirectionVertical && height >=self.collectionView.sl_height){
-            CGPoint p = [self convertPoint:CGPointMake(0, self.collectionView.sl_height - 1) toView:self.collectionView];
-            self.rightCount = [self.collectionView indexPathForItemAtPoint:p].row + 1;
+            self.rightCount = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.sl_height - 1)].row + 1;
             if (self.scrollStyle == SLRecycleCollectionViewStylePage){
-                self.leftCount = self.dataSource.rows.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(0, height - self.collectionView.sl_height + 1)].row;
+                self.leftCount = self.dataArray.count - [self.collectionView indexPathForItemAtPoint:CGPointMake(0, height - self.collectionView.sl_height + 1)].row;
             }
         }
         NSArray * rightSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(0, self.rightCount)];
-        self.dataArray.rows = [self.dataArray.rows arrayByAddingObjectsFromArray:rightSubArray];
+        self.dataSource.rows = [self.dataSource.rows arrayByAddingObjectsFromArray:rightSubArray];
         if (self.scrollStyle == SLRecycleCollectionViewStylePage){
             NSArray * leftSubArray = [self.dataSource.rows subarrayWithRange:NSMakeRange(self.dataSource.rows.count - self.leftCount, self.leftCount)];
-            self.dataArray.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataArray.rows];
+            self.dataSource.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataSource.rows];
         }
     }
-    [self.collectionView.manager setSections:@[self.dataArray]];
+    [self.collectionView.manager setSections:@[self.dataSource]];
     [self.collectionView.manager reloadData];
     if(!self.manual){
         for(UIGestureRecognizer *g in self.collectionView.gestureRecognizers){
@@ -145,7 +150,7 @@
         }
     }
     if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
-        if (self.startingPosition >= self.dataSource.rows.count || self.startingPosition < 0) {
+        if (self.startingPosition >= self.dataArray.count || self.startingPosition < 0) {
             self.startingPosition = 0;
         }
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
@@ -153,14 +158,14 @@
         }else{
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.startingPosition + self.leftCount inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
         }
-        if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataSource.rows[self.startingPosition], self.startingPosition);
-        if (!self.hidePageControl && self.dataSource.rows.count >= 2) {
+        if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataArray[self.startingPosition], self.startingPosition);
+        if (!self.hidePageControl && self.dataArray.count >= 2) {
             self.pageControl = [[SLPageControl alloc] init];
             CGSize pageControlSize = CGSizeMake(100, 15);
             if (self.pageControlSize.width > 0 && self.pageControlSize.height > 0) {
                 pageControlSize = self.pageControlSize;
             }
-            self.pageControl.frame = CGRectMake((self.sl_width-pageControlSize.width)/2.0,self.sl_height-pageControlSize.height-self.bottomSpace-self.dataSource.insetForSection.bottom, pageControlSize.width, pageControlSize.height);
+            self.pageControl.frame = CGRectMake((self.sl_width-pageControlSize.width)/2.0,self.sl_height-pageControlSize.height-self.bottomSpace-self.collectInsets.bottom, pageControlSize.width, pageControlSize.height);
             if(self.indicatorImage){ // 自定义图片
                 self.pageControl.indicatorImage = self.indicatorImage;
                 if (self.currentIndicatorImage) {
@@ -172,7 +177,7 @@
                 self.pageControl.currentPageIndicatorTintColor = self.currentIndicatorColor ?: SLUIHexColor(0xffffff);
                 self.pageControl.pageIndicatorTintColor = self.indicatorColor ?: SLUIHexColor(0x999999);
             }
-            self.pageControl.numberOfPages = self.dataSource.rows.count;
+            self.pageControl.numberOfPages = self.dataArray.count;
             self.pageControl.currentPage = self.startingPosition;
             [self addSubview:self.pageControl];
         }
@@ -207,16 +212,16 @@
 - (void)resetContentOffset{
     CGPoint connectionPoint = CGPointZero;
     if (self.scrollStyle == SLRecycleCollectionViewStyleStep){
-        UICollectionViewCell * item = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataArray.rows.count - self.rightCount inSection:0]];
+        UICollectionViewCell * item = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.rows.count - self.rightCount inSection:0]];
         connectionPoint = [self.collectionView convertRect:item.frame toView:self.collectionView].origin;
     }
     if(self.scrollDirection == UICollectionViewScrollDirectionHorizontal){
         if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
             NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(self.collectionView.contentOffset.x + self.collectionView.sl_width/2, 0)].row;
-            if (currentMiddleIndex >= self.dataSource.rows.count + self.leftCount) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataSource.rows.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+            if (currentMiddleIndex >= self.dataArray.count + self.leftCount) {
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataArray.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             }else if (currentMiddleIndex < self.leftCount) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.rows.count + currentMiddleIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataArray.count + currentMiddleIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             }
         } else {
             if ((self.collectionView.contentOffset.x >= connectionPoint.x) && connectionPoint.x != 0){
@@ -226,10 +231,10 @@
     }else{
         if (self.scrollStyle == SLRecycleCollectionViewStylePage) {
             NSInteger currentMiddleIndex = [self.collectionView indexPathForItemAtPoint:CGPointMake(0, self.collectionView.contentOffset.y + self.collectionView.sl_height/2)].row;
-            if (currentMiddleIndex >= self.dataSource.rows.count + self.leftCount) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataSource.rows.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+            if (currentMiddleIndex >= self.dataArray.count + self.leftCount) {
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:currentMiddleIndex - self.dataArray.count inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
             }else if (currentMiddleIndex < self.leftCount) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow: self.dataSource.rows.count + currentMiddleIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow: self.dataArray.count + currentMiddleIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
             }
         } else {
             if ((self.collectionView.contentOffset.y >= connectionPoint.y) && connectionPoint.y != 0){
@@ -271,11 +276,11 @@
 - (NSInteger)indexOfSourceArray:(NSInteger)row{
     NSInteger index = 0;
     if(row < self.leftCount){
-        index = self.dataSource.rows.count - self.leftCount + row;
-    }else if (row < self.dataSource.rows.count + self.leftCount && row >= self.leftCount) {
+        index = self.dataArray.count - self.leftCount + row;
+    }else if (row < self.dataArray.count + self.leftCount && row >= self.leftCount) {
         index = row - self.leftCount;
     }else{
-        index = row % (self.dataSource.rows.count + self.leftCount);
+        index = row % (self.dataArray.count + self.leftCount);
     }
     return index;
 }
@@ -291,7 +296,7 @@
         NSInteger currentPage = [self indexOfSourceArray:currentIndex];
         self.currentPage = currentPage;
         self.pageControl.currentPage = currentPage;
-        if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataSource.rows[currentPage], currentPage);
+        if (self.scrollToIndexBlock) self.scrollToIndexBlock(self.dataArray[currentPage], currentPage);
     }
 }
 

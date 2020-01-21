@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) id<SLCollectSectionProtocol> dataSource;
 @property (nonatomic,assign) SLViewDirection direction; //滚动方向
 @property (nonatomic,  copy) void(^scrollEndBlock)(NSInteger index); // 滚动结束，当前显示中间的cell序号
+@property (nonatomic, copy) void(^displayCollectCell)(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel);
 - (void)reloadData;// collectionview刷新
 @end
 

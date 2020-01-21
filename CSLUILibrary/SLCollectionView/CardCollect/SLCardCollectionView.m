@@ -53,6 +53,7 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
         self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectScrollProxy new]];
+    self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
     self.collectionView.manager.scrollViewDidEndDeceleratingCallback = ^(SLCollectBaseView * _Nonnull collectView) {
         StrongSelf;

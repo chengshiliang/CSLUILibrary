@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SLCollectBaseView;
 typedef UIView * _Nullable(^HeaderFooterCollect)(SLCollectBaseView *_Nullable collectView, NSInteger section);
 
-@protocol SLCollectSectionProtocol <NSObject, NSMutableCopying>
+@protocol SLCollectSectionProtocol <NSObject>
 @property (nonatomic, strong) NSMutableArray<id<SLCollectRowProtocol>> *rows;
 
 @property (nonatomic, strong) NSString *titleForHeader;

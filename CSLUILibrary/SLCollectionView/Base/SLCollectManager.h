@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) SLCollectBaseView *collectView;
 @property (nonatomic, strong) NSMutableDictionary<Class,NSString *> *cellClasses;
 @property (nonatomic, strong) NSMutableDictionary<UINib *,NSString *> *cellNibs;
-@property (nonatomic, strong) NSMutableArray<id<SLCollectSectionProtocol>> *sections;
+@property (nonatomic, copy) NSArray<id<SLCollectSectionProtocol>> *sections;
 @property (nonatomic, strong) SLCollectProxy *delegateHandler;
 @property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
 @property (nonatomic, copy) void(^displayCell)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);

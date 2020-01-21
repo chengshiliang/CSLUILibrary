@@ -15,7 +15,7 @@
 @end
 @implementation MyPupCollectSectionModel
 - (UIEdgeInsets)insetForSection {
-    return UIEdgeInsetsMake(20, 10, 20, 10);
+    return UIEdgeInsetsMake(40, 20, 40, 20);
 }
 - (CGFloat)minimumLineSpacing {
     return 5;
@@ -57,7 +57,7 @@
 @end
 @implementation MyNoRuleCollectSectionModel
 - (UIEdgeInsets)insetForSection {
-    return UIEdgeInsetsMake(20, 10, 20, 10);
+    return UIEdgeInsetsMake(40, 20, 40, 20);
 }
 - (CGFloat)minimumLineSpacing {
     return 5;

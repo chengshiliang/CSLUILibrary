@@ -119,7 +119,7 @@
         if ([cell isKindOfClass:[SLPageableCollectionCell class]] && [rowModel isKindOfClass:[SLPageableCollectRowModel class]]) {
             SLPageableCollectionCell *pageableCell = (SLPageableCollectionCell *)cell;
             SLPageableCollectRowModel *model = (SLPageableCollectRowModel *)rowModel;
-            pageableCell.staticCollectView.frame = strongSelf.bounds;
+            pageableCell.staticCollectView.frame = CGRectMake(strongSelf.dataSource.insetForSection.left, strongSelf.dataSource.insetForSection.top, CGRectGetWidth(strongSelf.bounds)-strongSelf.dataSource.insetForSection.left-strongSelf.dataSource.insetForSection.right, CGRectGetHeight(strongSelf.bounds)-strongSelf.dataSource.insetForSection.top-strongSelf.dataSource.insetForSection.bottom);
             pageableCell.staticCollectView.dataSource = model.rowModel;
             pageableCell.staticCollectView.columns = strongSelf.columns;
             pageableCell.staticCollectView.selectCollectView = [strongSelf.selectSubCollectView copy];

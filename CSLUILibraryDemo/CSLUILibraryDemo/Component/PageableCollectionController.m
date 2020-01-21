@@ -34,6 +34,7 @@
         }
         secSubModel.rows = [arrM2 mutableCopy];
         rowModel.rowModel = secSubModel;
+        rowModel.rowWidth = kScreenWidth-50;
         [arrM addObject:rowModel];
     }
     secModel.rows = arrM.copy;

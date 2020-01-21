@@ -25,6 +25,7 @@
     [_colorAry addObject:[UIColor yellowColor]];
     [_colorAry addObject:[UIColor orangeColor]];
     MyRecycleSectionModel *secModel = [MyRecycleSectionModel new];
+    secModel.insetForSection = UIEdgeInsetsMake(40, 20, 40, 20);
     NSMutableArray *arrM = [NSMutableArray array];
     for (int i = 0; i < 5; i ++) {
         MyRecycleRowModel *model = [MyRecycleRowModel new];
@@ -49,6 +50,7 @@
     };
     [self.scollView1 reloadData];
     MyRecycleSectionModel *secModel1 = [MyRecycleSectionModel new];
+    secModel1.insetForSection = UIEdgeInsetsMake(40, 20, 40, 20);
     NSMutableArray *arrM1 = [NSMutableArray array];
     for (int i = 0; i < 5; i ++) {
         MyRecycleRowModel *model = [MyRecycleRowModel new];
