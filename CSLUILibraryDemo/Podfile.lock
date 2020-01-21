@@ -17,7 +17,7 @@ PODS:
   - CSLCommonLibrary (0.3.5)
   - CSLNetwork (0.0.5):
     - AFNetworking
-  - CSLUILibrary (0.1.4):
+  - CSLUILibrary (0.1.5):
     - CSLCommonLibrary
     - JSONModel
     - Masonry
@@ -53,7 +53,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CSLCommonLibrary: 211c0facaa0e80f4c941772b5b80df62cbca8a9a
   CSLNetwork: b4972fe3eac7a60588850bdd33159be300c6d4bb
-  CSLUILibrary: d67884a15fb05349b371cab5a9dd6dd708871571
+  CSLUILibrary: db34fa9291a9cd3f19b4c41372cfbe1cc4c2d759
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
