@@ -147,3 +147,17 @@
 @implementation RuixingCoffeeRowModel
 
 @end
+@implementation DropDownSectionModel
+- (UIEdgeInsets)insetForSection {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+- (CGFloat)minimumLineSpacing {
+    return 5;
+}
+- (CGFloat)minimumInteritemSpacing {
+    return 5;
+}
+@end
+@implementation DropDownRowModel
+
+@end

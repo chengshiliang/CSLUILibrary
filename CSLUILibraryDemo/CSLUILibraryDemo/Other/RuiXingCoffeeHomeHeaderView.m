@@ -15,7 +15,6 @@
     NSArray *dataSource1;
 }
 @end
-static NSString *const cellId = @"ruixingheaderrecycleview";
 
 @implementation RuiXingCoffeeHomeHeaderView
 

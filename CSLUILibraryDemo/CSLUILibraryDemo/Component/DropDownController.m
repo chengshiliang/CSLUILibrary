@@ -8,6 +8,8 @@
 
 #import "DropDownController.h"
 #import "MyCardCollectSectionModel.h"
+#import "DropDownHeaderView.h"
+#import "StaticCollectionViewCell.h"
 
 @interface DropDownController ()
 {
@@ -25,6 +27,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self->show) return;
     SLDropDownView *dropDownView = [[SLDropDownView alloc]init];
+    dropDownView.spaceVertical = 20;
     UITouch *touch = [touches anyObject];
     switch (self->tag) {
         case 0:
@@ -73,6 +76,42 @@
                 if ([rowModel isKindOfClass:[MyTableRowModel class]]) {
                     MyTableRowModel *rowData = (MyTableRowModel *)rowModel;
                     cell.textLabel.text = rowData.title;
+                }
+            };
+        }
+            break;
+        case 2:
+        {
+            NSMutableArray<id<SLCollectSectionProtocol>> *arrayM = [NSMutableArray array];
+            for (int i = 0; i < 10; i++) {
+                DropDownSectionModel *secModel = [[DropDownSectionModel alloc]init];
+                secModel.heightForHeader = 30;
+                secModel.widthForHeader = 80;
+                secModel.headerRegisterName = @"DropDownHeaderView";
+                secModel.headerReuseIdentifier = @"DropDownSectionModel";
+                secModel.headerType = SLCollectTypeCode;
+                secModel.title = [NSString stringWithFormat:@"SEC %d", i];
+                NSMutableArray<id<SLCollectRowProtocol>> *rowArrayM = [NSMutableArray array];
+                for (int j = 0; j < 6; j++) {
+                    DropDownRowModel *rowModel = [[DropDownRowModel alloc]init];
+                    rowModel.title = [NSString stringWithFormat:@"ROW %d %d", i, j];;
+                    rowModel.rowWidth = 80;
+                    rowModel.rowHeight = 30;
+                    rowModel.registerName = @"StaticCollectionViewCell";
+                    rowModel.type = SLCollectTypeXib;
+                    [rowArrayM addObject:rowModel];
+                }
+                secModel.rows = rowArrayM;
+                [arrayM addObject:secModel];
+            }
+            dropDownView.type = SLDropDownViewDisplayCollect;
+            dropDownView.collectDatas = arrayM;
+            dropDownView.displayCollectHeader = ^(SLCollectBaseView * _Nonnull collectView, UIView * _Nonnull view, NSInteger section, id<SLCollectSectionProtocol>  _Nonnull secModel) {
+                if ([view isKindOfClass:[DropDownHeaderView class]] && [secModel isKindOfClass:[DropDownSectionModel class]]) {
+                    DropDownSectionModel *secData = (DropDownSectionModel *)secModel;
+                    DropDownHeaderView *headerView = (DropDownHeaderView *)view;
+                    headerView.title = secData.title;
+                    headerView.width = secData.widthForHeader;
                 }
             };
         }

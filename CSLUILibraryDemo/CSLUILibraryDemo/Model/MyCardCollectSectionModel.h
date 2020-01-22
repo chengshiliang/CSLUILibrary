@@ -66,4 +66,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RuixingCoffeeRowModel : SLCollectRowModel
 
 @end
+@interface DropDownSectionModel : SLCollectSectionModel
+@property (nonatomic, copy) NSString *title;
+@end
+@interface DropDownRowModel : SLCollectRowModel
+@property (nonatomic, copy) NSString *title;
+@end
 NS_ASSUME_NONNULL_END

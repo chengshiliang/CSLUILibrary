@@ -37,7 +37,6 @@
 }
 
 - (void)initialize {
-    self.columns = 1;
     self.backView = [[SLView alloc] init];
     self.backView.backgroundColor = SLUIHexColor(0x00ff00);
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
@@ -66,13 +65,13 @@
     self.completeBlock = [completeBlock copy];
     CGRect pointViewRect = [pointView.superview convertRect:pointView.frame toView:[UIApplication sharedApplication].keyWindow];
     CGFloat pointViewTopY = CGRectGetMinY(pointViewRect);
-    CGPoint toPoint = CGPointMake(0, pointViewTopY - self.spaceVertical);
+    CGPoint toPoint = CGPointMake(0, pointViewTopY);
     [self showWithPoint:toPoint targetView:targetView];
 }
 
 - (void)showToPoint:(CGPoint)toPoint targetView:(UIView *)targetView completeBlock:(void(^)(void))completeBlock {
     self.completeBlock = [completeBlock copy];
-    [self showWithPoint:CGPointMake(0, toPoint.y + self.spaceVertical) targetView:targetView];
+    [self showWithPoint:CGPointMake(0, toPoint.y) targetView:targetView];
 }
 
 - (void)showWithPoint:(CGPoint)toPoint targetView:(UIView *)targetView {
@@ -85,27 +84,31 @@
     [targetView addSubview:self.containerView];
     [self.containerView addSubview:self];
     if (self.type == SLDropDownViewDisplayCollect && self.collectDatas && self.collectDatas.count > 0) {
-        SLCollectBaseView *collectionView = [[SLCollectBaseView alloc]initWithFrame:CGRectMake(0, 0, targetView.sl_width, targetView.sl_height-toPoint.y)];
+        SLCollectBaseView *collectionView = [[SLCollectBaseView alloc]initWithFrame:CGRectMake(0, self.spaceVertical, targetView.sl_width, targetView.sl_height-toPoint.y-self.spaceVertical)];
         collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:[SLCollectFlowlayoutProxy new]];
-        collectionView.manager.displayCell = self.displayCollectCell;
+        collectionView.manager.displayCell = [self.displayCollectCell copy];
+        collectionView.manager.displayHeader = [self.displayCollectHeader copy];
+        collectionView.manager.displayFooter = [self.displayCollectFooter copy];
+        collectionView.manager.selectCollectView = [self.selectCollectView copy];
         [self addSubview:collectionView];
         [collectionView.manager reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [collectionView layoutIfNeeded];
             collectionView.scrollEnabled = collectionView.contentSize.height > collectionView.sl_height;
-            self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(targetView.sl_height-toPoint.y, collectionView.contentSize.height));
+            self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(targetView.sl_height-toPoint.y, collectionView.contentSize.height+self.spaceVertical));
             collectionView.sl_height = MIN(collectionView.contentSize.height, collectionView.sl_height);
         });
-    } else if (self.type == SLDropDownViewDisplayTable && self.tableDatas && self.tableDatas.count > 0) {
-        SLTableView *tableView = [[SLTableView alloc]initWithFrame:CGRectMake(0, 0, targetView.sl_width, targetView.sl_height-toPoint.y) style:UITableViewStylePlain];
+    } else if (self.type == SLDropDownViewDisplayTable && self.tableDatas && self.tableDatas.count == 1) {
+        SLTableView *tableView = [[SLTableView alloc]initWithFrame:CGRectMake(0, self.spaceVertical, targetView.sl_width, targetView.sl_height-toPoint.y-self.spaceVertical) style:UITableViewStylePlain];
         tableView.manager = [[SLTableManager alloc]initWithSections:self.tableDatas.copy delegateHandler:nil];
-        tableView.manager.displayCell = self.displayTableCell;
+        tableView.manager.displayCell = [self.displayTableCell copy];
+        tableView.manager.selectTableView = [self.selectTableView copy];
         [self addSubview:tableView];
         [tableView.manager reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
             [tableView layoutIfNeeded];
             tableView.scrollEnabled = tableView.contentSize.height > tableView.sl_height;
-            self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(tableView.contentSize.height, targetView.sl_height-toPoint.y));
+            self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(tableView.contentSize.height+self.spaceVertical, targetView.sl_height-toPoint.y));
             tableView.sl_height = MIN(tableView.contentSize.height, tableView.sl_height);
         });
     }

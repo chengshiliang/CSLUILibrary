@@ -217,7 +217,7 @@
 }
 
 - (void)addCorner:(BOOL)corner {
-    [self addCornerRadius:MIN(self.frame.size.width/2.0, self.frame.size.height/2.0)];
+    [self addCornerRadius:corner ? MIN(self.frame.size.width/2.0, self.frame.size.height/2.0) : 0];
 }
 
 - (void)addCornerRadius:(CGFloat)cornerRadius {
