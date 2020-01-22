@@ -72,4 +72,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DropDownRowModel : SLCollectRowModel
 @property (nonatomic, copy) NSString *title;
 @end
+@interface DropDownTableSectionModel : SLTableSectionModel
+@property (nonatomic, copy) NSString *title;
+@end
+@interface DropDownTableRowModel : SLTableRowModel
+@property (nonatomic, copy) NSString *title;
+@end
 NS_ASSUME_NONNULL_END

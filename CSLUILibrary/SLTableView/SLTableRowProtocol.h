@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class SLTableView;
 typedef NS_ENUM(NSUInteger, SLTableType) {
-    SLTableTypeXib,
+    SLTableTypeXib = 1,
     SLTableTypeCode
 };
 

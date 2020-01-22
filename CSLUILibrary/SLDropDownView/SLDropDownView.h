@@ -26,9 +26,12 @@ typedef NS_ENUM(NSInteger, SLDropDownViewDisplayType) {
 @property (nonatomic, copy) void(^displayCollectHeader)(SLCollectBaseView *collectView, UIView *view, NSInteger section, id<SLCollectSectionProtocol>secModel);
 @property (nonatomic, copy) void(^displayCollectFooter)(SLCollectBaseView *collectView, UIView *view, NSInteger section, id<SLCollectSectionProtocol>secModel);
 // table api
+@property (nonatomic, assign) CGFloat leftTableWidth;
+@property (nonatomic, assign) NSInteger leftSelectIndex;// 默认左侧table选中项
 @property (nonatomic, copy) NSArray <id<SLTableSectionProtocol>> *tableDatas;// table展示数据源
 @property (nonatomic, copy) void(^selectTableView)(SLTableView *tableView, UITableViewCell *cell, NSIndexPath *indexPath, id<SLTableRowProtocol>rowModel);
 @property (nonatomic, copy) void(^displayTableCell)(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel);
+@property (nonatomic, copy) void(^displayLeftTableCell)(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath *indexPath, id<SLTableRowProtocol>  _Nonnull rowModel);
 
 - (void)showToView:(UIView *)pointView targetView:(UIView *)targetView completeBlock:(void(^)(void))completeBlock;
 

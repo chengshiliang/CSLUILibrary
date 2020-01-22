@@ -15,8 +15,8 @@
     [self initial];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self == [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
+    if (self == [super initWithFrame:frame style:style]) {
         [self initial];
     }
     return self;

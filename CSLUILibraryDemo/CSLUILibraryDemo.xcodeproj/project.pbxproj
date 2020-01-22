@@ -35,6 +35,7 @@
 		15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */; };
 		15C7793023AA164B00E1D305 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C7792F23AA164B00E1D305 /* PopoverController.m */; };
 		15C7A3C923D7E19A002E0583 /* DropDownHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C7A3C823D7E19A002E0583 /* DropDownHeaderView.m */; };
+		15C7A3CC23D802FB002E0583 /* DropDownLeftTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C7A3CB23D802FB002E0583 /* DropDownLeftTableCell.m */; };
 		15D15963238627B1006DD86B /* NavTranslucentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D15962238627B1006DD86B /* NavTranslucentViewController.m */; };
 		15D1597623868793006DD86B /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D1597523868793006DD86B /* TabbarController.m */; };
 		15D53C27239E1EB800A10E0B /* ToastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D53C26239E1EB800A10E0B /* ToastController.m */; };
@@ -106,6 +107,8 @@
 		15C7792F23AA164B00E1D305 /* PopoverController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PopoverController.m; path = CSLUILibraryDemo/Component/PopoverController.m; sourceTree = SOURCE_ROOT; };
 		15C7A3C723D7E19A002E0583 /* DropDownHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropDownHeaderView.h; sourceTree = "<group>"; };
 		15C7A3C823D7E19A002E0583 /* DropDownHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropDownHeaderView.m; sourceTree = "<group>"; };
+		15C7A3CA23D802FB002E0583 /* DropDownLeftTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropDownLeftTableCell.h; sourceTree = "<group>"; };
+		15C7A3CB23D802FB002E0583 /* DropDownLeftTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropDownLeftTableCell.m; sourceTree = "<group>"; };
 		15D15961238627B1006DD86B /* NavTranslucentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavTranslucentViewController.h; sourceTree = "<group>"; };
 		15D15962238627B1006DD86B /* NavTranslucentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavTranslucentViewController.m; sourceTree = "<group>"; };
 		15D1597423868793006DD86B /* TabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 				1546FFAE23D57DA400E211E2 /* MyPupCollectionViewCell.m */,
 				15C7A3C723D7E19A002E0583 /* DropDownHeaderView.h */,
 				15C7A3C823D7E19A002E0583 /* DropDownHeaderView.m */,
+				15C7A3CA23D802FB002E0583 /* DropDownLeftTableCell.h */,
+				15C7A3CB23D802FB002E0583 /* DropDownLeftTableCell.m */,
 				1546FFAA23D57D5A00E211E2 /* StaticCollectionViewCell.xib */,
 			);
 			path = Cell;
@@ -443,6 +448,7 @@
 				1571726623C4238B0064678B /* FileDownloadController.m in Sources */,
 				1546FF9123D5531700E211E2 /* MyCardCollectSectionModel.m in Sources */,
 				150C57A523960D0100FC8DE2 /* CustomTableCellController.m in Sources */,
+				15C7A3CC23D802FB002E0583 /* DropDownLeftTableCell.m in Sources */,
 				15596B5B236C29480073C0CB /* ImageViewController.m in Sources */,
 				1550CC34236AD749002CB249 /* LabelController.m in Sources */,
 				15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */,

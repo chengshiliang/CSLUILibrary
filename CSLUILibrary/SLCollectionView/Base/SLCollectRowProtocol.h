@@ -10,7 +10,7 @@
 @class SLCollectBaseView;
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, SLCollectType) {
-    SLCollectTypeXib,
+    SLCollectTypeXib = 1,
     SLCollectTypeCode
 };
 

@@ -15,6 +15,7 @@
 #import <CSLUILibrary/SLCollectManager.h>
 #import <CSLUILibrary/SLCollectProxy.h>
 #import <CSLUILibrary/SLTableManager.h>
+#import <CSLUILibrary/SLTableModel.h>
 
 @interface SLDropDownView ()
 @property (nonatomic, copy) void(^completeBlock)(void);
@@ -45,6 +46,7 @@
         StrongSelf;
         [strongSelf hide];
     }];
+    tapGesture.cancelsTouchesInView = NO;
     [self.backView addGestureRecognizer:tapGesture];
     self.containerView = [[SLView alloc]init];
     self.containerView.backgroundColor = SLUIHexColor(0x999999);
@@ -111,6 +113,64 @@
             self.frame = CGRectMake(0, 0, targetView.sl_width, MIN(tableView.contentSize.height+self.spaceVertical, targetView.sl_height-toPoint.y));
             tableView.sl_height = MIN(tableView.contentSize.height, tableView.sl_height);
         });
+    } else if (self.type == SLDropDownViewDisplayTable && self.tableDatas && self.tableDatas.count > 1) {
+        SLTableView *leftTableView = [[SLTableView alloc]initWithFrame:CGRectMake(0, self.spaceVertical, self.leftTableWidth, targetView.sl_height-toPoint.y-self.spaceVertical) style:UITableViewStylePlain];
+        SLTableSectionModel *leftSecModel = [SLTableSectionModel new];
+        NSMutableArray<id<SLTableRowProtocol>> *leftRows = [NSMutableArray array];
+        for (id<SLTableSectionProtocol> secModel in self.tableDatas) {
+            SLTableRowModel *leftRowModel = [SLTableRowModel new];
+            if (![NSString emptyString:[secModel headerReuseIdentifier]]) {
+                leftRowModel.reuseIdentifier = [secModel headerReuseIdentifier];
+            } else if (![NSString emptyString:[secModel footerReuseIdentifier]]) {
+                leftRowModel.reuseIdentifier = [secModel footerReuseIdentifier];
+            } else {
+                leftRowModel.reuseIdentifier = @"UITableRowCell";
+            }
+            if (secModel.heightForHeader > 0) {
+                leftRowModel.rowHeight = secModel.heightForHeader;
+                leftRowModel.estimatedHeight = secModel.heightForHeader;
+            } else if (secModel.heightForFooter > 0) {
+                leftRowModel.rowHeight = secModel.heightForFooter;
+                leftRowModel.estimatedHeight = secModel.heightForFooter;
+            }
+            if (![NSString emptyString:[secModel headerRegisterName]]) {
+                leftRowModel.registerName = [secModel headerRegisterName];
+            } else if (![NSString emptyString:[secModel footerRegisterName]]) {
+                leftRowModel.registerName = [secModel footerRegisterName];
+            } else {
+                leftRowModel.registerName = @"UITableViewCell";
+            }
+            if (secModel.headerType > 0) {
+                leftRowModel.type = secModel.headerType;
+            } else if (secModel.footerType > 0) {
+                leftRowModel.type = secModel.headerType;
+            }
+            [leftRows addObject:leftRowModel];
+        }
+        leftSecModel.rows = leftRows;
+        leftTableView.manager = [[SLTableManager alloc]initWithSections:@[leftSecModel] delegateHandler:nil];
+        leftTableView.manager.displayCell = [self.displayLeftTableCell copy];
+        [self addSubview:leftTableView];
+        
+        SLTableView *rightTableView = [[SLTableView alloc]initWithFrame:CGRectMake(self.leftTableWidth, self.spaceVertical, targetView.sl_width - self.leftTableWidth, targetView.sl_height-toPoint.y-self.spaceVertical) style:UITableViewStylePlain];
+        rightTableView.manager.selectTableView = [self.selectTableView copy];
+        rightTableView.manager = [[SLTableManager alloc]initWithSections:[@[self.tableDatas[self.leftSelectIndex]] mutableCopy] delegateHandler:nil];
+        rightTableView.manager.displayCell = [self.displayTableCell copy];
+        [self addSubview:rightTableView];
+        self.frame = CGRectMake(0, 0, targetView.sl_width,  targetView.sl_height-toPoint.y);
+        WeakSelf;
+        __weak typeof (leftTableView) weakLeftTable = leftTableView;
+        __weak typeof (rightTableView) weakRightTable = rightTableView;
+        leftTableView.manager.selectTableView = ^(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
+            StrongSelf;
+            __strong typeof (leftTableView) strongLeftTable = weakLeftTable;
+            __strong typeof (rightTableView) strongRightTable = weakRightTable;
+            strongSelf.leftSelectIndex = indexPath.row;
+            [strongLeftTable.manager reloadData];
+            [strongSelf reloadRightTable:strongRightTable];
+        };
+        [leftTableView.manager reloadData];
+        [self reloadRightTable:rightTableView];
     }
     self.backView.frame = targetView.bounds;
     self.containerView.frame = CGRectMake(0, toPoint.y, targetView.sl_width, targetView.sl_height-toPoint.y);
@@ -119,6 +179,11 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.backView.alpha = 1.f;
     }];
+}
+
+- (void)reloadRightTable:(SLTableView *)tableView {
+    tableView.manager.sections = [@[self.tableDatas[self.leftSelectIndex]] mutableCopy];
+    [tableView.manager reloadData];
 }
 
 @end

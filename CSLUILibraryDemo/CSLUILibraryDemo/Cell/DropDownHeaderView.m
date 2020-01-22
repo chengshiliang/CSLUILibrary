@@ -15,16 +15,25 @@
 
 @implementation DropDownHeaderView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-        UIView *view = [[UIView alloc]init];
-        [self addSubview:view];
-        self.view = view;
-        self.titleLabel = [[SLLabel alloc]init];
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [view addSubview:self.titleLabel];
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize {
+    UIView *view = [[UIView alloc]init];
+    [self addSubview:view];
+    self.view = view;
+    self.titleLabel = [[SLLabel alloc]init];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:self.titleLabel];
 }
 
 - (void)setTitle:(NSString *)title {

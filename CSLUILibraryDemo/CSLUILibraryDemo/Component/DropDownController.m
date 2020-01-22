@@ -10,6 +10,7 @@
 #import "MyCardCollectSectionModel.h"
 #import "DropDownHeaderView.h"
 #import "StaticCollectionViewCell.h"
+#import "DropDownLeftTableCell.h"
 
 @interface DropDownController ()
 {
@@ -72,7 +73,7 @@
             [arrayM addObject:secModel];
             dropDownView.type = SLDropDownViewDisplayTable;
             dropDownView.tableDatas = arrayM;
-            dropDownView.displayTableCell = ^(UITableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
+            dropDownView.displayTableCell = ^(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
                 if ([rowModel isKindOfClass:[MyTableRowModel class]]) {
                     MyTableRowModel *rowData = (MyTableRowModel *)rowModel;
                     cell.textLabel.text = rowData.title;
@@ -94,7 +95,7 @@
                 NSMutableArray<id<SLCollectRowProtocol>> *rowArrayM = [NSMutableArray array];
                 for (int j = 0; j < 6; j++) {
                     DropDownRowModel *rowModel = [[DropDownRowModel alloc]init];
-                    rowModel.title = [NSString stringWithFormat:@"ROW %d %d", i, j];;
+                    rowModel.title = [NSString stringWithFormat:@"ROW %d %d", i, j];
                     rowModel.rowWidth = 80;
                     rowModel.rowHeight = 30;
                     rowModel.registerName = @"StaticCollectionViewCell";
@@ -114,6 +115,54 @@
                     headerView.width = secData.widthForHeader;
                 }
             };
+        }
+            break;
+        case 3:
+        {
+            NSMutableArray<DropDownTableSectionModel *> *arrayM = [NSMutableArray array];
+            for (int i = 0; i < 10; i ++) {
+                DropDownTableSectionModel *secModel = [[DropDownTableSectionModel alloc]init];
+                secModel.heightForHeader = 30;
+                secModel.headerRegisterName = @"DropDownLeftTableCell";
+                secModel.headerReuseIdentifier = @"DropDownTableSectionModel";
+                secModel.headerType = SLTableTypeCode;
+                secModel.title = [NSString stringWithFormat:@"SEC %d", i];
+                NSMutableArray<id<SLTableRowProtocol>> *rowArrayM = [NSMutableArray array];
+                for (int j = 0; j < 6; j++) {
+                    DropDownTableRowModel *rowModel = [[DropDownTableRowModel alloc]init];
+                    rowModel.title = [NSString stringWithFormat:@"ROW %d %d", i, j];
+                    rowModel.rowHeight = 30;
+                    rowModel.estimatedHeight = 30;
+                    rowModel.registerName = @"DropDownLeftTableCell";
+                    rowModel.type = SLTableTypeCode;
+                    [rowArrayM addObject:rowModel];
+                }
+                secModel.rows = rowArrayM.copy;
+                [arrayM addObject:secModel];
+            }
+            dropDownView.type = SLDropDownViewDisplayTable;
+            dropDownView.tableDatas = arrayM;
+            dropDownView.displayLeftTableCell = ^(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
+                if ([rowModel isKindOfClass:[SLTableRowModel class]] && [cell isKindOfClass:[DropDownLeftTableCell class]]) {
+                    DropDownLeftTableCell *leftCell = (DropDownLeftTableCell *)cell;
+                    @try {
+                        DropDownTableSectionModel *secModel = arrayM[indexPath.row];
+                        leftCell.title = secModel.title;
+                    } @catch (NSException *exception) {
+                        
+                    } @finally {
+                        
+                    }
+                }
+            };
+            dropDownView.displayTableCell = ^(SLTableView * _Nonnull tableView, UITableViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLTableRowProtocol>  _Nonnull rowModel) {
+                if ([rowModel isKindOfClass:[DropDownTableRowModel class]] && [cell isKindOfClass:[DropDownLeftTableCell class]]) {
+                    DropDownLeftTableCell *leftCell = (DropDownLeftTableCell *)cell;
+                    DropDownTableRowModel *rowData = (DropDownTableRowModel *)rowModel;
+                    leftCell.title = rowData.title;
+                }
+            };
+            dropDownView.leftTableWidth = kScreenWidth/3.0;
         }
             break;
         default:
