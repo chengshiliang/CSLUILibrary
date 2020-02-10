@@ -6,10 +6,10 @@
 //
 
 #import "SLImageDownLoader.h"
-#import <CSLUILibrary/NSString+Util.h>
+#import <CSLUtils/NSString+Util.h>
 #import <SDWebImage/SDWebImage.h>
-#import <CSLUILibrary/SLUtil.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUtil.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLUILibrary/SLImageView.h>
 
 @interface SLDownTask : NSObject

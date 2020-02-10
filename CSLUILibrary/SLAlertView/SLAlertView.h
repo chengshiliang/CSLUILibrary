@@ -9,22 +9,9 @@
 #import <CSLUILibrary/SLTabbarView.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLLabel.h>
+#import <CSLUtils/SLUIConst.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef NS_ENUM(NSInteger, AlertType){
-    AlertView = 0,// UIAlertView
-    AlertSheet = 1,// UIActionSheet
-};
-typedef NS_ENUM(NSInteger, AlertActionType){
-    AlertActionCancel = 0,
-    AlertActionDefault = 1,
-    AlertActionDestructive = 2
-};
-typedef NS_ENUM(NSInteger, AlertContentViewAlignmentType) {
-    AlertContentViewAlignmentCenter = 0,
-    AlertContentViewAlignmentLeft = 1,
-    AlertContentViewAlignmentRight = 2,
-};
 
 @interface SLAlertAction : NSObject
 @property (nonatomic, assign) AlertActionType actionType;

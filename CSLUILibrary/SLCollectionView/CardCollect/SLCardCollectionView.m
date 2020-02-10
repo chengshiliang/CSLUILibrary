@@ -6,8 +6,8 @@
 //
 
 #import "SLCardCollectionView.h"
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>

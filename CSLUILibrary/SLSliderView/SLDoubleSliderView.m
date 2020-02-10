@@ -6,10 +6,9 @@
 //
 
 #import "SLDoubleSliderView.h"
-#import <CSLUILibrary/UIView+SLBase.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
-#import <Masonry/Masonry.h>
 
 @interface SLDoubleSliderModel : NSObject
 @property (nonatomic, assign) float progress;

@@ -7,10 +7,10 @@
 
 #import "SLSearchController.h"
 #import <CSLUILibrary/SLButton.h>
-#import <CSLUILibrary/SLUtil.h>
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
-#import <CSLUILibrary/NSString+Util.h>
+#import <CSLUtils/SLUtil.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
+#import <CSLUtils/NSString+Util.h>
 #import <CSLUILibrary/SLSearchContentController.h>
 #import <CSLUILibrary/SLSearchResultController.h>
 #import <CSLCommonLibrary/UIControl+Events.h>

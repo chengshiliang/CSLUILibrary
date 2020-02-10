@@ -6,7 +6,7 @@
 //
 
 #import "SLCollectionViewLayout.h"
-#import <CSLUILibrary/SLUIConst.h>
+#import <CSLUtils/SLUIConst.h>
 
 @interface SLCollectionViewLayout()
 @property(strong, nonatomic)NSMutableArray *columnsY;

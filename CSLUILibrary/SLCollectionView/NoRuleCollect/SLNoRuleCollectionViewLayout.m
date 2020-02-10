@@ -6,8 +6,8 @@
 //
 
 #import "SLNoRuleCollectionViewLayout.h"
-#import <CSLUILibrary/SLUIConst.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUIConst.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 static CGFloat minXLarge = 1.5;
 static CGFloat minYLarge = 1.5;

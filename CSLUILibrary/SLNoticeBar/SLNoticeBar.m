@@ -6,10 +6,10 @@
 //
 
 #import "SLNoticeBar.h"
-#import <CSLUILibrary/NSString+Util.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/NSString+Util.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLUILibrary/SLImageView.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLCommonLibrary/SLTimer.h>
 
 @interface SLNoticeBar()

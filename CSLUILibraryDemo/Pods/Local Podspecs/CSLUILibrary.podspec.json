@@ -25,13 +25,7 @@
   ],
   "resources": "CSLUILibrary/Resources/*.png",
   "dependencies": {
-    "CSLCommonLibrary": [
-
-    ],
-    "Masonry": [
-
-    ],
-    "SDWebImage": [
+    "CSLUtils": [
 
     ],
     "JSONModel": [

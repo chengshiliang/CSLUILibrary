@@ -6,7 +6,7 @@
 //
 
 #import "SLCardCollectViewFlowLayout.h"
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 @interface SLCardCollectViewFlowLayout()
 {

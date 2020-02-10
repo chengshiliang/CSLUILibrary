@@ -6,8 +6,8 @@
 //
 
 #import "SLStaticCollectViewLayout.h"
-#import <CSLUILibrary/SLUIConst.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUIConst.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 @interface SLStaticCollectViewLayout()
 {

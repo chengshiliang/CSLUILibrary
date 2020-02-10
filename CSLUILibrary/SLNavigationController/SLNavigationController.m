@@ -10,8 +10,8 @@
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 #import <CSLUILibrary/SLNavTransitionAnimation.h>
 #import <CSLUILibrary/SLNavPushTransitionAnimation.h>
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 @interface SLNavigationController ()
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *percentAnimation;

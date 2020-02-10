@@ -7,10 +7,10 @@
 
 #import "SLTabBarController.h"
 #import <CSLUILibrary/SLNavigationController.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLUILibrary/SLTabbarButton.h>
 #import <CSLUILibrary/SLTabbarView.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 @interface SLTabBarController ()
 {

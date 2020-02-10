@@ -6,7 +6,7 @@
 //
 
 #import "SLView.h"
-#import <CSLUILibrary/SLUIConst.h>
+#import <CSLUtils/SLUIConst.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class SLTabbarButton;

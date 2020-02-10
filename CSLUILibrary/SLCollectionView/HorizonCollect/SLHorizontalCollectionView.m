@@ -7,9 +7,9 @@
 
 #import "SLHorizontalCollectionView.h"
 #import <CSLUILibrary/SLHorizontalCollectionViewLayout.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLUILibrary/SLCollectManager.h>
 
 @interface SLHorizontalCollectionView ()

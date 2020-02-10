@@ -6,9 +6,9 @@
 //
 
 #import "SLToast.h"
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
-#import <CSLUILibrary/NSString+Util.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
+#import <CSLUtils/NSString+Util.h>
 #import <CSLUILibrary/SLUIConfig.h>
 #import <CSLUILibrary/SLImageView.h>
 

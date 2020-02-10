@@ -6,9 +6,9 @@
 //
 
 #import "SLSearchContentController.h"
-#import <CSLUILibrary/SLUtil.h>
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUtil.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLCommonLibrary/UITextView+DelegateProxy.h>
 #import <CSLCommonLibrary/UIControl+Events.h>
 

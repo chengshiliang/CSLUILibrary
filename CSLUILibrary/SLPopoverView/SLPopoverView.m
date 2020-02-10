@@ -8,10 +8,10 @@
 
 #import "SLPopoverView.h"
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/NSString+Util.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/NSString+Util.h>
 #import <CSLUILibrary/SLTabbarView.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 @implementation SLPopoverAction
 + (instancetype)actionWithTitle:(NSString *)title handler:(void (^)(SLPopoverAction *action))handler{

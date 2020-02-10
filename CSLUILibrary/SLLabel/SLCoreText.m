@@ -8,10 +8,10 @@
 #import "SLCoreText.h"
 #import <CoreText/CoreText.h>
 #import <CoreFoundation/CoreFoundation.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLUILibrary/SLImageView.h>
-#import <CSLUILibrary/NSString+Util.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/NSString+Util.h>
+#import <CSLUtils/UIView+SLBase.h>
 
 static NSString *kCoreTextContentKey = @"content";
 static NSString *kCoreTextFrameKey = @"frame";

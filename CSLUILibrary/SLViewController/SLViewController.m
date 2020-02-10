@@ -6,7 +6,7 @@
 //
 
 #import "SLViewController.h"
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 #import <CSLCommonLibrary/NSObject+NavAnimation.h>
 

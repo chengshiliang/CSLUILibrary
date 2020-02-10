@@ -13,8 +13,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.frameworks   = 'Foundation', 'UIKit'
   s.resources    = 'CSLUILibrary/Resources/*.png'
-  s.dependency 'CSLCommonLibrary'
-  s.dependency 'Masonry'
-  s.dependency 'SDWebImage'
+  s.dependency 'CSLUtils'
   s.dependency 'JSONModel'
 end

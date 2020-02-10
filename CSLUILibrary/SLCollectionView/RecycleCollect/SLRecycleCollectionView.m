@@ -6,8 +6,8 @@
 //
 
 #import "SLRecycleCollectionView.h"
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLCommonLibrary/SLTimer.h>
 #import <CSLUILibrary/SLPageControl.h>
 #import <CSLUILibrary/SLCollectBaseView.h>

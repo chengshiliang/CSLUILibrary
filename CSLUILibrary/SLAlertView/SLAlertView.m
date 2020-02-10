@@ -6,13 +6,11 @@
 //
 
 #import "SLAlertView.h"
-#import <CSLUILibrary/NSString+Util.h>
-#import <CSLUILibrary/UIView+SLBase.h>
+#import <CSLUtils/NSString+Util.h>
+#import <CSLUtils/UIView+SLBase.h>
 #import <CSLUILibrary/SLUIConfig.h>
-#import <CSLUILibrary/SLUIConst.h>
-#import <CSLUILibrary/SLUIConsts.h>
+#import <CSLUtils/SLUIConsts.h>
 #import <CSLUILibrary/SLImageView.h>
-#import <Masonry/Masonry.h>
 
 @implementation SLAlertAction
 

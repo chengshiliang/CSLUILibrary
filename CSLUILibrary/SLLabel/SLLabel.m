@@ -6,9 +6,9 @@
 //
 
 #import "SLLabel.h"
-#import <CSLUILibrary/SLUIConsts.h>
-#import <CSLUILibrary/SLUIConst.h>
-#import <CSLUILibrary/SLUtil.h>
+#import <CSLUtils/SLUIConsts.h>
+#import <CSLUtils/SLUIConst.h>
+#import <CSLUtils/SLUtil.h>
 #import <CSLUILibrary/SLUIConfig.h>
 
 @interface SLLabel()

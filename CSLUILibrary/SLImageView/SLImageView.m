@@ -6,9 +6,9 @@
 //
 
 #import "SLImageView.h"
-#import <CSLUILibrary/SLUtil.h>
+#import <CSLUtils/SLUtil.h>
 #import <Accelerate/Accelerate.h>
-#import <CSLUILibrary/UIImage+SLBase.h>
+#import <CSLUtils/UIImage+SLBase.h>
 
 @interface SLImageView()
 {
