@@ -6,8 +6,8 @@
 //
 
 #import "SLTableModel.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/NSString+Util.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLUILibrary/SLTableView.h>
 #import <CSLUILibrary/SLTableManager.h>
 

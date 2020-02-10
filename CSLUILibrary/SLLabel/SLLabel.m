@@ -6,10 +6,8 @@
 //
 
 #import "SLLabel.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/SLUIConst.h>
-#import <CSLUtils/SLUtil.h>
-#import <CSLUILibrary/SLUIConfig.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLLableConfig.h>
 
 @interface SLLabel()
 
@@ -35,12 +33,12 @@
 }
 
 - (void)setLabelType:(LabelType)labelType {
-    NSDictionary *config = [SLUIConfig share].labelConfig;
+    NSDictionary *config = [SLLableConfig share].labelConfig;
     NSString *typeKey = [NSString stringWithFormat:@"%ld", (long)labelType];
     NSDictionary *dic = config[typeKey];
     if (!dic) {
-        self.font = [SLUtil fontSize:labelType];
-        self.textColor = [SLUtil color:labelType];
+        self.font = [SLLableConfig fontSize:labelType];
+        self.textColor = [SLLableConfig color:labelType];
     } else {
         self.font = dic[SLLabelFontSize];
         self.textColor = dic[SLLabelColor];

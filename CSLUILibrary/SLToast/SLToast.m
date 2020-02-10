@@ -6,11 +6,10 @@
 //
 
 #import "SLToast.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/UIView+SLBase.h>
-#import <CSLUtils/NSString+Util.h>
-#import <CSLUILibrary/SLUIConfig.h>
-#import <CSLUILibrary/SLImageView.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
+#import <CSLCommonLibrary/NSString+Util.h>
+#import <CSLUILibrary/SLToastConfig.h>
 
 @implementation SLToastManager
 - (NSTimeInterval)duration {
@@ -108,30 +107,30 @@ static int imageViewTag = 103;
     return [self makeToast:message
                      title:@""
                      image:nil
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                  duration:[SLToastConfig share].toastManager.duration
+                  position:[SLToastConfig share].toastManager.position
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title{
     return [self makeToast:message
                      title:title
                      image:nil
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                  duration:[SLToastConfig share].toastManager.duration
+                  position:[SLToastConfig share].toastManager.position
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             image:(UIImage *)image {
     return [self makeToast:message
                      title:@""
                      image:image
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                  duration:[SLToastConfig share].toastManager.duration
+                  position:[SLToastConfig share].toastManager.position
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title
@@ -139,10 +138,10 @@ static int imageViewTag = 103;
     return [self makeToast:message
                      title:title
                      image:image
-                  duration:[SLUIConfig share].toastManager.duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                  duration:[SLToastConfig share].toastManager.duration
+                  position:[SLToastConfig share].toastManager.position
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title
@@ -152,9 +151,9 @@ static int imageViewTag = 103;
                      title:title
                      image:image
                   duration:duration
-                  position:[SLUIConfig share].toastManager.position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                  position:[SLToastConfig share].toastManager.position
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title
@@ -166,8 +165,8 @@ static int imageViewTag = 103;
                      image:image
                   duration:duration
                   position:position
-             imagePosition:[SLUIConfig share].toastManager.imagePosition
-                     style:[SLUIConfig share].toastStyle];
+             imagePosition:[SLToastConfig share].toastManager.imagePosition
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title
@@ -181,7 +180,7 @@ static int imageViewTag = 103;
                   duration:duration
                   position:position
              imagePosition:imagePosition
-                     style:[SLUIConfig share].toastStyle];
+                     style:[SLToastConfig share].toastStyle];
 }
 - (void)makeToast:(NSString *)message
             title:(NSString *)title
@@ -260,7 +259,7 @@ static int imageViewTag = 103;
                    style:(SLToastStyle *)style {
     if ([NSString emptyString:message] && [NSString emptyString:title] && !image) return nil;
     if (position < 0) position = SLToastPositonMiddle;
-    if (!style) style = [SLUIConfig share].toastStyle;
+    if (!style) style = [SLToastConfig share].toastStyle;
     UIEdgeInsets contentInsets = style.contentInsets;
     CGFloat startX = contentInsets.left;
     CGFloat startY = contentInsets.top;
@@ -291,7 +290,7 @@ static int imageViewTag = 103;
         if (image && imagePosition == SLToastImagePositonTop) startY+=style.imageAndTitleSpace;
         CGFloat space = 0;
         if (image && imagePosition == SLToastImagePositonRight) space += imageSize.width+style.imageAndTitleSpace;
-        SLLabel *titleLabel = (SLLabel *)[UIView copyView:[SLUIConfig share].toastStyle.titleLabel];
+        SLLabel *titleLabel = (SLLabel *)[UIView copyView:[SLToastConfig share].toastStyle.titleLabel];
         titleLabel.tag = titleLabelTag;
         CGSize titleSize = [title sizeWithFont:titleLabel.font size:CGSizeMake(endX-startX-space, MAXFLOAT)];
         titleLabel.frame = CGRectMake(startX, startY, endX-startX, titleSize.height);
@@ -304,7 +303,7 @@ static int imageViewTag = 103;
     if (![NSString emptyString:message]) {
         CGFloat space = 0;
         if (image && imagePosition == SLToastImagePositonRight) space += imageSize.width+style.imageAndTitleSpace;
-        SLLabel *messageLabel = (SLLabel *)[UIView copyView:[SLUIConfig share].toastStyle.messageLabel];
+        SLLabel *messageLabel = (SLLabel *)[UIView copyView:[SLToastConfig share].toastStyle.messageLabel];
         messageLabel.tag = messageLabelTag;
         CGFloat titleSpace = [NSString emptyString:title] ? 0 : style.titleSpace;
         startY += titleSpace;

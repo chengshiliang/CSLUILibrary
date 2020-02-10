@@ -6,8 +6,8 @@
 //
 
 #import "SLPageableCollectionView.h"
-#import <CSLUtils/UIView+SLBase.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLRecycleCollectionView.h>
 #import <CSLUILibrary/SLStaticCollectionView.h>
 

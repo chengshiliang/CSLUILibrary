@@ -17,11 +17,11 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[SLUIConfig share] configLabel:LabelH1 font:[UIFont boldSystemFontOfSize:36.0] color:nil];
-    [[SLUIConfig share]configAlert:AlertView width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
-    [[SLUIConfig share]configAlert:AlertSheet width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
+    [[SLLableConfig share] configLabel:LabelH1 font:[UIFont boldSystemFontOfSize:36.0] color:nil];
+    [[SLAlertConfig share]configAlert:AlertView width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
+    [[SLAlertConfig share]configAlert:AlertSheet width:0 inset:UIEdgeInsetsMake(20, 16, 20, 16)];
     
-    SLToastStyle *style = [SLUIConfig share].toastStyle;
+    SLToastStyle *style = [SLToastConfig share].toastStyle;
     style.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
     style.titleLabel.textColor = SLUIHexColor(0xffffff);
     style.titleLabel.font = SLUIBoldFont(17.0);
@@ -39,7 +39,7 @@
     style.imageAndTitleSpace = 10;
     style.titleSpace = 8;
     style.activitySize = CGSizeMake(100, 100);
-    [[SLUIConfig share]configToastStyle:style];
+    [[SLToastConfig share]configToastStyle:style];
     [SLImageDownLoader share].maxQueueCount = 10;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

@@ -6,7 +6,7 @@
 //
 
 #import "SLTabbarButton.h"
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 
 @interface SLTabbarButton()
 {

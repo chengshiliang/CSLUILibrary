@@ -59,7 +59,7 @@
     }];
     
     [self.toastMessageAndImage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
-        SLToastStyle *style = [SLUIConfig share].toastStyle;
+        SLToastStyle *style = [SLToastConfig share].toastStyle;
         style.superContentView = (SLView *)self.view;
         style.imageSize = CGSizeMake(30, 30);
         style.titleLabel.textAlignment = NSTextAlignmentLeft;

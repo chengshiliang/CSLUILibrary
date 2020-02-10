@@ -1,2 +1,0 @@
-# CSLUtils
-base util function

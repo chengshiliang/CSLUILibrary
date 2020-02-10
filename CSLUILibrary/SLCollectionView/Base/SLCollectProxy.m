@@ -8,7 +8,7 @@
 #import "SLCollectProxy.h"
 #import <CSLUILibrary/SLCollectManager.h>
 #import <CSLUILibrary/SLCollectRowRenderProtocol.h>
-#import <CSLUtils/NSString+Util.h>
+#import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 
 @implementation SLCollectProxy

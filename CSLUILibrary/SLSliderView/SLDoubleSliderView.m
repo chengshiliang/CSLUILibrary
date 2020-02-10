@@ -6,8 +6,8 @@
 //
 
 #import "SLDoubleSliderView.h"
-#import <CSLUtils/UIView+SLBase.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 
 @interface SLDoubleSliderModel : NSObject

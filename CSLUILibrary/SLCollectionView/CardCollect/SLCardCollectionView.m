@@ -6,8 +6,8 @@
 //
 
 #import "SLCardCollectionView.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
@@ -47,18 +47,14 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
     self.layout.sectionInset = self.dataSource.insetForSection;
     self.layout.minimumLineSpacing = self.dataSource.minimumLineSpacing;
     self.layout.minimumInteritemSpacing = self.dataSource.minimumInteritemSpacing;
-    if (self.direction == Horizontal) {
-        self.layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    } else {
-        self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    }
+    self.layout.scrollDirection = self.direction;
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectScrollProxy new]];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
     self.collectionView.manager.scrollViewDidEndDeceleratingCallback = ^(SLCollectBaseView * _Nonnull collectView) {
         StrongSelf;
         NSInteger index = 0;
-        if (strongSelf.direction == Vertical) {
+        if (strongSelf.direction == UICollectionViewScrollDirectionVertical) {
             index = floor(collectView.contentOffset.y*1.0/(collectView.sl_height - strongSelf.layout.sectionInset.bottom-strongSelf.layout.sectionInset.top + strongSelf.layout.minimumLineSpacing));
         } else {
             index = floor(collectView.contentOffset.x*1.0/(collectView.sl_width - strongSelf.layout.sectionInset.right-strongSelf.layout.sectionInset.left + strongSelf.layout.minimumLineSpacing));

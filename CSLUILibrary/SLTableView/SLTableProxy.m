@@ -8,7 +8,7 @@
 #import "SLTableProxy.h"
 #import <CSLUILibrary/SLTableManager.h>
 #import <CSLUILibrary/SLTableRowRenderProtocol.h>
-#import <CSLUtils/NSString+Util.h>
+#import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLUILibrary/SLTableView.h>
 
 @implementation SLTableProxy

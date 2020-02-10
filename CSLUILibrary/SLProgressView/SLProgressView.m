@@ -6,8 +6,8 @@
 //
 
 #import "SLProgressView.h"
-#import <CSLUtils/UIView+SLBase.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 
 @interface SLProgressView()
 @property (nonatomic, strong) UIImageView *normalImageView;

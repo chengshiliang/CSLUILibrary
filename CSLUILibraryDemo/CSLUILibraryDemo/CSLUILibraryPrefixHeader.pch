@@ -9,7 +9,7 @@
 #ifndef CSLUILibraryPrefixHeader_pch
 #define CSLUILibraryPrefixHeader_pch
 
-#import <CSLUILibrary/SLUILibrary.h>
+#import <CSLUILibrary/CSLUILibrary.h>
 #import <CSLCommonLibrary/SLCommonLibrary.h>
 #import <CSLNetwork/SLNetwork.h>
 

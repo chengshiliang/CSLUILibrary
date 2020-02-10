@@ -7,8 +7,8 @@
 
 #import "SLNavPushTransitionAnimation.h"
 #import <CSLCommonLibrary/NSObject+NavAnimation.h>
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 
 @implementation SLNavPushTransitionAnimation
 - (instancetype)init {

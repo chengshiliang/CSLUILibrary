@@ -7,9 +7,9 @@
 
 #import "SLNoRuleCollectionView.h"
 #import <CSLUILibrary/SLNoRuleCollectionViewLayout.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCollectManager.h>
 
 @interface SLNoRuleCollectionView ()

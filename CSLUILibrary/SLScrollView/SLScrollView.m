@@ -6,8 +6,8 @@
 //
 
 #import "SLScrollView.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 
 @implementation SLScrollView
 

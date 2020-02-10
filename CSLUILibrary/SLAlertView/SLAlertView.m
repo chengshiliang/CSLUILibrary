@@ -6,11 +6,12 @@
 //
 
 #import "SLAlertView.h"
-#import <CSLUtils/NSString+Util.h>
-#import <CSLUtils/UIView+SLBase.h>
-#import <CSLUILibrary/SLUIConfig.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/NSString+Util.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
+#import <CSLUILibrary/SLAlertConfig.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLImageView.h>
+#import <CSLUILibrary/SLLabel.h>
 
 @implementation SLAlertAction
 
@@ -97,7 +98,7 @@
     [self.actions removeAllObjects];
     [self.lineViews removeAllObjects];
     [self.cancelActions removeAllObjects];
-    NSDictionary *dic = [[SLUIConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
+    NSDictionary *dic = [[SLAlertConfig share].alertConfig valueForKey:[NSString stringWithFormat:@"%ld", (long)type]];
     self.width = [dic[SLAlertWidth] floatValue];
     self.width = self.width > 1 ? self.width : (type == AlertView ? kScreenWidth * 0.85 : kScreenWidth * 0.95);
     UIEdgeInsets contentInsets = [NSString emptyString:dic[SLAlertContentInset]] ? UIEdgeInsetsMake(20, 16, 20, 16) : UIEdgeInsetsFromString(dic[SLAlertContentInset]);

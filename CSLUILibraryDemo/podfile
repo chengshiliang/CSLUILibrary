@@ -1,9 +1,10 @@
 source 'https://github.com/Cocoapods/Specs.git'
 platform :ios, '8.0'
 target 'CSLUILibraryDemo' do
-pod 'CSLUtils', '0.0.1'
+pod 'CSLCommonLibrary', '0.3.8'
 pod 'JSONModel'
 pod 'CSLNetwork', '~> 0.0.5'
 pod 'CSLUILibrary', :path => '../'
 end
 inhibit_all_warnings!
+    

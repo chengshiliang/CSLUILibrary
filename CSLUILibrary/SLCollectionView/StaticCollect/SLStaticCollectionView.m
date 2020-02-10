@@ -7,8 +7,8 @@
 
 #import "SLStaticCollectionView.h"
 #import <CSLUILibrary/SLStaticCollectViewLayout.h>
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCollectManager.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
 

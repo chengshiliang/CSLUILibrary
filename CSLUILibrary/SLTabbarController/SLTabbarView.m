@@ -7,9 +7,9 @@
 
 #import "SLTabbarView.h"
 #import <CSLUILibrary/SLTabbarButton.h>
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLCommonLibrary/UIControl+Events.h>
-#import <CSLUtils/UIView+SLBase.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 
 static int buttonTag = 100;
 

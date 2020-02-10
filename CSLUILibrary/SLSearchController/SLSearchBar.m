@@ -6,7 +6,7 @@
 //
 
 #import "SLSearchBar.h"
-#import <CSLUtils/SLUIConsts.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLUILibrary/SLImageView.h>
 
 @implementation SLSearchBar

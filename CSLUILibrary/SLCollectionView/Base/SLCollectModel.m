@@ -6,10 +6,10 @@
 //
 
 #import "SLCollectModel.h"
-#import <CSLUtils/SLUIConsts.h>
-#import <CSLUtils/NSString+Util.h>
+#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
-#import <CSLUtils/NSString+Util.h>
+#import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLUILibrary/SLCollectManager.h>
 
 @implementation SLCollectRowModel
