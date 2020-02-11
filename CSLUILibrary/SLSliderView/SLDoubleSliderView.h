@@ -6,7 +6,6 @@
 //
 
 #import "SLView.h"
-#import <CSLUILibrary/SLProgressView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
