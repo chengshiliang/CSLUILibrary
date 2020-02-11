@@ -18,7 +18,11 @@ PODS:
     - SDWebImage
   - CSLNetwork (0.0.6):
     - AFNetworking
-  - CSLUILibrary (0.1.8):
+  - CSLUILibrary (0.1.9):
+    - CSLCommonLibrary
+    - CSLUILibrary/SLAlertView (= 0.1.9)
+    - JSONModel
+  - CSLUILibrary/SLAlertView (0.1.9):
     - CSLCommonLibrary
     - JSONModel
   - JSONModel (1.8.0)
@@ -48,7 +52,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CSLCommonLibrary: 6132c9188a699b357753bd6a3035c91f97ef27e3
   CSLNetwork: f08536a250e9384da1c93459fcbf9acc9926793b
-  CSLUILibrary: 21d3d1ae08336b85792ec75c50666659d59766e3
+  CSLUILibrary: a8b3dee0a235c6923496e56c37622d703d19ba2d
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
 

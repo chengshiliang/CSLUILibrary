@@ -171,7 +171,6 @@
 		64247E6F5FC46D91A5F9D4C8896D4F4E /* NSData+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = AB17365EE4902BB238D603F47EEF4D93 /* NSData+Util.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		643DEF3EBB82A997167856BB8D189CE1 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EE673EEACC3C498950193A6055D268 /* JSONModelClassProperty.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		646D4820E1B55C3AE1B24BE4ACEDD35F /* SLNoticeBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A239191DF744E4280D47B68C31DAF71 /* SLNoticeBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		665115085F11B3693AD3D8B0C9195CFF /* SLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EFC98C6CC8E23ADA5DEA416C8B7C79 /* SLImageView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		66A11C38D264CC491F9B1EE71BAF886A /* UITableViewHeaderFooterView+DelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF78E6EF72C216A2D3C3F8CD723FA6E /* UITableViewHeaderFooterView+DelegateProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		67429AF8FF6E63786FD1B6C04A9EBF60 /* SLNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = AA548A4E54C903236D553759387CACC3 /* SLNetwork.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		675119BA7FDAD4AA045174CDF6D3BABD /* SLCardCollectViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EB8A48308394655AF69C8EBDABAFD /* SLCardCollectViewFlowLayout.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -201,6 +200,7 @@
 		73641884CF9CC5D2CF12C66E8AA85B55 /* UIView+WebCacheOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 64890DC4B782EB9CF0EE18747AEA15E6 /* UIView+WebCacheOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		748B74A1D916230B2BA969CB1CF8D6B7 /* UITextField+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DC924662443365CCA307592BB462431 /* UITextField+Util.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		74AE253A300C8AED52E6522AA3225C85 /* JSONValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = FDAE6DC88932123A59FF72945495537C /* JSONValueTransformer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		74D8D3139332D19267AA6B5496E1F459 /* SLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64EFC98C6CC8E23ADA5DEA416C8B7C79 /* SLImageView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		76B5671531C58F8018E1820792BBB360 /* SDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C4897EADA31BF98EA18BE5A40F859D /* SDWeakProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7869CB34CCF0BA5B97CED16AD85816D5 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDDF4129F218D15A291F0DB7B449FCB /* UIView+WebCacheOperation.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7915623F8DB65E234012750D69777EBA /* NSData+ImageContentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 97B8EF38C9C23F3A2FE9EB30BFA74C37 /* NSData+ImageContentType.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -2380,7 +2380,7 @@
 				A2E57DB9A0A237C7C37EA3F8A33B3119 /* SLHorizontalCollectionViewLayout.m in Sources */,
 				C66031C7933B8080DFEE1FE0F9E3A4CE /* SLImage.m in Sources */,
 				01A212383064C85B28CC6A4D91022636 /* SLImageDownLoader.m in Sources */,
-				665115085F11B3693AD3D8B0C9195CFF /* SLImageView.m in Sources */,
+				74D8D3139332D19267AA6B5496E1F459 /* SLImageView.m in Sources */,
 				2C7B7FE4EDE3C9BF5E6FD0D800B1438D /* SLLabel.m in Sources */,
 				30B65BAD0ACFD304C922F04AAB162E47 /* SLLableConfig.m in Sources */,
 				A803E060B4B2036C89B054E9DB7F08BB /* SLModel.m in Sources */,
