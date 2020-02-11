@@ -1,6 +1,6 @@
 {
   "name": "CSLUILibrary",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "summary": "UI configurable interface Library",
   "homepage": "https://github.com/chengshiliang/CSLUILibrary",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/chengshiliang/CSLUILibrary.git",
-    "tag": "0.1.9"
+    "tag": "0.1.10"
   },
   "platforms": {
     "ios": "7.0"
@@ -34,8 +34,40 @@
   },
   "subspecs": [
     {
-      "name": "SLAlertView",
+      "name": "SLImageView",
       "source_files": "CSLUILibrary/SLImageView/*.{h,m}"
+    },
+    {
+      "name": "SLLabel",
+      "source_files": "CSLUILibrary/SLLabel/*.{h,m}"
+    },
+    {
+      "name": "SLNavigationController",
+      "source_files": "CSLUILibrary/SLNavigationController/*.{h,m}"
+    },
+    {
+      "name": "SLTabbarController",
+      "source_files": "CSLUILibrary/SLTabbarController/*.{h,m}",
+      "dependencies": {
+        "CSLUILibrary/SLNavigationController": [
+
+        ]
+      }
+    },
+    {
+      "name": "SLAlertView",
+      "source_files": "CSLUILibrary/SLAlertView/*.{h,m}",
+      "dependencies": {
+        "CSLUILibrary/SLImageView": [
+
+        ],
+        "CSLUILibrary/SLLabel": [
+
+        ],
+        "CSLUILibrary/SLTabbarController": [
+
+        ]
+      }
     }
   ]
 }
