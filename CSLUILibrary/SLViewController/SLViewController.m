@@ -9,12 +9,47 @@
 #import <CSLCommonLibrary/UIGestureRecognizer+Action.h>
 #import <CSLCommonLibrary/NSObject+NavAnimation.h>
 #import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLUILibrary/SLContext.h>
 
 @interface SLViewController ()
-
+@property (nonatomic, strong) NSMutableDictionary   *eventMap;
+@property (nonatomic, assign) BOOL                  mvpEnabled;
 @end
 
 @implementation SLViewController
+
+- (void)configMVP:(NSString*)name {
+    self.mvpEnabled = true;
+    
+    self.rootContext = [[SLContext alloc] init]; //strong
+    self.context = self.rootContext; //weak
+    
+    Class presenterClass = NSClassFromString([NSString stringWithFormat:@"SL%@Presenter", name]);
+    if (presenterClass != NULL) {
+        self.context.presenter = [presenterClass new];
+        self.context.presenter.context = self.context;
+    }
+    
+    Class interactorClass = NSClassFromString([NSString stringWithFormat:@"SL%@Interactor", name]);
+    if (interactorClass != NULL) {
+        self.context.interactor = [interactorClass new];
+        self.context.interactor.context = self.context;
+    }
+    
+    Class viewClass = NSClassFromString([NSString stringWithFormat:@"SL%@View", name]);
+    if (viewClass != NULL) {
+        self.context.view = [viewClass new];
+        self.context.view.context = self.context;
+    }
+    
+    self.context.presenter.view = self.context.view;
+    self.context.presenter.baseController = self;
+    
+    self.context.interactor.baseController = self;
+    
+    self.context.view.presenter = self.context.presenter;
+    self.context.view.interactor = self.context.interactor;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +57,11 @@
     self.extendedLayoutIncludesOpaqueBars = NO;// 设置self.view不占据nav块内容
     UIImage *image = [UIImage imageNamed:@"SLIconBack"];
     [self sl_setBackImage:image];
+    
+    if (self.mvpEnabled) {
+        self.context.view.frame = self.view.bounds;
+        self.view = self.context.view;
+    }
 }
 
 #pragma mark automaticallyAdjustsScrollViewInsets 为yes是，只会保证滚动视图的内容自动偏移，不会被UINavigationBar与UITabBar遮挡。对非滚动视图不会有任何调整

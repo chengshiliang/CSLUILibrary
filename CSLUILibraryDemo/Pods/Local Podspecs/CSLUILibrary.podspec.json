@@ -1,6 +1,6 @@
 {
   "name": "CSLUILibrary",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "summary": "UI configurable interface Library",
   "homepage": "https://github.com/chengshiliang/CSLUILibrary",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/chengshiliang/CSLUILibrary.git",
-    "tag": "0.2.0"
+    "tag": "0.2.1"
   },
   "platforms": {
     "ios": "7.0"
@@ -29,6 +29,10 @@
     ]
   },
   "subspecs": [
+    {
+      "name": "SLMVP",
+      "source_files": "CSLUILibrary/SLMVP/*.{h,m}"
+    },
     {
       "name": "SLModel",
       "source_files": "CSLUILibrary/SLModel/*.{h,m}"
@@ -160,7 +164,12 @@
     {
       "name": "SLViewController",
       "source_files": "CSLUILibrary/SLViewController/*.{h,m}",
-      "resources": "CSLUILibrary/Resources/*.png"
+      "resources": "CSLUILibrary/Resources/*.png",
+      "dependencies": {
+        "CSLUILibrary/SLMVP": [
+
+        ]
+      }
     },
     {
       "name": "SLSearchController",

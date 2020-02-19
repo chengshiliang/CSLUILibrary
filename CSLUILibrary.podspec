@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'CSLUILibrary'
-  s.version      = '0.2.0'
+  s.version      = '0.2.1'
   s.summary      = 'UI configurable interface Library'
   s.homepage     = 'https://github.com/chengshiliang/CSLUILibrary'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -14,6 +14,9 @@ Pod::Spec.new do |s|
   s.frameworks   = 'Foundation', 'UIKit'
   s.dependency 'CSLCommonLibrary'
   # s.dependency 'JSONModel'
+  s.subspec 'SLMVP' do |mvp|
+    mvp.source_files = 'CSLUILibrary/SLMVP/*.{h,m}'
+  end
   s.subspec 'SLModel' do |model|
     model.source_files = 'CSLUILibrary/SLModel/*.{h,m}'
   end
@@ -78,6 +81,7 @@ Pod::Spec.new do |s|
   s.subspec 'SLViewController' do |viewController|
     viewController.source_files = 'CSLUILibrary/SLViewController/*.{h,m}'
     viewController.resources    = 'CSLUILibrary/Resources/*.png'
+    viewController.dependency 'CSLUILibrary/SLMVP'
   end
   s.subspec 'SLSearchController' do |searchController|
     searchController.source_files = 'CSLUILibrary/SLSearchController/*.{h,m}'
