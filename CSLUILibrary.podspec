@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'CSLUILibrary'
-  s.version      = '0.2.2'
+  s.version      = '0.2.3'
   s.summary      = 'UI configurable interface Library'
   s.homepage     = 'https://github.com/chengshiliang/CSLUILibrary'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -19,7 +19,6 @@ Pod::Spec.new do |s|
   end
   s.subspec 'SLModel' do |model|
     model.source_files = 'CSLUILibrary/SLModel/*.{h,m}'
-    model.dependency 'SqliteLibrary'
   end
   s.subspec 'SLImageView' do |imageView|
     imageView.source_files = 'CSLUILibrary/SLImageView/*.{h,m}'

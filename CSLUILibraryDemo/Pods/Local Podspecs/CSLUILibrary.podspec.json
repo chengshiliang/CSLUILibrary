@@ -1,6 +1,6 @@
 {
   "name": "CSLUILibrary",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "summary": "UI configurable interface Library",
   "homepage": "https://github.com/chengshiliang/CSLUILibrary",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/chengshiliang/CSLUILibrary.git",
-    "tag": "0.2.2"
+    "tag": "0.2.3"
   },
   "platforms": {
     "ios": "7.0"
@@ -35,12 +35,7 @@
     },
     {
       "name": "SLModel",
-      "source_files": "CSLUILibrary/SLModel/*.{h,m}",
-      "dependencies": {
-        "SqliteLibrary": [
-
-        ]
-      }
+      "source_files": "CSLUILibrary/SLModel/*.{h,m}"
     },
     {
       "name": "SLImageView",
