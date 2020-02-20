@@ -13,7 +13,7 @@
 
 @implementation SLToastManager
 - (NSTimeInterval)duration {
-    if (_duration < 0) {
+    if (_duration <= 0) {
         return 2.0f;
     }
     return _duration;
@@ -23,7 +23,7 @@
 @implementation SLToastStyle
 - (UIColor *)backgroundColor {
     if (!_backgroundColor) {
-        _backgroundColor = [UIColor colorWithWhite:1 alpha:1.0];
+        _backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
     }
     return _backgroundColor;
 }

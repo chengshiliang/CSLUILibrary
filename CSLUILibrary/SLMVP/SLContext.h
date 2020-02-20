@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SLPresenter : NSObject
 @property (nonatomic, weak) UIViewController*           baseController;
 @property (nonatomic, weak) SLBaseView*                    view;
-@property (nonatomic, weak) id                          adapter;
+@property (nonatomic, strong) id                          adapter;
 @end
 
 @interface SLInteractor : NSObject
