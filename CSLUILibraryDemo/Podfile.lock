@@ -18,145 +18,145 @@ PODS:
     - SDWebImage
   - CSLNetwork (0.0.6):
     - AFNetworking
-  - CSLUILibrary (0.2.5):
+  - CSLUILibrary (0.2.6):
     - CSLCommonLibrary
-    - CSLUILibrary/SLAlertView (= 0.2.5)
-    - CSLUILibrary/SLButton (= 0.2.5)
-    - CSLUILibrary/SLCardCollectionView (= 0.2.5)
-    - CSLUILibrary/SLCollectionViewBase (= 0.2.5)
-    - CSLUILibrary/SLDropDownView (= 0.2.5)
-    - CSLUILibrary/SLHorizontalCollectionView (= 0.2.5)
-    - CSLUILibrary/SLImage (= 0.2.5)
-    - CSLUILibrary/SLImageDownloader (= 0.2.5)
-    - CSLUILibrary/SLImageView (= 0.2.5)
-    - CSLUILibrary/SLLabel (= 0.2.5)
-    - CSLUILibrary/SLModel (= 0.2.5)
-    - CSLUILibrary/SLMVP (= 0.2.5)
-    - CSLUILibrary/SLNavigationController (= 0.2.5)
-    - CSLUILibrary/SLNoRuleCollectionView (= 0.2.5)
-    - CSLUILibrary/SLNoticeBar (= 0.2.5)
-    - CSLUILibrary/SLPageableCollectionView (= 0.2.5)
-    - CSLUILibrary/SLPopoverView (= 0.2.5)
-    - CSLUILibrary/SLProgressView (= 0.2.5)
-    - CSLUILibrary/SLPupCollectionView (= 0.2.5)
-    - CSLUILibrary/SLRecycleCollectionView (= 0.2.5)
-    - CSLUILibrary/SLScrollView (= 0.2.5)
-    - CSLUILibrary/SLSearchController (= 0.2.5)
-    - CSLUILibrary/SLSliderView (= 0.2.5)
-    - CSLUILibrary/SLStaticCollectionView (= 0.2.5)
-    - CSLUILibrary/SLTabbarController (= 0.2.5)
-    - CSLUILibrary/SLTabbarView (= 0.2.5)
-    - CSLUILibrary/SLTableView (= 0.2.5)
-    - CSLUILibrary/SLToast (= 0.2.5)
-    - CSLUILibrary/SLView (= 0.2.5)
-    - CSLUILibrary/SLViewController (= 0.2.5)
-  - CSLUILibrary/SLAlertView (0.2.5):
+    - CSLUILibrary/SLAlertView (= 0.2.6)
+    - CSLUILibrary/SLButton (= 0.2.6)
+    - CSLUILibrary/SLCardCollectionView (= 0.2.6)
+    - CSLUILibrary/SLCollectionViewBase (= 0.2.6)
+    - CSLUILibrary/SLDropDownView (= 0.2.6)
+    - CSLUILibrary/SLHorizontalCollectionView (= 0.2.6)
+    - CSLUILibrary/SLImage (= 0.2.6)
+    - CSLUILibrary/SLImageDownloader (= 0.2.6)
+    - CSLUILibrary/SLImageView (= 0.2.6)
+    - CSLUILibrary/SLLabel (= 0.2.6)
+    - CSLUILibrary/SLModel (= 0.2.6)
+    - CSLUILibrary/SLMVP (= 0.2.6)
+    - CSLUILibrary/SLNavigationController (= 0.2.6)
+    - CSLUILibrary/SLNoRuleCollectionView (= 0.2.6)
+    - CSLUILibrary/SLNoticeBar (= 0.2.6)
+    - CSLUILibrary/SLPageableCollectionView (= 0.2.6)
+    - CSLUILibrary/SLPopoverView (= 0.2.6)
+    - CSLUILibrary/SLProgressView (= 0.2.6)
+    - CSLUILibrary/SLPupCollectionView (= 0.2.6)
+    - CSLUILibrary/SLRecycleCollectionView (= 0.2.6)
+    - CSLUILibrary/SLScrollView (= 0.2.6)
+    - CSLUILibrary/SLSearchController (= 0.2.6)
+    - CSLUILibrary/SLSliderView (= 0.2.6)
+    - CSLUILibrary/SLStaticCollectionView (= 0.2.6)
+    - CSLUILibrary/SLTabbarController (= 0.2.6)
+    - CSLUILibrary/SLTabbarView (= 0.2.6)
+    - CSLUILibrary/SLTableView (= 0.2.6)
+    - CSLUILibrary/SLToast (= 0.2.6)
+    - CSLUILibrary/SLView (= 0.2.6)
+    - CSLUILibrary/SLViewController (= 0.2.6)
+  - CSLUILibrary/SLAlertView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
     - CSLUILibrary/SLLabel
     - CSLUILibrary/SLTabbarView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLButton (0.2.5):
+  - CSLUILibrary/SLButton (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLCardCollectionView (0.2.5):
+  - CSLUILibrary/SLCardCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLCollectionViewBase (0.2.5):
+  - CSLUILibrary/SLCollectionViewBase (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLModel
-  - CSLUILibrary/SLDropDownView (0.2.5):
+  - CSLUILibrary/SLDropDownView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLTableView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLHorizontalCollectionView (0.2.5):
+  - CSLUILibrary/SLHorizontalCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLImage (0.2.5):
+  - CSLUILibrary/SLImage (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLImageDownloader (0.2.5):
+  - CSLUILibrary/SLImageDownloader (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
     - SDWebImage
-  - CSLUILibrary/SLImageView (0.2.5):
+  - CSLUILibrary/SLImageView (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLLabel (0.2.5):
+  - CSLUILibrary/SLLabel (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
-  - CSLUILibrary/SLModel (0.2.5):
+  - CSLUILibrary/SLModel (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLMVP (0.2.5):
+  - CSLUILibrary/SLMVP (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLNavigationController (0.2.5):
+  - CSLUILibrary/SLNavigationController (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLNoRuleCollectionView (0.2.5):
+  - CSLUILibrary/SLNoRuleCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLNoticeBar (0.2.5):
+  - CSLUILibrary/SLNoticeBar (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLPageableCollectionView (0.2.5):
+  - CSLUILibrary/SLPageableCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLRecycleCollectionView
     - CSLUILibrary/SLStaticCollectionView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLPopoverView (0.2.5):
+  - CSLUILibrary/SLPopoverView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLTabbarView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLProgressView (0.2.5):
+  - CSLUILibrary/SLProgressView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLPupCollectionView (0.2.5):
+  - CSLUILibrary/SLPupCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLRecycleCollectionView (0.2.5):
+  - CSLUILibrary/SLRecycleCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLScrollView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLScrollView (0.2.5):
+  - CSLUILibrary/SLScrollView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLSearchController (0.2.5):
+  - CSLUILibrary/SLSearchController (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLButton
     - CSLUILibrary/SLImageView
     - CSLUILibrary/SLView
     - CSLUILibrary/SLViewController
-  - CSLUILibrary/SLSliderView (0.2.5):
+  - CSLUILibrary/SLSliderView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLProgressView
-  - CSLUILibrary/SLStaticCollectionView (0.2.5):
+  - CSLUILibrary/SLStaticCollectionView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLCollectionViewBase
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLTabbarController (0.2.5):
+  - CSLUILibrary/SLTabbarController (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLNavigationController
     - CSLUILibrary/SLTabbarView
-  - CSLUILibrary/SLTabbarView (0.2.5):
+  - CSLUILibrary/SLTabbarView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLButton
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLTableView (0.2.5):
+  - CSLUILibrary/SLTableView (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLModel
-  - CSLUILibrary/SLToast (0.2.5):
+  - CSLUILibrary/SLToast (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLImageView
     - CSLUILibrary/SLLabel
     - CSLUILibrary/SLView
-  - CSLUILibrary/SLView (0.2.5):
+  - CSLUILibrary/SLView (0.2.6):
     - CSLCommonLibrary
-  - CSLUILibrary/SLViewController (0.2.5):
+  - CSLUILibrary/SLViewController (0.2.6):
     - CSLCommonLibrary
     - CSLUILibrary/SLMVP
   - SDWebImage (5.5.2):
@@ -183,7 +183,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   CSLCommonLibrary: 6132c9188a699b357753bd6a3035c91f97ef27e3
   CSLNetwork: f08536a250e9384da1c93459fcbf9acc9926793b
-  CSLUILibrary: 4420321a812372d27dd2f2a217fd8b06ef1d5979
+  CSLUILibrary: 37c3f3cd11364196df47410795426167bbd31cff
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
 
 PODFILE CHECKSUM: ad7bdbde77c52ed7534280a7139fc451aa364f9a

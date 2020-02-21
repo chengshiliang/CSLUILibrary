@@ -43,24 +43,17 @@
 }
 
 - (void)deleteRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths{
-    NSMutableArray *indexPathArrayM = [NSMutableArray array];
-    for (NSIndexPath *indexPath in indexPaths) {
-        if (indexPath.section >= self.sections.count) continue;
-        id<SLTableSectionProtocol> section = self.sections[indexPath.section];
-        if (indexPath.row < section.rows.count) {
-            [section.rows removeObjectAtIndex:indexPath.row];
-            [indexPathArrayM addObject:indexPath];
-        }
-    }
+    NSAssert(self.tableView != nil, @"tableView is nil");
     [SLUtil runInMain:^{
         [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:indexPathArrayM withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
         [self.tableView endUpdates];
     }];
     
 }
 
 - (void)insertRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths {
+    NSAssert(self.tableView != nil, @"tableView is nil");
     [SLUtil runInMain:^{
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
