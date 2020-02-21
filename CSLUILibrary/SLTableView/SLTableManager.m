@@ -61,18 +61,9 @@
 }
 
 - (void)insertRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths {
-    NSMutableArray *indexPathArrayM = [NSMutableArray array];
-    for (NSIndexPath *indexPath in indexPaths) {
-        if (indexPath.section >= self.sections.count) continue;
-        id<SLTableSectionProtocol> section = self.sections[indexPath.section];
-        id<SLTableRowProtocol> row = section.rows[indexPath.row];
-        [section.rows addObject:row];
-        [indexPathArrayM addObject:indexPath];
-    }
-    
     [SLUtil runInMain:^{
         [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:indexPathArrayM withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
         [self.tableView endUpdates];
     }];
 }
