@@ -10,11 +10,9 @@
 #import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCollectManager.h>
-#import <CSLUILibrary/SLCollectBaseView.h>
 
 @interface SLStaticCollectionView()
 @property(strong,nonatomic)SLStaticCollectViewLayout *layout;
-@property(nonatomic,strong)SLCollectBaseView *collectionView;
 @end
 @implementation SLStaticCollectionView
 - (void)awakeFromNib {
@@ -49,7 +47,7 @@
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:nil];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
-    [self.collectionView reloadData];
+    [self.collectionView.manager reloadData];
 }
 
 @end

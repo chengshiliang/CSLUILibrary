@@ -10,7 +10,6 @@
 #import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLCommonLibrary/SLTimer.h>
 #import <CSLUILibrary/SLPageControl.h>
-#import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
 #import <CSLUILibrary/SLCollectProxy.h>
 
@@ -19,7 +18,6 @@
     BOOL needRefresh;
 }
 @property (strong, nonatomic) SLRecycleCollectionLayout *layout;
-@property (strong, nonatomic) SLCollectBaseView *collectionView;
 @property (nonatomic, strong) SLTimer * timer;
 @property (nonatomic, assign) NSInteger rightCount;
 @property (nonatomic, assign) NSInteger leftCount;

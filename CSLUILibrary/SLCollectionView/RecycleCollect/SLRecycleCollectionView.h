@@ -8,10 +8,12 @@
 #import "SLView.h"
 #import <CSLUILibrary/SLCollectSectionProtocol.h>
 #import <CSLUILibrary/SLRecycleCollectionLayout.h>
+#import <CSLUILibrary/SLCollectBaseView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLRecycleCollectionView : SLView
+@property (strong, nonatomic) SLCollectBaseView *collectionView;
 @property (nonatomic, assign, readonly) NSInteger currentPage;
 @property (strong,nonatomic)id<SLCollectSectionProtocol>dataSource;
 @property (nonatomic,copy) void(^scrollToIndexBlock)(id<SLCollectRowProtocol>model, NSInteger index);

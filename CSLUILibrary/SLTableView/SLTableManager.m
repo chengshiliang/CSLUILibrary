@@ -8,6 +8,7 @@
 #import "SLTableManager.h"
 #import <CSLUILibrary/SLTableProxy.h>
 #import <CSLUILibrary/SLTableView.h>
+#import <CSLCommonLibrary/SLUtil.h>
 
 @implementation SLTableManager
 - (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{
@@ -41,12 +42,39 @@
     return nil;
 }
 
-- (void)deleteRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSAssert(indexPath.section < self.sections.count, @"数组越界");
-    id<SLTableSectionProtocol> section = self.sections[indexPath.section];
-    if (indexPath.row < section.rows.count) {
-        [section.rows removeObjectAtIndex:indexPath.row];
+- (void)deleteRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths{
+    NSMutableArray *indexPathArrayM = [NSMutableArray array];
+    for (NSIndexPath *indexPath in indexPaths) {
+        if (indexPath.section >= self.sections.count) continue;
+        id<SLTableSectionProtocol> section = self.sections[indexPath.section];
+        if (indexPath.row < section.rows.count) {
+            [section.rows removeObjectAtIndex:indexPath.row];
+            [indexPathArrayM addObject:indexPath];
+        }
     }
+    [SLUtil runInMain:^{
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:indexPathArrayM withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }];
+    
+}
+
+- (void)insertRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths {
+    NSMutableArray *indexPathArrayM = [NSMutableArray array];
+    for (NSIndexPath *indexPath in indexPaths) {
+        if (indexPath.section >= self.sections.count) continue;
+        id<SLTableSectionProtocol> section = self.sections[indexPath.section];
+        id<SLTableRowProtocol> row = section.rows[indexPath.row];
+        [section.rows addObject:row];
+        [indexPathArrayM addObject:indexPath];
+    }
+    
+    [SLUtil runInMain:^{
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:indexPathArrayM withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }];
 }
 
 - (void)exchangeRowFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -61,18 +89,27 @@
         [fromSection.rows insertObject:toRow atIndex:fromIndexPath.row];
         [toSection.rows removeObjectAtIndex:toIndexPath.row];
         [toSection.rows insertObject:fromRow atIndex:toIndexPath.row];
+        [SLUtil runInMain:^{
+            [self.tableView beginUpdates];
+            [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
+            [self.tableView endUpdates];
+        }];
     }
 }
 
 - (void)reloadData{
     NSAssert(self.tableView != nil, @"tableView is nil");
-    if ([NSThread isMainThread]) {
+    [SLUtil runInMain:^{
         [self.tableView reloadData];
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }
+    }];
 }
 
+- (void)reloadDataWithIndexpaths:(NSArray<NSIndexPath *> *)indexpathSet {
+    NSAssert(self.tableView != nil, @"tableView is nil");
+    [SLUtil runInMain:^{
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:indexpathSet withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }];
+}
 @end

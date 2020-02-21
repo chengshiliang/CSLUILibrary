@@ -40,7 +40,7 @@ static int buttonTag = 100;
             self.currentSelectIndex = buttonTag;
         }
         WeakSelf;
-        [button onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl *control) {
+        [button onTouch:self event:UIControlEventTouchUpInside change:^(UIControl *control) {
             StrongSelf;
             if ([control isKindOfClass:[SLTabbarButton class]]) {
                 SLTabbarButton *currentBt = (SLTabbarButton *)control;

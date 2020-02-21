@@ -118,7 +118,7 @@
     [self.cancelButton setTitleColor:self.cancelButtonTextColor forState:UIControlStateNormal];
     self.cancelButton.frame = CGRectMake(kScreenWidth-self.rightMargin-cancelButtonW, 7.f, cancelButtonW, 30.f);
     WeakSelf;
-    [self.cancelButton onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * control) {
+    [self.cancelButton onTouch:self event:UIControlEventTouchUpInside change:^(UIControl * control) {
         StrongSelf;
         if ([control isKindOfClass:[SLButton class]]) {
             [strongSelf dismiss];

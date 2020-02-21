@@ -8,13 +8,11 @@
 #import "SLHorizontalCollectionView.h"
 #import <CSLUILibrary/SLHorizontalCollectionViewLayout.h>
 #import <CSLCommonLibrary/SLUIConsts.h>
-#import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCollectManager.h>
 
 @interface SLHorizontalCollectionView ()
 @property(strong,nonatomic)SLHorizontalCollectionViewLayout *layout;
-@property(strong,nonatomic)SLCollectBaseView *collectionView;
 @end
 @implementation SLHorizontalCollectionView
 - (void)awakeFromNib {
@@ -47,7 +45,7 @@
     self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:nil];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
-    [self.collectionView reloadData];
+    [self.collectionView.manager reloadData];
 }
 
 @end

@@ -25,11 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id<SLTableRowProtocol>)rowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)deleteRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)deleteRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths;
+
+- (void)insertRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths;
 
 - (void)exchangeRowFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
 
 - (void)reloadData;
+- (void)reloadDataWithIndexpaths:(NSArray<NSIndexPath *>*)indexpathSet;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,7 +9,6 @@
 #import <CSLCommonLibrary/SLUIConsts.h>
 #import <CSLCommonLibrary/UIView+SLBase.h>
 #import <CSLUILibrary/SLCardCollectViewFlowLayout.h>
-#import <CSLUILibrary/SLCollectBaseView.h>
 #import <CSLUILibrary/SLCollectManager.h>
 #import <CSLUILibrary/SLCollectProxy.h>
 
@@ -17,7 +16,6 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
 
 @interface SLCardCollectionView()<UIScrollViewDelegate>
 @property(strong,nonatomic)SLCardCollectViewFlowLayout *layout;
-@property(strong,nonatomic) SLCollectBaseView *collectionView;
 @end
 @implementation SLCardCollectionView
 - (void)awakeFromNib {
@@ -61,7 +59,7 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
         }
         if (strongSelf.scrollEndBlock) strongSelf.scrollEndBlock(MAX(index, 0));
     };
-    [self.collectionView reloadData];
+    [self.collectionView.manager reloadData];
 }
 
 @end

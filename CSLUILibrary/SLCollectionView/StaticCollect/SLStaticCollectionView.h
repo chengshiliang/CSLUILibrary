@@ -7,10 +7,11 @@
 
 #import "SLView.h"
 #import <CSLUILibrary/SLCollectSectionProtocol.h>
+#import <CSLUILibrary/SLCollectBaseView.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class SLCollectBaseView;
 @interface SLStaticCollectionView : SLView
+@property(nonatomic,strong)SLCollectBaseView *collectionView;
 @property(assign,nonatomic) int columns;//列数 默认3列
 @property (strong,nonatomic) id<SLCollectSectionProtocol> dataSource;
 @property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
