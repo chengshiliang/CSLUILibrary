@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'CSLUILibrary'
-  s.version      = '0.2.6'
+  s.version      = '0.2.7'
   s.summary      = 'UI configurable interface Library'
   s.homepage     = 'https://github.com/chengshiliang/CSLUILibrary'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -155,5 +155,9 @@ Pod::Spec.new do |s|
     dropDownView.dependency 'CSLUILibrary/SLCollectionViewBase'
     dropDownView.dependency 'CSLUILibrary/SLTableView'
     dropDownView.dependency 'CSLUILibrary/SLView'
+  end
+  s.subspec 'SLSliderMenu' do |sliderMenu|
+    sliderMenu.source_files = 'CSLUILibrary/SLSliderMenu/*.{h,m}'
+    sliderMenu.dependency 'CSLUILibrary/SLViewController'
   end
 end

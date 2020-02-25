@@ -8,6 +8,8 @@
 #ifndef CSLUILibrary_h
 #define CSLUILibrary_h
 
+#import <CSLUILibrary/UIViewController+SLSliderMenuVC.h>
+
 #import <CSLUILibrary/SLLableConfig.h>
 #import <CSLUILibrary/SLAlertConfig.h>
 #import <CSLUILibrary/SLToastConfig.h>
@@ -26,6 +28,7 @@
 #import <CSLUILibrary/SLSearchController.h>
 #import <CSLUILibrary/SLNavigationController.h>
 #import <CSLUILibrary/SLViewController.h>
+#import <CSLUILibrary/SLSliderMenuViewController.h>
 
 #import <CSLUILibrary/SLTabbarView.h>
 #import <CSLUILibrary/SLTabbarButton.h>
