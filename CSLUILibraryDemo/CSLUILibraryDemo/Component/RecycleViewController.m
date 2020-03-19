@@ -35,18 +35,14 @@
         model.color = _colorAry[i%_colorAry.count];
         [arrM addObject:model];
     }
-    secModel.rows = arrM.copy;
+    secModel.rows = arrM;
     self.scollView1.loop = YES;
     self.scollView1.dataSource = secModel;
     self.scollView2.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.scollView1.interval = 1.0;
     self.scollView1.scrollToIndexBlock = ^(id<SLCollectRowProtocol>  _Nonnull model, NSInteger index) {
-        NSLog(@"index %d", index);
     };
-    WeakSelf;
     self.scollView1.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        StrongSelf;
-        NSLog(@"click %d", [strongSelf.scollView1 indexOfSourceArray:indexPath.item]);
     };
     [self.scollView1 reloadData];
     MyRecycleSectionModel *secModel1 = [MyRecycleSectionModel new];
@@ -60,7 +56,7 @@
         model.color = _colorAry[i%_colorAry.count];
         [arrM1 addObject:model];
     }
-    secModel1.rows = arrM1.copy;
+    secModel1.rows = arrM1;
     self.scollView2.loop = YES;
     self.scollView2.dataSource = secModel1;
     self.scollView2.manual = NO;
@@ -69,8 +65,6 @@
     self.scollView2.hidePageControl = YES;
     self.scollView2.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.scollView2.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        StrongSelf;
-        NSLog(@"click222 %d", [strongSelf.scollView1 indexOfSourceArray:indexPath.item]);
     };
     [self.scollView2 reloadData];
 }

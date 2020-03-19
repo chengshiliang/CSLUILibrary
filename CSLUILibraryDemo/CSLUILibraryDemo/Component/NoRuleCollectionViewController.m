@@ -75,12 +75,11 @@
         }
         [arrM addObject:rowModel];
     }
-    secModel.rows = arrM.copy;
+    secModel.rows = arrM;
     self.noRuleCollectionView.dataSource = secModel;
     self.noRuleCollectionView.columns = 4;
     self.noRuleCollectionView.ajustFrame = NO;
     self.noRuleCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        NSLog(@"click %d", indexPath.row);
     };
     [self.noRuleCollectionView reloadData];
 }

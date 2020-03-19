@@ -37,7 +37,7 @@
             rowModel.title = rowDic[@"title"];
             [rowArrayM addObject:rowModel];
         }
-        secModel.rows = rowArrayM.copy;
+        secModel.rows = rowArrayM;
         [arrayM addObject:secModel];
     }
     self.tableView.manager = [[SLTableManager alloc]initWithSections:arrayM.copy delegateHandler:nil];

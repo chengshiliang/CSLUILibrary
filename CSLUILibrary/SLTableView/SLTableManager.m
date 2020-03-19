@@ -11,7 +11,7 @@
 #import <CSLCommonLibrary/SLUtil.h>
 
 @implementation SLTableManager
-- (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{
+- (id)initWithSections:(NSMutableArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *)handler{
     self = [super init];
     if (self) {
         //保存数据源

@@ -26,11 +26,10 @@
         model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
         [arrM2 addObject:model];
     }
-    sectionModel2.rows = arrM2.copy;
+    sectionModel2.rows = arrM2;
     self.staticCollectionView.dataSource = sectionModel2;
     self.staticCollectionView.columns = 3;
     self.staticCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        NSLog(@"index %d", indexPath.row);
     };
     [self.staticCollectionView reloadData];
     
@@ -43,10 +42,9 @@
         model.rowHeight = 50;
         [arrM addObject:model];
     }
-    sectionModel3.rows = arrM.copy;
+    sectionModel3.rows = arrM;
     self.horizontalCollectionView.dataSource = sectionModel3;
     self.horizontalCollectionView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        NSLog(@"index %d", indexPath.row);
     };
     [self.horizontalCollectionView reloadData];
     
@@ -57,10 +55,12 @@
         model.str = [NSString stringWithFormat:@"COUNT%@", @(i)];
         [arrM3 addObject:model];
     }
-    sectionModel.rows = arrM3.copy;
+    sectionModel.rows = arrM3;
     self.cardCollectionView.dataSource = sectionModel;
     self.cardCollectionView.direction = Vertical;
-    self.cardCollectionView.scrollEndBlock = ^(NSInteger index) {NSLog(@"index %d", index);};
+    self.cardCollectionView.scrollEndBlock = ^(NSInteger index) {
+        
+    };
     [self.cardCollectionView reloadData];
 }
 

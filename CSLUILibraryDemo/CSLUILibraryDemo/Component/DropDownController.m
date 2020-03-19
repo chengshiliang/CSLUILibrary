@@ -42,7 +42,7 @@
                 rowModel.title = title;
                 [rowArrayM addObject:rowModel];
             }
-            secModel.rows = rowArrayM.copy;
+            secModel.rows = rowArrayM;
             [arrayM addObject:secModel];
             dropDownView.type = SLDropDownViewDisplayCollect;
             dropDownView.collectDatas = arrayM;
@@ -69,7 +69,7 @@
                 rowModel.title = title;
                 [rowArrayM addObject:rowModel];
             }
-            secModel.rows = rowArrayM.copy;
+            secModel.rows = rowArrayM;
             [arrayM addObject:secModel];
             dropDownView.type = SLDropDownViewDisplayTable;
             dropDownView.tableDatas = arrayM;
@@ -137,7 +137,7 @@
                     rowModel.type = SLTableTypeCode;
                     [rowArrayM addObject:rowModel];
                 }
-                secModel.rows = rowArrayM.copy;
+                secModel.rows = rowArrayM;
                 [arrayM addObject:secModel];
             }
             dropDownView.type = SLDropDownViewDisplayTable;

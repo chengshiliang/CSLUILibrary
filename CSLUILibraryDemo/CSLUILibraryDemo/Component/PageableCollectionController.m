@@ -26,25 +26,25 @@
     for (int i = 0; i < 2; i ++) {
         SLPageableCollectRowModel *rowModel = [SLPageableCollectRowModel new];
         MyStaticCollectSectionModel *secSubModel = [MyStaticCollectSectionModel new];
-        NSMutableArray<MyStaticCollectRowModel *> *arrM2 = [NSMutableArray array];
+        NSMutableArray*arrM2 = [NSMutableArray array];
         for (int j = 0; j < 12; j ++) {
             MyStaticCollectRowModel *model = [MyStaticCollectRowModel new];
             model.str = [NSString stringWithFormat:@"COUNT%@", @(j)];
             [arrM2 addObject:model];
         }
-        secSubModel.rows = [arrM2 mutableCopy];
+        secSubModel.rows = arrM2;
         rowModel.rowModel = secSubModel;
         rowModel.rowWidth = kScreenWidth-50;
         [arrM addObject:rowModel];
     }
-    secModel.rows = arrM.copy;
+    secModel.rows = arrM;
     self.collectionView.dataSource = secModel;
     self.collectionView.columns = 4;
     self.collectionView.scrollToIndexBlock = ^(id<SLCollectRowProtocol>  _Nonnull model, NSInteger index) {
-        NSLog(@"scroll %d", index);
+
     };
     self.collectionView.selectSubCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {
-        NSLog(@"select %d", indexPath.item);
+
     };
     [self.collectionView reload];
 }

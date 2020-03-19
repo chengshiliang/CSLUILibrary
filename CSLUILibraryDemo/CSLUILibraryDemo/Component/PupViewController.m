@@ -32,7 +32,7 @@
         model.color = _colorAry[i%_colorAry.count];
         [arrM addObject:model];
     }
-    sectionModel.rows = arrM.copy;
+    sectionModel.rows = arrM;
     self.pupView.dataSource = sectionModel;
     self.pupView.columns = 4;
     self.pupView.selectCollectView = ^(SLCollectBaseView * _Nonnull collectView, UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexPath, id<SLCollectRowProtocol>  _Nonnull rowModel) {

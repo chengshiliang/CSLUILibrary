@@ -36,7 +36,7 @@
         model.imageUrl = [NSString stringWithFormat:@"cir%d", i];
         [arrM addObject:model];
     }
-    secRecycleModel.rows = arrM.copy;
+    secRecycleModel.rows = arrM;
     secModel.recycleModel = secRecycleModel;
     
     MyNoRuleCollectSectionModel *secNoRuleModel = [[MyNoRuleCollectSectionModel alloc]init];
@@ -111,7 +111,7 @@
     secModel.rows = arrayM;
     self.collectionView = [[SLCollectBaseView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.collectionView];
-    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[secModel] delegateHandler:[SLCollectFlowlayoutProxy new]];
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:[@[secModel]mutableCopy] delegateHandler:[SLCollectFlowlayoutProxy new]];
     self.collectionView.manager.displayHeader = ^(SLCollectBaseView * _Nonnull collectView, UIView * _Nonnull view, NSInteger section, id<SLCollectSectionProtocol>  _Nonnull secModel) {
         if ([view isKindOfClass:[RuiXingCoffeeHomeHeaderView class]] && section == 0 && [secModel isKindOfClass:[RuixingCoffeeSectionModel class]]) {
             RuiXingCoffeeHomeHeaderView *headerView = (RuiXingCoffeeHomeHeaderView *)view;
