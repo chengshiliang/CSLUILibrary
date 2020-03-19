@@ -31,6 +31,7 @@
 		158C6C56236A96C700F80FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158C6C55236A96C700F80FA6 /* Assets.xcassets */; };
 		158C6C59236A96C700F80FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158C6C57236A96C700F80FA6 /* LaunchScreen.storyboard */; };
 		158C6C5C236A96C700F80FA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158C6C5B236A96C700F80FA6 /* main.m */; };
+		1596C691241FE15800B46CF0 /* RouteConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1596C690241FE15800B46CF0 /* RouteConfig.m */; };
 		15B3C7DE237A8843009CAFFE /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */; };
 		15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */; };
 		15C7793023AA164B00E1D305 /* PopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C7792F23AA164B00E1D305 /* PopoverController.m */; };
@@ -99,6 +100,8 @@
 		158C6C58236A96C700F80FA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		158C6C5A236A96C700F80FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		158C6C5B236A96C700F80FA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1596C68F241FE15800B46CF0 /* RouteConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RouteConfig.h; sourceTree = "<group>"; };
+		1596C690241FE15800B46CF0 /* RouteConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RouteConfig.m; sourceTree = "<group>"; };
 		15B3C7DC237A8843009CAFFE /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		15B3C7DD237A8843009CAFFE /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		15BB8F2123A38B9800698AE4 /* PageableCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageableCollectionController.h; sourceTree = "<group>"; };
@@ -228,6 +231,7 @@
 				158C6C4D236A96C600F80FA6 /* AppDelegate.m */,
 				158C6C4F236A96C600F80FA6 /* ViewController.h */,
 				158C6C50236A96C600F80FA6 /* ViewController.m */,
+				1596C68E241FE13600B46CF0 /* Route */,
 				1546FFA723D57D5A00E211E2 /* Cell */,
 				1546FF8E23D552EB00E211E2 /* Model */,
 				15D159602386279B006DD86B /* Other */,
@@ -249,6 +253,15 @@
 				15EFE18023717E7C00912334 /* cir3.png */,
 			);
 			path = CSLUILibraryDemo;
+			sourceTree = "<group>";
+		};
+		1596C68E241FE13600B46CF0 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				1596C68F241FE15800B46CF0 /* RouteConfig.h */,
+				1596C690241FE15800B46CF0 /* RouteConfig.m */,
+			);
+			path = Route;
 			sourceTree = "<group>";
 		};
 		15D159602386279B006DD86B /* Other */ = {
@@ -446,6 +459,7 @@
 				15FA043723A87F9000DF6A41 /* SliderViewController.m in Sources */,
 				150C579C2394ED8600FC8DE2 /* ButtonController.m in Sources */,
 				1571726623C4238B0064678B /* FileDownloadController.m in Sources */,
+				1596C691241FE15800B46CF0 /* RouteConfig.m in Sources */,
 				1546FF9123D5531700E211E2 /* MyCardCollectSectionModel.m in Sources */,
 				150C57A523960D0100FC8DE2 /* CustomTableCellController.m in Sources */,
 				15C7A3CC23D802FB002E0583 /* DropDownLeftTableCell.m in Sources */,

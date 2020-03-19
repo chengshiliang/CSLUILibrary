@@ -7,20 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "LabelController.h"
-#import "ImageViewController.h"
-#import "RecycleViewController.h"
-#import "PupViewController.h"
-#import "SearchViewController.h"
-#import "NavTranslucentViewController.h"
-#import "TabbarController.h"
-#import "StaticCollectionViewController.h"
-#import "NoRuleCollectionViewController.h"
-#import "CustomViewController.h"
-#import "RuiXingCoffeeHomeVC.h"
-#import "ButtonController.h"
-#import "CustomTableCellController.h"
-#import "AlertController.h"
+
+#import "RouteConfig.h"
 
 #import "MyCardCollectSectionModel.h"
 
@@ -99,14 +87,14 @@
             } else if (indexPath.row == 5) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"pageable"];
             } else if (indexPath.row == 6) {
-                vc = [storyboard instantiateViewControllerWithIdentifier:@"alert"];
+                vc = [[[Route new] produce]getTargetVC];
             } else if (indexPath.row == 7) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
             } else if (indexPath.row == 8) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"popover"];
             } else if (indexPath.row == 9) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"dropdown"];
-            }
+            }[storyboard instantiateViewControllerWithIdentifier:@"alert"];
         } else if (indexPath.section == 2) {
              if (indexPath.row == 0) {
                  vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];
