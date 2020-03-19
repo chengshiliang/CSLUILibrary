@@ -35,7 +35,31 @@
 }
 
 - (void)sl_setImage:(UIImage *)image {
-    [self sl_setImage:image compressionQuality:0.5];
+    if (!image) return;
+    dispatch_async(imageViewQueue, ^{
+        CGImageRef imageRef = image.CGImage;
+        CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef) & kCGBitmapAlphaInfoMask;
+        size_t width = CGImageGetWidth(imageRef);
+        size_t height = CGImageGetHeight(imageRef);
+        BOOL hasAlpha = NO;
+        if (alphaInfo == kCGImageAlphaPremultipliedLast ||
+            alphaInfo == kCGImageAlphaPremultipliedFirst ||
+            alphaInfo == kCGImageAlphaLast ||
+            alphaInfo == kCGImageAlphaFirst) {
+            hasAlpha = YES;
+        }
+
+        CGBitmapInfo bitmapInfo = kCGBitmapByteOrder32Host;
+        bitmapInfo |= hasAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst;
+
+        CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
+        CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+        CGImageRef newImage = CGBitmapContextCreateImage(context);// 创建一张新的解压缩后的位图
+        CFRelease(context);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.image = [UIImage imageWithCGImage:newImage];
+        });
+    });
 }
 
 - (void)sl_setImage:(UIImage *)image compressionQuality:(CGFloat)compressionQuality{
@@ -109,7 +133,7 @@
         CGColorSpaceRelease(colorSpace);
         CGImageRelease(imageRef);
         CGContextRelease(ctx);
-        [self sl_setImage:newImage];
+        self.image = newImage;
     });
 }
 
@@ -152,7 +176,7 @@
         CGImageRelease(newImageRef);
         CGColorSpaceRelease(colorSpaceRef);
         CGContextRelease(context);
-        [self sl_setImage:newImage];
+        self.image = newImage;
     });
 }
 
@@ -167,7 +191,7 @@
 }
 
 - (void)decodeImage:(UIImage *)image toSize:(CGSize)size {
-    [self sl_setImage:[UIImage decodeImage:image toSize:size]];
+    self.image = [UIImage decodeImage:image toSize:size];
 }
 
 @end

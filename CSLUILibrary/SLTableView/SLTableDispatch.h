@@ -12,6 +12,10 @@ typedef NS_ENUM(NSUInteger, SLTableTaskState){
     SLTableTaskStateRunning,
     SLTableTaskStateSuspend
 };
+typedef NS_ENUM(NSUInteger, SLTableTaskMode){
+    SLTableTaskModeDefault,
+    SLTableTaskModeCommon
+};
 
 typedef void(^ExecuteTask)(void);
 @interface SLTableTask : NSObject
@@ -25,7 +29,7 @@ typedef void(^ExecuteTask)(void);
 
 @end
 @interface SLTableDispatch : NSObject
-- (void)addTask:(NSString *)taskID excute:(ExecuteTask)excute;
+- (void)addTask:(NSString *)taskID excute:(ExecuteTask)excute mode:(SLTableTaskMode)mode;
 
 - (void)cancelTask:(NSString *)taskID;
 @end

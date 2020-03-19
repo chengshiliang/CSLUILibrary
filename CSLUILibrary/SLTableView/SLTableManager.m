@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         //保存数据源
-        _sections = sections.mutableCopy;
+        _sections = sections;
         //设置代理
         if (!handler) {
             _delegateHandler = [[SLTableProxy alloc]init];

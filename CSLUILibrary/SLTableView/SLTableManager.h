@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void(^displayHeader)(SLTableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
 @property (nonatomic, copy) void(^displayFooter)(SLTableView *tableView, UIView *view, NSInteger section, id<SLTableSectionProtocol>secModel);
 
-- (id)initWithSections:(NSArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *_Nullable)handler;
+- (id)initWithSections:(NSMutableArray<id<SLTableSectionProtocol>> *)sections delegateHandler:(SLTableProxy *_Nullable)handler;
 
 - (void)bindToTableView:(SLTableView *)tableView;
 

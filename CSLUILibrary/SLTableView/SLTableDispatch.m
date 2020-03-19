@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSMutableDictionary<NSString *, SLTableTask *> *taskPool;
 @property (nonatomic, strong) NSMutableArray<NSString *> *taskKeys;
 @property (nonatomic, assign) SLTableTaskState state;
+@property (nonatomic, assign) SLTableTaskMode mode;
 @end
 
 static CFRunLoopObserverRef observer;
@@ -41,7 +42,8 @@ static CFRunLoopObserverRef observer;
     return self;
 }
 
-- (void)addTask:(NSString *)taskID excute:(ExecuteTask)excute{
+- (void)addTask:(NSString *)taskID excute:(ExecuteTask)excute mode:(SLTableTaskMode)mode{
+    self.mode = mode;
     SLTableTask *task = [[SLTableTask alloc] initWithIdentifier:taskID task:excute];
     [self addTask:task];
 }
@@ -95,7 +97,7 @@ static void reigsterObserver(id self){
                                                       [self executeTask];
                                                   });
     SLTableDispatch *dispatcher = (SLTableDispatch *)self;
-    CFRunLoopAddObserver(runLoop, observer, kCFRunLoopCommonModes);
+    CFRunLoopAddObserver(runLoop, observer, dispatcher.mode == SLTableTaskModeDefault ? kCFRunLoopDefaultMode : kCFRunLoopCommonModes);
     dispatcher.state = SLTableTaskStateRunning;
 }
 @end

@@ -10,11 +10,11 @@
 #import <CSLUILibrary/SLCollectProxy.h>
 
 @implementation SLCollectManager
-- (id)initWithSections:(NSArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *)handler{
+- (id)initWithSections:(NSMutableArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *)handler{
     self = [super init];
     if (self) {
         //保存数据源
-        _sections = sections.mutableCopy;
+        _sections = sections;
         //设置代理
         if (!handler) {
             _delegateHandler = [[SLCollectProxy alloc]init];

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) SLCollectBaseView *collectView;
 @property (nonatomic, strong) NSMutableDictionary<NSString *,Class> *cellClasses;
 @property (nonatomic, strong) NSMutableDictionary<NSString *,UINib *> *cellNibs;
-@property (nonatomic, copy) NSArray<id<SLCollectSectionProtocol>> *sections;
+@property (nonatomic, strong) NSMutableArray<id<SLCollectSectionProtocol>> *sections;
 @property (nonatomic, strong) SLCollectProxy *delegateHandler;
 @property (nonatomic, copy) void(^selectCollectView)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
 @property (nonatomic, copy) void(^displayCell)(SLCollectBaseView *collectView, UICollectionViewCell *cell, NSIndexPath *indexPath, id<SLCollectRowProtocol>rowModel);
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void(^scrollViewWillBeginDraggingCallback)(SLCollectBaseView *collectView);
 @property (nonatomic, copy) void(^scrollViewDidEndDraggingCallback)(SLCollectBaseView *collectView, BOOL decelerate);
 @property (nonatomic, copy) void(^scrollViewDidEndScrollingAnimationCallback)(SLCollectBaseView *collectView);
-- (id)initWithSections:(NSArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *_Nullable)handler;
+- (id)initWithSections:(NSMutableArray<id<SLCollectSectionProtocol>> *)sections delegateHandler:(SLCollectProxy *_Nullable)handler;
 
 - (void)bindToCollectView:(SLCollectBaseView *)collectView;
 
