@@ -87,7 +87,7 @@
     [self.containerView addSubview:self];
     if (self.type == SLDropDownViewDisplayCollect && self.collectDatas && self.collectDatas.count > 0) {
         SLCollectBaseView *collectionView = [[SLCollectBaseView alloc]initWithFrame:CGRectMake(0, self.spaceVertical, targetView.sl_width, targetView.sl_height-toPoint.y-self.spaceVertical)];
-        collectionView.manager = [[SLCollectManager alloc]initWithSections:self.collectDatas delegateHandler:[SLCollectFlowlayoutProxy new]];
+        collectionView.manager = [[SLCollectManager alloc]initWithSections:[self.collectDatas mutableCopy] delegateHandler:[SLCollectFlowlayoutProxy new]];
         collectionView.manager.displayCell = [self.displayCollectCell copy];
         collectionView.manager.displayHeader = [self.displayCollectHeader copy];
         collectionView.manager.displayFooter = [self.displayCollectFooter copy];
@@ -148,7 +148,7 @@
             [leftRows addObject:leftRowModel];
         }
         leftSecModel.rows = leftRows;
-        leftTableView.manager = [[SLTableManager alloc]initWithSections:@[leftSecModel] delegateHandler:nil];
+        leftTableView.manager = [[SLTableManager alloc]initWithSections:[@[leftSecModel]mutableCopy] delegateHandler:nil];
         leftTableView.manager.displayCell = [self.displayLeftTableCell copy];
         [self addSubview:leftTableView];
         

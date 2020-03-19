@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deleteRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths;
 
-- (void)insertRowAtIndexPaths:(NSArray<NSIndexPath *>*)indexPaths;
+- (void)insertRowAtIndexPath:(NSIndexPath*)indexPath withObject:(id<SLTableSectionProtocol>)secData;
 
 - (void)exchangeRowFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
 

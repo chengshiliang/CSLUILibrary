@@ -79,7 +79,7 @@
     self.layout.scrollDirection = self.scrollDirection;
     self.dataArray = [self.dataSource.rows copy];
     self.dataSource.insetForSection = UIEdgeInsetsZero;
-    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectRecycleProxy new]];
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:[@[self.dataSource]mutableCopy] delegateHandler:[SLCollectRecycleProxy new]];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
@@ -137,7 +137,7 @@
             self.dataSource.rows = [leftSubArray arrayByAddingObjectsFromArray:self.dataSource.rows].mutableCopy;
         }
     }
-    [self.collectionView.manager setSections:@[self.dataSource]];
+    [self.collectionView.manager setSections:[@[self.dataSource]mutableCopy]];
     [self.collectionView.manager reloadData];
     if(!self.manual){
         for(UIGestureRecognizer *g in self.collectionView.gestureRecognizers){

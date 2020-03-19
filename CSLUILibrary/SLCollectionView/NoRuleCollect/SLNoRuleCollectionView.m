@@ -51,7 +51,7 @@
     self.layout.data = self.dataSource.rows.copy;
     self.layout.ajustFrame = self.ajustFrame;
     [self setNeedsLayout];
-    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:nil];
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:[@[self.dataSource]mutableCopy] delegateHandler:nil];
     self.collectionView.manager.selectCollectView = [self.selectCollectView copy];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     [self.collectionView.manager reloadData];

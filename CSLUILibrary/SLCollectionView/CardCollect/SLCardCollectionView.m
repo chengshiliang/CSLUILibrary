@@ -46,7 +46,7 @@ static NSString *const cardViewCellID = @"kSLCardViewCellID";
     self.layout.minimumLineSpacing = self.dataSource.minimumLineSpacing;
     self.layout.minimumInteritemSpacing = self.dataSource.minimumInteritemSpacing;
     self.layout.scrollDirection = self.direction;
-    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:@[self.dataSource] delegateHandler:[SLCollectScrollProxy new]];
+    self.collectionView.manager = [[SLCollectManager alloc]initWithSections:[@[self.dataSource]mutableCopy] delegateHandler:[SLCollectScrollProxy new]];
     self.collectionView.manager.displayCell = [self.displayCollectCell copy];
     WeakSelf;
     self.collectionView.manager.scrollViewDidEndDeceleratingCallback = ^(SLCollectBaseView * _Nonnull collectView) {

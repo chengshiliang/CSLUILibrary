@@ -11,7 +11,7 @@
 #import <CSLCommonLibrary/SLUtil.h>
 
 @interface SLTableManager()
-@property (nonatomic, assign) dispatch_queue_t dataQueue;
+@property (nonatomic, strong) dispatch_queue_t dataQueue;
 @end
 
 @implementation SLTableManager
