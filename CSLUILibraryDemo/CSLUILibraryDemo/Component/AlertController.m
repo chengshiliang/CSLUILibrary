@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.normalAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.normalAlert onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLAlertView *alert = [[SLAlertView alloc]init];
         SLLabel *titleLabel = alert.titleLabel;
         titleLabel.textColor = [UIColor redColor];
@@ -35,7 +35,7 @@
         [alert show];
     }];
     
-    [self.onlyMessageAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.onlyMessageAlert onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLAlertView *alert = [[SLAlertView alloc]init];
         [alert addAlertWithType:AlertSheet title:@"title" message:@"message"];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel constructAction:^(SLTabbarButton * _Nonnull button) {
@@ -54,7 +54,7 @@
         [alert show];
     }];
     
-    [self.onlyTitleAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.onlyTitleAlert onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLAlertView *alert = [[SLAlertView alloc]init];
         [alert addAlertWithType:AlertView title:@"title" message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel constructAction:^(SLTabbarButton * _Nonnull button) {
@@ -69,7 +69,7 @@
         [alert show];
     }];
     
-    [self.nothingAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.nothingAlert onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLAlertView *alert = [[SLAlertView alloc]init];
         [alert addAlertWithType:AlertSheet title:nil message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel constructAction:^(SLTabbarButton * _Nonnull button) {
@@ -92,7 +92,7 @@
         [alert show];
     }];
     
-    [self.customViewAlert onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.customViewAlert onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLAlertView *alert = [[SLAlertView alloc]init];
         [alert addAlertWithType:AlertView title:nil message:nil];
         [alert addActionWithTitle:@"取消" type:AlertActionCancel constructAction:^(SLTabbarButton * _Nonnull button) {

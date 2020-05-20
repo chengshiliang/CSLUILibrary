@@ -24,41 +24,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     SLToast *toast = [SLToast new];
-    [self.toastWithNothing onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastWithNothing onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:nil title:nil image:nil duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft];
     }];
     
-    [self.toast onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toast onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
 //        [toast makeToast:@"message" title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonTop imagePosition:SLToastImagePositonTop];
 //        [toast makeToast:@"message" title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonTop imagePosition:SLToastImagePositonBottom];
 //        [toast makeToast:@"message" title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonTop imagePosition:SLToastImagePositonLeft];
         [toast makeToast:@"message" title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonTop imagePosition:SLToastImagePositonRight];
     }];
     
-    [self.toastOnlyTitle onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastOnlyTitle onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:nil title:@"title" image:nil duration:2.0f position:SLToastPositonBottom];
     }];
     
-    [self.toastOnlyMessage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastOnlyMessage onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:@"message" title:nil image:nil duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonTop];
     }];
     
-    [self.toastOnlyImage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastOnlyImage onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:nil title:nil image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonBottom];
 //        [toast makeToast:nil title:nil image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft];
 //        [toast makeToast:nil title:nil image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonRight];
 //        [toast makeToast:nil title:nil image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonTop];
     }];
     
-    [self.toastTitleAndMessage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastTitleAndMessage onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:@"message" title:@"title" image:nil duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonLeft];
     }];
     
-    [self.toastTitleAndImage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastTitleAndImage onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         [toast makeToast:nil title:@"title" image:[UIImage imageNamed:@"3.jpg"] duration:2.0f position:SLToastPositonMiddle imagePosition:SLToastImagePositonRight];
     }];
     
-    [self.toastMessageAndImage onEventChange:self event:UIControlEventTouchUpInside change:^(UIControl * _Nonnull control) {
+    [self.toastMessageAndImage onTouch:self event:UIControlEventTouchUpInside change:^(SLButton * _Nonnull button) {
         SLToastStyle *style = [SLToastConfig share].toastStyle;
         style.superContentView = (SLView *)self.view;
         style.imageSize = CGSizeMake(30, 30);

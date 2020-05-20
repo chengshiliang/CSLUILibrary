@@ -18,7 +18,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    RuixingCoffeeSectionModel *secModel = [RuixingCoffeeSectionModel new];
+    NSMutableArray *_colorAry = [NSMutableArray array];
+    [_colorAry addObject:[UIColor blackColor]];
+    [_colorAry addObject:[UIColor blueColor]];
+    [_colorAry addObject:[UIColor redColor]];
+    [_colorAry addObject:[UIColor yellowColor]];
+    [_colorAry addObject:[UIColor orangeColor]]; RuixingCoffeeSectionModel *secModel = [RuixingCoffeeSectionModel new];
     secModel.heightForHeader = kScreenWidth*(2.0/3+3.0/4);
     secModel.widthForHeader = kScreenWidth;
     secModel.insetForSection = UIEdgeInsetsMake(40, 20, 40, 20);
@@ -33,7 +38,7 @@
         model.rowWidth = kScreenWidth-20;
         model.rowHeight = 50;
         model.str = [NSString stringWithFormat:@"第%d个", i];
-        model.imageUrl = [NSString stringWithFormat:@"cir%d", i];
+        model.color = _colorAry[i%_colorAry.count];
         [arrM addObject:model];
     }
     secRecycleModel.rows = arrM;
