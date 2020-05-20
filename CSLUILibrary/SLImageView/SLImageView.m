@@ -133,7 +133,9 @@
         CGColorSpaceRelease(colorSpace);
         CGImageRelease(imageRef);
         CGContextRelease(ctx);
-        self.image = newImage;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.image = newImage;
+        });
     });
 }
 
@@ -176,7 +178,9 @@
         CGImageRelease(newImageRef);
         CGColorSpaceRelease(colorSpaceRef);
         CGContextRelease(context);
-        self.image = newImage;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.image = newImage;
+        });
     });
 }
 

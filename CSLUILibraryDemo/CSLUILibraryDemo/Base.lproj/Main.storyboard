@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -114,40 +114,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coreText" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjY-t2-zSA" customClass="SLCoreText">
-                                <rect key="frame" x="0.0" y="296" width="64.5" height="20"/>
-                                <color key="backgroundColor" red="1" green="0.21176470589999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="1hO-MA-mRj"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64.5" id="Gru-SR-i0U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvy-qz-ZCB">
-                                <rect key="frame" x="0.0" y="316" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cjY-t2-zSA" secondAttribute="trailing" constant="20" symbolic="YES" id="0Jl-vf-Mc1"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dvy-qz-ZCB" secondAttribute="trailing" constant="20" symbolic="YES" id="2Lf-zr-kom"/>
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="4M7-9r-Dmm"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0vt-yB-ddq" secondAttribute="trailing" constant="20" symbolic="YES" id="56K-Cq-vPs"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z1X-h2-eYh" secondAttribute="trailing" constant="20" symbolic="YES" id="70J-ES-NaC"/>
                             <constraint firstItem="2oW-5k-Aja" firstAttribute="top" secondItem="pxH-sm-x3v" secondAttribute="bottom" constant="20" id="7rD-78-OYF"/>
                             <constraint firstItem="pxH-sm-x3v" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="8Rv-h8-D8a"/>
                             <constraint firstItem="9bt-Qx-NtS" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" constant="20" id="8jM-jf-XpP"/>
-                            <constraint firstItem="cjY-t2-zSA" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" id="Ceb-iO-SVd"/>
                             <constraint firstItem="pxH-sm-x3v" firstAttribute="top" secondItem="Smh-GX-hAM" secondAttribute="bottom" constant="20" id="CyD-f2-CnM"/>
                             <constraint firstItem="Smh-GX-hAM" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="Eu1-a3-bzq"/>
                             <constraint firstItem="h26-ls-Eyg" firstAttribute="top" secondItem="Smh-GX-hAM" secondAttribute="top" id="Iiy-h6-2Ru"/>
                             <constraint firstItem="0vt-yB-ddq" firstAttribute="top" secondItem="9bt-Qx-NtS" secondAttribute="top" id="Jer-KD-XKD"/>
-                            <constraint firstItem="dvy-qz-ZCB" firstAttribute="top" secondItem="cjY-t2-zSA" secondAttribute="bottom" id="M1q-2P-TOw"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LYe-zd-ihk" secondAttribute="trailing" constant="20" symbolic="YES" id="Vg9-5L-tC4"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="leading" secondItem="2oW-5k-Aja" secondAttribute="trailing" constant="50" id="XeE-a4-LJf"/>
                             <constraint firstItem="Smh-GX-hAM" firstAttribute="top" secondItem="9bt-Qx-NtS" secondAttribute="bottom" constant="20" id="XgJ-1c-nMH"/>
@@ -158,10 +137,8 @@
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="leading" secondItem="pxH-sm-x3v" secondAttribute="trailing" constant="50" id="bYh-5e-6vm"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4v-OK-gxG" secondAttribute="trailing" constant="20" symbolic="YES" id="hEP-CL-1AY"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="top" secondItem="LYe-zd-ihk" secondAttribute="bottom" constant="20" id="hkl-to-cFo"/>
-                            <constraint firstItem="dvy-qz-ZCB" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" id="mOg-Hu-gqd"/>
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="bottom" constant="20" id="oMR-x9-7d9"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="top" id="pEb-0j-55B"/>
-                            <constraint firstItem="cjY-t2-zSA" firstAttribute="top" secondItem="H4v-OK-gxG" secondAttribute="bottom" constant="20" id="q1b-ya-ZMk"/>
                             <constraint firstItem="9bt-Qx-NtS" firstAttribute="top" secondItem="Jad-M0-HNe" secondAttribute="bottom" constant="50" id="qXS-cY-gqO"/>
                             <constraint firstItem="2oW-5k-Aja" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="sGb-Af-d5S"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="wkc-FG-PcL"/>
@@ -170,9 +147,6 @@
                     </view>
                     <connections>
                         <outlet property="bold" destination="0vt-yB-ddq" id="xX4-In-2Gn"/>
-                        <outlet property="coreText" destination="cjY-t2-zSA" id="Jqy-Oj-SP6"/>
-                        <outlet property="coreTextHeight" destination="1hO-MA-mRj" id="hio-fJ-2Z8"/>
-                        <outlet property="coreTextWidth" destination="Gru-SR-i0U" id="KKj-C1-EXC"/>
                         <outlet property="disable" destination="q4b-GF-w2o" id="MoX-Go-s7s"/>
                         <outlet property="h1" destination="9bt-Qx-NtS" id="Kdw-cr-JSq"/>
                         <outlet property="h2" destination="Smh-GX-hAM" id="ghA-Ir-z8w"/>

@@ -34,14 +34,15 @@
             }
         }
     }];
-    [self.imageView1 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
-    [self.imageView2 sl_scaleImage:[UIImage imageNamed:@"3.jpg"]];
-    [self.imageView3 sl_setAlphaForImage:[UIImage imageNamed:@"3.jpg"] alpha:0.8f];
-    [self.imageView4 sl_imageBlackToTransparent:[UIImage imageNamed:@"3.jpg"] weight:0.5f];
-    [self.imageView5 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+    UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"3" ofType:@"jpg"]];
+    [self.imageView1 sl_setImage:image];
+    [self.imageView2 sl_scaleImage:image];
+    [self.imageView3 sl_setAlphaForImage:image alpha:0.8f];
+    [self.imageView4 sl_imageBlackToTransparent:image weight:0.5f];
+    [self.imageView5 sl_setImage:image];
     [self.imageView5 addCorner:YES];
     [self.imageView6 sl_blurEffect];
-    [self.imageView6 sl_setImage:[UIImage imageNamed:@"3.jpg"]];
+    [self.imageView6 sl_setImage:image];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
