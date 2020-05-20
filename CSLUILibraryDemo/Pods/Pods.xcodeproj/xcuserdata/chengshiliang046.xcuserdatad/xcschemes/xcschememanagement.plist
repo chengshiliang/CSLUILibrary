@@ -4,41 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme_^#shared#^_</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>CSLCommonLibrary.xcscheme_^#shared#^_</key>
+		<key>CSLCommonLibrary.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>CSLNetwork.xcscheme_^#shared#^_</key>
+		<key>CSLNetwork.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>CSLUILibrary.xcscheme_^#shared#^_</key>
+		<key>CSLUILibrary.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>Pods-CSLUILibraryDemo.xcscheme_^#shared#^_</key>
+		<key>Pods-CSLUILibraryDemo.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>SDWebImage.xcscheme_^#shared#^_</key>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>SSZipArchive.xcscheme_^#shared#^_</key>
+		<key>SSZipArchive.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

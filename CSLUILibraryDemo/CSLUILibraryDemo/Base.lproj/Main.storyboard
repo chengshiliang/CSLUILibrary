@@ -1440,13 +1440,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7H-VP-Tft" customClass="SLSliderView">
-                                <rect key="frame" x="20" y="20" width="335" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aPQ-kR-pQW"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs6-Yc-ngg" customClass="SLDoubleSliderView">
                                 <rect key="frame" x="20" y="90" width="335" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1454,42 +1447,16 @@
                                     <constraint firstAttribute="height" constant="50" id="aUM-Tc-KYg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7K-yC-zYg" customClass="SLSliderView">
-                                <rect key="frame" x="20" y="170" width="50" height="457"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="uF5-rV-FPc"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-Fy-jdL" customClass="SLDoubleSliderView">
-                                <rect key="frame" x="305" y="170" width="50" height="457"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="etN-3s-UeH"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="f7K-yC-zYg" firstAttribute="top" secondItem="bs6-Yc-ngg" secondAttribute="bottom" constant="30" id="1ke-qZ-YR8"/>
-                            <constraint firstItem="aLU-yo-7Sx" firstAttribute="top" secondItem="f7K-yC-zYg" secondAttribute="bottom" constant="40" id="3Ft-Db-9PG"/>
-                            <constraint firstItem="aLU-yo-7Sx" firstAttribute="top" secondItem="RhO-Fy-jdL" secondAttribute="bottom" constant="40" id="3g5-aK-dqY"/>
-                            <constraint firstItem="RhO-Fy-jdL" firstAttribute="top" secondItem="bs6-Yc-ngg" secondAttribute="bottom" constant="30" id="4rg-oK-IVl"/>
                             <constraint firstItem="bs6-Yc-ngg" firstAttribute="leading" secondItem="7H4-cj-cp7" secondAttribute="leading" constant="20" id="Abn-yG-17X"/>
-                            <constraint firstItem="T7H-VP-Tft" firstAttribute="top" secondItem="gFF-ld-9v9" secondAttribute="bottom" constant="20" id="B57-TF-WbP"/>
-                            <constraint firstItem="bs6-Yc-ngg" firstAttribute="top" secondItem="T7H-VP-Tft" secondAttribute="bottom" constant="20" id="QEd-fU-tTB"/>
-                            <constraint firstAttribute="trailing" secondItem="T7H-VP-Tft" secondAttribute="trailing" constant="20" id="gxx-kB-T6S"/>
-                            <constraint firstAttribute="trailing" secondItem="RhO-Fy-jdL" secondAttribute="trailing" constant="20" id="lIk-Zp-kgC"/>
+                            <constraint firstItem="bs6-Yc-ngg" firstAttribute="top" secondItem="gFF-ld-9v9" secondAttribute="bottom" constant="90" id="eKT-C0-9Yb"/>
                             <constraint firstAttribute="trailing" secondItem="bs6-Yc-ngg" secondAttribute="trailing" constant="20" id="lMc-Tz-5B4"/>
-                            <constraint firstItem="T7H-VP-Tft" firstAttribute="leading" secondItem="7H4-cj-cp7" secondAttribute="leading" constant="20" id="tP6-YK-cQc"/>
-                            <constraint firstItem="f7K-yC-zYg" firstAttribute="leading" secondItem="7H4-cj-cp7" secondAttribute="leading" constant="20" id="zyZ-XZ-h3a"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="doubleSliderView" destination="bs6-Yc-ngg" id="8il-HM-9FZ"/>
-                        <outlet property="sliderView" destination="T7H-VP-Tft" id="L4s-H3-Drh"/>
-                        <outlet property="verticalDoubleSliderView" destination="RhO-Fy-jdL" id="eZm-m4-8Ka"/>
-                        <outlet property="verticalSliderView" destination="f7K-yC-zYg" id="8Vf-vS-g8a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyz-9l-usv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -1,4 +1,5 @@
-source 'https://github.com/Cocoapods/Specs.git'
+#source 'https://github.com/Cocoapods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs'
 platform :ios, '8.0'
 target 'CSLUILibraryDemo' do
 pod 'CSLCommonLibrary', '0.4.1'
