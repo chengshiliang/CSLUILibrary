@@ -168,14 +168,13 @@
     }
     
     if (self.progressCorner) {
-        self.progressRadius = MIN(rect.size.width, rect.size.height) / 2.0;
+        self.progressRadius = self.progressWH / 2.0;
     }
     self.normalImageView.hidden = YES;
     if (!self.normalImage && self.normalColor) {
         [self.progressView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:self.normalColor];
     } else if (self.normalImage) {
         [self.progressView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:nil];
-        [self.normalImageView addCornerRadius:self.progressRadius];
         self.normalImageView.hidden = NO;
         if (self.vertical) {
             self.normalImageView.frame = CGRectMake(CGRectGetMidX(self.bounds)-self.progressWH/2.0, self.slideSize.height/2.0, self.progressWH, CGRectGetHeight(rect)-self.slideSize.height);
@@ -183,6 +182,7 @@
             self.normalImageView.frame = CGRectMake(self.slideSize.width/2.0, CGRectGetMidY(self.bounds)-self.progressWH/2.0, CGRectGetWidth(rect)-self.slideSize.width, self.progressWH);
         }
         self.normalImageView.image = [self.normalImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
+        [self.normalImageView addCornerRadius:self.progressRadius];
     }
     self.trackImageView.hidden = YES;
     CGFloat startProgress = 1.0;
@@ -223,10 +223,10 @@
             [self.trackView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:self.trackerColor];
         } else if (self.trackerImage) {
             [self.trackView addCornerRadius:self.progressRadius borderWidth:0 borderColor:nil backGroundColor:nil];
-            [self.trackImageView addCornerRadius:self.progressRadius];
             self.trackImageView.hidden = NO;
             self.trackImageView.frame = trackRect;
             self.trackImageView.image = [self.trackerImage resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeStretch];
+            [self.trackImageView addCornerRadius:self.progressRadius];
         }
     }
 }

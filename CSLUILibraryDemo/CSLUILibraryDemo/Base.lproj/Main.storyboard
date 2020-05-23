@@ -114,6 +114,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRI-oM-U9s" customClass="SLCoreText">
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="z4F-yg-rVC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -135,11 +144,14 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h26-ls-Eyg" secondAttribute="trailing" constant="20" symbolic="YES" id="Zqh-Ma-g37"/>
                             <constraint firstItem="0vt-yB-ddq" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="trailing" constant="50" id="as0-lY-b3O"/>
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="leading" secondItem="pxH-sm-x3v" secondAttribute="trailing" constant="50" id="bYh-5e-6vm"/>
+                            <constraint firstAttribute="trailing" secondItem="kRI-oM-U9s" secondAttribute="trailing" id="cWR-J8-oNO"/>
+                            <constraint firstItem="kRI-oM-U9s" firstAttribute="leading" secondItem="mh7-sM-HBt" secondAttribute="leading" id="gqw-KQ-wrd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H4v-OK-gxG" secondAttribute="trailing" constant="20" symbolic="YES" id="hEP-CL-1AY"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="top" secondItem="LYe-zd-ihk" secondAttribute="bottom" constant="20" id="hkl-to-cFo"/>
                             <constraint firstItem="LYe-zd-ihk" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="bottom" constant="20" id="oMR-x9-7d9"/>
                             <constraint firstItem="q4b-GF-w2o" firstAttribute="top" secondItem="2oW-5k-Aja" secondAttribute="top" id="pEb-0j-55B"/>
                             <constraint firstItem="9bt-Qx-NtS" firstAttribute="top" secondItem="Jad-M0-HNe" secondAttribute="bottom" constant="50" id="qXS-cY-gqO"/>
+                            <constraint firstItem="qa3-Oo-iLM" firstAttribute="top" secondItem="kRI-oM-U9s" secondAttribute="bottom" id="roO-v5-QNX"/>
                             <constraint firstItem="2oW-5k-Aja" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="sGb-Af-d5S"/>
                             <constraint firstItem="H4v-OK-gxG" firstAttribute="leading" secondItem="9bt-Qx-NtS" secondAttribute="leading" id="wkc-FG-PcL"/>
                             <constraint firstItem="Z1X-h2-eYh" firstAttribute="top" secondItem="pxH-sm-x3v" secondAttribute="top" id="zBh-w7-WPs"/>
@@ -147,6 +159,7 @@
                     </view>
                     <connections>
                         <outlet property="bold" destination="0vt-yB-ddq" id="xX4-In-2Gn"/>
+                        <outlet property="coreText" destination="kRI-oM-U9s" id="gE2-p6-jjJ"/>
                         <outlet property="disable" destination="q4b-GF-w2o" id="MoX-Go-s7s"/>
                         <outlet property="h1" destination="9bt-Qx-NtS" id="Kdw-cr-JSq"/>
                         <outlet property="h2" destination="Smh-GX-hAM" id="ghA-Ir-z8w"/>

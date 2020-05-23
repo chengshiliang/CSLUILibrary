@@ -19,9 +19,7 @@
 @property (weak, nonatomic) IBOutlet SLLabel *normal;
 @property (weak, nonatomic) IBOutlet SLLabel *select;
 @property (weak, nonatomic) IBOutlet SLLabel *disable;
-//@property (weak, nonatomic) IBOutlet SLCoreText *coreText;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coreTextHeight;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *coreTextWidth;
+@property (weak, nonatomic) IBOutlet SLCoreText *coreText;
 @end
 
 @implementation LabelController
@@ -48,28 +46,23 @@
     self.select.labelType = LabelSelect;
     
     self.disable.labelType = LabelDisabel;
-
-//    [self.coreText addAttributeString:@"test" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor] click:^(NSString * _Nonnull string) {
-//        NSLog(@"STRING%@",string);
-//    }];
-//    [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100 click:^(UIImage * _Nonnull image) {
-//        NSLog(@"IMAGE%@",image);
-//    }];
-//    [self.coreText addAttributeString:@"https://www.baidu.com" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)} click:^(NSString * _Nonnull string) {
-//        NSLog(@"STRING222%@",string);
-//    }];
-//    WeakSelf;
-//    self.coreText.sizeChange = ^(double lineHeight, double lineWidth) {
-//        StrongSelf;
-//        strongSelf.coreTextHeight.constant = lineHeight;
-//        strongSelf.coreTextWidth.constant = lineWidth;
-//    };
-//    [self.coreText reload];
+    
+    [self.coreText addAttributeString:@"test" font:[UIFont systemFontOfSize:14.0] color:[UIColor redColor] click:^(NSString * _Nonnull string) {
+        NSLog(@"STRING%@",string);
+    }];
+    [self.coreText addAttributeImage:[UIImage imageNamed:@"3.jpg"] width:100 height:100 click:^(UIImage * _Nonnull image) {
+        NSLog(@"IMAGE%@",image);
+    }];
+    [self.coreText addAttributeString:@"https://www.baidu.com" font:[UIFont boldSystemFontOfSize:18] color:[UIColor greenColor] attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)} click:^(NSString * _Nonnull string) {
+        NSLog(@"STRING222%@",string);
+    }];
+    self.coreText.sizeChange = ^(double lineHeight, double lineWidth) {};
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self.coreText reload];
 }
 
 @end

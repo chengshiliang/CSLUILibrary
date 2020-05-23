@@ -13,6 +13,7 @@
 #import <CSLCommonLibrary/NSString+Util.h>
 #import <CSLCommonLibrary/UIView+SLBase.h>
 
+static NSString *kCoreTextAttributeKey = @"attribute";
 static NSString *kCoreTextContentKey = @"content";
 static NSString *kCoreTextFrameKey = @"frame";
 static NSString *kCoreTextClickKey = @"onClick";
@@ -96,7 +97,7 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     }
     NSString *key = [NSString stringWithFormat:@"%ld", (long)self.contentSpaceIndex];
     if (!self.coreTextFrames[key]) {
-        self.coreTextFrames[key] = @{kCoreTextContentKey:string, kCoreTextClickKey:clickBlock}.copy;
+        self.coreTextFrames[key] = @{kCoreTextContentKey:string, kCoreTextClickKey:clickBlock,kCoreTextAttributeKey:stringAttributeM}.copy;
     }
     self.contentSpaceIndex += string.length;
 }
@@ -114,19 +115,16 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
                    height:(CGFloat)height
                     click:(void(^)(UIImage *image))clickBlock{
     if (!image) return;
-    [self.attributeString appendAttributedString:[self imageSpaceWithWidth:width heith:height]];
+    NSMutableAttributedString *imageAttribute = [self imageSpaceWithWidth:width heith:height];
+    [self.attributeString appendAttributedString:imageAttribute];
     NSString *key = [NSString stringWithFormat:@"%ld", (long)self.contentSpaceIndex];
     if (!self.coreTextFrames[key]) {
-        self.coreTextFrames[key] = @{kCoreTextContentKey:image, kCoreTextClickKey:clickBlock}.copy;
+        self.coreTextFrames[key] = @{kCoreTextContentKey:image, kCoreTextClickKey:clickBlock,kCoreTextAttributeKey:imageAttribute}.copy;
     }
     self.contentSpaceIndex += 1;
 }
 
 - (void)reload {
-    [self setNeedsDisplay];
-}
-
-- (void)drawRect:(CGRect)rect {
     CTFramesetterRef frameSetterRef =  CTFramesetterCreateWithAttributedString((CFAttributedStringRef)self.attributeString);
     CGPathRef pathRef = CGPathCreateWithRect(CGRectMake(0, 0, self.sl_width, self.lineHeight), &CGAffineTransformIdentity);
     CTFrameRef frameRef = CTFramesetterCreateFrame(frameSetterRef, CFRangeMake(0, 0), pathRef, nil);
@@ -173,23 +171,31 @@ static CGFloat ctRunDelegateGetDescentCallback (void * refCon ){
     self.sl_height = heightAddup;
     self.sl_width = widthMax;
     !self.sizeChange?:self.sizeChange(heightAddup, widthMax);
-    if (self.coreTextFrames.allKeys.count <= 0) return;
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:[SLImageView class]]) {
             [subView removeFromSuperview];
         }
     }
+    if (self.coreTextFrames.allKeys.count <= 0) return;
     for (NSString *key in self.coreTextFrames) {
         NSMutableDictionary *dicM = [self.coreTextFrames[key] mutableCopy];
         NSValue *frameValue = dicM[kCoreTextFrameKey];
         id content = dicM[kCoreTextContentKey];
         CGRect imageViewFrame = [frameValue CGRectValue];
         if (imageViewFrame.size.width <= 0) continue;
-        if (![content isKindOfClass:[UIImage class]]) continue;
-        SLImageView *imageView = [[SLImageView alloc] init];
-        [imageView sl_setImage:(UIImage *)content];
-        imageView.frame = imageViewFrame;
-        [self addSubview:imageView];
+        if (content && [content isKindOfClass:[UIImage class]]) {
+            SLImageView *imageView = [[SLImageView alloc] init];
+            imageView.frame = imageViewFrame;
+            [imageView setImage:(UIImage *)content];
+            [self addSubview:imageView];
+        } else if (content && [content isKindOfClass:[NSString class]]) {
+            SLLabel *label = [[SLLabel alloc]init];
+            label.frame = imageViewFrame;
+            label.numberOfLines = 0;
+            NSMutableAttributedString *attributeString = dicM[kCoreTextAttributeKey];
+            label.attributedText = attributeString;
+            [self addSubview:label];
+        }
     }
 }
 
