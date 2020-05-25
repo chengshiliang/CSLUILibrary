@@ -58,6 +58,7 @@
 #import <CSLUILibrary/SLPopoverView.h>
 #import <CSLUILibrary/SLDropDownView.h>
 #import <CSLUILibrary/SLCollectBaseView.h>
+#import <CSLUILibrary/SLPaintView.h>
 
 #import <CSLUILibrary/SLModel.h>
 #import <CSLUILibrary/SLTableModel.h>

@@ -6,7 +6,7 @@
 //
 
 #import "SLPaintView.h"
-#import <CSLCommonLibrary/SLUIConsts.h>
+#import <CSLCommonLibrary/UIView+SLBase.h>
 
 @interface SLPaintScrollView : UIScrollView
 
@@ -92,8 +92,8 @@
     self.shapeLayer = [SLPaintShapeLayer shapeLayerWithLineColor:self.lineColor lineWidth:self.lineWidth];
     self.shapeLayer.path = self.path.CGPath;
     [self.layer addSublayer:self.shapeLayer];
-    [[self mutableArrayValueForKey:@"canceledLines"] removeAllObjects];
-    [[self mutableArrayValueForKey:@"lines"] addObject:self.shapeLayer];
+    [[self mutableArrayValueForKey:@"undoLines"] removeAllObjects];
+    [[self mutableArrayValueForKey:@"appearLines"] addObject:self.shapeLayer];
 }
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
@@ -115,8 +115,8 @@
 - (void)clearScreen {// 清屏
     if (!self.appearLines.count) return;
     [self.appearLines makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
-    [[self mutableArrayValueForKey:@"lines"] removeAllObjects];
-    [[self mutableArrayValueForKey:@"canceledLines"] removeAllObjects];
+    [[self mutableArrayValueForKey:@"appearLines"] removeAllObjects];
+    [[self mutableArrayValueForKey:@"undoLines"] removeAllObjects];
 }
 - (void)undo {// 撤销
     if (!self.appearLines.count) return;
@@ -135,6 +135,7 @@
 @interface SLPaintView()
 @property (nonatomic, strong) SLPaintScrollView *paintScrollView;
 @property (nonatomic, strong) SLPaintDrawerView *drawView;
+@property (nonatomic, strong) UIColor *paintColor;
 @end
 
 @implementation SLPaintView
@@ -151,7 +152,7 @@
 - (void)initialize {
     [self.drawView addObserver:self forKeyPath:@"appearLines" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     [self.drawView addObserver:self forKeyPath:@"undoLines" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    self.paintScrollView = [[SLPaintScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    self.paintScrollView = [[SLPaintScrollView alloc] initWithFrame:CGRectZero];
     [self.paintScrollView setUserInteractionEnabled:YES];
     [self.paintScrollView setScrollEnabled:YES];
     [self.paintScrollView setMultipleTouchEnabled:YES];
@@ -164,12 +165,23 @@
 }
 - (SLPaintDrawerView *)drawView {
     if (!_drawView) {
-        _drawView = [[SLPaintDrawerView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth*5, kScreenHeight*2)];
+        _drawView = [[SLPaintDrawerView alloc] init];
         _drawView.layer.backgroundColor = [UIColor clearColor].CGColor;
-        _drawView.lineWidth = self.lineWidth;
-        _drawView.lineColor = self.lineColor;
     }
     return _drawView;
+}
+- (void)setLineWidth:(NSInteger)lineWidth {
+    _lineWidth = lineWidth;
+    self.drawView.lineWidth = lineWidth;
+}
+- (void)setLineColor:(UIColor *)lineColor {
+    _lineColor = lineColor;
+    self.drawView.lineColor = lineColor;
+}
+- (void)layoutSubviews {
+    self.paintScrollView.frame = self.bounds;
+    self.drawView.frame = CGRectMake(0, 0, self.bounds.size.width*5.0, self.bounds.size.height*2.0);
+    self.paintScrollView.contentSize = self.drawView.frame.size;
 }
 - (void)show {
     self.drawView.appearLines = [NSMutableArray arrayWithArray:self.appearLines];
@@ -182,10 +194,25 @@
                      animations:^{
                                     self.alpha = 1;
                                  }
-                     completion:nil];
+                     completion:^(BOOL finished) {
+        UIImage *image = [UIView sl_renderViewToImage:self];
+        self.paintColor = [[UIColor alloc]initWithPatternImage:image];
+    }];
+}
+- (void)eraser {// 橡皮擦
+    self.lineWidth = 10;
+    self.lineColor = self.paintColor;
+}
+- (void)clearScreen{// 清屏
+    [self.drawView clearScreen];
+}
+- (void)undo {// 撤销
+    [self.drawView undo];
+}
+- (void)redo {// 恢复
+    [self.drawView redo];
 }
 - (void)dismiss{
-    
     [UIView animateWithDuration:0.3f
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -205,6 +232,6 @@
                       ofObject:(id)object
                         change:(NSDictionary<NSString *,id> *)change
                        context:(void *)context {
-    self.linesChanged?:self.linesChanged(self.drawView.appearLines, self.drawView.undoLines,self.num);
+    !self.linesChanged?:self.linesChanged(self.drawView.appearLines, self.drawView.undoLines,self.num);
 }
 @end

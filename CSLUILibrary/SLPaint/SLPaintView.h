@@ -18,7 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,   copy) NSArray * appearLines;// 之前画过的线条
 @property (nonatomic,   copy) NSArray * undoLines;  // 之前取消了的线条
 - (void)show;
-
+- (void)clearScreen;// 清屏
+- (void)undo;// 撤销
+- (void)redo;// 恢复
+- (void)eraser;// 橡皮擦
 - (void)dismiss;
 @end
 

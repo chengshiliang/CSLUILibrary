@@ -87,14 +87,18 @@
             } else if (indexPath.row == 5) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"pageable"];
             } else if (indexPath.row == 6) {
-                vc = [[[Route new] produce]getTargetVC];
+                vc = [[[Route new] produce]getTargetVC];// [storyboard instantiateViewControllerWithIdentifier:@"alert"];
             } else if (indexPath.row == 7) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"toast"];
             } else if (indexPath.row == 8) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"popover"];
             } else if (indexPath.row == 9) {
                 vc = [storyboard instantiateViewControllerWithIdentifier:@"dropdown"];
-            }[storyboard instantiateViewControllerWithIdentifier:@"alert"];
+            } else if (indexPath.row == 10) {
+                vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+                [strongSelf presentViewController:vc animated:YES completion:nil];
+                return;
+            }
         } else if (indexPath.section == 2) {
              if (indexPath.row == 0) {
                  vc = [storyboard instantiateViewControllerWithIdentifier:@"translucent"];

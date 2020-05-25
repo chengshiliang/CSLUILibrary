@@ -627,6 +627,118 @@
             </objects>
             <point key="canvasLocation" x="2110" y="2740"/>
         </scene>
+        <!--Paint Controller-->
+        <scene sceneID="E3J-pn-iGm">
+            <objects>
+                <viewController storyboardIdentifier="paint" id="4Sj-h0-ONd" customClass="PaintController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3K2-D7-CfG"/>
+                        <viewControllerLayoutGuide type="bottom" id="y67-op-brW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RhX-Oq-gh2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLA-To-ZyO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ7-CI-Bco" customClass="SLButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="清空"/>
+                                        <connections>
+                                            <action selector="clean:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="LIF-k1-Nmj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdP-qM-gzG" customClass="SLButton">
+                                        <rect key="frame" x="62.5" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="上一步"/>
+                                        <connections>
+                                            <action selector="back:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="JDA-Uu-LMx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeZ-Pk-X8v" customClass="SLButton">
+                                        <rect key="frame" x="125" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="下一步"/>
+                                        <connections>
+                                            <action selector="forword:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="wHz-Cc-azp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDo-eu-f3a" customClass="SLButton">
+                                        <rect key="frame" x="187.5" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="线宽"/>
+                                        <connections>
+                                            <action selector="ajustWidth:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="CpR-5y-CKc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drl-g2-g4H" customClass="SLButton">
+                                        <rect key="frame" x="250" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="颜色"/>
+                                        <connections>
+                                            <action selector="ajustColor:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="SuC-Gs-yLs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poV-Rk-KQe" customClass="SLButton">
+                                        <rect key="frame" x="312.5" y="0.0" width="62.5" height="50"/>
+                                        <state key="normal" title="橡皮擦"/>
+                                        <connections>
+                                            <action selector="eraser:" destination="4Sj-h0-ONd" eventType="touchUpInside" id="tDP-RH-M8h"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="poV-Rk-KQe" secondAttribute="bottom" id="4Zs-1w-WmH"/>
+                                    <constraint firstItem="PeZ-Pk-X8v" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="4jq-2a-IT3"/>
+                                    <constraint firstAttribute="bottom" secondItem="RJ7-CI-Bco" secondAttribute="bottom" id="62z-8v-Tfj"/>
+                                    <constraint firstItem="poV-Rk-KQe" firstAttribute="width" secondItem="RJ7-CI-Bco" secondAttribute="width" id="6EY-vy-bpN"/>
+                                    <constraint firstItem="poV-Rk-KQe" firstAttribute="leading" secondItem="Drl-g2-g4H" secondAttribute="trailing" id="6Jg-Fb-xzO"/>
+                                    <constraint firstAttribute="bottom" secondItem="MdP-qM-gzG" secondAttribute="bottom" id="6hq-4E-nyp"/>
+                                    <constraint firstAttribute="bottom" secondItem="Drl-g2-g4H" secondAttribute="bottom" id="7tj-i0-DWb"/>
+                                    <constraint firstItem="PeZ-Pk-X8v" firstAttribute="leading" secondItem="MdP-qM-gzG" secondAttribute="trailing" id="8oA-hJ-guw"/>
+                                    <constraint firstItem="HDo-eu-f3a" firstAttribute="leading" secondItem="PeZ-Pk-X8v" secondAttribute="trailing" id="8vk-9e-D1J"/>
+                                    <constraint firstItem="RJ7-CI-Bco" firstAttribute="width" secondItem="FLA-To-ZyO" secondAttribute="width" multiplier="1:6" id="Bbi-1J-RKB"/>
+                                    <constraint firstItem="RJ7-CI-Bco" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="MXS-lL-ugG"/>
+                                    <constraint firstItem="HDo-eu-f3a" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="Qja-OP-l7u"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="poV-Rk-KQe" secondAttribute="trailing" id="TMl-Xf-M7X"/>
+                                    <constraint firstItem="HDo-eu-f3a" firstAttribute="width" secondItem="RJ7-CI-Bco" secondAttribute="width" id="VgG-03-apz"/>
+                                    <constraint firstItem="RJ7-CI-Bco" firstAttribute="leading" secondItem="FLA-To-ZyO" secondAttribute="leading" id="Wmc-4A-xLh"/>
+                                    <constraint firstItem="MdP-qM-gzG" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="cm1-lE-Odg"/>
+                                    <constraint firstItem="Drl-g2-g4H" firstAttribute="width" secondItem="RJ7-CI-Bco" secondAttribute="width" id="dhI-jl-TeX"/>
+                                    <constraint firstItem="MdP-qM-gzG" firstAttribute="width" secondItem="RJ7-CI-Bco" secondAttribute="width" id="fiQ-oC-hR8"/>
+                                    <constraint firstAttribute="bottom" secondItem="HDo-eu-f3a" secondAttribute="bottom" id="gdU-fb-jCK"/>
+                                    <constraint firstItem="poV-Rk-KQe" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="jdp-vu-btN"/>
+                                    <constraint firstItem="Drl-g2-g4H" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="top" id="nSL-8x-I6d"/>
+                                    <constraint firstItem="PeZ-Pk-X8v" firstAttribute="width" secondItem="RJ7-CI-Bco" secondAttribute="width" id="oyZ-n1-6iz"/>
+                                    <constraint firstItem="Drl-g2-g4H" firstAttribute="leading" secondItem="HDo-eu-f3a" secondAttribute="trailing" id="pWD-bm-x1q"/>
+                                    <constraint firstAttribute="height" constant="50" id="uQ7-J3-qoH"/>
+                                    <constraint firstAttribute="bottom" secondItem="PeZ-Pk-X8v" secondAttribute="bottom" id="wt2-wr-yw4"/>
+                                    <constraint firstItem="MdP-qM-gzG" firstAttribute="leading" secondItem="RJ7-CI-Bco" secondAttribute="trailing" id="y0A-Zx-jNm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdF-53-C1W" customClass="SLPaintView">
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QdF-53-C1W" firstAttribute="leading" secondItem="RhX-Oq-gh2" secondAttribute="leading" id="7ZH-po-6V3"/>
+                            <constraint firstAttribute="trailing" secondItem="FLA-To-ZyO" secondAttribute="trailing" id="BD1-Lr-7Rr"/>
+                            <constraint firstItem="y67-op-brW" firstAttribute="top" secondItem="QdF-53-C1W" secondAttribute="bottom" id="C2V-6P-YaJ"/>
+                            <constraint firstAttribute="trailing" secondItem="QdF-53-C1W" secondAttribute="trailing" id="Sk4-4z-tEX"/>
+                            <constraint firstItem="QdF-53-C1W" firstAttribute="top" secondItem="FLA-To-ZyO" secondAttribute="bottom" id="qbV-AT-jEb"/>
+                            <constraint firstItem="FLA-To-ZyO" firstAttribute="leading" secondItem="RhX-Oq-gh2" secondAttribute="leading" id="sN5-Lc-c63"/>
+                            <constraint firstItem="FLA-To-ZyO" firstAttribute="top" secondItem="3K2-D7-CfG" secondAttribute="bottom" id="vFP-LR-6fe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="paintView" destination="QdF-53-C1W" id="2yC-U8-ncu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GuJ-Cp-7M4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2852" y="2740.4797601199402"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="FRW-dZ-Hgy">
             <objects>

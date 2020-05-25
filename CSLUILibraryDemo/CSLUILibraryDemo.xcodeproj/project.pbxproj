@@ -52,6 +52,7 @@
 		15FA042F23A8727000DF6A41 /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA042E23A8727000DF6A41 /* ProgressViewController.m */; };
 		15FA043723A87F9000DF6A41 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FA043623A87F9000DF6A41 /* SliderViewController.m */; };
 		15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FF8BB623751F8100B920B2 /* SearchViewController.m */; };
+		368B54CD247B5D43004D616B /* PaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368B54CC247B5D43004D616B /* PaintController.m */; };
 		D85475017630C8A0F1E343DE /* libPods-CSLUILibraryDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		15FA043623A87F9000DF6A41 /* SliderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SliderViewController.m; sourceTree = "<group>"; };
 		15FF8BB523751F8100B920B2 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		15FF8BB623751F8100B920B2 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		368B54CB247B5D43004D616B /* PaintController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaintController.h; sourceTree = "<group>"; };
+		368B54CC247B5D43004D616B /* PaintController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaintController.m; sourceTree = "<group>"; };
 		4AD27CE187FC64CC27895BFE /* libPods-CSLUILibraryDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CSLUILibraryDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83958D723C86C661A88C9606 /* Pods-CSLUILibraryDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.release.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.release.xcconfig"; sourceTree = "<group>"; };
 		CC1DC1C3CACFE58F133EC4CB /* Pods-CSLUILibraryDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSLUILibraryDemo.debug.xcconfig"; path = "Target Support Files/Pods-CSLUILibraryDemo/Pods-CSLUILibraryDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				15BB8F2223A38B9800698AE4 /* PageableCollectionController.m */,
 				156C10C723D190B400D89056 /* DropDownController.h */,
 				156C10C823D190B400D89056 /* DropDownController.m */,
+				368B54CB247B5D43004D616B /* PaintController.h */,
+				368B54CC247B5D43004D616B /* PaintController.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				15C7793023AA164B00E1D305 /* PopoverController.m in Sources */,
 				15FF8BB723751F8100B920B2 /* SearchViewController.m in Sources */,
 				158C6C51236A96C600F80FA6 /* ViewController.m in Sources */,
+				368B54CD247B5D43004D616B /* PaintController.m in Sources */,
 				15D1597623868793006DD86B /* TabbarController.m in Sources */,
 				15FA042723A72DE800DF6A41 /* NoticeBarController.m in Sources */,
 				15BB8F2323A38B9800698AE4 /* PageableCollectionController.m in Sources */,
