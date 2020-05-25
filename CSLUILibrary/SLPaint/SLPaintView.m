@@ -195,8 +195,7 @@
                                     self.alpha = 1;
                                  }
                      completion:^(BOOL finished) {
-        UIImage *image = [UIView sl_renderViewToImage:self];
-        self.paintColor = [[UIColor alloc]initWithPatternImage:image];
+        [self getImageRender];
     }];
 }
 - (void)eraser {// 橡皮擦
@@ -227,6 +226,16 @@
                          [self.drawView removeObserver:self forKeyPath:@"undoLines"];
                          [self.drawView removeObserver:self forKeyPath:@"appearLines"];
                      }];
+}
+- (void)getImageRender {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextScaleCTM(context, 1, -1);
+    CGContextTranslateCTM(context, 0, -self.bounds.size.height);
+    [self.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.paintColor = [[UIColor alloc]initWithPatternImage:image];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object

@@ -27,7 +27,7 @@
     _widths = @[@1,@2,@3,@4,@5];
     _currentIndex = 0;
     _currentWidth = 0;
-    self.paintView.backgroundColor = [UIColor blackColor];
+    self.paintView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"3.jpg"]];
     self.paintView.lineColor = _colors[_currentIndex];
     self.paintView.lineWidth = [_widths[_currentWidth] integerValue];
 }
