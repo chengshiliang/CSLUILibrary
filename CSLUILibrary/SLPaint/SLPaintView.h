@@ -8,6 +8,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSInteger ,PaintShapeType) {
+    PaintShapeNone,
+    PaintShapeCircleType,
+    PaintShapeQuarzeType,
+    PaintShapeArrowType
+};
 
 @interface SLPaintView : UIView
 @property (nonatomic, copy) void(^linesChanged)(NSArray *appearLines, NSArray *undoLines, NSInteger num);
@@ -17,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger num;
 @property (nonatomic,   copy) NSArray * appearLines;// 之前画过的线条
 @property (nonatomic,   copy) NSArray * undoLines;  // 之前取消了的线条
+@property (nonatomic, assign) PaintShapeType shapeType;
 - (void)show;
 - (void)clearScreen;// 清屏
 - (void)undo;// 撤销

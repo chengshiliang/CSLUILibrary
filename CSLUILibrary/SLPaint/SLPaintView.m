@@ -64,8 +64,10 @@
 @property (nonatomic, strong)UIColor *lineColor;
 @property (nonatomic, strong)SLPaintPath * path;
 @property (nonatomic, strong)SLPaintShapeLayer * shapeLayer;
+@property (nonatomic, assign)PaintShapeType paintShape;
 @property (nonatomic, strong)NSMutableArray<SLPaintShapeLayer *>* undoLines;// 撤销的线条数组
 @property (nonatomic, strong)NSMutableArray<SLPaintShapeLayer *>* appearLines;// 可见的线条数组
+@property (nonatomic, assign)CGPoint startPoint;
 - (void)clearScreen;// 清屏
 - (void)undo;// 撤销
 - (void)redo;// 恢复
@@ -88,6 +90,7 @@
     if (event.allTouches.count != 1) return;
     UITouch *touch = [touches anyObject];
     CGPoint startPoint = [touch locationInView:self];
+    self.startPoint = startPoint;
     self.path = [SLPaintPath paintPathWithLineWidth:self.lineWidth startPoint:startPoint];
     self.shapeLayer = [SLPaintShapeLayer shapeLayerWithLineColor:self.lineColor lineWidth:self.lineWidth];
     self.shapeLayer.path = self.path.CGPath;
@@ -98,11 +101,56 @@
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint movePoint = [touch locationInView:self];
-    
     if ([event allTouches].count > 1){
         [self.superview touchesMoved:touches withEvent:event];
     }else if ([event allTouches].count == 1) {
-        [self.path addLineToPoint:movePoint];
+        if (self.paintShape == PaintShapeNone) {
+            [self.path addLineToPoint:movePoint];
+        } else if (self.paintShape == PaintShapeQuarzeType) {
+            CGRect rect = CGRectMake(self.startPoint.x, self.startPoint.y, movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
+            self.path = [SLPaintPath bezierPathWithRect:rect];
+        } else if (self.paintShape == PaintShapeCircleType) {
+            CGRect rect = CGRectMake(self.startPoint.x, self.startPoint.y, movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
+            self.path = [SLPaintPath bezierPathWithOvalInRect:rect];
+        } else {
+            [self.path removeAllPoints];
+            [self.shapeLayer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+            self.path.lineWidth = 3.0;
+            self.shapeLayer.lineWidth = self.path.lineWidth;
+            [self.path moveToPoint:self.startPoint];
+            CGPoint middlePoint = CGPointMake((movePoint.x - self.startPoint.x)*9.0/10+self.startPoint.x, (movePoint.y - self.startPoint.y)*9.0/10+self.startPoint.y);
+            [self.path addLineToPoint:middlePoint];
+            SLPaintPath *arrowPath = [SLPaintPath paintPathWithLineWidth:1 startPoint:middlePoint];
+            [arrowPath addLineToPoint:CGPointMake(middlePoint.x-8, middlePoint.y)];
+            [arrowPath addLineToPoint:CGPointMake(middlePoint.x, middlePoint.y-10)];
+            [arrowPath addLineToPoint:CGPointMake(middlePoint.x+8, middlePoint.y)];
+            [arrowPath closePath];
+            CGFloat angle;
+            if (self.startPoint.x==middlePoint.x) {
+                if (self.startPoint.y > middlePoint.y) {
+                    angle = 270;
+                } else {
+                    angle = 90;
+                }
+            } else {
+                angle = atan((middlePoint.y-self.startPoint.y)/(self.startPoint.x-middlePoint.x));
+                angle = angle*180.0/M_PI;
+                if (middlePoint.x>self.startPoint.x) {
+                    if (middlePoint.y >= self.startPoint.y) {
+                        angle += 360;
+                    }
+                } else {
+                    angle += 180;
+                }
+            }
+            NSLog(@"angle %lf", angle);
+            SLPaintShapeLayer *arrowShapeLayer = [SLPaintShapeLayer shapeLayerWithLineColor:self.lineColor lineWidth:self.path.lineWidth];
+            arrowShapeLayer.fillColor = (self.lineColor?:[UIColor blackColor]).CGColor;
+            arrowShapeLayer.strokeColor = (self.lineColor?:[UIColor blackColor]).CGColor;
+            arrowShapeLayer.path = arrowPath.CGPath;
+//            arrowShapeLayer.affineTransform = CGAffineTransformMakeRotation(angle);
+            [self.shapeLayer addSublayer:arrowShapeLayer];
+        }
         self.shapeLayer.path = self.path.CGPath;
     }
 }
@@ -210,6 +258,10 @@
 }
 - (void)redo {// 恢复
     [self.drawView redo];
+}
+- (void)setShapeType:(PaintShapeType)shapeType {
+    _shapeType = shapeType;
+    self.drawView.paintShape = shapeType;
 }
 - (void)dismiss{
     [UIView animateWithDuration:0.3f

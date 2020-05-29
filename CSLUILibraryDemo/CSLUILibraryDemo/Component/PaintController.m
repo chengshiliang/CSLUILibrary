@@ -30,6 +30,7 @@
     self.paintView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"3.jpg"]];
     self.paintView.lineColor = _colors[_currentIndex];
     self.paintView.lineWidth = [_widths[_currentWidth] integerValue];
+    [self.paintView setShapeType:PaintShapeArrowType];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
