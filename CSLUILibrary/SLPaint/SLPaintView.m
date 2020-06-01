@@ -113,43 +113,57 @@
             CGRect rect = CGRectMake(self.startPoint.x, self.startPoint.y, movePoint.x - self.startPoint.x, movePoint.y - self.startPoint.y);
             self.path = [SLPaintPath bezierPathWithOvalInRect:rect];
         } else {
-            [self.path removeAllPoints];
-            [self.shapeLayer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+            self.path = [UIBezierPath bezierPath];
+            [self.path moveToPoint:self.startPoint];
+            [self.path addLineToPoint:movePoint];
             self.path.lineWidth = 3.0;
             self.shapeLayer.lineWidth = self.path.lineWidth;
-            [self.path moveToPoint:self.startPoint];
-            CGPoint middlePoint = CGPointMake((movePoint.x - self.startPoint.x)*9.0/10+self.startPoint.x, (movePoint.y - self.startPoint.y)*9.0/10+self.startPoint.y);
-            [self.path addLineToPoint:middlePoint];
-            SLPaintPath *arrowPath = [SLPaintPath paintPathWithLineWidth:1 startPoint:middlePoint];
-            [arrowPath addLineToPoint:CGPointMake(middlePoint.x-8, middlePoint.y)];
-            [arrowPath addLineToPoint:CGPointMake(middlePoint.x, middlePoint.y-10)];
-            [arrowPath addLineToPoint:CGPointMake(middlePoint.x+8, middlePoint.y)];
-            [arrowPath closePath];
-            CGFloat angle;
-            if (self.startPoint.x==middlePoint.x) {
-                if (self.startPoint.y > middlePoint.y) {
-                    angle = 270;
-                } else {
-                    angle = 90;
+            CGPoint controllPoint = CGPointZero;
+            CGPoint pointUp = CGPointZero;
+            CGPoint pointDown = CGPointZero;
+            CGFloat distance = sqrt((movePoint.x-self.startPoint.x)*(movePoint.x-self.startPoint.x)+(movePoint.y-self.startPoint.y)*(movePoint.y-self.startPoint.y));
+            CGFloat distanceX = 8.0 * (ABS(movePoint.x - self.startPoint.x) / distance);
+            CGFloat distanceY = 8.0 * (ABS(movePoint.y -  self.startPoint.y) / distance);
+            CGFloat distX = 4.0 * (ABS(movePoint.y -  self.startPoint.y) / distance);
+            CGFloat distY = 4.0 * (ABS(movePoint.x -  self.startPoint.x) / distance);
+            if (movePoint.x >=  self.startPoint.x)
+            {
+                if (movePoint.y >=  self.startPoint.y)
+                {
+                    controllPoint = CGPointMake(movePoint.x - distanceX, movePoint.y - distanceY);
+                    pointUp = CGPointMake(controllPoint.x + distX, controllPoint.y - distY);
+                    pointDown = CGPointMake(controllPoint.x - distX, controllPoint.y + distY);
                 }
-            } else {
-                angle = atan((middlePoint.y-self.startPoint.y)/(self.startPoint.x-middlePoint.x));
-                angle = angle*180.0/M_PI;
-                if (middlePoint.x>self.startPoint.x) {
-                    if (middlePoint.y >= self.startPoint.y) {
-                        angle += 360;
-                    }
-                } else {
-                    angle += 180;
+                else
+                {
+                    controllPoint = CGPointMake(movePoint.x - distanceX, movePoint.y + distanceY);
+                    pointUp = CGPointMake(controllPoint.x - distX, controllPoint.y - distY);
+                    pointDown = CGPointMake(controllPoint.x + distX, controllPoint.y + distY);
                 }
             }
-            NSLog(@"angle %lf", angle);
-            SLPaintShapeLayer *arrowShapeLayer = [SLPaintShapeLayer shapeLayerWithLineColor:self.lineColor lineWidth:self.path.lineWidth];
-            arrowShapeLayer.fillColor = (self.lineColor?:[UIColor blackColor]).CGColor;
-            arrowShapeLayer.strokeColor = (self.lineColor?:[UIColor blackColor]).CGColor;
-            arrowShapeLayer.path = arrowPath.CGPath;
-//            arrowShapeLayer.affineTransform = CGAffineTransformMakeRotation(angle);
-            [self.shapeLayer addSublayer:arrowShapeLayer];
+            else
+            {
+                if (movePoint.y >= self.startPoint.y)
+                {
+                    controllPoint = CGPointMake(movePoint.x + distanceX, movePoint.y - distanceY);
+                    pointUp = CGPointMake(controllPoint.x - distX, controllPoint.y - distY);
+                    pointDown = CGPointMake(controllPoint.x + distX, controllPoint.y + distY);
+                }
+                else
+                {
+                    controllPoint = CGPointMake(movePoint.x + distanceX, movePoint.y + distanceY);
+                    pointUp = CGPointMake(controllPoint.x + distX, controllPoint.y - distY);
+                    pointDown = CGPointMake(controllPoint.x - distX, controllPoint.y + distY);
+                }
+            }
+            UIBezierPath *arrowPath = [UIBezierPath bezierPath];
+            [arrowPath moveToPoint:movePoint];
+            [arrowPath addLineToPoint:pointDown];
+            [arrowPath addLineToPoint:pointUp];
+            [arrowPath addLineToPoint:movePoint];
+            [self.path appendPath:arrowPath];
+            self.shapeLayer.fillColor = (self.lineColor?:[UIColor blackColor]).CGColor;
+            self.shapeLayer.strokeColor = (self.lineColor?:[UIColor blackColor]).CGColor;
         }
         self.shapeLayer.path = self.path.CGPath;
     }
